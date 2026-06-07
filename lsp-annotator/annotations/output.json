@@ -1,0 +1,69 @@
+{
+  "video_id": "output",
+  "annotations": [
+    {
+      "id": "bee90d69-2739-411e-a58d-a43293fcf08d",
+      "start": 8.2,
+      "end": 10.5,
+      "label": "¿Quién?",
+      "source": "model",
+      "confidence": 0.94
+    },
+    {
+      "id": "ca49076b-6d00-4064-bcfa-29763ca864bc",
+      "start": 41.7,
+      "end": 43.2,
+      "label": "¿Qué?",
+      "source": "model",
+      "confidence": 0.91
+    },
+    {
+      "id": "8867db38-f08c-4ffd-9bbc-28d018138565",
+      "start": 67,
+      "end": 68.8,
+      "label": "¿Cuándo?",
+      "source": "model",
+      "confidence": 0.78
+    },
+    {
+      "id": "08d57f59-8d91-45a2-86e7-c35a018416b8",
+      "start": 120.55,
+      "end": 123.72,
+      "label": "¿Por qué?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "3acfa11d-3a94-4cac-a1ef-7476d81a5a86",
+      "start": 89.28,
+      "end": 91.54,
+      "label": "¿Qué?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "e2f9a374-b2e9-4f64-8d7e-b0a237525425",
+      "start": 141.09,
+      "end": 158.91,
+      "label": "¿Dónde?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "5d5bb1ab-6f04-4c1a-9e45-b9f25ff440de",
+      "start": 175.98,
+      "end": 186.86,
+      "label": "¿Cómo?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "cc8a92b2-4c27-4cfa-bf08-949fb8d988cb",
+      "start": 197.89,
+      "end": 204.69,
+      "label": "¿Cómo?",
+      "source": "manual",
+      "confidence": null
+    }
+  ]
+}

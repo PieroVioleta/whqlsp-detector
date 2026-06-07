@@ -1,0 +1,37 @@
+{
+  "video_id": "test",
+  "annotations": [
+    {
+      "id": "6003ae6f-50e6-474e-8b65-03d5ff0a9747",
+      "start": 8.2,
+      "end": 10.5,
+      "label": "¿Quién?",
+      "source": "model",
+      "confidence": 0.94
+    },
+    {
+      "id": "a97afd96-19e2-488a-a636-b2db149379bb",
+      "start": 23.1,
+      "end": 25,
+      "label": "¿Dónde?",
+      "source": "model",
+      "confidence": 0.87
+    },
+    {
+      "id": "5c5372b9-7f3b-4e23-a339-2792f3578d74",
+      "start": 41.7,
+      "end": 43.2,
+      "label": "¿Qué?",
+      "source": "model",
+      "confidence": 0.91
+    },
+    {
+      "id": "928143a3-27ac-4053-ba0b-7d8c1dc30f91",
+      "start": 67,
+      "end": 68.8,
+      "label": "¿Cuándo?",
+      "source": "model",
+      "confidence": 0.78
+    }
+  ]
+}

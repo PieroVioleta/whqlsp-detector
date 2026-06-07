@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LSP Annotator – Señas WH</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f5f5f5;
+    --sidebar-bg: #ffffff;
+    --main-bg: #ffffff;
+    --border: #e0e0e0;
+    --text: #1a1a1a;
+    --text-muted: #6b7280;
+    --accent: #534AB7;
+    --accent-light: #ede9ff;
+    --model-color: #534AB7;
+    --manual-color: #0F6E56;
+    --model-bg: #534AB7;
+    --manual-bg: #0F6E56;
+    --danger: #dc2626;
+    --radius: 6px;
+    --sidebar-w: 220px;
+  }
+
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ── Toolbar ── */
+  #toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: var(--accent);
+    color: #fff;
+    flex-shrink: 0;
+  }
+  #toolbar h1 { font-size: 15px; font-weight: 600; flex: 1; }
+  #toolbar .spacer { flex: 1; }
+
+  /* ── Layout ── */
+  #layout {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* ── Sidebar ── */
+  #sidebar {
+    width: var(--sidebar-w);
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  #sidebar-header {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  #sidebar-header span { flex: 1; }
+  #video-list {
+    overflow-y: auto;
+    flex: 1;
+    padding: 6px 0;
+  }
+  .video-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    border-left: 3px solid transparent;
+    transition: background 0.12s;
+    overflow: hidden;
+  }
+  .video-item:hover { background: #f3f4f6; }
+  .video-item.active {
+    background: var(--accent-light);
+    border-left-color: var(--accent);
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .video-item .name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .video-item .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: #d1d5db;
+  }
+  .video-item .status-dot.done { background: var(--manual-color); }
+  .video-item .status-dot.model { background: var(--model-color); }
+
+  #sidebar-footer {
+    padding: 10px 12px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  /* ── Main area ── */
+  #main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  #empty-state {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    gap: 12px;
+    font-size: 15px;
+  }
+  #empty-state svg { opacity: 0.3; }
+
+  /* ── Video player ── */
+  #player-card {
+    background: #000;
+    border-radius: var(--radius);
+    overflow: hidden;
+    position: relative;
+  }
+  #player-card video {
+    width: 100%;
+    display: block;
+    max-height: 380px;
+    object-fit: contain;
+    background: #000;
+  }
+
+  /* ── Timecode ── */
+  #timecode-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  #timecode { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--text); }
+
+  /* ── Timeline ── */
+  #timeline-wrap {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+  }
+  #timeline-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  #timeline {
+    position: relative;
+    height: 36px;
+    background: #f3f4f6;
+    border-radius: 4px;
+    cursor: crosshair;
+    overflow: hidden;
+  }
+  #timeline-cursor {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(83,74,183,0.7);
+    pointer-events: none;
+    z-index: 10;
+  }
+  .tl-marker {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    border-radius: 3px;
+    cursor: pointer;
+    min-width: 5px;
+    transition: filter 0.1s, top 0.1s, bottom 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .tl-marker:hover { filter: brightness(1.2); z-index: 5; top: 2px; bottom: 2px; }
+  .tl-marker.active-marker { z-index: 6; top: 2px; bottom: 2px; outline: 2px solid rgba(255,255,255,0.85); outline-offset: 1px; }
+  /* Color is set inline via JS (LABEL_COLORS). Texture = source. */
+  .tl-marker.manual {
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent 0px, transparent 3px,
+      rgba(255,255,255,0.32) 3px, rgba(255,255,255,0.32) 5px
+    );
+  }
+  .tl-marker-label {
+    color: #fff;
+    font-size: 9px;
+    font-weight: 600;
+    white-space: nowrap;
+    padding: 0 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    pointer-events: none;
+  }
+
+  /* ── Timeline tooltip bubble ── */
+  #tl-tooltip {
+    position: fixed;
+    z-index: 300;
+    pointer-events: none;
+    display: none;
+    flex-direction: column;
+    gap: 3px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 7px 11px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.13);
+    font-size: 12px;
+    min-width: 120px;
+    transform: translateX(-50%);
+  }
+  #tl-tooltip.visible { display: flex; }
+  #tl-tooltip::before {
+    content: '';
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 7px solid transparent;
+    border-top: none;
+    border-bottom-color: var(--border);
+  }
+  #tl-tooltip::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top: none;
+    border-bottom-color: #fff;
+  }
+  .tl-tip-label { font-weight: 700; color: var(--text); }
+  .tl-tip-time { color: var(--text-muted); font-variant-numeric: tabular-nums; }
+  .tl-tip-source { align-self: flex-start; margin-top: 1px; }
+
+  [data-theme="dark"] #tl-tooltip {
+    background: #252842;
+    border-color: var(--border);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  }
+  [data-theme="dark"] #tl-tooltip::after { border-bottom-color: #252842; }
+
+  /* ── Row highlight ── */
+  tbody tr.row-highlighted { background: var(--accent-light) !important; }
+  [data-theme="dark"] tbody tr.row-highlighted { background: #252060 !important; }
+
+  /* ── Annotations section ── */
+  #annotations-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  #annotations-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    background: #fafafa;
+  }
+  #annotations-header h2 { font-size: 13px; font-weight: 600; flex: 1; }
+
+  /* ── Filter bar ── */
+  #filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--border);
+    background: #f7f7fb;
+    flex-wrap: wrap;
+  }
+  .filter-bar-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    margin-right: 2px;
+  }
+  .filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 2px solid transparent;
+    background: #e5e7eb;
+    color: #9ca3af;
+    transition: background 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s;
+    user-select: none;
+  }
+  .filter-chip:hover { box-shadow: 0 0 0 3px rgba(0,0,0,0.06); }
+  .filter-chip.active { color: #fff; }
+  .filter-chip input[type="checkbox"] { display: none; }
+  .filter-sep { width: 1px; height: 18px; background: var(--border); margin: 0 2px; }
+  .btn-link {
+    background: none;
+    border: none;
+    font-size: 11px;
+    font-family: inherit;
+    color: var(--accent);
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+  .btn-link:hover { text-decoration: underline; }
+  [data-theme="dark"] #filter-bar { background: #1a1d27; }
+  [data-theme="dark"] .filter-chip { background: #2d3148; color: #6b7280; }
+  [data-theme="dark"] .filter-chip:hover { box-shadow: 0 0 0 3px rgba(255,255,255,0.06); }
+
+  /* ── Add form ── */
+  #add-form {
+    padding: 10px 14px;
+    background: #f8f7ff;
+    border-bottom: 1px solid #e0dcff;
+    display: none;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+  }
+  #add-form.visible { display: flex; }
+  #add-form label { font-size: 12px; font-weight: 500; color: var(--text-muted); display: flex; flex-direction: column; gap: 3px; }
+  #add-form input, #add-form select {
+    padding: 5px 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 13px;
+    font-family: inherit;
+    background: #fff;
+    width: 90px;
+  }
+  #add-form select { width: 130px; }
+  .form-hint {
+    font-size: 11px;
+    color: var(--text-muted);
+    align-self: center;
+    margin-left: 4px;
+    background: #eee;
+    padding: 2px 6px;
+    border-radius: 10px;
+  }
+
+  /* ── Table ── */
+  #ann-table-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  thead th {
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+    background: #fafafa;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  tbody tr { border-bottom: 1px solid #f3f4f6; transition: background 0.1s; }
+  tbody tr:hover { background: #f9f9f9; }
+  tbody td { padding: 8px 12px; vertical-align: middle; }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    color: #fff;
+  }
+  /* Source badges: neutral tones + icon — color belongs to label now */
+  .badge { background: #374151; }
+  .badge.model  { background: #374151; }
+  .badge.manual { background: #374151; border: 1.5px dashed rgba(255,255,255,0.55); }
+
+  /* Label pill: colored by WH question (color set inline) */
+  .label-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 9px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+  }
+
+  /* Timeline legend */
+  #timeline-legend {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 7px;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .legend-swatch {
+    display: inline-block;
+    width: 22px;
+    height: 10px;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-right: 4px;
+    background: #6b7280;
+  }
+  .legend-swatch.manual {
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent 0px, transparent 3px,
+      rgba(255,255,255,0.4) 3px, rgba(255,255,255,0.4) 5px
+    );
+  }
+
+  /* ── Selection overlay ── */
+  #tl-selection {
+    position: absolute;
+    top: 0; bottom: 0;
+    display: none;
+    z-index: 7;
+    pointer-events: none;
+    border-left: 2px solid #f97316;
+    background: rgba(249,115,22,0.18);
+    min-width: 2px;
+  }
+  #tl-selection.active { display: block; }
+  #tl-selection.pending { border-right: 2px dashed rgba(249,115,22,0.6); }
+  #tl-selection.done {
+    border-right: 2px solid #f97316;
+    background: rgba(249,115,22,0.26);
+  }
+  /* pulse on the left edge while waiting for end */
+  #tl-selection.pending::before {
+    content: '';
+    position: absolute;
+    left: -3px; top: 0; bottom: 0; width: 4px;
+    background: #f97316;
+    animation: sel-pulse 1s ease-in-out infinite;
+  }
+  @keyframes sel-pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  /* Selection info strip */
+  #tl-sel-info {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    padding: 5px 10px;
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #92400e;
+    flex-wrap: wrap;
+  }
+  #tl-sel-info.visible { display: flex; }
+  #tl-sel-info strong { font-variant-numeric: tabular-nums; }
+  #tl-sel-info .sel-hint { color: #b45309; font-style: italic; margin-left: 4px; }
+  #tl-sel-info .sel-arrow { opacity: 0.5; }
+  /* Clickable-timeline cursor hint */
+  #timeline.selecting { cursor: crosshair; }
+  #timeline.selecting:hover { outline: 2px solid rgba(249,115,22,0.4); outline-offset: 2px; }
+  #timeline.dragging { cursor: ew-resize; user-select: none; }
+
+  [data-theme="dark"] #tl-sel-info {
+    background: #2a1f0f;
+    border-color: #7a5020;
+    color: #d4944e;
+  }
+  [data-theme="dark"] #tl-sel-info .sel-hint { color: #c17d3c; }
+
+  .confidence-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .conf-track {
+    width: 48px;
+    height: 4px;
+    background: #e5e7eb;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .conf-fill { height: 100%; border-radius: 2px; background: var(--accent); }
+
+  .actions { display: flex; gap: 4px; }
+
+  /* ── Edit inline ── */
+  .edit-input {
+    border: 1px solid var(--accent);
+    border-radius: 3px;
+    padding: 2px 5px;
+    font-size: 13px;
+    font-family: inherit;
+    width: 70px;
+    outline: none;
+  }
+  .edit-select {
+    border: 1px solid var(--accent);
+    border-radius: 3px;
+    padding: 2px 5px;
+    font-size: 13px;
+    font-family: inherit;
+    outline: none;
+  }
+
+  .empty-table {
+    padding: 28px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+
+  /* ── Buttons ── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 12px;
+    border-radius: var(--radius);
+    font-size: 13px;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.12s, background 0.12s;
+    white-space: nowrap;
+  }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover:not(:disabled) { background: #443ea0; }
+  .btn-secondary { background: #fff; color: var(--text); border: 1px solid var(--border); }
+  .btn-secondary:hover:not(:disabled) { background: #f3f4f6; }
+  .btn-success { background: var(--manual-color); color: #fff; }
+  .btn-success:hover:not(:disabled) { background: #0a5942; }
+  .btn-danger { background: #fff; color: var(--danger); border: 1px solid #fca5a5; font-size: 12px; padding: 4px 8px; }
+  .btn-danger:hover:not(:disabled) { background: #fef2f2; }
+  .btn-icon { background: none; border: none; padding: 4px 6px; border-radius: 4px; cursor: pointer; font-size: 14px; color: var(--text-muted); }
+  .btn-icon:hover { background: #f3f4f6; color: var(--text); }
+  .btn-sm { padding: 4px 8px; font-size: 12px; }
+  .btn-full { width: 100%; justify-content: center; }
+
+  /* ── Spinner ── */
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .spinner {
+    width: 14px; height: 14px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    flex-shrink: 0;
+  }
+  .spinner.dark {
+    border-color: rgba(83,74,183,0.3);
+    border-top-color: var(--accent);
+  }
+
+  /* ── Toast ── */
+  #toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    font-size: 13px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none;
+    z-index: 100;
+  }
+  #toast.show { opacity: 1; transform: translateY(0); }
+
+  /* ── M-key indicator ── */
+  #mkey-indicator {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: var(--radius);
+    font-size: 12px;
+    color: #92400e;
+  }
+  #mkey-indicator.visible { display: flex; }
+  #mkey-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #f97316;
+    animation: pulse 1s infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  /* ── Dark mode toggle button ── */
+  #btn-darkmode {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 5px 9px;
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 1;
+    transition: background 0.15s;
+    flex-shrink: 0;
+  }
+  #btn-darkmode:hover { background: rgba(255,255,255,0.28); }
+
+  /* ── Dark theme ── */
+  [data-theme="dark"] {
+    --bg: #0f1117;
+    --sidebar-bg: #181b28;
+    --main-bg: #181b28;
+    --border: #2d3148;
+    --text: #dde1f0;
+    --text-muted: #8890b0;
+    --accent: #7c75d4;
+    --accent-light: #252060;
+    --danger: #f87171;
+  }
+  [data-theme="dark"] body { background: var(--bg); color: var(--text); }
+  [data-theme="dark"] #sidebar { background: var(--sidebar-bg); }
+  [data-theme="dark"] .video-item:hover { background: #242838; }
+  [data-theme="dark"] .video-item .status-dot { background: #3d4260; }
+  [data-theme="dark"] #timeline-wrap { background: var(--sidebar-bg); }
+  [data-theme="dark"] #timeline { background: #242838; }
+  [data-theme="dark"] #annotations-card { background: var(--sidebar-bg); }
+  [data-theme="dark"] #annotations-header { background: #1e2130; }
+  [data-theme="dark"] thead th { background: #1e2130; border-bottom-color: var(--border); }
+  [data-theme="dark"] tbody tr { border-bottom-color: #242838; }
+  [data-theme="dark"] tbody tr:hover { background: #1e2235; }
+  [data-theme="dark"] tbody td { color: var(--text); }
+  [data-theme="dark"] #add-form { background: #1e1c33; border-bottom-color: #3d3870; }
+  [data-theme="dark"] #add-form input,
+  [data-theme="dark"] #add-form select {
+    background: #252842;
+    color: var(--text);
+    border-color: var(--border);
+  }
+  [data-theme="dark"] .edit-input,
+  [data-theme="dark"] .edit-select { background: #252842; color: var(--text); }
+  [data-theme="dark"] .form-hint { background: #2d3148; color: var(--text-muted); }
+  [data-theme="dark"] .conf-track { background: #2d3148; }
+  [data-theme="dark"] .btn-secondary {
+    background: #252842;
+    color: var(--text);
+    border-color: var(--border);
+  }
+  [data-theme="dark"] .btn-secondary:hover:not(:disabled) { background: #2d3148; }
+  [data-theme="dark"] .btn-danger { background: #2a1818; border-color: #7f2020; color: #f87171; }
+  [data-theme="dark"] .btn-danger:hover:not(:disabled) { background: #3a1f1f; }
+  [data-theme="dark"] .btn-icon { color: var(--text-muted); }
+  [data-theme="dark"] .btn-icon:hover { background: #2d3148; color: var(--text); }
+  [data-theme="dark"] #mkey-indicator { background: #2a1f0f; border-color: #7a5020; color: #d4944e; }
+  [data-theme="dark"] #toast { background: #dde1f0; color: #0f1117; }
+  [data-theme="dark"] #empty-state code { background: #2d3148; padding: 1px 5px; border-radius: 3px; }
+  [data-theme="dark"] #sidebar-footer { background: var(--sidebar-bg); }
+</style>
+</head>
+<body>
+
+<!-- Toolbar -->
+<div id="toolbar">
+  <h1>LSP Annotator &mdash; Señas WH</h1>
+  <div class="spacer"></div>
+  <button class="btn btn-secondary btn-sm" id="btn-export-json" disabled>⬇ JSON</button>
+  <button class="btn btn-secondary btn-sm" id="btn-export-csv" disabled>⬇ CSV</button>
+  <button id="btn-darkmode" title="Cambiar tema">🌙</button>
+</div>
+
+<!-- Layout -->
+<div id="layout">
+
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <div id="sidebar-header">
+      <span>Videos</span>
+      <button class="btn-icon" id="btn-refresh" title="Refrescar lista">↻</button>
+    </div>
+    <div id="video-list"></div>
+    <div id="sidebar-footer">
+      <button class="btn btn-primary btn-full btn-sm" id="btn-analyze" disabled>
+        ✦ Analizar con modelo
+      </button>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div id="main">
+    <div id="empty-state">
+      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+        <rect x="2" y="3" width="20" height="14" rx="2"/>
+        <path d="M10 9l5 3-5 3V9z"/>
+        <path d="M8 21h8M12 17v4"/>
+      </svg>
+      <p>Selecciona un video del panel izquierdo</p>
+      <p style="font-size:12px">Coloca tus archivos .mp4 / .mov en la carpeta <code>videos/</code></p>
+    </div>
+
+    <div id="video-section" style="display:none; flex-direction:column; gap:16px;">
+
+      <!-- Player -->
+      <div id="player-card">
+        <video id="video" controls preload="metadata"></video>
+      </div>
+
+      <!-- Timecode + M-key indicator -->
+      <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+        <div id="timecode-bar">
+          <span>Posición:</span>
+          <span id="timecode">0:00</span>
+          <span id="duration-label" style="color:var(--text-muted)"></span>
+        </div>
+        <div id="mkey-indicator">
+          <div id="mkey-dot"></div>
+          <span id="mkey-text">Inicio capturado en <strong id="mkey-start-val">0.00 s</strong> — presiona M de nuevo para capturar el fin</span>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div id="timeline-wrap">
+        <div id="timeline-label">Timeline</div>
+        <div id="timeline">
+          <div id="timeline-cursor"></div>
+          <div id="tl-selection"></div>
+        </div>
+        <div id="tl-sel-info">
+          <span>📍</span>
+          <span class="sel-start-lbl">Inicio:</span> <strong class="sel-start">—</strong>
+          <span class="sel-arrow">→</span>
+          <span class="sel-end-lbl">Fin:</span> <strong class="sel-end">—</strong>
+          <span class="sel-hint"></span>
+        </div>
+        <div id="timeline-legend">
+          <span><span class="legend-swatch"></span>Sólido = modelo</span>
+          <span><span class="legend-swatch manual" style="background-color:#6b7280"></span>Rayado = manual</span>
+        </div>
+      </div>
+
+      <!-- Annotations -->
+      <div id="annotations-card">
+        <div id="annotations-header">
+          <h2>Anotaciones</h2>
+          <button class="btn btn-success btn-sm" id="btn-add">+ Agregar seña</button>
+        </div>
+
+        <!-- Filter bar -->
+        <div id="filter-bar">
+          <span class="filter-bar-label">Mostrar:</span>
+          <div id="filter-chips"></div>
+          <div class="filter-sep"></div>
+          <button class="btn-link" id="filter-all">Todos</button>
+          <button class="btn-link" id="filter-none">Ninguno</button>
+        </div>
+
+        <!-- Add form -->
+        <div id="add-form">
+          <label>Inicio (s)
+            <input type="number" id="f-start" min="0" step="0.1" placeholder="0.0" oninput="updateSelectionOverlay()" />
+          </label>
+          <label>Fin (s)
+            <input type="number" id="f-end" min="0" step="0.1" placeholder="0.0" oninput="updateSelectionOverlay()" />
+          </label>
+          <label>Etiqueta
+            <select id="f-label">
+              <option value="¿Qué?">¿Qué?</option>
+              <option value="¿Quién?">¿Quién?</option>
+              <option value="¿Cuándo?">¿Cuándo?</option>
+              <option value="¿Dónde?">¿Dónde?</option>
+              <option value="¿Cómo?">¿Cómo?</option>
+              <option value="¿Por qué?">¿Por qué?</option>
+              <option value="¿Cuánto?">¿Cuánto?</option>
+            </select>
+          </label>
+          <button class="btn btn-primary btn-sm" id="btn-save-add">Guardar</button>
+          <button class="btn btn-secondary btn-sm" id="btn-cancel-add">Cancelar</button>
+          <span class="form-hint">Atajo: tecla M para capturar inicio/fin</span>
+        </div>
+
+        <!-- Table -->
+        <div id="ann-table-wrap">
+          <table id="ann-table">
+            <thead>
+              <tr>
+                <th>Fuente</th>
+                <th>Inicio → Fin</th>
+                <th>Etiqueta</th>
+                <th>Confianza</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="ann-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div><!-- /video-section -->
+  </div><!-- /main -->
+</div><!-- /layout -->
+
+<div id="tl-tooltip">
+  <span class="tl-tip-label"></span>
+  <span class="tl-tip-time"></span>
+  <span class="tl-tip-source badge"></span>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ============================================================
+// State
+// ============================================================
+const WH_LABELS = ['¿Qué?', '¿Quién?', '¿Cuándo?', '¿Dónde?', '¿Cómo?', '¿Por qué?', '¿Cuánto?'];
+
+// Color per label for chips (distinct, accessible palette)
+const LABEL_COLORS = {
+  '¿Qué?':     '#e05a1e',
+  '¿Quién?':   '#7c3aed',
+  '¿Cuándo?':  '#0077b6',
+  '¿Dónde?':   '#0F6E56',
+  '¿Cómo?':    '#c1121f',
+  '¿Por qué?': '#b5850a',
+  '¿Cuánto?':  '#457b9d',
+};
+
+const state = {
+  videos: [],
+  currentVideo: null,
+  annotations: [],
+  duration: 0,
+  mkeyStart: null,
+  activeFilters: new Set(WH_LABELS),
+};
+
+// ============================================================
+// Helpers
+// ============================================================
+function uuidv4() {
+  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+  );
+}
+
+function fmtTime(secs) {
+  if (!isFinite(secs)) return '0:00';
+  const m = Math.floor(secs / 60);
+  const s = Math.floor(secs % 60).toString().padStart(2, '0');
+  return `${m}:${s}`;
+}
+
+function fmtTimeHMS(secs) {
+  if (!isFinite(secs)) return '00:00:00';
+  const h = Math.floor(secs / 3600).toString().padStart(2, '0');
+  const m = Math.floor((secs % 3600) / 60).toString().padStart(2, '0');
+  const s = Math.floor(secs % 60).toString().padStart(2, '0');
+  return `${h}:${m}:${s}`;
+}
+
+function toast(msg, duration = 2200) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), duration);
+}
+
+// ============================================================
+// API
+// ============================================================
+async function apiGet(url) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  return r.json();
+}
+
+async function apiPost(url, body) {
+  const r = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  return r.json();
+}
+
+// ============================================================
+// Load video list
+// ============================================================
+async function loadVideos() {
+  try {
+    const videos = await apiGet('/videos');
+    state.videos = videos;
+    renderVideoList();
+  } catch (e) {
+    console.error(e);
+    toast('Error cargando lista de videos');
+  }
+}
+
+function renderVideoList() {
+  const list = document.getElementById('video-list');
+  list.innerHTML = '';
+
+  if (state.videos.length === 0) {
+    list.innerHTML = '<div style="padding:16px 12px; font-size:12px; color:var(--text-muted);">No hay videos en la carpeta <code>videos/</code></div>';
+    return;
+  }
+
+  state.videos.forEach(v => {
+    const item = document.createElement('div');
+    item.className = 'video-item' + (state.currentVideo?.id === v.id ? ' active' : '');
+    item.dataset.id = v.id;
+
+    // Dot state
+    const annFile = state.annotationCache?.[v.id];
+    let dotClass = '';
+    if (annFile?.hasModel && annFile?.hasManual) dotClass = 'done';
+    else if (annFile?.hasModel) dotClass = 'model';
+    else if (annFile?.hasManual) dotClass = 'done';
+
+    item.innerHTML = `<div class="status-dot ${dotClass}"></div><span class="name" title="${v.filename}">${v.filename}</span>`;
+    item.addEventListener('click', () => selectVideo(v));
+    list.appendChild(item);
+  });
+}
+
+// ============================================================
+// Select video
+// ============================================================
+async function selectVideo(v) {
+  state.currentVideo = v;
+  state.mkeyStart = null;
+  hideMkeyIndicator();
+
+  document.getElementById('empty-state').style.display = 'none';
+  document.getElementById('video-section').style.display = 'flex';
+  document.getElementById('btn-analyze').disabled = false;
+  document.getElementById('btn-export-json').disabled = false;
+  document.getElementById('btn-export-csv').disabled = false;
+
+  // Update sidebar highlight
+  document.querySelectorAll('.video-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.id === v.id);
+  });
+
+  // Load video
+  const video = document.getElementById('video');
+  video.src = `/videos/${encodeURIComponent(v.filename)}`;
+  video.load();
+
+  state.duration = 0;
+  document.getElementById('timecode').textContent = '0:00';
+  document.getElementById('duration-label').textContent = '';
+  updateTimelineCursor(0);
+  clearTimeline();
+
+  // Load annotations
+  try {
+    const data = await apiGet(`/annotations/${v.id}`);
+    state.annotations = data.annotations || [];
+  } catch {
+    state.annotations = [];
+  }
+  renderAnnotations();
+  renderTimeline();
+}
+
+// ============================================================
+// Video events
+// ============================================================
+const video = document.getElementById('video');
+
+video.addEventListener('loadedmetadata', () => {
+  state.duration = video.duration;
+  document.getElementById('duration-label').textContent = `/ ${fmtTime(video.duration)}`;
+  renderTimeline();
+});
+
+video.addEventListener('timeupdate', () => {
+  document.getElementById('timecode').textContent = fmtTime(video.currentTime);
+  if (state.duration > 0) {
+    updateTimelineCursor(video.currentTime / state.duration);
+    updateSelectionOverlay();
+  }
+});
+
+// ============================================================
+// Timeline
+// ============================================================
+function clearTimeline() {
+  const tl = document.getElementById('timeline');
+  tl.querySelectorAll('.tl-marker').forEach(el => el.remove());
+}
+
+function renderTimeline() {
+  clearTimeline();
+  if (state.duration <= 0) return;
+
+  state.annotations.forEach(ann => {
+    addMarkerToTimeline(ann);
+  });
+  applyFilterToTimeline();
+}
+
+function addMarkerToTimeline(ann) {
+  if (state.duration <= 0) return;
+  const tl = document.getElementById('timeline');
+  const pct = (t) => Math.max(0, Math.min(100, (t / state.duration) * 100));
+
+  const left = pct(ann.start);
+  const width = Math.max(0.4, pct(ann.end) - pct(ann.start));
+
+  const marker = document.createElement('div');
+  marker.className = `tl-marker ${ann.source}`;
+  marker.style.left = `${left}%`;
+  marker.style.width = `${width}%`;
+  marker.dataset.id = ann.id;
+  marker.title = '';  // tooltip handled manually
+  // Color = label, texture = source
+  marker.style.backgroundColor = LABEL_COLORS[ann.label] || '#6b7280';
+
+  const lbl = document.createElement('span');
+  lbl.className = 'tl-marker-label';
+  lbl.textContent = ann.label;
+  marker.appendChild(lbl);
+
+  // Hover: show tooltip bubble below the timeline
+  const tip = document.getElementById('tl-tooltip');
+  marker.addEventListener('mouseenter', () => {
+    const rect = marker.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const topY = rect.bottom + 8;
+
+    tip.querySelector('.tl-tip-label').textContent = ann.label;
+    tip.querySelector('.tl-tip-time').textContent =
+      `${ann.start.toFixed(2)}s → ${ann.end.toFixed(2)}s  (${fmtTime(ann.start)} → ${fmtTime(ann.end)})`;
+    const srcEl = tip.querySelector('.tl-tip-source');
+    srcEl.className = `tl-tip-source badge ${ann.source}`;
+    srcEl.textContent = ann.source === 'model' ? '⚙ modelo' : '✎ manual';
+
+    tip.style.left = `${centerX}px`;
+    tip.style.top = `${topY}px`;
+    tip.classList.add('visible');
+  });
+  marker.addEventListener('mouseleave', () => {
+    tip.classList.remove('visible');
+  });
+
+  // Click: seek + highlight annotation row
+  marker.addEventListener('click', () => {
+    video.currentTime = ann.start;
+    highlightAnnotationRow(ann.id);
+    // Mark as active on timeline
+    document.querySelectorAll('.tl-marker').forEach(m => m.classList.remove('active-marker'));
+    marker.classList.add('active-marker');
+  });
+
+  tl.appendChild(marker);
+}
+
+function updateTimelineCursor(ratio) {
+  const cursor = document.getElementById('timeline-cursor');
+  cursor.style.left = `${Math.min(100, ratio * 100)}%`;
+}
+
+// ============================================================
+// Timeline — click, drag to select, and seek
+// ============================================================
+let tlDragAnchor = null;   // time at mousedown
+let tlDragActive = false;  // true once mouse moves past threshold
+let tlMouseDownX = 0;
+const TL_DRAG_PX = 5;      // pixels before drag activates
+
+document.getElementById('timeline').addEventListener('mousedown', (e) => {
+  if (e.button !== 0) return;
+  e.preventDefault();
+  if (state.duration <= 0) return;
+
+  tlMouseDownX = e.clientX;
+  tlDragActive = false;
+
+  const rect = e.currentTarget.getBoundingClientRect();
+  const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+  tlDragAnchor = ratio * state.duration;
+
+  // Always seek on mousedown for instant feedback
+  video.currentTime = tlDragAnchor;
+
+  // If form is open, start a selection from this point
+  if (document.getElementById('add-form').classList.contains('visible')) {
+    document.getElementById('f-start').value = tlDragAnchor.toFixed(2);
+    document.getElementById('f-end').value = '';
+    state.mkeyStart = tlDragAnchor;
+    hideMkeyIndicator();
+    updateSelectionOverlay();
+  }
+});
+
+document.addEventListener('mousemove', (e) => {
+  if (tlDragAnchor === null) return;
+  const dx = Math.abs(e.clientX - tlMouseDownX);
+  if (dx < TL_DRAG_PX) return;
+
+  // Cross the threshold: activate drag mode
+  if (!tlDragActive) {
+    tlDragActive = true;
+    // Auto-open the form so drag always creates an annotation
+    document.getElementById('add-form').classList.add('visible');
+    document.getElementById('f-start').value = tlDragAnchor.toFixed(2);
+    document.getElementById('f-end').value = '';
+    state.mkeyStart = tlDragAnchor;
+    hideMkeyIndicator();
+    document.getElementById('timeline').classList.add('selecting', 'dragging');
+  }
+
+  const rect = document.getElementById('timeline').getBoundingClientRect();
+  const clampedX = Math.max(rect.left, Math.min(rect.right, e.clientX));
+  const ratio = (clampedX - rect.left) / rect.width;
+  const t = ratio * state.duration;
+
+  // Support dragging in both directions
+  const start = Math.min(tlDragAnchor, t);
+  const end   = Math.max(tlDragAnchor, t);
+
+  document.getElementById('f-start').value = start.toFixed(2);
+  document.getElementById('f-end').value   = (end - start) > 0.05 ? end.toFixed(2) : '';
+  state.mkeyStart = (end - start) > 0.05 ? null : start;
+  updateSelectionOverlay();
+});
+
+document.addEventListener('mouseup', () => {
+  if (tlDragAnchor === null) return;
+
+  const wasDrag   = tlDragActive;
+  const anchor    = tlDragAnchor;
+  tlDragAnchor    = null;
+  tlDragActive    = false;
+  document.getElementById('timeline').classList.remove('dragging');
+
+  const formOpen  = document.getElementById('add-form').classList.contains('visible');
+  const startVal  = parseFloat(document.getElementById('f-start').value);
+  const endVal    = parseFloat(document.getElementById('f-end').value);
+
+  if (wasDrag) {
+    // ── Drag finished ──
+    if (!isNaN(startVal) && !isNaN(endVal) && endVal > startVal) {
+      // Valid range: clear mkeyStart so overlay shows as "done"
+      state.mkeyStart = null;
+      hideMkeyIndicator();
+      updateSelectionOverlay();
+      document.getElementById('f-label').focus();
+      toast(`Selección: ${fmtTime(startVal)} → ${fmtTime(endVal)} — elige la etiqueta`);
+    } else {
+      // Drag too short: keep as start-only, wait for end
+      state.mkeyStart = startVal;
+      showMkeyIndicator(startVal || 0);
+      updateSelectionOverlay();
+    }
+    return;
+  }
+
+  // ── Single click (no drag) ──
+  if (!formOpen) {
+    // Just seek (already done on mousedown)
+    return;
+  }
+
+  if (isNaN(startVal)) {
+    // No start yet: set start
+    state.mkeyStart = anchor;
+    document.getElementById('f-start').value = anchor.toFixed(2);
+    document.getElementById('f-end').value = '';
+    showMkeyIndicator(anchor);
+    updateSelectionOverlay();
+  } else if (isNaN(endVal)) {
+    // Start set, no end yet
+    if (anchor <= startVal) {
+      // Clicked before start → reset start to this point
+      state.mkeyStart = anchor;
+      document.getElementById('f-start').value = anchor.toFixed(2);
+      document.getElementById('f-end').value = '';
+      showMkeyIndicator(anchor);
+    } else {
+      // Set end
+      document.getElementById('f-end').value = anchor.toFixed(2);
+      state.mkeyStart = null;
+      hideMkeyIndicator();
+      document.getElementById('f-label').focus();
+      toast(`Fin capturado: ${fmtTime(anchor)} — elige la etiqueta y guarda`);
+    }
+    updateSelectionOverlay();
+  }
+  // If both are already set, single click just sought the video (already done)
+});
+
+// ============================================================
+// Selection overlay
+// ============================================================
+function updateSelectionOverlay() {
+  const sel     = document.getElementById('tl-selection');
+  const info    = document.getElementById('tl-sel-info');
+  const formOpen = document.getElementById('add-form').classList.contains('visible');
+
+  if (!formOpen || state.duration <= 0) {
+    sel.className = 'active' in sel.classList ? '' : '';
+    sel.classList.remove('active', 'pending', 'done');
+    info.classList.remove('visible');
+    document.getElementById('timeline').classList.remove('selecting');
+    return;
+  }
+
+  document.getElementById('timeline').classList.add('selecting');
+
+  const startVal = parseFloat(document.getElementById('f-start').value);
+  const endVal   = parseFloat(document.getElementById('f-end').value);
+
+  if (isNaN(startVal)) {
+    sel.classList.remove('active', 'pending', 'done');
+    info.classList.add('visible');
+    info.querySelector('.sel-start').textContent = '—';
+    info.querySelector('.sel-end').textContent   = '—';
+    info.querySelector('.sel-hint').textContent  = 'Haz clic en la timeline o presiona M para marcar el inicio';
+    return;
+  }
+
+  const endTime = isNaN(endVal) ? video.currentTime : endVal;
+  const startRatio = Math.max(0, Math.min(1, startVal / state.duration));
+  const endRatio   = Math.max(startRatio, Math.min(1, endTime / state.duration));
+
+  sel.style.left  = `${startRatio * 100}%`;
+  sel.style.width = `${Math.max(0.1, (endRatio - startRatio) * 100)}%`;
+  sel.classList.add('active');
+
+  const isPending = isNaN(endVal);
+  sel.classList.toggle('pending', isPending);
+  sel.classList.toggle('done',    !isPending);
+
+  info.classList.add('visible');
+  info.querySelector('.sel-start').textContent = `${fmtTime(startVal)}  (${startVal.toFixed(2)}s)`;
+  info.querySelector('.sel-end').textContent   = isPending
+    ? `${fmtTime(video.currentTime)}… `
+    : `${fmtTime(endVal)}  (${endVal.toFixed(2)}s)`;
+  info.querySelector('.sel-hint').textContent  = isPending
+    ? '— haz clic en la timeline o presiona M para marcar el fin'
+    : '✓ región seleccionada';
+}
+
+// ============================================================
+// Annotations render
+// ============================================================
+function renderAnnotations() {
+  const tbody = document.getElementById('ann-tbody');
+  tbody.innerHTML = '';
+
+  if (state.annotations.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="5" class="empty-table">No hay anotaciones. Usa el modelo o agrega manualmente.</td></tr>';
+    return;
+  }
+
+  const sorted = [...state.annotations].sort((a, b) => a.start - b.start);
+  let visibleCount = 0;
+  sorted.forEach(ann => {
+    const tr = buildAnnotationRow(ann);
+    if (!state.activeFilters.has(ann.label)) {
+      tr.style.display = 'none';
+    } else {
+      visibleCount++;
+    }
+    tbody.appendChild(tr);
+  });
+
+  if (visibleCount === 0) {
+    const tr = document.createElement('tr');
+    tr.innerHTML = '<td colspan="5" class="empty-table">Ninguna anotación coincide con los filtros activos.</td>';
+    tbody.appendChild(tr);
+  }
+}
+
+function highlightAnnotationRow(id) {
+  document.querySelectorAll('#ann-tbody tr').forEach(r => r.classList.remove('row-highlighted'));
+  const row = document.querySelector(`#ann-tbody tr[data-id="${id}"]`);
+  if (row) {
+    row.classList.add('row-highlighted');
+    row.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
+function buildAnnotationRow(ann) {
+  const tr = document.createElement('tr');
+  tr.dataset.id = ann.id;
+
+  const conf = ann.confidence != null ? ann.confidence : null;
+  const confHtml = conf != null
+    ? `<div class="confidence-bar">
+         <div class="conf-track"><div class="conf-fill" style="width:${Math.round(conf*100)}%"></div></div>
+         <span>${Math.round(conf*100)}%</span>
+       </div>`
+    : '<span style="color:var(--text-muted)">—</span>';
+
+  const labelColor = LABEL_COLORS[ann.label] || '#6b7280';
+  const sourceIcon = ann.source === 'model' ? '⚙' : '✎';
+  const sourceText = ann.source === 'model' ? 'modelo' : 'manual';
+
+  tr.innerHTML = `
+    <td><span class="badge ${ann.source}">${sourceIcon} ${sourceText}</span></td>
+    <td class="cell-times">${fmtTime(ann.start)} → ${fmtTime(ann.end)}<br><small style="color:var(--text-muted)">${ann.start.toFixed(2)}s → ${ann.end.toFixed(2)}s</small></td>
+    <td class="cell-label"><span class="label-pill" style="background:${labelColor}">${escapeHtml(ann.label)}</span></td>
+    <td>${confHtml}</td>
+    <td>
+      <div class="actions">
+        <button class="btn-icon btn-jump" title="Saltar a inicio">▶</button>
+        <button class="btn-icon btn-edit" title="Editar">✎</button>
+        <button class="btn btn-danger btn-sm btn-delete" title="Eliminar">✕</button>
+      </div>
+    </td>
+  `;
+
+  tr.querySelector('.btn-jump').addEventListener('click', () => {
+    video.currentTime = ann.start;
+    video.play();
+    // Highlight the marker on the timeline too
+    document.querySelectorAll('.tl-marker').forEach(m => m.classList.remove('active-marker'));
+    const marker = document.querySelector(`.tl-marker[data-id="${ann.id}"]`);
+    if (marker) marker.classList.add('active-marker');
+  });
+
+  tr.querySelector('.btn-edit').addEventListener('click', () => {
+    startInlineEdit(tr, ann);
+  });
+
+  tr.querySelector('.btn-delete').addEventListener('click', () => {
+    if (confirm(`¿Eliminar la anotación "${ann.label}" (${fmtTime(ann.start)} → ${fmtTime(ann.end)})?`)) {
+      state.annotations = state.annotations.filter(a => a.id !== ann.id);
+      renderAnnotations();
+      renderTimeline();
+      autosave();
+    }
+  });
+
+  return tr;
+}
+
+function escapeHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ============================================================
+// Inline edit
+// ============================================================
+function startInlineEdit(tr, ann) {
+  const cellTimes = tr.querySelector('.cell-times');
+  const cellLabel = tr.querySelector('.cell-label');
+
+  cellTimes.innerHTML = `
+    <input class="edit-input" id="edit-start" type="number" step="0.1" value="${ann.start}" style="width:75px" />
+    &nbsp;→&nbsp;
+    <input class="edit-input" id="edit-end" type="number" step="0.1" value="${ann.end}" style="width:75px" />
+  `;
+
+  const labelOpts = ['¿Qué?','¿Quién?','¿Cuándo?','¿Dónde?','¿Cómo?','¿Por qué?','¿Cuánto?'];
+  cellLabel.innerHTML = `<select class="edit-select" id="edit-label">
+    ${labelOpts.map(o => `<option value="${o}" ${o===ann.label?'selected':''}>${o}</option>`).join('')}
+  </select>`;
+
+  // Replace actions
+  const actCell = tr.querySelector('.actions');
+  actCell.innerHTML = `
+    <button class="btn btn-primary btn-sm" id="edit-save">✓ Guardar</button>
+    <button class="btn btn-secondary btn-sm" id="edit-cancel">Cancelar</button>
+  `;
+
+  actCell.querySelector('#edit-save').addEventListener('click', () => {
+    const newStart = parseFloat(tr.querySelector('#edit-start').value);
+    const newEnd   = parseFloat(tr.querySelector('#edit-end').value);
+    const newLabel = tr.querySelector('#edit-label').value;
+    if (isNaN(newStart) || isNaN(newEnd) || newEnd <= newStart) {
+      toast('Valores inválidos: fin debe ser mayor que inicio');
+      return;
+    }
+    const idx = state.annotations.findIndex(a => a.id === ann.id);
+    if (idx !== -1) {
+      state.annotations[idx] = { ...state.annotations[idx], start: newStart, end: newEnd, label: newLabel };
+    }
+    renderAnnotations();
+    renderTimeline();
+    autosave();
+  });
+
+  actCell.querySelector('#edit-cancel').addEventListener('click', () => {
+    renderAnnotations();
+  });
+}
+
+// ============================================================
+// Add form
+// ============================================================
+document.getElementById('btn-add').addEventListener('click', () => {
+  document.getElementById('add-form').classList.toggle('visible');
+  updateSelectionOverlay();
+});
+
+document.getElementById('btn-cancel-add').addEventListener('click', () => {
+  document.getElementById('add-form').classList.remove('visible');
+  clearAddForm();
+  updateSelectionOverlay();
+});
+
+document.getElementById('btn-save-add').addEventListener('click', () => {
+  const start = parseFloat(document.getElementById('f-start').value);
+  const end   = parseFloat(document.getElementById('f-end').value);
+  const label = document.getElementById('f-label').value;
+  if (isNaN(start) || isNaN(end) || end <= start) {
+    toast('Valores inválidos: el fin debe ser mayor que el inicio');
+    return;
+  }
+  const ann = { id: uuidv4(), start, end, label, source: 'manual', confidence: null };
+  state.annotations.push(ann);
+  renderAnnotations();
+  renderTimeline();
+  autosave();
+  document.getElementById('add-form').classList.remove('visible');
+  clearAddForm();
+  updateSelectionOverlay();
+  toast('Anotación agregada');
+});
+
+function clearAddForm() {
+  document.getElementById('f-start').value = '';
+  document.getElementById('f-end').value = '';
+  state.mkeyStart = null;
+  hideMkeyIndicator();
+  updateSelectionOverlay();
+}
+
+// ============================================================
+// M-key shortcut
+// ============================================================
+function showMkeyIndicator(startVal) {
+  const ind = document.getElementById('mkey-indicator');
+  document.getElementById('mkey-start-val').textContent = startVal.toFixed(2) + ' s';
+  ind.classList.add('visible');
+}
+
+function hideMkeyIndicator() {
+  document.getElementById('mkey-indicator').classList.remove('visible');
+}
+
+document.addEventListener('keydown', (e) => {
+  if (!state.currentVideo) return;
+  // Avoid firing when typing in inputs
+  if (['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName)) return;
+
+  if (e.key === 'm' || e.key === 'M') {
+    e.preventDefault();
+    const t = video.currentTime;
+    if (state.mkeyStart === null) {
+      // First press: capture start
+      state.mkeyStart = t;
+      document.getElementById('f-start').value = t.toFixed(2);
+      document.getElementById('f-end').value = '';
+      document.getElementById('add-form').classList.add('visible');
+      showMkeyIndicator(t);
+      updateSelectionOverlay();
+      toast(`Inicio capturado: ${fmtTime(t)}`);
+    } else {
+      // Second press: capture end
+      if (t <= state.mkeyStart) {
+        toast('El fin debe ser posterior al inicio');
+        return;
+      }
+      document.getElementById('f-end').value = t.toFixed(2);
+      hideMkeyIndicator();
+      state.mkeyStart = null;
+      updateSelectionOverlay();
+      toast(`Fin capturado: ${fmtTime(t)} — elige la etiqueta y guarda`);
+      document.getElementById('f-label').focus();
+    }
+  }
+
+  // Space: play/pause
+  if (e.key === ' ' && e.target === document.body) {
+    e.preventDefault();
+    video.paused ? video.play() : video.pause();
+  }
+});
+
+// ============================================================
+// Analyze with model
+// ============================================================
+document.getElementById('btn-analyze').addEventListener('click', async () => {
+  if (!state.currentVideo) return;
+  const btn = document.getElementById('btn-analyze');
+  btn.disabled = true;
+  btn.innerHTML = '<div class="spinner"></div> Analizando…';
+
+  try {
+    const data = await apiPost(`/analyze/${state.currentVideo.id}`, {});
+    const newAnns = data.annotations || [];
+
+    // Remove old model annotations and add new ones
+    state.annotations = state.annotations.filter(a => a.source !== 'model');
+    state.annotations.push(...newAnns);
+
+    renderAnnotations();
+    renderTimeline();
+    await autosave();
+    toast(`Modelo aplicado: ${newAnns.length} señas detectadas`);
+  } catch (e) {
+    toast('Error al analizar el video');
+    console.error(e);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '✦ Analizar con modelo';
+  }
+});
+
+// ============================================================
+// Autosave
+// ============================================================
+async function autosave() {
+  if (!state.currentVideo) return;
+  try {
+    await apiPost(`/annotations/${state.currentVideo.id}`, {
+      video_id: state.currentVideo.id,
+      annotations: state.annotations,
+    });
+  } catch (e) {
+    console.error('Autosave failed', e);
+  }
+}
+
+// ============================================================
+// Export
+// ============================================================
+document.getElementById('btn-export-json').addEventListener('click', () => {
+  if (!state.currentVideo) return;
+  const data = { video_id: state.currentVideo.id, annotations: state.annotations };
+  downloadBlob(JSON.stringify(data, null, 2), `${state.currentVideo.id}.json`, 'application/json');
+});
+
+document.getElementById('btn-export-csv').addEventListener('click', () => {
+  if (!state.currentVideo) return;
+  const headers = ['video','inicio_seg','fin_seg','inicio_hhmmss','fin_hhmmss','etiqueta','fuente','confianza'];
+  const rows = state.annotations
+    .sort((a,b) => a.start - b.start)
+    .map(a => [
+      state.currentVideo.id,
+      a.start.toFixed(3),
+      a.end.toFixed(3),
+      fmtTimeHMS(a.start),
+      fmtTimeHMS(a.end),
+      a.label,
+      a.source,
+      a.confidence != null ? a.confidence.toFixed(4) : '',
+    ]);
+  const csv = [headers, ...rows].map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(',')).join('\r\n');
+  downloadBlob(csv, `${state.currentVideo.id}.csv`, 'text/csv;charset=utf-8;');
+});
+
+function downloadBlob(content, filename, type) {
+  const blob = new Blob([content], { type });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ============================================================
+// Filter chips
+// ============================================================
+function applyFilterToTimeline() {
+  document.querySelectorAll('.tl-marker').forEach(marker => {
+    const ann = state.annotations.find(a => a.id === marker.dataset.id);
+    if (!ann) return;
+    marker.style.display = state.activeFilters.has(ann.label) ? '' : 'none';
+  });
+}
+
+function applyFilters() {
+  // Table rows
+  document.querySelectorAll('#ann-tbody tr[data-id]').forEach(tr => {
+    const ann = state.annotations.find(a => a.id === tr.dataset.id);
+    if (!ann) return;
+    tr.style.display = state.activeFilters.has(ann.label) ? '' : 'none';
+  });
+  // Empty state message
+  const tbody = document.getElementById('ann-tbody');
+  const visibleRows = [...tbody.querySelectorAll('tr[data-id]')].filter(r => r.style.display !== 'none');
+  let noMatchRow = tbody.querySelector('tr.no-match-filter');
+  if (visibleRows.length === 0 && state.annotations.length > 0) {
+    if (!noMatchRow) {
+      noMatchRow = document.createElement('tr');
+      noMatchRow.className = 'no-match-filter';
+      noMatchRow.innerHTML = '<td colspan="5" class="empty-table">Ninguna anotación coincide con los filtros activos.</td>';
+      tbody.appendChild(noMatchRow);
+    }
+    noMatchRow.style.display = '';
+  } else if (noMatchRow) {
+    noMatchRow.style.display = 'none';
+  }
+  // Timeline
+  applyFilterToTimeline();
+}
+
+function initFilterChips() {
+  const container = document.getElementById('filter-chips');
+  container.innerHTML = '';
+
+  WH_LABELS.forEach(label => {
+    const chip = document.createElement('label');
+    chip.className = 'filter-chip' + (state.activeFilters.has(label) ? ' active' : '');
+    chip.title = label;
+    const color = LABEL_COLORS[label] || 'var(--accent)';
+    if (state.activeFilters.has(label)) {
+      chip.style.background = color;
+      chip.style.borderColor = color;
+    }
+
+    chip.innerHTML = `<input type="checkbox" value="${label}" ${state.activeFilters.has(label) ? 'checked' : ''} />${label}`;
+
+    chip.querySelector('input').addEventListener('change', (e) => {
+      if (e.target.checked) {
+        state.activeFilters.add(label);
+        chip.classList.add('active');
+        chip.style.background = color;
+        chip.style.borderColor = color;
+      } else {
+        state.activeFilters.delete(label);
+        chip.classList.remove('active');
+        chip.style.background = '';
+        chip.style.borderColor = '';
+      }
+      applyFilters();
+    });
+
+    container.appendChild(chip);
+  });
+}
+
+document.getElementById('filter-all').addEventListener('click', () => {
+  state.activeFilters = new Set(WH_LABELS);
+  initFilterChips();
+  applyFilters();
+});
+
+document.getElementById('filter-none').addEventListener('click', () => {
+  state.activeFilters = new Set();
+  initFilterChips();
+  applyFilters();
+});
+
+// ============================================================
+// Refresh
+// ============================================================
+document.getElementById('btn-refresh').addEventListener('click', loadVideos);
+
+// ============================================================
+// Dark mode
+// ============================================================
+const THEME_KEY = 'lsp-annotator-theme';
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  document.getElementById('btn-darkmode').textContent = theme === 'dark' ? '☀' : '🌙';
+}
+
+function initTheme() {
+  const saved = localStorage.getItem(THEME_KEY);
+  if (saved) {
+    applyTheme(saved);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    applyTheme('dark');
+  } else {
+    applyTheme('light');
+  }
+}
+
+document.getElementById('btn-darkmode').addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  applyTheme(next);
+  localStorage.setItem(THEME_KEY, next);
+});
+
+// ============================================================
+// Init
+// ============================================================
+initTheme();
+initFilterChips();
+loadVideos();
+</script>
+</body>
+</html>
