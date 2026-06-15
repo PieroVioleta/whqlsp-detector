@@ -5,7 +5,7 @@
       "id": "bee90d69-2739-411e-a58d-a43293fcf08d",
       "start": 8.2,
       "end": 10.5,
-      "label": "¿Quién?",
+      "label": "QUE 2",
       "source": "model",
       "confidence": 0.94
     },
@@ -13,7 +13,7 @@
       "id": "ca49076b-6d00-4064-bcfa-29763ca864bc",
       "start": 41.7,
       "end": 43.2,
-      "label": "¿Qué?",
+      "label": "QUE 1",
       "source": "model",
       "confidence": 0.91
     },
@@ -37,7 +37,7 @@
       "id": "3acfa11d-3a94-4cac-a1ef-7476d81a5a86",
       "start": 89.28,
       "end": 91.54,
-      "label": "¿Qué?",
+      "label": "QUE 1",
       "source": "manual",
       "confidence": null
     },

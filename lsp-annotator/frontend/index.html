@@ -756,6 +756,52 @@
   }
   @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
 
+  /* ── Tags modal ── */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 400;
+    background: rgba(0,0,0,0.45);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .modal-box {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    width: 420px;
+    max-height: 80vh;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .modal-header {
+    display: flex; align-items: center;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    gap: 8px;
+  }
+  .modal-header h2 { flex:1; font-size: 15px; font-weight: 600; }
+  .modal-body { overflow-y: auto; padding: 14px 18px; display: flex; flex-direction: column; gap: 8px; }
+  .modal-footer {
+    display: flex; gap: 8px; justify-content: flex-end;
+    padding: 12px 18px; border-top: 1px solid var(--border);
+  }
+  .tag-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 6px 10px; border-radius: 6px;
+    background: #f9f9fb; border: 1px solid var(--border);
+  }
+  .tag-color-dot {
+    width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0;
+  }
+  .tag-row input {
+    flex: 1; border: 1px solid var(--border); border-radius: 4px;
+    padding: 5px 8px; font-size: 13px; font-family: inherit;
+    background: #fff; color: var(--text);
+  }
+  .tag-row input:focus { outline: 2px solid var(--accent); border-color: transparent; }
+  .tag-row .tag-slot { font-size: 11px; color: var(--text-muted); flex-shrink: 0; width: 18px; text-align: right; }
+  [data-theme="dark"] .modal-box { background: #1a1d27; }
+  [data-theme="dark"] .tag-row { background: #242838; }
+  [data-theme="dark"] .tag-row input { background: #252842; color: var(--text); }
+
   /* ── Dark mode toggle button ── */
   #btn-darkmode {
     background: rgba(255,255,255,0.15);
@@ -830,6 +876,7 @@
   <div class="spacer"></div>
   <button class="btn btn-secondary btn-sm" id="btn-export-json" disabled>⬇ JSON</button>
   <button class="btn btn-secondary btn-sm" id="btn-export-csv" disabled>⬇ CSV</button>
+  <button class="btn btn-secondary btn-sm" id="btn-tags-open">⚙ Etiquetas</button>
   <button id="btn-darkmode" title="Cambiar tema">🌙</button>
 </div>
 
@@ -950,16 +997,7 @@
             <input type="number" id="f-end" min="0" step="0.1" placeholder="0.0" oninput="updateSelectionOverlay()" />
           </label>
           <label>Etiqueta
-            <select id="f-label">
-              <option value="">— Sin etiqueta —</option>
-              <option value="¿Qué?">¿Qué?</option>
-              <option value="¿Quién?">¿Quién?</option>
-              <option value="¿Cuándo?">¿Cuándo?</option>
-              <option value="¿Dónde?">¿Dónde?</option>
-              <option value="¿Cómo?">¿Cómo?</option>
-              <option value="¿Por qué?">¿Por qué?</option>
-              <option value="¿Cuánto?">¿Cuánto?</option>
-            </select>
+            <select id="f-label"></select>
           </label>
           <button class="btn btn-primary btn-sm" id="btn-save-add">Guardar</button>
           <button class="btn btn-secondary btn-sm" id="btn-cancel-add">Cancelar</button>
@@ -986,6 +1024,22 @@
     </div><!-- /video-section -->
   </div><!-- /main -->
 </div><!-- /layout -->
+
+<!-- Tags modal -->
+<div id="tags-modal" class="modal-overlay" style="display:none">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h2>⚙ Configurar etiquetas</h2>
+      <button class="btn-icon" id="btn-tags-close" style="font-size:16px">✕</button>
+    </div>
+    <div class="modal-body" id="tags-modal-body"></div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary btn-sm" id="btn-tags-reset">Restablecer por defecto</button>
+      <button class="btn btn-secondary btn-sm" id="btn-tags-cancel">Cancelar</button>
+      <button class="btn btn-primary btn-sm" id="btn-tags-save">Guardar</button>
+    </div>
+  </div>
+</div>
 
 <div id="tl-tooltip">
   <span class="tl-tip-label"></span>
@@ -1015,23 +1069,37 @@ function clampTlOffset(off) {
   return Math.max(0, Math.min(Math.max(0, state.duration - wd), off));
 }
 
-const BLANK_LABEL = '';   // sentinel for "not yet labeled"
-const WH_LABELS = [BLANK_LABEL, '¿Qué?', '¿Quién?', '¿Cuándo?', '¿Dónde?', '¿Cómo?', '¿Por qué?', '¿Cuánto?'];
+// ── Tag configuration (names are user-editable, colors are fixed by slot) ──
+const BLANK_LABEL     = '';
+const DEFAULT_TAGS    = ['¿Qué?', '¿Quién?', '¿Cuándo?', '¿Dónde?', '¿Cómo?', '¿Por qué?', '¿Cuánto?'];
+const TAG_COLORS      = ['#e05a1e', '#7c3aed', '#0077b6', '#0F6E56', '#c1121f', '#b5850a', '#457b9d'];
+const TAGS_STORAGE_KEY = 'lsp-annotator-tags';
 
-// Color per label — '' (blank) gets a neutral gray
-const LABEL_COLORS = {
-  '':          '#9ca3af',
-  '¿Qué?':     '#e05a1e',
-  '¿Quién?':   '#7c3aed',
-  '¿Cuándo?':  '#0077b6',
-  '¿Dónde?':   '#0F6E56',
-  '¿Cómo?':    '#c1121f',
-  '¿Por qué?': '#b5850a',
-  '¿Cuánto?':  '#457b9d',
-};
+let tags = (() => {
+  try { return JSON.parse(localStorage.getItem(TAGS_STORAGE_KEY)) || [...DEFAULT_TAGS]; }
+  catch { return [...DEFAULT_TAGS]; }
+})();
+
+let WH_LABELS    = [];
+let LABEL_COLORS = {};
+
+function rebuildTagMaps() {
+  WH_LABELS    = [BLANK_LABEL, ...tags];
+  LABEL_COLORS = { [BLANK_LABEL]: '#9ca3af' };
+  tags.forEach((name, i) => { if (name) LABEL_COLORS[name] = TAG_COLORS[i]; });
+}
+rebuildTagMaps();
 
 function labelDisplay(label) {
-  return label === BLANK_LABEL ? 'Sin etiqueta' : label;
+  return label === BLANK_LABEL ? 'Sin etiqueta' : (label || 'Sin etiqueta');
+}
+
+// Rebuild the <select> options for the add form
+function renderAddFormSelect(selectedVal = '') {
+  const sel = document.getElementById('f-label');
+  if (!sel) return;
+  sel.innerHTML = `<option value="">— Sin etiqueta —</option>` +
+    tags.map(t => `<option value="${escapeHtml(t)}" ${t === selectedVal ? 'selected' : ''}>${escapeHtml(t)}</option>`).join('');
 }
 
 const state = {
@@ -1720,9 +1788,8 @@ function startInlineEdit(tr, ann) {
     <input class="edit-input" id="edit-end" type="number" step="0.1" value="${ann.end}" style="width:75px" />
   `;
 
-  const labelOpts = ['', '¿Qué?', '¿Quién?', '¿Cuándo?', '¿Dónde?', '¿Cómo?', '¿Por qué?', '¿Cuánto?'];
   cellLabel.innerHTML = `<select class="edit-select" id="edit-label">
-    ${labelOpts.map(o => `<option value="${o}" ${o===ann.label?'selected':''}>${o === '' ? '— Sin etiqueta —' : o}</option>`).join('')}
+    ${WH_LABELS.map(o => `<option value="${escapeHtml(o)}" ${o===ann.label?'selected':''}>${o === '' ? '— Sin etiqueta —' : escapeHtml(o)}</option>`).join('')}
   </select>`;
 
   // Replace actions
@@ -2104,6 +2171,90 @@ document.getElementById('filter-none').addEventListener('click', () => {
 document.getElementById('btn-refresh').addEventListener('click', loadVideos);
 
 // ============================================================
+// Tags modal
+// ============================================================
+function openTagsModal() {
+  const body = document.getElementById('tags-modal-body');
+  body.innerHTML = '';
+  tags.forEach((name, i) => {
+    const row = document.createElement('div');
+    row.className = 'tag-row';
+    row.innerHTML = `
+      <span class="tag-slot">${i + 1}</span>
+      <span class="tag-color-dot" style="background:${TAG_COLORS[i]}"></span>
+      <input type="text" class="tag-input" data-index="${i}" value="${escapeHtml(name)}" maxlength="40" placeholder="Nombre de etiqueta ${i+1}" />
+    `;
+    body.appendChild(row);
+  });
+  document.getElementById('tags-modal').style.display = 'flex';
+  body.querySelector('.tag-input')?.focus();
+}
+
+function closeTagsModal() {
+  document.getElementById('tags-modal').style.display = 'none';
+}
+
+function applyNewTags(newNames) {
+  const oldNames = [...tags];
+  tags = newNames;
+  localStorage.setItem(TAGS_STORAGE_KEY, JSON.stringify(tags));
+  rebuildTagMaps();
+
+  // Rename labels in current in-memory annotations
+  const renameMap = {};
+  oldNames.forEach((old, i) => { if (old !== newNames[i]) renameMap[old] = newNames[i]; });
+  if (Object.keys(renameMap).length > 0) {
+    state.annotations = state.annotations.map(ann => ({
+      ...ann,
+      label: renameMap[ann.label] ?? ann.label,
+    }));
+    if (state.loopAnn && renameMap[state.loopAnn.label]) {
+      state.loopAnn = { ...state.loopAnn, label: renameMap[state.loopAnn.label] };
+    }
+    autosave();
+  }
+
+  // Rebuild all UI that depends on tag names
+  state.activeFilters = new Set(WH_LABELS);
+  renderAddFormSelect();
+  initFilterChips();
+  renderAnnotations();
+  renderTimeline();
+  updateLoopUI();
+}
+
+document.getElementById('btn-tags-open').addEventListener('click', openTagsModal);
+document.getElementById('btn-tags-close').addEventListener('click', closeTagsModal);
+document.getElementById('btn-tags-cancel').addEventListener('click', closeTagsModal);
+
+document.getElementById('btn-tags-reset').addEventListener('click', () => {
+  document.querySelectorAll('#tags-modal-body .tag-input').forEach((inp, i) => {
+    inp.value = DEFAULT_TAGS[i];
+  });
+});
+
+document.getElementById('btn-tags-save').addEventListener('click', () => {
+  const inputs = [...document.querySelectorAll('#tags-modal-body .tag-input')];
+  const newNames = inputs.map(inp => inp.value.trim() || DEFAULT_TAGS[parseInt(inp.dataset.index)]);
+
+  // Validate uniqueness (ignore blank)
+  const nonEmpty = newNames.filter(Boolean);
+  if (new Set(nonEmpty).size !== nonEmpty.length) {
+    toast('Hay nombres duplicados — cada etiqueta debe ser única', 3500);
+    return;
+  }
+
+  applyNewTags(newNames);
+  closeTagsModal();
+  toast('Etiquetas guardadas');
+});
+
+// Close on backdrop click
+document.getElementById('tags-modal').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) closeTagsModal();
+});
+
+// ============================================================
 // Dark mode
 // ============================================================
 const THEME_KEY = 'lsp-annotator-theme';
@@ -2135,6 +2286,7 @@ document.getElementById('btn-darkmode').addEventListener('click', () => {
 // Init
 // ============================================================
 initTheme();
+renderAddFormSelect();
 initFilterChips();
 loadVideos();
 </script>
