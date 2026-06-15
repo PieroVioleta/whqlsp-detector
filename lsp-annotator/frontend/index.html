@@ -172,6 +172,35 @@
   }
   #timecode { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--text); }
 
+  /* ── Speed selector ── */
+  #speed-select {
+    padding: 3px 6px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 12px;
+    font-family: inherit;
+    background: #fff;
+    color: var(--text);
+    cursor: pointer;
+  }
+  [data-theme="dark"] #speed-select { background: #252842; color: var(--text); border-color: var(--border); }
+
+  /* ── Loop indicator ── */
+  #loop-indicator {
+    display: none;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 9px;
+    background: #ecfdf5;
+    border: 1px solid #6ee7b7;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #065f46;
+  }
+  #loop-indicator.active { display: flex; }
+  [data-theme="dark"] #loop-indicator { background: #052e16; border-color: #134e37; color: #6ee7b7; }
+
   /* ── Timeline ── */
   #timeline-wrap {
     background: #fff;
@@ -179,14 +208,52 @@
     border-radius: var(--radius);
     padding: 12px 14px;
   }
+  #tl-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 8px;
+  }
   #timeline-label {
     font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--text-muted);
-    margin-bottom: 8px;
+    flex: 1;
   }
+  #tl-zoom-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 10px;
+    background: #ede9ff;
+    color: var(--accent);
+    display: none;
+  }
+  #tl-zoom-badge.visible { display: inline-block; }
+  #btn-zoom-reset {
+    font-size: 11px;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 7px;
+    cursor: pointer;
+    color: var(--text-muted);
+    display: none;
+  }
+  #btn-zoom-reset.visible { display: inline-block; }
+  #btn-zoom-reset:hover { background: #f3f4f6; }
+  [data-theme="dark"] #tl-zoom-badge { background: #252060; }
+  [data-theme="dark"] #btn-zoom-reset:hover { background: #2d3148; }
+  #tl-zoom-range {
+    font-size: 10px;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+    display: none;
+  }
+  #tl-zoom-range.visible { display: inline; }
+
   #timeline {
     position: relative;
     height: 36px;
@@ -443,6 +510,12 @@
     color: #fff;
     white-space: nowrap;
   }
+  .label-pill.label-blank {
+    font-weight: 500;
+    font-style: italic;
+    color: rgba(255,255,255,0.85);
+    border: 1px dashed rgba(255,255,255,0.5);
+  }
 
   /* Timeline legend */
   #timeline-legend {
@@ -469,6 +542,36 @@
       rgba(255,255,255,0.4) 3px, rgba(255,255,255,0.4) 5px
     );
   }
+
+  /* ── Minimap ── */
+  #tl-minimap {
+    position: relative;
+    height: 10px;
+    background: #e9eaf0;
+    border-radius: 3px;
+    margin-top: 5px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  [data-theme="dark"] #tl-minimap { background: #242838; }
+  .mm-marker {
+    position: absolute;
+    top: 1px;
+    bottom: 1px;
+    border-radius: 1px;
+    pointer-events: none;
+    min-width: 2px;
+  }
+  #mm-viewport {
+    position: absolute;
+    top: 0; bottom: 0;
+    background: rgba(83,74,183,0.22);
+    border: 1px solid rgba(83,74,183,0.5);
+    border-radius: 2px;
+    cursor: grab;
+    display: none;
+  }
+  #mm-viewport:active { cursor: grabbing; }
 
   /* ── Selection overlay ── */
   #tl-selection {
@@ -766,13 +869,27 @@
         <video id="video" controls preload="metadata"></video>
       </div>
 
-      <!-- Timecode + M-key indicator -->
+      <!-- Timecode + M-key indicator + Speed + Loop -->
       <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
         <div id="timecode-bar">
           <span>Posición:</span>
           <span id="timecode">0:00</span>
           <span id="duration-label" style="color:var(--text-muted)"></span>
         </div>
+        <label style="display:flex;align-items:center;gap:5px;font-size:12px;color:var(--text-muted)">
+          Velocidad:
+          <select id="speed-select" title="Velocidad de reproducción">
+            <option value="0.25">0.25×</option>
+            <option value="0.5">0.5×</option>
+            <option value="0.75">0.75×</option>
+            <option value="1" selected>1×</option>
+            <option value="1.25">1.25×</option>
+            <option value="1.5">1.5×</option>
+            <option value="2">2×</option>
+            <option value="3">3×</option>
+          </select>
+        </label>
+        <div id="loop-indicator">🔁 <span id="loop-label"></span><button id="btn-loop-dismiss" title="Salir del bucle" style="background:none;border:none;cursor:pointer;font-size:11px;color:inherit;opacity:0.7;margin-left:4px">✕</button></div>
         <div id="mkey-indicator">
           <div id="mkey-dot"></div>
           <span id="mkey-text">Inicio capturado en <strong id="mkey-start-val">0.00 s</strong> — presiona M de nuevo para capturar el fin</span>
@@ -781,10 +898,19 @@
 
       <!-- Timeline -->
       <div id="timeline-wrap">
-        <div id="timeline-label">Timeline</div>
+        <div id="tl-header">
+          <div id="timeline-label">Timeline</div>
+          <span id="tl-zoom-range"></span>
+          <span id="tl-zoom-badge"></span>
+          <button id="btn-zoom-reset" title="Restablecer zoom">↩ Reset</button>
+          <span style="font-size:11px;color:var(--text-muted);margin-left:4px" title="Rueda del ratón para hacer zoom">🔍 scroll</span>
+        </div>
         <div id="timeline">
           <div id="timeline-cursor"></div>
           <div id="tl-selection"></div>
+        </div>
+        <div id="tl-minimap">
+          <div id="mm-viewport"></div>
         </div>
         <div id="tl-sel-info">
           <span>📍</span>
@@ -825,6 +951,7 @@
           </label>
           <label>Etiqueta
             <select id="f-label">
+              <option value="">— Sin etiqueta —</option>
               <option value="¿Qué?">¿Qué?</option>
               <option value="¿Quién?">¿Quién?</option>
               <option value="¿Cuándo?">¿Cuándo?</option>
@@ -872,10 +999,28 @@
 // ============================================================
 // State
 // ============================================================
-const WH_LABELS = ['¿Qué?', '¿Quién?', '¿Cuándo?', '¿Dónde?', '¿Cómo?', '¿Por qué?', '¿Cuánto?'];
+// ── Timeline zoom ──
+let tlZoom   = 1;      // 1 = full video; higher = zoomed in
+let tlOffset = 0;      // visible window start in seconds
 
-// Color per label for chips (distinct, accessible palette)
+function tlWindowDuration()    { return state.duration > 0 ? state.duration / tlZoom : 0; }
+function timeToTlPct(t)        { const wd = tlWindowDuration(); return wd > 0 ? ((t - tlOffset) / wd) * 100 : 0; }
+function tlClientXToTime(clientX) {
+  const rect = document.getElementById('timeline').getBoundingClientRect();
+  const ratio = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+  return tlOffset + ratio * tlWindowDuration();
+}
+function clampTlOffset(off) {
+  const wd = tlWindowDuration();
+  return Math.max(0, Math.min(Math.max(0, state.duration - wd), off));
+}
+
+const BLANK_LABEL = '';   // sentinel for "not yet labeled"
+const WH_LABELS = [BLANK_LABEL, '¿Qué?', '¿Quién?', '¿Cuándo?', '¿Dónde?', '¿Cómo?', '¿Por qué?', '¿Cuánto?'];
+
+// Color per label — '' (blank) gets a neutral gray
 const LABEL_COLORS = {
+  '':          '#9ca3af',
   '¿Qué?':     '#e05a1e',
   '¿Quién?':   '#7c3aed',
   '¿Cuándo?':  '#0077b6',
@@ -885,6 +1030,10 @@ const LABEL_COLORS = {
   '¿Cuánto?':  '#457b9d',
 };
 
+function labelDisplay(label) {
+  return label === BLANK_LABEL ? 'Sin etiqueta' : label;
+}
+
 const state = {
   videos: [],
   currentVideo: null,
@@ -892,6 +1041,7 @@ const state = {
   duration: 0,
   mkeyStart: null,
   activeFilters: new Set(WH_LABELS),
+  loopAnn: null,        // annotation currently looping (or null)
 };
 
 // ============================================================
@@ -1010,9 +1160,15 @@ async function selectVideo(v) {
   video.load();
 
   state.duration = 0;
+  state.loopAnn  = null;
+  tlZoom   = 1;
+  tlOffset = 0;
   document.getElementById('timecode').textContent = '0:00';
   document.getElementById('duration-label').textContent = '';
-  updateTimelineCursor(0);
+  document.getElementById('speed-select').value = '1';
+  video.playbackRate = 1;
+  updateLoopUI();
+  updateTimelineCursor();
   clearTimeline();
 
   // Load annotations
@@ -1035,13 +1191,20 @@ video.addEventListener('loadedmetadata', () => {
   state.duration = video.duration;
   document.getElementById('duration-label').textContent = `/ ${fmtTime(video.duration)}`;
   renderTimeline();
+  renderMinimap();
+  updateZoomUI();
 });
 
 video.addEventListener('timeupdate', () => {
   document.getElementById('timecode').textContent = fmtTime(video.currentTime);
   if (state.duration > 0) {
-    updateTimelineCursor(video.currentTime / state.duration);
+    // Loop enforcement
+    if (state.loopAnn && video.currentTime >= state.loopAnn.end - 0.05) {
+      video.currentTime = state.loopAnn.start;
+    }
+    updateTimelineCursor();
     updateSelectionOverlay();
+    autoFollowPlayhead();
   }
 });
 
@@ -1056,93 +1219,157 @@ function clearTimeline() {
 function renderTimeline() {
   clearTimeline();
   if (state.duration <= 0) return;
-
-  state.annotations.forEach(ann => {
-    addMarkerToTimeline(ann);
-  });
+  state.annotations.forEach(ann => addMarkerToTimeline(ann));
   applyFilterToTimeline();
+}
+
+// Full refresh: re-render markers + cursor + overlay + minimap + zoom UI
+function refreshTimeline() {
+  renderTimeline();
+  updateTimelineCursor();
+  updateSelectionOverlay();
+  updateZoomUI();
+  renderMinimap();
 }
 
 function addMarkerToTimeline(ann) {
   if (state.duration <= 0) return;
   const tl = document.getElementById('timeline');
-  const pct = (t) => Math.max(0, Math.min(100, (t / state.duration) * 100));
 
-  const left = pct(ann.start);
-  const width = Math.max(0.4, pct(ann.end) - pct(ann.start));
+  const startPct = timeToTlPct(ann.start);
+  const endPct   = timeToTlPct(ann.end);
+  if (endPct < 0 || startPct > 100) return;   // outside visible window
+
+  const clampedLeft  = Math.max(0, startPct);
+  const clampedWidth = Math.max(0.4, Math.min(100, endPct) - clampedLeft);
 
   const marker = document.createElement('div');
   marker.className = `tl-marker ${ann.source}`;
-  marker.style.left = `${left}%`;
-  marker.style.width = `${width}%`;
+  marker.style.left  = `${clampedLeft}%`;
+  marker.style.width = `${clampedWidth}%`;
   marker.dataset.id = ann.id;
-  marker.title = '';  // tooltip handled manually
-  // Color = label, texture = source
+  marker.title = '';
   marker.style.backgroundColor = LABEL_COLORS[ann.label] || '#6b7280';
 
   const lbl = document.createElement('span');
   lbl.className = 'tl-marker-label';
-  lbl.textContent = ann.label;
+  lbl.textContent = labelDisplay(ann.label);
   marker.appendChild(lbl);
 
-  // Hover: show tooltip bubble below the timeline
   const tip = document.getElementById('tl-tooltip');
   marker.addEventListener('mouseenter', () => {
     const rect = marker.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const topY = rect.bottom + 8;
-
-    tip.querySelector('.tl-tip-label').textContent = ann.label;
+    tip.querySelector('.tl-tip-label').textContent = labelDisplay(ann.label);
     tip.querySelector('.tl-tip-time').textContent =
       `${ann.start.toFixed(2)}s → ${ann.end.toFixed(2)}s  (${fmtTime(ann.start)} → ${fmtTime(ann.end)})`;
     const srcEl = tip.querySelector('.tl-tip-source');
     srcEl.className = `tl-tip-source badge ${ann.source}`;
     srcEl.textContent = ann.source === 'model' ? '⚙ modelo' : '✎ manual';
-
-    tip.style.left = `${centerX}px`;
-    tip.style.top = `${topY}px`;
+    tip.style.left = `${rect.left + rect.width / 2}px`;
+    tip.style.top  = `${rect.bottom + 8}px`;
     tip.classList.add('visible');
   });
-  marker.addEventListener('mouseleave', () => {
-    tip.classList.remove('visible');
-  });
+  marker.addEventListener('mouseleave', () => tip.classList.remove('visible'));
 
-  // Click: seek + highlight annotation row
   marker.addEventListener('click', () => {
-    video.currentTime = ann.start;
+    activateLoop(ann);
     highlightAnnotationRow(ann.id);
-    // Mark as active on timeline
-    document.querySelectorAll('.tl-marker').forEach(m => m.classList.remove('active-marker'));
-    marker.classList.add('active-marker');
   });
 
   tl.appendChild(marker);
 }
 
-function updateTimelineCursor(ratio) {
+function updateTimelineCursor() {
   const cursor = document.getElementById('timeline-cursor');
-  cursor.style.left = `${Math.min(100, ratio * 100)}%`;
+  if (state.duration <= 0) return;
+  const pct = timeToTlPct(video.currentTime);
+  if (pct < 0 || pct > 100) {
+    cursor.style.display = 'none';
+  } else {
+    cursor.style.display = '';
+    cursor.style.left = `${pct}%`;
+  }
+}
+
+// ── Zoom UI ──
+function updateZoomUI() {
+  const badge  = document.getElementById('tl-zoom-badge');
+  const reset  = document.getElementById('btn-zoom-reset');
+  const range  = document.getElementById('tl-zoom-range');
+  const zoomed = tlZoom > 1.01;
+  badge.textContent = `×${tlZoom.toFixed(tlZoom < 10 ? 1 : 0)}`;
+  badge.classList.toggle('visible', zoomed);
+  reset.classList.toggle('visible', zoomed);
+  if (zoomed) {
+    const wd = tlWindowDuration();
+    range.textContent = `${fmtTime(tlOffset)} – ${fmtTime(tlOffset + wd)}`;
+    range.classList.add('visible');
+  } else {
+    range.classList.remove('visible');
+  }
+}
+
+// ── Minimap ──
+function renderMinimap() {
+  const mm = document.getElementById('tl-minimap');
+  if (!mm || state.duration <= 0) return;
+  mm.querySelectorAll('.mm-marker').forEach(el => el.remove());
+
+  state.annotations.forEach(ann => {
+    if (!state.activeFilters.has(ann.label)) return;
+    const m = document.createElement('div');
+    m.className = 'mm-marker';
+    m.style.left  = `${(ann.start / state.duration) * 100}%`;
+    m.style.width = `${Math.max(0.3, ((ann.end - ann.start) / state.duration) * 100)}%`;
+    m.style.backgroundColor = LABEL_COLORS[ann.label] || '#6b7280';
+    if (ann.source === 'manual') {
+      m.style.backgroundImage = 'repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,0.35) 2px, rgba(255,255,255,0.35) 4px)';
+    }
+    mm.appendChild(m);
+  });
+
+  const vp = document.getElementById('mm-viewport');
+  if (tlZoom > 1.01) {
+    vp.style.left  = `${(tlOffset / state.duration) * 100}%`;
+    vp.style.width = `${(1 / tlZoom) * 100}%`;
+    vp.style.display = '';
+  } else {
+    vp.style.display = 'none';
+  }
+}
+
+// Auto-follow playhead when zoomed
+function autoFollowPlayhead() {
+  if (tlZoom <= 1.01 || state.duration <= 0) return;
+  const t  = video.currentTime;
+  const wd = tlWindowDuration();
+  if (t < tlOffset || t > tlOffset + wd) {
+    tlOffset = clampTlOffset(t - wd * 0.15);
+    renderTimeline();
+    updateTimelineCursor();
+    updateZoomUI();
+    renderMinimap();
+  }
 }
 
 // ============================================================
 // Timeline — click, drag to select, and seek
 // ============================================================
-let tlDragAnchor = null;   // time at mousedown
-let tlDragActive = false;  // true once mouse moves past threshold
-let tlMouseDownX = 0;
-const TL_DRAG_PX = 5;      // pixels before drag activates
+let tlDragAnchor    = null;
+let tlDragActive    = false;
+let tlMouseDownX    = 0;
+let tlClickOnMarker = false;   // true when mousedown lands on a marker
+const TL_DRAG_PX    = 5;
 
 document.getElementById('timeline').addEventListener('mousedown', (e) => {
   if (e.button !== 0) return;
   e.preventDefault();
   if (state.duration <= 0) return;
 
-  tlMouseDownX = e.clientX;
-  tlDragActive = false;
-
-  const rect = e.currentTarget.getBoundingClientRect();
-  const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-  tlDragAnchor = ratio * state.duration;
+  tlClickOnMarker = !!e.target.closest('.tl-marker');
+  tlMouseDownX    = e.clientX;
+  tlDragActive    = false;
+  tlDragAnchor    = tlClientXToTime(e.clientX);
 
   // Always seek on mousedown for instant feedback
   video.currentTime = tlDragAnchor;
@@ -1174,10 +1401,7 @@ document.addEventListener('mousemove', (e) => {
     document.getElementById('timeline').classList.add('selecting', 'dragging');
   }
 
-  const rect = document.getElementById('timeline').getBoundingClientRect();
-  const clampedX = Math.max(rect.left, Math.min(rect.right, e.clientX));
-  const ratio = (clampedX - rect.left) / rect.width;
-  const t = ratio * state.duration;
+  const t = tlClientXToTime(e.clientX);
 
   // Support dragging in both directions
   const start = Math.min(tlDragAnchor, t);
@@ -1222,7 +1446,10 @@ document.addEventListener('mouseup', () => {
 
   // ── Single click (no drag) ──
   if (!formOpen) {
-    // Just seek (already done on mousedown)
+    // Clicking the track (not a marker) exits the loop
+    if (!tlClickOnMarker && state.loopAnn?.id !== '__preview__') {
+      deactivateLoop();
+    }
     return;
   }
 
@@ -1255,6 +1482,57 @@ document.addEventListener('mouseup', () => {
 });
 
 // ============================================================
+// Zoom — wheel to zoom, minimap to pan
+// ============================================================
+document.getElementById('timeline').addEventListener('wheel', (e) => {
+  e.preventDefault();
+  if (state.duration <= 0) return;
+
+  const mouseTime  = tlClientXToTime(e.clientX);
+  const rect       = document.getElementById('timeline').getBoundingClientRect();
+  const mouseRatio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+
+  const factor  = e.deltaY < 0 ? 1.5 : 1 / 1.5;
+  const newZoom = Math.max(1, Math.min(200, tlZoom * factor));
+  if (Math.abs(newZoom - tlZoom) < 0.001) return;
+  tlZoom = newZoom;
+
+  const wd = tlWindowDuration();
+  tlOffset = clampTlOffset(mouseTime - mouseRatio * wd);
+
+  refreshTimeline();
+}, { passive: false });
+
+// Reset zoom on double-click or button
+document.getElementById('timeline').addEventListener('dblclick', () => {
+  tlZoom = 1; tlOffset = 0; refreshTimeline();
+});
+document.getElementById('btn-zoom-reset').addEventListener('click', () => {
+  tlZoom = 1; tlOffset = 0; refreshTimeline();
+});
+
+// Minimap: click to pan
+let mmDragStart = null;
+document.getElementById('tl-minimap').addEventListener('mousedown', (e) => {
+  e.preventDefault();
+  mmDragStart = e.clientX;
+  const rect  = e.currentTarget.getBoundingClientRect();
+  const ratio = (e.clientX - rect.left) / rect.width;
+  const wd    = tlWindowDuration();
+  tlOffset    = clampTlOffset(ratio * state.duration - wd / 2);
+  refreshTimeline();
+});
+document.addEventListener('mousemove', (e) => {
+  if (mmDragStart === null) return;
+  const rect = document.getElementById('tl-minimap').getBoundingClientRect();
+  const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+  const wd    = tlWindowDuration();
+  tlOffset    = clampTlOffset(ratio * state.duration - wd / 2);
+  refreshTimeline();
+});
+document.addEventListener('mouseup', () => { mmDragStart = null; });
+
+// ============================================================
 // Selection overlay
 // ============================================================
 function updateSelectionOverlay() {
@@ -1267,6 +1545,8 @@ function updateSelectionOverlay() {
     sel.classList.remove('active', 'pending', 'done');
     info.classList.remove('visible');
     document.getElementById('timeline').classList.remove('selecting');
+    // Clear preview loop if form was closed
+    if (state.loopAnn?.id === '__preview__') { state.loopAnn = null; updateLoopUI(); }
     return;
   }
 
@@ -1284,12 +1564,14 @@ function updateSelectionOverlay() {
     return;
   }
 
-  const endTime = isNaN(endVal) ? video.currentTime : endVal;
-  const startRatio = Math.max(0, Math.min(1, startVal / state.duration));
-  const endRatio   = Math.max(startRatio, Math.min(1, endTime / state.duration));
+  const endTime   = isNaN(endVal) ? video.currentTime : endVal;
+  const startPct  = timeToTlPct(startVal);
+  const endPct    = timeToTlPct(endTime);
+  const clampedL  = Math.max(0, Math.min(100, startPct));
+  const clampedR  = Math.max(0, Math.min(100, endPct));
 
-  sel.style.left  = `${startRatio * 100}%`;
-  sel.style.width = `${Math.max(0.1, (endRatio - startRatio) * 100)}%`;
+  sel.style.left  = `${clampedL}%`;
+  sel.style.width = `${Math.max(0.1, clampedR - clampedL)}%`;
   sel.classList.add('active');
 
   const isPending = isNaN(endVal);
@@ -1303,7 +1585,27 @@ function updateSelectionOverlay() {
     : `${fmtTime(endVal)}  (${endVal.toFixed(2)}s)`;
   info.querySelector('.sel-hint').textContent  = isPending
     ? '— haz clic en la timeline o presiona M para marcar el fin'
-    : '✓ región seleccionada';
+    : '🔁 reproduciendo en bucle';
+
+  // ── Preview loop: activar cuando ambos extremos están definidos ──
+  if (!isPending) {
+    const changed = state.loopAnn?.id !== '__preview__'
+      || state.loopAnn.start !== startVal
+      || state.loopAnn.end   !== endVal;
+    if (changed) {
+      state.loopAnn = { id: '__preview__', start: startVal, end: endVal, label: '' };
+      // If video is outside the selection, jump to start
+      if (video.currentTime < startVal || video.currentTime > endVal) {
+        video.currentTime = startVal;
+        video.play();
+      }
+      updateLoopUI();
+    }
+  } else if (state.loopAnn?.id === '__preview__') {
+    // End was cleared (user is re-selecting) → stop preview loop
+    state.loopAnn = null;
+    updateLoopUI();
+  }
 }
 
 // ============================================================
@@ -1365,28 +1667,28 @@ function buildAnnotationRow(ann) {
   tr.innerHTML = `
     <td><span class="badge ${ann.source}">${sourceIcon} ${sourceText}</span></td>
     <td class="cell-times">${fmtTime(ann.start)} → ${fmtTime(ann.end)}<br><small style="color:var(--text-muted)">${ann.start.toFixed(2)}s → ${ann.end.toFixed(2)}s</small></td>
-    <td class="cell-label"><span class="label-pill" style="background:${labelColor}">${escapeHtml(ann.label)}</span></td>
+    <td class="cell-label"><span class="label-pill${ann.label === '' ? ' label-blank' : ''}" style="background:${labelColor}">${escapeHtml(labelDisplay(ann.label))}</span></td>
     <td>${confHtml}</td>
     <td>
       <div class="actions">
-        <button class="btn-icon btn-jump" title="Saltar a inicio">▶</button>
+        <button class="btn-icon btn-jump" title="Reproducir clip en bucle">▶</button>
         <button class="btn-icon btn-edit" title="Editar">✎</button>
+        <button class="btn-icon btn-download" title="Descargar clip">⬇</button>
         <button class="btn btn-danger btn-sm btn-delete" title="Eliminar">✕</button>
       </div>
     </td>
   `;
 
   tr.querySelector('.btn-jump').addEventListener('click', () => {
-    video.currentTime = ann.start;
-    video.play();
-    // Highlight the marker on the timeline too
-    document.querySelectorAll('.tl-marker').forEach(m => m.classList.remove('active-marker'));
-    const marker = document.querySelector(`.tl-marker[data-id="${ann.id}"]`);
-    if (marker) marker.classList.add('active-marker');
+    activateLoop(ann);
   });
 
   tr.querySelector('.btn-edit').addEventListener('click', () => {
     startInlineEdit(tr, ann);
+  });
+
+  tr.querySelector('.btn-download').addEventListener('click', (e) => {
+    downloadClip(e.currentTarget, ann);
   });
 
   tr.querySelector('.btn-delete').addEventListener('click', () => {
@@ -1418,9 +1720,9 @@ function startInlineEdit(tr, ann) {
     <input class="edit-input" id="edit-end" type="number" step="0.1" value="${ann.end}" style="width:75px" />
   `;
 
-  const labelOpts = ['¿Qué?','¿Quién?','¿Cuándo?','¿Dónde?','¿Cómo?','¿Por qué?','¿Cuánto?'];
+  const labelOpts = ['', '¿Qué?', '¿Quién?', '¿Cuándo?', '¿Dónde?', '¿Cómo?', '¿Por qué?', '¿Cuánto?'];
   cellLabel.innerHTML = `<select class="edit-select" id="edit-label">
-    ${labelOpts.map(o => `<option value="${o}" ${o===ann.label?'selected':''}>${o}</option>`).join('')}
+    ${labelOpts.map(o => `<option value="${o}" ${o===ann.label?'selected':''}>${o === '' ? '— Sin etiqueta —' : o}</option>`).join('')}
   </select>`;
 
   // Replace actions
@@ -1482,7 +1784,8 @@ document.getElementById('btn-save-add').addEventListener('click', () => {
   document.getElementById('add-form').classList.remove('visible');
   clearAddForm();
   updateSelectionOverlay();
-  toast('Anotación agregada');
+  activateLoop(ann);
+  toast('Anotación agregada — reproduciendo en bucle');
 });
 
 function clearAddForm() {
@@ -1618,8 +1921,90 @@ document.getElementById('btn-export-csv').addEventListener('click', () => {
   downloadBlob(csv, `${state.currentVideo.id}.csv`, 'text/csv;charset=utf-8;');
 });
 
+// ============================================================
+// ============================================================
+// Loop
+// ============================================================
+function activateLoop(ann) {
+  // Cancel any in-progress selection before activating a saved clip
+  if (document.getElementById('add-form').classList.contains('visible')) {
+    document.getElementById('add-form').classList.remove('visible');
+    clearAddForm();           // also clears the preview loop + overlay
+  }
+  state.loopAnn = ann;
+  video.currentTime = ann.start;
+  video.play();
+  document.querySelectorAll('.tl-marker').forEach(m => m.classList.remove('active-marker'));
+  const marker = document.querySelector(`.tl-marker[data-id="${ann.id}"]`);
+  if (marker) marker.classList.add('active-marker');
+  updateLoopUI();
+}
+
+function deactivateLoop() {
+  state.loopAnn = null;
+  document.querySelectorAll('.tl-marker').forEach(m => m.classList.remove('active-marker'));
+  document.querySelectorAll('#ann-tbody tr').forEach(r => r.classList.remove('row-highlighted'));
+  updateLoopUI();
+}
+
+function updateLoopUI() {
+  const ind = document.getElementById('loop-indicator');
+  const lbl = document.getElementById('loop-label');
+  if (state.loopAnn) {
+    const isPreview = state.loopAnn.id === '__preview__';
+    const prefix    = isPreview ? 'selección' : labelDisplay(state.loopAnn.label);
+    lbl.textContent = `${prefix}  ${fmtTime(state.loopAnn.start)} → ${fmtTime(state.loopAnn.end)}`;
+    ind.classList.add('active');
+  } else {
+    ind.classList.remove('active');
+  }
+}
+
+// ============================================================
+// Speed selector
+// ============================================================
+document.getElementById('speed-select').addEventListener('change', (e) => {
+  video.playbackRate = parseFloat(e.target.value);
+});
+
+document.getElementById('btn-loop-dismiss').addEventListener('click', () => {
+  deactivateLoop();
+});
+
+// ============================================================
+// Download clip
+// ============================================================
+async function downloadClip(btn, ann) {
+  if (!state.currentVideo) return;
+  const origText = btn.textContent;
+  btn.textContent = '⏳';
+  btn.disabled = true;
+
+  const url = `/clips/${state.currentVideo.id}?start=${ann.start}&end=${ann.end}`;
+  try {
+    const r = await fetch(url);
+    if (!r.ok) {
+      let msg = 'Error al descargar el clip';
+      try { msg = (await r.json()).detail; } catch {}
+      toast(msg, 4000);
+      return;
+    }
+    const blob = await r.blob();
+    const ext  = blob.type.includes('quicktime') ? '.mov' : '.mp4';
+    const name = `${state.currentVideo.id}_${fmtTimeHMS(ann.start).replace(/:/g,'-')}_${fmtTimeHMS(ann.end).replace(/:/g,'-')}${ext}`;
+    downloadBlob(blob, name, blob.type);
+    toast(`Clip descargado: ${name}`);
+  } catch (e) {
+    toast('Error de red al descargar el clip');
+    console.error(e);
+  } finally {
+    btn.textContent = origText;
+    btn.disabled = false;
+  }
+}
+
 function downloadBlob(content, filename, type) {
-  const blob = new Blob([content], { type });
+  const blob = content instanceof Blob ? content : new Blob([content], { type });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
@@ -1637,6 +2022,7 @@ function applyFilterToTimeline() {
     if (!ann) return;
     marker.style.display = state.activeFilters.has(ann.label) ? '' : 'none';
   });
+  renderMinimap();
 }
 
 function applyFilters() {
@@ -1679,7 +2065,7 @@ function initFilterChips() {
       chip.style.borderColor = color;
     }
 
-    chip.innerHTML = `<input type="checkbox" value="${label}" ${state.activeFilters.has(label) ? 'checked' : ''} />${label}`;
+    chip.innerHTML = `<input type="checkbox" value="${label}" ${state.activeFilters.has(label) ? 'checked' : ''} />${label === '' ? '— Sin etiqueta' : label}`;
 
     chip.querySelector('input').addEventListener('change', (e) => {
       if (e.target.checked) {

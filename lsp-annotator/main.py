@@ -6,6 +6,9 @@ Ejecutar: uv run python main.py
 
 import json
 import os
+import shutil
+import subprocess
+import tempfile
 import threading
 import time
 import uuid
@@ -13,9 +16,10 @@ import webbrowser
 from pathlib import Path
 from typing import Any
 
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
+from starlette.background import BackgroundTask
 
 BASE_DIR = Path(__file__).parent
 VIDEOS_DIR = BASE_DIR / "videos"
@@ -126,6 +130,76 @@ async def save_annotations(video_id: str, request: Request):
     ann_file = ANNOTATIONS_DIR / f"{video_id}.json"
     ann_file.write_text(json.dumps(body, ensure_ascii=False, indent=2), encoding="utf-8")
     return JSONResponse(content={"ok": True})
+
+
+# ---------------------------------------------------------------------------
+# GET /clips/{video_id}  – descarga un segmento del video usando ffmpeg
+# ---------------------------------------------------------------------------
+
+@app.get("/clips/{video_id}")
+async def download_clip(
+    video_id: str,
+    start: float = Query(..., ge=0, description="Tiempo de inicio en segundos"),
+    end: float   = Query(..., gt=0, description="Tiempo de fin en segundos"),
+):
+    if end <= start:
+        raise HTTPException(status_code=400, detail="'end' debe ser mayor que 'start'")
+
+    # Buscar el archivo de video
+    video_path: Path | None = None
+    for f in VIDEOS_DIR.iterdir():
+        if f.stem == video_id and f.suffix.lower() in (".mp4", ".mov"):
+            video_path = f
+            break
+    if video_path is None:
+        raise HTTPException(status_code=404, detail="Video no encontrado")
+
+    if shutil.which("ffmpeg") is None:
+        raise HTTPException(
+            status_code=501,
+            detail="ffmpeg no está instalado. Instálalo para poder descargar clips.",
+        )
+
+    suffix = video_path.suffix.lower()
+    fd, tmp_path = tempfile.mkstemp(suffix=suffix)
+    os.close(fd)
+
+    try:
+        result = subprocess.run(
+            [
+                "ffmpeg", "-y",
+                "-ss", str(start),
+                "-to", str(end),
+                "-i", str(video_path),
+                "-c", "copy",
+                tmp_path,
+            ],
+            capture_output=True,
+            timeout=120,
+        )
+    except subprocess.TimeoutExpired:
+        os.unlink(tmp_path)
+        raise HTTPException(status_code=504, detail="Timeout al extraer el clip")
+
+    if result.returncode != 0:
+        os.unlink(tmp_path)
+        raise HTTPException(status_code=500, detail="ffmpeg falló al extraer el clip")
+
+    media_type = "video/quicktime" if suffix == ".mov" else "video/mp4"
+    clip_name  = f"{video_id}_{start:.2f}s-{end:.2f}s{suffix}"
+
+    def _cleanup():
+        try:
+            os.unlink(tmp_path)
+        except OSError:
+            pass
+
+    return FileResponse(
+        tmp_path,
+        media_type=media_type,
+        filename=clip_name,
+        background=BackgroundTask(_cleanup),
+    )
 
 
 # ---------------------------------------------------------------------------

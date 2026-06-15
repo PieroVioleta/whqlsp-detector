@@ -64,6 +64,22 @@
       "label": "¿Cómo?",
       "source": "manual",
       "confidence": null
+    },
+    {
+      "id": "dd28b662-87e3-45f3-9f2b-84d68817abde",
+      "start": 104.53,
+      "end": 106.95,
+      "label": "",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "57cd8e80-ceff-4226-a268-c273bf775fd2",
+      "start": 76.74,
+      "end": 79,
+      "label": "",
+      "source": "manual",
+      "confidence": null
     }
   ]
 }

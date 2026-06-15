@@ -9,3 +9,5 @@ models/*.h5
 *.egg-info/
 dist/
 lsp-annotator/videos/
+notebooks/data/
+data/
