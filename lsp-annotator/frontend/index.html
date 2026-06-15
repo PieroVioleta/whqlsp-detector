@@ -756,6 +756,31 @@
   }
   @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
 
+  /* ── MTS converter modal ── */
+  .mts-file-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 10px; border-radius: 6px;
+    background: #f9f9fb; border: 1px solid var(--border);
+  }
+  .mts-file-info { flex: 1; min-width: 0; }
+  .mts-file-name { font-size: 13px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mts-file-meta { font-size: 11px; color: var(--text-muted); }
+  .mts-progress-wrap { margin-top: 5px; }
+  .mts-progress-bar-bg {
+    height: 6px; border-radius: 3px;
+    background: var(--border); overflow: hidden;
+  }
+  .mts-progress-bar-fill {
+    height: 100%; border-radius: 3px;
+    background: var(--accent); transition: width 0.4s ease;
+    width: 0%;
+  }
+  .mts-progress-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .mts-badge-done  { font-size: 11px; color: #16a34a; font-weight: 600; }
+  .mts-badge-error { font-size: 11px; color: #dc2626; }
+  .mts-empty { color: var(--text-muted); font-size: 13px; text-align: center; padding: 16px 0; }
+  [data-theme="dark"] .mts-file-row { background: #242838; }
+
   /* ── Tags modal ── */
   .modal-overlay {
     position: fixed; inset: 0; z-index: 400;
@@ -876,6 +901,7 @@
   <div class="spacer"></div>
   <button class="btn btn-secondary btn-sm" id="btn-export-json" disabled>⬇ JSON</button>
   <button class="btn btn-secondary btn-sm" id="btn-export-csv" disabled>⬇ CSV</button>
+  <button class="btn btn-secondary btn-sm" id="btn-mts-open">🔄 MTS → MP4</button>
   <button class="btn btn-secondary btn-sm" id="btn-tags-open">⚙ Etiquetas</button>
   <button id="btn-darkmode" title="Cambiar tema">🌙</button>
 </div>
@@ -1024,6 +1050,23 @@
     </div><!-- /video-section -->
   </div><!-- /main -->
 </div><!-- /layout -->
+
+<!-- MTS converter modal -->
+<div id="mts-modal" class="modal-overlay" style="display:none">
+  <div class="modal-box" style="width:480px">
+    <div class="modal-header">
+      <h2>🔄 Convertir MTS → MP4 (30 fps)</h2>
+      <button class="btn-icon" id="btn-mts-close" style="font-size:16px">✕</button>
+    </div>
+    <div class="modal-body" id="mts-modal-body" style="gap:6px">
+      <p class="mts-empty">Cargando archivos…</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary btn-sm" id="btn-mts-refresh">↺ Refrescar lista</button>
+      <button class="btn btn-secondary btn-sm" id="btn-mts-close2">Cerrar</button>
+    </div>
+  </div>
+</div>
 
 <!-- Tags modal -->
 <div id="tags-modal" class="modal-overlay" style="display:none">
@@ -2169,6 +2212,153 @@ document.getElementById('filter-none').addEventListener('click', () => {
 // Refresh
 // ============================================================
 document.getElementById('btn-refresh').addEventListener('click', loadVideos);
+
+// ============================================================
+// MTS → MP4 converter
+// ============================================================
+const mtsJobs = {};   // stem → { jobId, intervalId }
+
+async function loadMtsFiles() {
+  const body = document.getElementById('mts-modal-body');
+  body.innerHTML = '<p class="mts-empty">Cargando…</p>';
+  try {
+    const res = await fetch('/mts-files');
+    const files = await res.json();
+    renderMtsFiles(files);
+  } catch {
+    body.innerHTML = '<p class="mts-empty" style="color:#dc2626">Error al cargar la lista</p>';
+  }
+}
+
+function renderMtsFiles(files) {
+  const body = document.getElementById('mts-modal-body');
+  body.innerHTML = '';
+  if (files.length === 0) {
+    body.innerHTML = '<p class="mts-empty">No hay archivos .mts en la carpeta <code>videos/</code></p>';
+    return;
+  }
+  files.forEach(f => {
+    const row = document.createElement('div');
+    row.className = 'mts-file-row';
+    row.id = `mts-row-${f.stem}`;
+    const existingJob = mtsJobs[f.stem];
+    const isRunning = existingJob && !existingJob.done;
+
+    row.innerHTML = `
+      <div class="mts-file-info">
+        <div class="mts-file-name">${escapeHtml(f.filename)}</div>
+        <div class="mts-file-meta">${f.size_mb} MB${f.converted ? ' · <span class="mts-badge-done">✔ ya convertido</span>' : ''}</div>
+        <div class="mts-progress-wrap" id="mts-prog-wrap-${f.stem}" style="display:none">
+          <div class="mts-progress-bar-bg"><div class="mts-progress-bar-fill" id="mts-bar-${f.stem}"></div></div>
+          <div class="mts-progress-label" id="mts-label-${f.stem}">Iniciando…</div>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-sm" id="mts-btn-${f.stem}"
+        ${isRunning ? 'disabled' : ''}
+        data-stem="${f.stem}">
+        ${isRunning ? '⏳ Convirtiendo…' : (f.converted ? '↺ Reconvertir' : '▶ Convertir')}
+      </button>
+    `;
+    body.appendChild(row);
+
+    row.querySelector(`#mts-btn-${f.stem}`).addEventListener('click', () => startMtsConversion(f.stem));
+
+    // If a job was already running for this stem, re-attach polling
+    if (existingJob && !existingJob.done) {
+      showMtsProgress(f.stem, true);
+      pollMtsJob(f.stem, existingJob.jobId);
+    }
+  });
+}
+
+async function startMtsConversion(stem) {
+  const btn = document.getElementById(`mts-btn-${stem}`);
+  btn.disabled = true;
+  btn.textContent = '⏳ Convirtiendo…';
+  showMtsProgress(stem, true);
+  document.getElementById(`mts-label-${stem}`).textContent = 'Iniciando…';
+
+  try {
+    const res = await fetch(`/convert-mts/${encodeURIComponent(stem)}`, { method: 'POST' });
+    if (!res.ok) {
+      const err = await res.json();
+      showMtsError(stem, err.detail || 'Error al iniciar');
+      return;
+    }
+    const { job_id } = await res.json();
+    mtsJobs[stem] = { jobId: job_id, done: false };
+    pollMtsJob(stem, job_id);
+  } catch {
+    showMtsError(stem, 'Error de red');
+  }
+}
+
+function pollMtsJob(stem, jobId) {
+  if (mtsJobs[stem]?.intervalId) clearInterval(mtsJobs[stem].intervalId);
+  const iv = setInterval(async () => {
+    try {
+      const res = await fetch(`/convert-status/${jobId}`);
+      const job = await res.json();
+      const bar   = document.getElementById(`mts-bar-${stem}`);
+      const label = document.getElementById(`mts-label-${stem}`);
+      if (!bar) { clearInterval(iv); return; }
+
+      if (job.status === 'running') {
+        bar.style.width = `${job.progress}%`;
+        const modeText = job.mode === 'encode' ? 'Recodificando (fallback)… ' : 'Remuxeando… ';
+        label.textContent = modeText + (job.progress > 0 ? `${job.progress}%` : '');
+      } else if (job.status === 'done') {
+        clearInterval(iv);
+        if (mtsJobs[stem]) mtsJobs[stem].done = true;
+        bar.style.width = '100%';
+        label.textContent = '¡Listo!';
+        label.style.color = '#16a34a';
+        const btn = document.getElementById(`mts-btn-${stem}`);
+        if (btn) { btn.disabled = false; btn.textContent = '↺ Reconvertir'; }
+        const meta = document.querySelector(`#mts-row-${stem} .mts-file-meta`);
+        if (meta && !meta.innerHTML.includes('mts-badge-done')) {
+          meta.innerHTML += ' · <span class="mts-badge-done">✔ ya convertido</span>';
+        }
+        toast(`Conversión de ${stem}.mts completada`);
+        loadVideos();  // refrescar lista de videos
+      } else if (job.status === 'error') {
+        clearInterval(iv);
+        if (mtsJobs[stem]) mtsJobs[stem].done = true;
+        showMtsError(stem, job.error || 'Error desconocido');
+      }
+    } catch { /* silencioso */ }
+  }, 800);
+  if (mtsJobs[stem]) mtsJobs[stem].intervalId = iv;
+}
+
+function showMtsProgress(stem, visible) {
+  const wrap = document.getElementById(`mts-prog-wrap-${stem}`);
+  if (wrap) wrap.style.display = visible ? 'block' : 'none';
+}
+
+function showMtsError(stem, msg) {
+  const label = document.getElementById(`mts-label-${stem}`);
+  const btn   = document.getElementById(`mts-btn-${stem}`);
+  const bar   = document.getElementById(`mts-bar-${stem}`);
+  if (label) { label.textContent = `Error: ${msg}`; label.style.color = '#dc2626'; }
+  if (bar) bar.style.background = '#dc2626';
+  if (btn) { btn.disabled = false; btn.textContent = '↺ Reintentar'; }
+}
+
+document.getElementById('btn-mts-open').addEventListener('click', () => {
+  document.getElementById('mts-modal').style.display = 'flex';
+  loadMtsFiles();
+});
+document.getElementById('btn-mts-close').addEventListener('click', () => {
+  document.getElementById('mts-modal').style.display = 'none';
+});
+document.getElementById('btn-mts-close2').addEventListener('click', () => {
+  document.getElementById('mts-modal').style.display = 'none';
+});
+document.getElementById('btn-mts-refresh').addEventListener('click', loadMtsFiles);
+document.getElementById('mts-modal').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) document.getElementById('mts-modal').style.display = 'none';
+});
 
 // ============================================================
 // Tags modal

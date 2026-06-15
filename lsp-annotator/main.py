@@ -6,6 +6,7 @@ Ejecutar: uv run python main.py
 
 import json
 import os
+import re
 import shutil
 import subprocess
 import tempfile
@@ -200,6 +201,132 @@ async def download_clip(
         filename=clip_name,
         background=BackgroundTask(_cleanup),
     )
+
+
+# ---------------------------------------------------------------------------
+# Conversión MTS → MP4  (30 fps, H.264 + AAC)
+# ---------------------------------------------------------------------------
+
+# Almacena jobs en memoria: {job_id: {status, progress, error}}
+_mts_jobs: dict[str, dict] = {}
+_MTS_EXTS = {".mts", ".MTS"}
+
+
+@app.get("/mts-files")
+async def list_mts_files():
+    """Lista los archivos .mts presentes en la carpeta videos/."""
+    files = []
+    for f in VIDEOS_DIR.iterdir():
+        if f.suffix in _MTS_EXTS:
+            files.append({
+                "stem":      f.stem,
+                "filename":  f.name,
+                "size_mb":   round(f.stat().st_size / 1_000_000, 1),
+                "converted": (VIDEOS_DIR / f"{f.stem}.mp4").exists(),
+            })
+    files.sort(key=lambda x: x["filename"])
+    return JSONResponse(content=files)
+
+
+@app.post("/convert-mts/{stem}")
+async def start_convert_mts(stem: str):
+    """Inicia la conversión en background de stem.mts → stem.mp4 a 30 fps."""
+    mts_path: Path | None = None
+    for ext in _MTS_EXTS:
+        candidate = VIDEOS_DIR / f"{stem}{ext}"
+        if candidate.exists():
+            mts_path = candidate
+            break
+    if mts_path is None:
+        raise HTTPException(status_code=404, detail="Archivo .mts no encontrado")
+
+    if shutil.which("ffmpeg") is None:
+        raise HTTPException(status_code=501, detail="ffmpeg no está instalado")
+
+    job_id = str(uuid.uuid4())
+    _mts_jobs[job_id] = {"status": "running", "progress": 0, "error": None}
+
+    def _run() -> None:
+        output = VIDEOS_DIR / f"{stem}.mp4"
+        total_secs = 0.0
+
+        # Obtener duración con ffprobe (si está disponible)
+        if shutil.which("ffprobe"):
+            try:
+                r = subprocess.run(
+                    [
+                        "ffprobe", "-v", "quiet",
+                        "-show_entries", "format=duration",
+                        "-of", "default=noprint_wrappers=1:nokey=1",
+                        str(mts_path),
+                    ],
+                    capture_output=True, text=True, timeout=15,
+                )
+                total_secs = float(r.stdout.strip())
+            except Exception:
+                pass
+
+        def _run_cmd(cmd: list[str]) -> int:
+            """Ejecuta ffmpeg, parsea progreso desde stderr y retorna el returncode."""
+            proc = subprocess.Popen(
+                cmd,
+                stderr=subprocess.PIPE,
+                stdout=subprocess.DEVNULL,
+                text=True,
+                bufsize=1,
+            )
+            time_re = re.compile(r"time=(\d+):(\d+):([\d.]+)")
+            for line in proc.stderr:  # type: ignore[union-attr]
+                m = time_re.search(line)
+                if m and total_secs > 0:
+                    h, mn, s = int(m.group(1)), int(m.group(2)), float(m.group(3))
+                    elapsed = h * 3600 + mn * 60 + s
+                    _mts_jobs[job_id]["progress"] = min(99, int(elapsed / total_secs * 100))
+            proc.wait()
+            return proc.returncode
+
+        # Intento 1: remux sin reencoding (rápido, sin pérdida de calidad)
+        cmd_copy = [
+            "ffmpeg", "-y",
+            "-i", str(mts_path),
+            "-c", "copy",
+            str(output),
+        ]
+        # Intento 2 (fallback): reencoding libx264 si el primer intento falla
+        cmd_encode = [
+            "ffmpeg", "-y",
+            "-i", str(mts_path),
+            "-r", "30",
+            "-c:v", "libx264", "-crf", "18", "-preset", "fast",
+            "-c:a", "aac",
+            str(output),
+        ]
+
+        try:
+            _mts_jobs[job_id]["mode"] = "copy"
+            rc = _run_cmd(cmd_copy)
+            if rc != 0:
+                # Fallback: reencoding
+                _mts_jobs[job_id].update({"mode": "encode", "progress": 0})
+                rc = _run_cmd(cmd_encode)
+            if rc == 0:
+                _mts_jobs[job_id].update({"status": "done", "progress": 100, "error": None})
+            else:
+                _mts_jobs[job_id].update({"status": "error", "error": "ffmpeg falló en ambos modos"})
+        except Exception as exc:
+            _mts_jobs[job_id].update({"status": "error", "error": str(exc)})
+
+    threading.Thread(target=_run, daemon=True).start()
+    return JSONResponse(content={"job_id": job_id})
+
+
+@app.get("/convert-status/{job_id}")
+async def convert_status(job_id: str):
+    """Consulta el estado de un job de conversión."""
+    job = _mts_jobs.get(job_id)
+    if job is None:
+        raise HTTPException(status_code=404, detail="Job no encontrado")
+    return JSONResponse(content=job)
 
 
 # ---------------------------------------------------------------------------
