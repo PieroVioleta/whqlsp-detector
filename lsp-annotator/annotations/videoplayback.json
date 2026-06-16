@@ -1,0 +1,13 @@
+{
+  "video_id": "videoplayback",
+  "annotations": [
+    {
+      "id": "f7383742-de60-465b-9325-d957745f9642",
+      "start": 37.9,
+      "end": 40.78,
+      "label": "¿Dónde?",
+      "source": "manual",
+      "confidence": null
+    }
+  ]
+}

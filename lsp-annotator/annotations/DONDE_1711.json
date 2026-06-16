@@ -1,0 +1,37 @@
+{
+  "video_id": "DONDE_1711",
+  "annotations": [
+    {
+      "id": "e4d23fc3-55d0-48c9-b071-4610a054af69",
+      "start": 8.2,
+      "end": 10.5,
+      "label": "¿Quién?",
+      "source": "model",
+      "confidence": 0.94
+    },
+    {
+      "id": "7be5e7e1-ad15-4864-96c7-b768b0802492",
+      "start": 23.1,
+      "end": 25,
+      "label": "¿Dónde?",
+      "source": "model",
+      "confidence": 0.87
+    },
+    {
+      "id": "25ebdd4e-21ad-4942-adb8-efb403027808",
+      "start": 41.7,
+      "end": 43.2,
+      "label": "¿Qué?",
+      "source": "model",
+      "confidence": 0.91
+    },
+    {
+      "id": "4736f542-5e9f-4d06-b735-f2fdb11cc62a",
+      "start": 67,
+      "end": 68.8,
+      "label": "¿Cuándo?",
+      "source": "model",
+      "confidence": 0.78
+    }
+  ]
+}

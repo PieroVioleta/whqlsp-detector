@@ -2218,6 +2218,12 @@ document.getElementById('btn-refresh').addEventListener('click', loadVideos);
 // ============================================================
 const mtsJobs = {};   // stem → { jobId, intervalId }
 
+// Filenames can contain spaces and special characters that are invalid in HTML
+// element IDs. This helper produces a safe ID fragment from an arbitrary stem.
+function stemToId(stem) {
+  return stem.replace(/[^a-zA-Z0-9_-]/g, '_');
+}
+
 async function loadMtsFiles() {
   const body = document.getElementById('mts-modal-body');
   body.innerHTML = '<p class="mts-empty">Cargando…</p>';
@@ -2238,9 +2244,10 @@ function renderMtsFiles(files) {
     return;
   }
   files.forEach(f => {
+    const sid = stemToId(f.stem);
     const row = document.createElement('div');
     row.className = 'mts-file-row';
-    row.id = `mts-row-${f.stem}`;
+    row.id = `mts-row-${sid}`;
     const existingJob = mtsJobs[f.stem];
     const isRunning = existingJob && !existingJob.done;
 
@@ -2248,20 +2255,20 @@ function renderMtsFiles(files) {
       <div class="mts-file-info">
         <div class="mts-file-name">${escapeHtml(f.filename)}</div>
         <div class="mts-file-meta">${f.size_mb} MB${f.converted ? ' · <span class="mts-badge-done">✔ ya convertido</span>' : ''}</div>
-        <div class="mts-progress-wrap" id="mts-prog-wrap-${f.stem}" style="display:none">
-          <div class="mts-progress-bar-bg"><div class="mts-progress-bar-fill" id="mts-bar-${f.stem}"></div></div>
-          <div class="mts-progress-label" id="mts-label-${f.stem}">Iniciando…</div>
+        <div class="mts-progress-wrap" id="mts-prog-wrap-${sid}" style="display:none">
+          <div class="mts-progress-bar-bg"><div class="mts-progress-bar-fill" id="mts-bar-${sid}"></div></div>
+          <div class="mts-progress-label" id="mts-label-${sid}">Iniciando…</div>
         </div>
       </div>
-      <button class="btn btn-primary btn-sm" id="mts-btn-${f.stem}"
+      <button class="btn btn-primary btn-sm" id="mts-btn-${sid}"
         ${isRunning ? 'disabled' : ''}
-        data-stem="${f.stem}">
+        data-stem="${escapeHtml(f.stem)}">
         ${isRunning ? '⏳ Convirtiendo…' : (f.converted ? '↺ Reconvertir' : '▶ Convertir')}
       </button>
     `;
     body.appendChild(row);
 
-    row.querySelector(`#mts-btn-${f.stem}`).addEventListener('click', () => startMtsConversion(f.stem));
+    row.querySelector('button[data-stem]').addEventListener('click', () => startMtsConversion(f.stem));
 
     // If a job was already running for this stem, re-attach polling
     if (existingJob && !existingJob.done) {
@@ -2272,11 +2279,12 @@ function renderMtsFiles(files) {
 }
 
 async function startMtsConversion(stem) {
-  const btn = document.getElementById(`mts-btn-${stem}`);
+  const sid = stemToId(stem);
+  const btn = document.getElementById(`mts-btn-${sid}`);
   btn.disabled = true;
   btn.textContent = '⏳ Convirtiendo…';
   showMtsProgress(stem, true);
-  document.getElementById(`mts-label-${stem}`).textContent = 'Iniciando…';
+  document.getElementById(`mts-label-${sid}`).textContent = 'Iniciando…';
 
   try {
     const res = await fetch(`/convert-mts/${encodeURIComponent(stem)}`, { method: 'POST' });
@@ -2294,13 +2302,14 @@ async function startMtsConversion(stem) {
 }
 
 function pollMtsJob(stem, jobId) {
+  const sid = stemToId(stem);
   if (mtsJobs[stem]?.intervalId) clearInterval(mtsJobs[stem].intervalId);
   const iv = setInterval(async () => {
     try {
       const res = await fetch(`/convert-status/${jobId}`);
       const job = await res.json();
-      const bar   = document.getElementById(`mts-bar-${stem}`);
-      const label = document.getElementById(`mts-label-${stem}`);
+      const bar   = document.getElementById(`mts-bar-${sid}`);
+      const label = document.getElementById(`mts-label-${sid}`);
       if (!bar) { clearInterval(iv); return; }
 
       if (job.status === 'running') {
@@ -2313,9 +2322,9 @@ function pollMtsJob(stem, jobId) {
         bar.style.width = '100%';
         label.textContent = '¡Listo!';
         label.style.color = '#16a34a';
-        const btn = document.getElementById(`mts-btn-${stem}`);
+        const btn = document.getElementById(`mts-btn-${sid}`);
         if (btn) { btn.disabled = false; btn.textContent = '↺ Reconvertir'; }
-        const meta = document.querySelector(`#mts-row-${stem} .mts-file-meta`);
+        const meta = document.querySelector(`#mts-row-${sid} .mts-file-meta`);
         if (meta && !meta.innerHTML.includes('mts-badge-done')) {
           meta.innerHTML += ' · <span class="mts-badge-done">✔ ya convertido</span>';
         }
@@ -2332,14 +2341,15 @@ function pollMtsJob(stem, jobId) {
 }
 
 function showMtsProgress(stem, visible) {
-  const wrap = document.getElementById(`mts-prog-wrap-${stem}`);
+  const wrap = document.getElementById(`mts-prog-wrap-${stemToId(stem)}`);
   if (wrap) wrap.style.display = visible ? 'block' : 'none';
 }
 
 function showMtsError(stem, msg) {
-  const label = document.getElementById(`mts-label-${stem}`);
-  const btn   = document.getElementById(`mts-btn-${stem}`);
-  const bar   = document.getElementById(`mts-bar-${stem}`);
+  const sid   = stemToId(stem);
+  const label = document.getElementById(`mts-label-${sid}`);
+  const btn   = document.getElementById(`mts-btn-${sid}`);
+  const bar   = document.getElementById(`mts-bar-${sid}`);
   if (label) { label.textContent = `Error: ${msg}`; label.style.color = '#dc2626'; }
   if (bar) bar.style.background = '#dc2626';
   if (btn) { btn.disabled = false; btn.textContent = '↺ Reintentar'; }

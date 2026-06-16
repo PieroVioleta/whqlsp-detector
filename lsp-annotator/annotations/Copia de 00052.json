@@ -1,0 +1,13 @@
+{
+  "video_id": "Copia de 00052",
+  "annotations": [
+    {
+      "id": "96bb048a-9d61-4e02-b6f3-900bc627dd60",
+      "start": 24.39,
+      "end": 26.32,
+      "label": "¿Dónde?",
+      "source": "manual",
+      "confidence": null
+    }
+  ]
+}
