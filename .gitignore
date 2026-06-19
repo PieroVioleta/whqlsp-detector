@@ -11,3 +11,5 @@ dist/
 lsp-annotator/videos/
 notebooks/data/
 data/
+*.mp4
+*.MTS

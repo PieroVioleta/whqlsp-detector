@@ -83,11 +83,46 @@
     flex: 1;
     padding: 6px 0;
   }
+  /* ── Tree explorer ── */
+  .tree-folder {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    border-left: 3px solid transparent;
+    transition: background 0.12s;
+    user-select: none;
+    overflow: hidden;
+  }
+  .tree-folder:hover { background: #f3f4f6; }
+  .tree-folder .folder-arrow {
+    font-size: 9px;
+    flex-shrink: 0;
+    transition: transform 0.15s;
+    display: inline-block;
+    width: 10px;
+    text-align: center;
+  }
+  .tree-folder.open .folder-arrow { transform: rotate(90deg); }
+  .tree-folder .folder-icon { flex-shrink: 0; font-size: 13px; }
+  .tree-folder .folder-name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .tree-children { display: none; }
+  .tree-children.open { display: block; }
+
   .video-item {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 8px 12px;
+    padding: 7px 12px;
     cursor: pointer;
     font-size: 13px;
     border-left: 3px solid transparent;
@@ -857,6 +892,7 @@
   }
   [data-theme="dark"] body { background: var(--bg); color: var(--text); }
   [data-theme="dark"] #sidebar { background: var(--sidebar-bg); }
+  [data-theme="dark"] .tree-folder:hover { background: #242838; }
   [data-theme="dark"] .video-item:hover { background: #242838; }
   [data-theme="dark"] .video-item .status-dot { background: #3d4260; }
   [data-theme="dark"] #timeline-wrap { background: var(--sidebar-bg); }
@@ -1062,7 +1098,7 @@
 <div id="mts-modal" class="modal-overlay" style="display:none">
   <div class="modal-box" style="width:480px">
     <div class="modal-header">
-      <h2>🔄 Convertir MTS → MP4 (30 fps)</h2>
+      <h2>🔄 Convertir MTS → MP4 (480p, 30 fps)</h2>
       <button class="btn-icon" id="btn-mts-close" style="font-size:16px">✕</button>
     </div>
     <div class="modal-body" id="mts-modal-body" style="gap:6px">
@@ -1169,7 +1205,8 @@ const state = {
   duration: 0,
   mkeyStart: null,
   activeFilters: new Set(WH_LABELS),
-  loopAnn: null,        // annotation currently looping (or null)
+  loopAnn: null,            // annotation currently looping (or null)
+  expandedFolders: new Set(), // folder paths currently expanded in the tree
 };
 
 // ============================================================
@@ -1222,6 +1259,11 @@ async function apiPost(url, body) {
   return r.json();
 }
 
+// Encode each segment of a path-based ID so slashes are preserved in URLs
+function encodeId(id) {
+  return (id || '').split('/').map(encodeURIComponent).join('/');
+}
+
 // ============================================================
 // Load video list
 // ============================================================
@@ -1236,6 +1278,82 @@ async function loadVideos() {
   }
 }
 
+// ============================================================
+// Tree helpers
+// ============================================================
+
+function buildVideoTree(videos) {
+  // Returns a nested structure: { folders: { name → node }, files: [video, …] }
+  const root = { folders: {}, files: [] };
+  for (const v of videos) {
+    const parts = v.id.split('/');
+    if (parts.length === 1) {
+      root.files.push(v);
+    } else {
+      let node = root;
+      for (let i = 0; i < parts.length - 1; i++) {
+        const folderPath = parts.slice(0, i + 1).join('/');
+        if (!node.folders[folderPath]) {
+          node.folders[folderPath] = { name: parts[i], path: folderPath, folders: {}, files: [] };
+        }
+        node = node.folders[folderPath];
+      }
+      node.files.push(v);
+    }
+  }
+  return root;
+}
+
+function renderTreeNode(container, node, depth) {
+  // Folders first (sorted)
+  const folders = Object.values(node.folders).sort((a, b) => a.name.localeCompare(b.name));
+  for (const folder of folders) {
+    const isOpen = state.expandedFolders.has(folder.path);
+
+    const folderEl = document.createElement('div');
+    folderEl.className = 'tree-folder' + (isOpen ? ' open' : '');
+    folderEl.style.paddingLeft = `${12 + depth * 14}px`;
+    folderEl.innerHTML =
+      `<span class="folder-arrow">▶</span>` +
+      `<span class="folder-icon">📁</span>` +
+      `<span class="folder-name" title="${escapeHtml(folder.path)}">${escapeHtml(folder.name)}</span>`;
+    folderEl.addEventListener('click', () => {
+      if (state.expandedFolders.has(folder.path)) {
+        state.expandedFolders.delete(folder.path);
+      } else {
+        state.expandedFolders.add(folder.path);
+      }
+      renderVideoList();
+    });
+    container.appendChild(folderEl);
+
+    const childWrap = document.createElement('div');
+    childWrap.className = 'tree-children' + (isOpen ? ' open' : '');
+    renderTreeNode(childWrap, folder, depth + 1);
+    container.appendChild(childWrap);
+  }
+
+  // Files
+  for (const v of node.files) {
+    const item = document.createElement('div');
+    item.className = 'video-item' + (state.currentVideo?.id === v.id ? ' active' : '');
+    item.dataset.id = v.id;
+    item.style.paddingLeft = `${12 + depth * 14 + 18}px`;
+
+    const annFile = state.annotationCache?.[v.id];
+    let dotClass = '';
+    if (annFile?.hasModel && annFile?.hasManual) dotClass = 'done';
+    else if (annFile?.hasModel) dotClass = 'model';
+    else if (annFile?.hasManual) dotClass = 'done';
+
+    item.innerHTML =
+      `<div class="status-dot ${dotClass}"></div>` +
+      `<span class="name" title="${escapeHtml(v.path || v.filename)}">${escapeHtml(v.filename)}</span>`;
+    item.addEventListener('click', () => selectVideo(v));
+    container.appendChild(item);
+  }
+}
+
 function renderVideoList() {
   const list = document.getElementById('video-list');
   list.innerHTML = '';
@@ -1245,22 +1363,8 @@ function renderVideoList() {
     return;
   }
 
-  state.videos.forEach(v => {
-    const item = document.createElement('div');
-    item.className = 'video-item' + (state.currentVideo?.id === v.id ? ' active' : '');
-    item.dataset.id = v.id;
-
-    // Dot state
-    const annFile = state.annotationCache?.[v.id];
-    let dotClass = '';
-    if (annFile?.hasModel && annFile?.hasManual) dotClass = 'done';
-    else if (annFile?.hasModel) dotClass = 'model';
-    else if (annFile?.hasManual) dotClass = 'done';
-
-    item.innerHTML = `<div class="status-dot ${dotClass}"></div><span class="name" title="${v.filename}">${v.filename}</span>`;
-    item.addEventListener('click', () => selectVideo(v));
-    list.appendChild(item);
-  });
+  const tree = buildVideoTree(state.videos);
+  renderTreeNode(list, tree, 0);
 }
 
 // ============================================================
@@ -1271,20 +1375,25 @@ async function selectVideo(v) {
   state.mkeyStart = null;
   hideMkeyIndicator();
 
+  // Auto-expand all ancestor folders so the selected video is visible
+  const parts = v.id.split('/');
+  for (let i = 1; i < parts.length; i++) {
+    state.expandedFolders.add(parts.slice(0, i).join('/'));
+  }
+
   document.getElementById('empty-state').style.display = 'none';
   document.getElementById('video-section').style.display = 'flex';
   document.getElementById('btn-analyze').disabled = false;
   document.getElementById('btn-export-json').disabled = false;
   document.getElementById('btn-export-csv').disabled = false;
 
-  // Update sidebar highlight
-  document.querySelectorAll('.video-item').forEach(el => {
-    el.classList.toggle('active', el.dataset.id === v.id);
-  });
+  // Re-render tree to reflect new active item and expanded folders
+  renderVideoList();
 
-  // Load video
+  // Load video — encode each path segment individually to preserve folder separators
   const video = document.getElementById('video');
-  video.src = `/videos/${encodeURIComponent(v.filename)}`;
+  const encodedVideoPath = (v.path || v.filename).split('/').map(encodeURIComponent).join('/');
+  video.src = `/videos/${encodedVideoPath}`;
   video.load();
 
   state.duration = 0;
@@ -1301,7 +1410,7 @@ async function selectVideo(v) {
 
   // Load annotations
   try {
-    const data = await apiGet(`/annotations/${v.id}`);
+    const data = await apiGet(`/annotations/${encodeId(v.id)}`);
     state.annotations = data.annotations || [];
   } catch {
     state.annotations = [];
@@ -1994,7 +2103,7 @@ document.getElementById('btn-analyze').addEventListener('click', async () => {
 
   try {
     // Iniciar job en el backend
-    const { job_id } = await apiPost(`/analyze/${state.currentVideo.id}`, {});
+    const { job_id } = await apiPost(`/analyze/${encodeId(state.currentVideo.id)}`, {});
 
     // Polling cada 600ms hasta que termine
     await new Promise((resolve, reject) => {
@@ -2042,7 +2151,7 @@ document.getElementById('btn-analyze').addEventListener('click', async () => {
 async function autosave() {
   if (!state.currentVideo) return;
   try {
-    await apiPost(`/annotations/${state.currentVideo.id}`, {
+    await apiPost(`/annotations/${encodeId(state.currentVideo.id)}`, {
       video_id: state.currentVideo.id,
       annotations: state.annotations,
     });
@@ -2138,7 +2247,8 @@ async function downloadClip(btn, ann) {
   btn.textContent = '⏳';
   btn.disabled = true;
 
-  const url = `/clips/${state.currentVideo.id}?start=${ann.start}&end=${ann.end}`;
+  const labelParam = encodeURIComponent(ann.label || '');
+  const url = `/clips/${encodeId(state.currentVideo.id)}?start=${ann.start}&end=${ann.end}&label=${labelParam}`;
   try {
     const r = await fetch(url);
     if (!r.ok) {
@@ -2148,10 +2258,12 @@ async function downloadClip(btn, ann) {
       return;
     }
     const blob = await r.blob();
-    const ext  = blob.type.includes('quicktime') ? '.mov' : '.mp4';
-    const name = `${state.currentVideo.id}_${fmtTimeHMS(ann.start).replace(/:/g,'-')}_${fmtTimeHMS(ann.end).replace(/:/g,'-')}${ext}`;
+    // Nombre refleja el stem del video y la etiqueta, igual que el guardado en el servidor
+    const videoStem = state.currentVideo.id.split('/').pop();
+    const labelSafe = (ann.label || 'clip').replace(/[^\w\-]/g, '_').replace(/_+/g, '_').replace(/^_|_$/g, '');
+    const name = `${videoStem}_clip_${labelSafe}.mp4`;
     downloadBlob(blob, name, blob.type);
-    toast(`Clip descargado: ${name}`);
+    toast(`Clip guardado: ${name}`);
   } catch (e) {
     toast('Error de red al descargar el clip');
     console.error(e);
@@ -2288,7 +2400,7 @@ function renderMtsFiles(files) {
   const body = document.getElementById('mts-modal-body');
   body.innerHTML = '';
   if (files.length === 0) {
-    body.innerHTML = '<p class="mts-empty">No hay archivos .mts en la carpeta <code>videos/</code></p>';
+    body.innerHTML = '<p class="mts-empty">No hay archivos .mts en la carpeta <code>raw_videos/</code></p>';
     return;
   }
   files.forEach(f => {
@@ -2335,7 +2447,7 @@ async function startMtsConversion(stem) {
   document.getElementById(`mts-label-${sid}`).textContent = 'Iniciando…';
 
   try {
-    const res = await fetch(`/convert-mts/${encodeURIComponent(stem)}`, { method: 'POST' });
+    const res = await fetch(`/convert-mts/${encodeId(stem)}`, { method: 'POST' });
     if (!res.ok) {
       const err = await res.json();
       showMtsError(stem, err.detail || 'Error al iniciar');
@@ -2376,7 +2488,7 @@ function pollMtsJob(stem, jobId) {
         if (meta && !meta.innerHTML.includes('mts-badge-done')) {
           meta.innerHTML += ' · <span class="mts-badge-done">✔ ya convertido</span>';
         }
-        toast(`Conversión de ${stem}.mts completada`);
+        toast(`Conversión completada → videos/${stem}.mp4`);
         loadVideos();  // refrescar lista de videos
       } else if (job.status === 'error') {
         clearInterval(iv);

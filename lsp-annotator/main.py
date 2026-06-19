@@ -6,12 +6,10 @@ Ejecutar: uv run python main.py
 
 import asyncio
 import json
-import os
 import pickle
 import re
 import shutil
 import subprocess
-import tempfile
 import threading
 import time
 import uuid
@@ -26,10 +24,11 @@ import numpy as np
 from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, Response, StreamingResponse
 from fastapi.staticfiles import StaticFiles
-from starlette.background import BackgroundTask
 
 BASE_DIR        = Path(__file__).parent
 VIDEOS_DIR      = BASE_DIR / "videos"
+RAW_VIDEOS_DIR  = BASE_DIR / "raw_videos"
+CLIPS_DIR       = BASE_DIR / "clips"
 ANNOTATIONS_DIR = BASE_DIR / "annotations"
 FRONTEND_DIR    = BASE_DIR / "frontend"
 
@@ -94,6 +93,8 @@ async def lifespan(app: FastAPI):
 
 
 VIDEOS_DIR.mkdir(exist_ok=True)
+RAW_VIDEOS_DIR.mkdir(exist_ok=True)
+CLIPS_DIR.mkdir(exist_ok=True)
 ANNOTATIONS_DIR.mkdir(exist_ok=True)
 
 app = FastAPI(title="LSP Annotator", lifespan=lifespan)
@@ -280,16 +281,22 @@ async def root():
 
 @app.get("/videos")
 async def list_videos():
+    seen: set[str] = set()
     videos = []
     for ext in ("*.mp4", "*.mov", "*.MP4", "*.MOV"):
-        for f in VIDEOS_DIR.glob(ext):
-            video_id = f.stem
+        for f in VIDEOS_DIR.rglob(ext):
+            rel      = f.relative_to(VIDEOS_DIR)
+            video_id = str(rel.with_suffix(""))
+            if video_id in seen:
+                continue
+            seen.add(video_id)
             videos.append({
-                "id": video_id,
-                "filename": f.name,
+                "id":       video_id,          # ruta relativa sin extensión, p.ej. "a/b/video1"
+                "filename": f.name,            # solo el nombre, p.ej. "video1.mp4"
+                "path":     str(rel),          # ruta relativa con extensión, p.ej. "a/b/video1.mp4"
                 "duration": None,
             })
-    videos.sort(key=lambda v: v["filename"])
+    videos.sort(key=lambda v: v["path"])
     return JSONResponse(content=videos)
 
 
@@ -297,13 +304,14 @@ async def list_videos():
 # GET /videos/{filename}  – con soporte de Range requests
 # ---------------------------------------------------------------------------
 
-@app.get("/videos/{filename}")
-async def serve_video(filename: str, request: Request):
-    path = VIDEOS_DIR / filename
-    if not path.exists() or not path.is_file():
+@app.get("/videos/{path:path}")
+async def serve_video(path: str, request: Request):
+    video_file = VIDEOS_DIR / path
+    if not video_file.exists() or not video_file.is_file():
         raise HTTPException(status_code=404, detail="Video no encontrado")
 
-    file_size    = path.stat().st_size
+    file_size    = video_file.stat().st_size
+    filename     = Path(path).name
     content_type = "video/quicktime" if filename.lower().endswith(".mov") else "video/mp4"
     range_header = request.headers.get("range")
 
@@ -311,7 +319,7 @@ async def serve_video(filename: str, request: Request):
         # Sin Range: FileResponse envía Content-Length correcto y soporta seeking.
         # StreamingResponse con generator usa Transfer-Encoding: chunked, lo que
         # impide que el browser detecte la pista de audio.
-        return FileResponse(path, media_type=content_type,
+        return FileResponse(video_file, media_type=content_type,
                             headers={"Accept-Ranges": "bytes"})
 
     # Con Range: el browser pide chunks pequeños (metadata, buffer de reproducción).
@@ -326,7 +334,7 @@ async def serve_video(filename: str, request: Request):
         end   = min(end, file_size - 1)
 
     chunk_size = end - start + 1
-    with open(path, "rb") as f:
+    with open(video_file, "rb") as f:
         f.seek(start)
         data = f.read(chunk_size)
 
@@ -343,7 +351,7 @@ async def serve_video(filename: str, request: Request):
 # GET /annotations/{video_id}
 # ---------------------------------------------------------------------------
 
-@app.get("/annotations/{video_id}")
+@app.get("/annotations/{video_id:path}")
 async def get_annotations(video_id: str):
     ann_file = ANNOTATIONS_DIR / f"{video_id}.json"
     if not ann_file.exists():
@@ -356,10 +364,11 @@ async def get_annotations(video_id: str):
 # POST /annotations/{video_id}
 # ---------------------------------------------------------------------------
 
-@app.post("/annotations/{video_id}")
+@app.post("/annotations/{video_id:path}")
 async def save_annotations(video_id: str, request: Request):
     body = await request.json()
     ann_file = ANNOTATIONS_DIR / f"{video_id}.json"
+    ann_file.parent.mkdir(parents=True, exist_ok=True)
     ann_file.write_text(json.dumps(body, ensure_ascii=False, indent=2), encoding="utf-8")
     return JSONResponse(content={"ok": True})
 
@@ -368,20 +377,22 @@ async def save_annotations(video_id: str, request: Request):
 # GET /clips/{video_id}  – descarga un segmento del video usando ffmpeg
 # ---------------------------------------------------------------------------
 
-@app.get("/clips/{video_id}")
+@app.get("/clips/{video_id:path}")
 async def download_clip(
     video_id: str,
     start: float = Query(..., ge=0, description="Tiempo de inicio en segundos"),
     end: float   = Query(..., gt=0, description="Tiempo de fin en segundos"),
+    label: str   = Query("", description="Etiqueta de la anotación"),
 ):
     if end <= start:
         raise HTTPException(status_code=400, detail="'end' debe ser mayor que 'start'")
 
-    # Buscar el archivo de video
+    # Buscar el archivo de video (video_id es la ruta relativa sin extensión)
     video_path: Path | None = None
-    for f in VIDEOS_DIR.iterdir():
-        if f.stem == video_id and f.suffix.lower() in (".mp4", ".mov"):
-            video_path = f
+    for ext in (".mp4", ".mov", ".MP4", ".MOV"):
+        candidate = VIDEOS_DIR / f"{video_id}{ext}"
+        if candidate.exists():
+            video_path = candidate
             break
     if video_path is None:
         raise HTTPException(status_code=404, detail="Video no encontrado")
@@ -392,9 +403,16 @@ async def download_clip(
             detail="ffmpeg no está instalado. Instálalo para poder descargar clips.",
         )
 
-    suffix = video_path.suffix.lower()
-    fd, tmp_path = tempfile.mkstemp(suffix=suffix)
-    os.close(fd)
+    # Construir nombre y ruta del clip siguiendo la estructura de carpetas
+    video_stem = Path(video_id).name
+    label_safe = re.sub(r"[^\w\-]", "_", label).strip("_") or "clip"
+    label_safe = re.sub(r"_+", "_", label_safe)
+    clip_name  = f"{video_stem}_clip_{label_safe}.mp4"
+
+    rel_subdir  = Path(video_id).parent
+    clips_subdir = CLIPS_DIR / rel_subdir
+    clips_subdir.mkdir(parents=True, exist_ok=True)
+    clip_output = clips_subdir / clip_name
 
     try:
         result = subprocess.run(
@@ -404,33 +422,21 @@ async def download_clip(
                 "-to", str(end),
                 "-i", str(video_path),
                 "-c", "copy",
-                tmp_path,
+                str(clip_output),
             ],
             capture_output=True,
             timeout=120,
         )
     except subprocess.TimeoutExpired:
-        os.unlink(tmp_path)
         raise HTTPException(status_code=504, detail="Timeout al extraer el clip")
 
     if result.returncode != 0:
-        os.unlink(tmp_path)
         raise HTTPException(status_code=500, detail="ffmpeg falló al extraer el clip")
 
-    media_type = "video/quicktime" if suffix == ".mov" else "video/mp4"
-    clip_name  = f"{video_id}_{start:.2f}s-{end:.2f}s{suffix}"
-
-    def _cleanup():
-        try:
-            os.unlink(tmp_path)
-        except OSError:
-            pass
-
     return FileResponse(
-        tmp_path,
-        media_type=media_type,
+        clip_output,
+        media_type="video/mp4",
         filename=clip_name,
-        background=BackgroundTask(_cleanup),
     )
 
 
@@ -445,31 +451,33 @@ _MTS_EXTS = {".mts", ".MTS"}
 
 @app.get("/mts-files")
 async def list_mts_files():
-    """Lista los archivos .mts presentes en la carpeta videos/."""
+    """Lista los archivos .mts presentes en raw_videos/ (incluyendo subcarpetas)."""
     files = []
-    for f in VIDEOS_DIR.iterdir():
-        if f.suffix in _MTS_EXTS:
+    for f in RAW_VIDEOS_DIR.rglob("*"):
+        if f.suffix.lower() == ".mts":
+            rel  = f.relative_to(RAW_VIDEOS_DIR)
+            stem = str(rel.with_suffix(""))
             files.append({
-                "stem":      f.stem,
+                "stem":      stem,
                 "filename":  f.name,
                 "size_mb":   round(f.stat().st_size / 1_000_000, 1),
-                "converted": (VIDEOS_DIR / f"{f.stem}.mp4").exists(),
+                "converted": (VIDEOS_DIR / f"{stem}.mp4").exists(),
             })
-    files.sort(key=lambda x: x["filename"])
+    files.sort(key=lambda x: x["stem"])
     return JSONResponse(content=files)
 
 
-@app.post("/convert-mts/{stem}")
+@app.post("/convert-mts/{stem:path}")
 async def start_convert_mts(stem: str):
-    """Inicia la conversión en background de stem.mts → stem.mp4 a 30 fps."""
+    """Inicia la conversión en background de raw_videos/stem.mts → videos/stem.mp4 a 30 fps, máximo 480p."""
     mts_path: Path | None = None
     for ext in _MTS_EXTS:
-        candidate = VIDEOS_DIR / f"{stem}{ext}"
+        candidate = RAW_VIDEOS_DIR / f"{stem}{ext}"
         if candidate.exists():
             mts_path = candidate
             break
     if mts_path is None:
-        raise HTTPException(status_code=404, detail="Archivo .mts no encontrado")
+        raise HTTPException(status_code=404, detail="Archivo .mts no encontrado en raw_videos/")
 
     if shutil.which("ffmpeg") is None:
         raise HTTPException(status_code=501, detail="ffmpeg no está instalado")
@@ -479,6 +487,7 @@ async def start_convert_mts(stem: str):
 
     def _run() -> None:
         output = VIDEOS_DIR / f"{stem}.mp4"
+        output.parent.mkdir(parents=True, exist_ok=True)
         total_secs = 0.0
 
         # Obtener duración con ffprobe (si está disponible)
@@ -516,34 +525,37 @@ async def start_convert_mts(stem: str):
             proc.wait()
             return proc.returncode
 
-        # Intento 1: remux sin reencoding (rápido, sin pérdida de calidad)
-        cmd_copy = [
-            "ffmpeg", "-y",
-            "-i", str(mts_path),
-            "-c", "copy",
-            str(output),
-        ]
-        # Intento 2 (fallback): reencoding libx264 si el primer intento falla
+        # Reencoding a libx264, máximo 480p de altura, preservando relación de aspecto
         cmd_encode = [
             "ffmpeg", "-y",
             "-i", str(mts_path),
             "-r", "30",
-            "-c:v", "libx264", "-crf", "18", "-preset", "fast",
+            "-vf", "scale=-2:min(480\\,ih)",
+            "-c:v", "libx264", "-crf", "23", "-preset", "fast",
             "-c:a", "aac",
             str(output),
         ]
 
         try:
-            _mts_jobs[job_id]["mode"] = "copy"
-            rc = _run_cmd(cmd_copy)
-            if rc != 0:
-                # Fallback: reencoding
-                _mts_jobs[job_id].update({"mode": "encode", "progress": 0})
-                rc = _run_cmd(cmd_encode)
+            _mts_jobs[job_id]["mode"] = "encode"
+            rc = _run_cmd(cmd_encode)
             if rc == 0:
+                # Eliminar el archivo MTS original tras conversión exitosa
+                try:
+                    mts_path.unlink()
+                    # Borrar carpeta padre si quedó vacía
+                    parent = mts_path.parent
+                    while parent != RAW_VIDEOS_DIR:
+                        if not any(parent.iterdir()):
+                            parent.rmdir()
+                            parent = parent.parent
+                        else:
+                            break
+                except Exception:
+                    pass
                 _mts_jobs[job_id].update({"status": "done", "progress": 100, "error": None})
             else:
-                _mts_jobs[job_id].update({"status": "error", "error": "ffmpeg falló en ambos modos"})
+                _mts_jobs[job_id].update({"status": "error", "error": "ffmpeg falló al convertir"})
         except Exception as exc:
             _mts_jobs[job_id].update({"status": "error", "error": str(exc)})
 
@@ -568,7 +580,7 @@ async def convert_status(job_id: str):
 _analyze_jobs: dict[str, dict] = {}
 
 
-@app.post("/analyze/{video_id}")
+@app.post("/analyze/{video_id:path}")
 async def analyze_video(video_id: str):
     if _bundle is None:
         raise HTTPException(
@@ -577,9 +589,10 @@ async def analyze_video(video_id: str):
         )
 
     video_path: Path | None = None
-    for f in VIDEOS_DIR.iterdir():
-        if f.stem == video_id and f.suffix.lower() in (".mp4", ".mov"):
-            video_path = f
+    for ext in (".mp4", ".mov", ".MP4", ".MOV"):
+        candidate = VIDEOS_DIR / f"{video_id}{ext}"
+        if candidate.exists():
+            video_path = candidate
             break
     if video_path is None:
         raise HTTPException(status_code=404, detail="Video no encontrado")

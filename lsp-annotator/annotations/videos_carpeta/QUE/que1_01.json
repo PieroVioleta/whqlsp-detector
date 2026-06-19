@@ -1,0 +1,13 @@
+{
+  "video_id": "videos_carpeta/QUE/que1_01",
+  "annotations": [
+    {
+      "id": "5994dcc7-46b4-43dd-86ef-e3e4c3c6162e",
+      "start": 138.39,
+      "end": 141.18,
+      "label": "QUE 2",
+      "source": "manual",
+      "confidence": null
+    }
+  ]
+}
