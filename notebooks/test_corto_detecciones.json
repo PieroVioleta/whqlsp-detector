@@ -1,0 +1,31 @@
+{
+  "video": "data/test_corto.mp4",
+  "duracion_s": 47.15,
+  "fps": 19.98,
+  "modelo": "models/svm_lsp.pkl",
+  "parametros": {
+    "umbral_confianza": 0.6,
+    "umbral_nada": 0.5,
+    "min_duracion_s": 0.7,
+    "stride_frames": 5,
+    "n_frames_ventana": 60,
+    "target_fps": 20,
+    "fps_efectivo": 19.98
+  },
+  "señas": [
+    {
+      "clase": "QUE",
+      "t_inicio": 19.27,
+      "t_fin": 22.52,
+      "duracion": 3.25,
+      "confianza_media": 0.76
+    },
+    {
+      "clase": "QUE",
+      "t_inicio": 27.03,
+      "t_fin": 31.03,
+      "duracion": 4.0,
+      "confianza_media": 0.734
+    }
+  ]
+}

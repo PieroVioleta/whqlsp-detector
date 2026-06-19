@@ -4,8 +4,10 @@ LSP Annotator – backend FastAPI
 Ejecutar: uv run python main.py
 """
 
+import asyncio
 import json
 import os
+import pickle
 import re
 import shutil
 import subprocess
@@ -14,23 +16,251 @@ import threading
 import time
 import uuid
 import webbrowser
+from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any
 
+import cv2
+import mediapipe as mp
+import numpy as np
 from fastapi import FastAPI, HTTPException, Query, Request
-from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, Response
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, Response, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.background import BackgroundTask
 
-BASE_DIR = Path(__file__).parent
-VIDEOS_DIR = BASE_DIR / "videos"
+BASE_DIR        = Path(__file__).parent
+VIDEOS_DIR      = BASE_DIR / "videos"
 ANNOTATIONS_DIR = BASE_DIR / "annotations"
-FRONTEND_DIR = BASE_DIR / "frontend"
+FRONTEND_DIR    = BASE_DIR / "frontend"
+
+# Ruta al modelo — busca primero junto al anotador, luego en notebooks/models/
+_MODEL_CANDIDATES = [
+    BASE_DIR / "models" / "svm_lsp.pkl",
+    BASE_DIR.parent / "notebooks" / "models" / "svm_lsp.pkl",
+]
+MODEL_PATH = next((p for p in _MODEL_CANDIDATES if p.exists()), _MODEL_CANDIDATES[-1])
+
+# ── Parámetros de inferencia ──────────────────────────────────────────────────
+INFER_TARGET_FPS  = 15     # FPS a muestrear del video (el modelo normaliza igual)
+INFER_STRIDE      = 5      # avance de ventana deslizante (en frames muestreados)
+INFER_UMBRAL_CONF = 0.80   # confianza mínima para reportar una seña
+INFER_UMBRAL_NADA = 0.50   # prob. de NADA a partir de la cual se silencia
+INFER_MIN_DUR     = 0.5    # duración mínima en segundos para reportar ocurrencia
+
+# Mapeo de etiquetas internas → etiquetas del anotador
+LABEL_MAP: dict[str, str] = {
+    'QUE':     '¿Qué?',
+    'QUIEN':   '¿Quién?',
+    'CUANDO':  '¿Cuándo?',
+    'DONDE':   '¿Dónde?',
+    'COMO':    '¿Cómo?',
+    'PORQUE':  '¿Por qué?',
+    'POR_QUE': '¿Por qué?',   # variante con guión bajo (ej: clase POR_QUE1)
+    'CUANTO':  '¿Cuánto?',
+    'CUANTOS': '¿Cuánto?',
+}
+
+# ── Estado global del modelo (cargado al arrancar) ────────────────────────────
+_bundle: dict | None = None
+_hands:  Any         = None
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    global _bundle, _hands
+    # Cargar modelo
+    if MODEL_PATH.exists():
+        with open(MODEL_PATH, "rb") as f:
+            _bundle = pickle.load(f)
+        print(f"[modelo] Cargado: {MODEL_PATH.name}")
+        print(f"[modelo] Clases: {_bundle['clases']}  |  CV accuracy: {_bundle['cv_accuracy']:.3f}")
+    else:
+        print(f"[modelo] ADVERTENCIA: no se encontró el modelo en {MODEL_PATH}")
+        print(f"[modelo] El botón 'Analizar' devolverá error hasta que exista el .pkl")
+
+    # Inicializar MediaPipe (una sola instancia compartida)
+    _hands = mp.solutions.hands.Hands(
+        static_image_mode=False,
+        max_num_hands=2,
+        model_complexity=0,            # modelo liviano: ~30% más rápido, suficiente para señas
+        min_detection_confidence=0.5,
+        min_tracking_confidence=0.5,
+    )
+    print("[mediapipe] Inicializado (model_complexity=0)")
+    yield
+    # Cleanup
+    if _hands:
+        _hands.close()
+
 
 VIDEOS_DIR.mkdir(exist_ok=True)
 ANNOTATIONS_DIR.mkdir(exist_ok=True)
 
-app = FastAPI(title="LSP Annotator")
+app = FastAPI(title="LSP Annotator", lifespan=lifespan)
+
+
+# ── Funciones de inferencia ───────────────────────────────────────────────────
+
+def _limpiar_etiqueta(raw: str) -> str:
+    """'QUE1' → 'QUE', 'QUIEN1' → 'QUIEN'."""
+    return raw.rstrip("0123456789")
+
+
+def _extraer_landmarks(video_path: Path) -> tuple[np.ndarray, float]:
+    """Extrae landmarks muestreando a INFER_TARGET_FPS. Devuelve (T,2,21,3) y fps_efectivo."""
+    cap = cv2.VideoCapture(str(video_path))
+    fps_orig = cap.get(cv2.CAP_PROP_FPS) or 30.0
+    step     = max(1, round(fps_orig / INFER_TARGET_FPS))
+    fps_ef   = fps_orig / step
+
+    landmarks, idx = [], 0
+    while True:
+        ok, frame = cap.read()
+        if not ok:
+            break
+        if idx % step == 0:
+            rgb      = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            res      = _hands.process(rgb)
+            frame_lm = np.zeros((2, 21, 3), dtype=np.float32)
+            if res.multi_hand_landmarks:
+                for hand_lm, handedness in zip(res.multi_hand_landmarks, res.multi_handedness):
+                    hi = 0 if handedness.classification[0].label == "Right" else 1
+                    for j, lm in enumerate(hand_lm.landmark):
+                        frame_lm[hi, j] = [lm.x, lm.y, lm.z]
+            landmarks.append(frame_lm)
+        idx += 1
+    cap.release()
+    return np.array(landmarks, dtype=np.float32), fps_ef
+
+
+def _normalizar(seq: np.ndarray, n: int) -> np.ndarray:
+    T = len(seq)
+    if T == n:
+        return seq
+    idx = np.linspace(0, T - 1, n)
+    out = np.zeros((n, 2, 21, 3), dtype=np.float32)
+    for i, x in enumerate(idx):
+        i0 = int(x); i1 = min(i0 + 1, T - 1); a = x - i0
+        out[i] = seq[i0] * (1 - a) + seq[i1] * a
+    return out
+
+
+def _predecir_ventana(probs: np.ndarray, clases: list) -> tuple[str, float] | None:
+    """Aplica lógica de umbrales duales. Devuelve (etiqueta_limpia, conf) o None."""
+    if "NADA" in clases:
+        if probs[list(clases).index("NADA")] >= INFER_UMBRAL_NADA:
+            return None
+    idx_max   = int(probs.argmax())
+    confianza = float(probs[idx_max])
+    etiqueta  = _limpiar_etiqueta(clases[idx_max])
+    if etiqueta == "NADA" or confianza < INFER_UMBRAL_CONF:
+        return None
+    return etiqueta, confianza
+
+
+def _detectar_senas(video_path: Path, job: dict) -> list[dict]:
+    """
+    Pipeline completo: extracción → ventana deslizante → agrupación.
+    Actualiza `job` con progreso (0-100) y fase actual.
+    Devuelve lista de {start, end, label, confidence}.
+    """
+    if _bundle is None:
+        raise RuntimeError("Modelo no cargado")
+
+    n_frames = _bundle["n_frames"]
+    clases   = list(_bundle["label_encoder"].classes_)
+
+    # ── Fase 1: extracción de landmarks (0 → 70%) ────────────────────────────
+    cap      = cv2.VideoCapture(str(video_path))
+    fps_orig = cap.get(cv2.CAP_PROP_FPS) or 30.0
+    total_f  = int(cap.get(cv2.CAP_PROP_FRAME_COUNT)) or 1
+    step     = max(1, round(fps_orig / INFER_TARGET_FPS))
+    fps_ef   = fps_orig / step
+    n_sample = (total_f + step - 1) // step
+
+    job.update({"phase": "Extrayendo landmarks…", "progress": 0})
+
+    landmarks, frame_idx, sampled = [], 0, 0
+    while True:
+        ok, frame = cap.read()
+        if not ok:
+            break
+        if frame_idx % step == 0:
+            rgb      = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            res      = _hands.process(rgb)
+            frame_lm = np.zeros((2, 21, 3), dtype=np.float32)
+            if res.multi_hand_landmarks:
+                for hand_lm, handedness in zip(res.multi_hand_landmarks, res.multi_handedness):
+                    hi = 0 if handedness.classification[0].label == "Right" else 1
+                    for j, lm in enumerate(hand_lm.landmark):
+                        frame_lm[hi, j] = [lm.x, lm.y, lm.z]
+            landmarks.append(frame_lm)
+            sampled += 1
+            # Actualizar progreso cada 30 frames muestreados
+            if sampled % 30 == 0:
+                job["progress"] = min(69, int(sampled / n_sample * 70))
+        frame_idx += 1
+    cap.release()
+
+    landmarks = np.array(landmarks, dtype=np.float32)
+    T         = len(landmarks)
+
+    # ── Fase 2: ventana deslizante (70 → 95%) ────────────────────────────────
+    job.update({"phase": "Clasificando señas…", "progress": 70})
+
+    ventanas    = list(range(0, T - n_frames + 1, INFER_STRIDE))
+    n_ventanas  = max(len(ventanas), 1)
+    detecciones = []
+
+    for vi, inicio in enumerate(ventanas):
+        ventana = _normalizar(landmarks[inicio : inicio + n_frames], n_frames)
+        probs   = _bundle["pipeline"].predict_proba(ventana.flatten().reshape(1, -1))[0]
+        pred    = _predecir_ventana(probs, clases)
+        if pred:
+            etiqueta, conf = pred
+            detecciones.append({
+                "frame_inicio": inicio,
+                "frame_fin":    inicio + n_frames,
+                "t_inicio":     inicio / fps_ef,
+                "t_fin":        (inicio + n_frames) / fps_ef,
+                "clase":        etiqueta,
+                "confianza":    conf,
+            })
+        if vi % 20 == 0:
+            job["progress"] = 70 + min(24, int(vi / n_ventanas * 25))
+
+    # ── Fase 3: agrupación y formato (95 → 100%) ─────────────────────────────
+    job.update({"phase": "Agrupando ocurrencias…", "progress": 95})
+
+    ocurrencias = []
+    if detecciones:
+        actual = {**detecciones[0], "confianzas": [detecciones[0]["confianza"]]}
+        for d in detecciones[1:]:
+            mismo   = d["clase"] == actual["clase"]
+            sin_gap = d["frame_inicio"] <= actual["frame_fin"] + n_frames
+            if mismo and sin_gap:
+                actual["frame_fin"] = max(actual["frame_fin"], d["frame_fin"])
+                actual["t_fin"]     = actual["frame_fin"] / fps_ef
+                actual["confianzas"].append(d["confianza"])
+            else:
+                if actual["t_fin"] - actual["t_inicio"] >= INFER_MIN_DUR:
+                    ocurrencias.append(actual)
+                actual = {**d, "confianzas": [d["confianza"]]}
+        if actual["t_fin"] - actual["t_inicio"] >= INFER_MIN_DUR:
+            ocurrencias.append(actual)
+
+    anotaciones = []
+    for oc in ocurrencias:
+        label = LABEL_MAP.get(oc["clase"], oc["clase"])
+        anotaciones.append({
+            "id":         str(uuid.uuid4()),
+            "start":      round(oc["t_inicio"], 2),
+            "end":        round(oc["t_fin"], 2),
+            "label":      label,
+            "source":     "model",
+            "confidence": round(float(np.mean(oc["confianzas"])), 3),
+        })
+    return anotaciones
 
 # ---------------------------------------------------------------------------
 # Raíz → sirve index.html
@@ -73,39 +303,40 @@ async def serve_video(filename: str, request: Request):
     if not path.exists() or not path.is_file():
         raise HTTPException(status_code=404, detail="Video no encontrado")
 
-    file_size = path.stat().st_size
+    file_size    = path.stat().st_size
+    content_type = "video/quicktime" if filename.lower().endswith(".mov") else "video/mp4"
     range_header = request.headers.get("range")
 
-    content_type = "video/quicktime" if filename.lower().endswith(".mov") else "video/mp4"
+    if not range_header:
+        # Sin Range: FileResponse envía Content-Length correcto y soporta seeking.
+        # StreamingResponse con generator usa Transfer-Encoding: chunked, lo que
+        # impide que el browser detecte la pista de audio.
+        return FileResponse(path, media_type=content_type,
+                            headers={"Accept-Ranges": "bytes"})
 
-    if range_header:
-        # Parsear "bytes=start-end"
-        range_value = range_header.replace("bytes=", "")
-        parts = range_value.split("-")
-        start = int(parts[0]) if parts[0] else 0
-        end = int(parts[1]) if parts[1] else file_size - 1
-        end = min(end, file_size - 1)
-        chunk_size = end - start + 1
+    # Con Range: el browser pide chunks pequeños (metadata, buffer de reproducción).
+    # Leer en memoria es seguro — los chunks típicos son < 2 MB.
+    m = re.match(r"bytes=(\d*)-(\d*)", range_header)
+    start = 0
+    end   = file_size - 1
+    if m:
+        s, e = m.group(1), m.group(2)
+        start = int(s) if s else 0
+        end   = int(e) if e else file_size - 1
+        end   = min(end, file_size - 1)
 
-        with open(path, "rb") as f:
-            f.seek(start)
-            data = f.read(chunk_size)
+    chunk_size = end - start + 1
+    with open(path, "rb") as f:
+        f.seek(start)
+        data = f.read(chunk_size)
 
-        headers = {
-            "Content-Range": f"bytes {start}-{end}/{file_size}",
-            "Accept-Ranges": "bytes",
-            "Content-Length": str(chunk_size),
-            "Content-Type": content_type,
-        }
-        return Response(content=data, status_code=206, headers=headers)
-
-    # Sin Range: devuelve el archivo completo (videos pequeños / primera carga)
     headers = {
-        "Accept-Ranges": "bytes",
-        "Content-Length": str(file_size),
-        "Content-Type": content_type,
+        "Content-Range":  f"bytes {start}-{end}/{file_size}",
+        "Accept-Ranges":  "bytes",
+        "Content-Length": str(chunk_size),
+        "Content-Type":   content_type,
     }
-    return FileResponse(path, headers=headers, media_type=content_type)
+    return Response(content=data, status_code=206, headers=headers)
 
 
 # ---------------------------------------------------------------------------
@@ -330,19 +561,52 @@ async def convert_status(job_id: str):
 
 
 # ---------------------------------------------------------------------------
-# POST /analyze/{video_id}  – MOCK del modelo
+# POST /analyze/{video_id}  – inicia job de inferencia en background
+# GET  /analyze-status/{job_id} – consulta progreso
 # ---------------------------------------------------------------------------
+
+_analyze_jobs: dict[str, dict] = {}
+
 
 @app.post("/analyze/{video_id}")
 async def analyze_video(video_id: str):
-    # TODO: reemplazar con inferencia real del modelo
-    mock_annotations: list[dict[str, Any]] = [
-        {"id": str(uuid.uuid4()), "start": 8.2,  "end": 10.5, "label": "¿Quién?",  "source": "model", "confidence": 0.94},
-        {"id": str(uuid.uuid4()), "start": 23.1, "end": 25.0, "label": "¿Dónde?",  "source": "model", "confidence": 0.87},
-        {"id": str(uuid.uuid4()), "start": 41.7, "end": 43.2, "label": "¿Qué?",    "source": "model", "confidence": 0.91},
-        {"id": str(uuid.uuid4()), "start": 67.0, "end": 68.8, "label": "¿Cuándo?", "source": "model", "confidence": 0.78},
-    ]
-    return JSONResponse(content={"video_id": video_id, "annotations": mock_annotations})
+    if _bundle is None:
+        raise HTTPException(
+            status_code=503,
+            detail=f"Modelo no cargado. Asegurate de que exista: {MODEL_PATH}",
+        )
+
+    video_path: Path | None = None
+    for f in VIDEOS_DIR.iterdir():
+        if f.stem == video_id and f.suffix.lower() in (".mp4", ".mov"):
+            video_path = f
+            break
+    if video_path is None:
+        raise HTTPException(status_code=404, detail="Video no encontrado")
+
+    job_id = str(uuid.uuid4())
+    job    = {"status": "running", "progress": 0, "phase": "Iniciando…",
+              "annotations": None, "error": None}
+    _analyze_jobs[job_id] = job
+
+    def _run():
+        try:
+            anns = _detectar_senas(video_path, job)
+            job.update({"status": "done", "progress": 100,
+                        "phase": f"{len(anns)} señas detectadas", "annotations": anns})
+        except Exception as exc:
+            job.update({"status": "error", "error": str(exc)})
+
+    threading.Thread(target=_run, daemon=True).start()
+    return JSONResponse(content={"job_id": job_id})
+
+
+@app.get("/analyze-status/{job_id}")
+async def analyze_status(job_id: str):
+    job = _analyze_jobs.get(job_id)
+    if job is None:
+        raise HTTPException(status_code=404, detail="Job no encontrado")
+    return JSONResponse(content=job)
 
 
 # ---------------------------------------------------------------------------

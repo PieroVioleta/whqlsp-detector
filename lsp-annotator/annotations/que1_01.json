@@ -1,0 +1,13 @@
+{
+  "video_id": "que1_01",
+  "annotations": [
+    {
+      "id": "dd3a467d-fe5b-4ab2-b674-8b095484de15",
+      "start": 62.2,
+      "end": 109.33,
+      "label": "",
+      "source": "manual",
+      "confidence": null
+    }
+  ]
+}

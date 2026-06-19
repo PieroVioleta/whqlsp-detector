@@ -8,6 +8,14 @@
       "label": "¿Dónde?",
       "source": "manual",
       "confidence": null
+    },
+    {
+      "id": "e7ca6ee9-5284-4721-bfe5-a80323433515",
+      "start": 49.21,
+      "end": 50.43,
+      "label": "¿Por qué?",
+      "source": "manual",
+      "confidence": null
     }
   ]
 }

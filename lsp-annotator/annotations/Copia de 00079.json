@@ -8,6 +8,22 @@
       "label": "¿Dónde?",
       "source": "manual",
       "confidence": null
+    },
+    {
+      "id": "c165ab68-c470-4be1-8e90-536bac350d0d",
+      "start": 148.07,
+      "end": 149.22,
+      "label": "¿Por qué?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "74df5142-71ba-4070-b997-cd0297e6ab80",
+      "start": 281.28,
+      "end": 284.28,
+      "label": "POR_QUE",
+      "source": "model",
+      "confidence": 0.89
     }
   ]
 }

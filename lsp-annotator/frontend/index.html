@@ -151,13 +151,14 @@
   #player-card {
     background: #000;
     border-radius: var(--radius);
-    overflow: hidden;
+    overflow: visible;
     position: relative;
   }
   #player-card video {
     width: 100%;
     display: block;
     max-height: 380px;
+    border-radius: var(--radius);
     object-fit: contain;
     background: #000;
   }
@@ -920,6 +921,12 @@
       <button class="btn btn-primary btn-full btn-sm" id="btn-analyze" disabled>
         ✦ Analizar con modelo
       </button>
+      <div id="analyze-progress" style="display:none; margin-top:6px;">
+        <div style="height:4px; background:var(--border); border-radius:2px; overflow:hidden;">
+          <div id="analyze-bar" style="height:100%; width:0%; background:var(--accent); border-radius:2px; transition:width 0.3s ease;"></div>
+        </div>
+        <div id="analyze-phase" style="font-size:11px; color:var(--text-muted); margin-top:4px; text-align:center;"></div>
+      </div>
     </div>
   </div>
 
@@ -1137,6 +1144,16 @@ function labelDisplay(label) {
   return label === BLANK_LABEL ? 'Sin etiqueta' : (label || 'Sin etiqueta');
 }
 
+// Asegura que cualquier etiqueta presente en las anotaciones esté visible,
+// aunque no esté en los tags configurados (ej: etiquetas del modelo no mapeadas).
+function syncActiveFilters(annotations) {
+  annotations.forEach(ann => {
+    if (ann.label && !state.activeFilters.has(ann.label)) {
+      state.activeFilters.add(ann.label);
+    }
+  });
+}
+
 // Rebuild the <select> options for the add form
 function renderAddFormSelect(selectedVal = '') {
   const sel = document.getElementById('f-label');
@@ -1289,6 +1306,7 @@ async function selectVideo(v) {
   } catch {
     state.annotations = [];
   }
+  syncActiveFilters(state.annotations);
   renderAnnotations();
   renderTimeline();
 }
@@ -1963,28 +1981,58 @@ document.addEventListener('keydown', (e) => {
 // ============================================================
 document.getElementById('btn-analyze').addEventListener('click', async () => {
   if (!state.currentVideo) return;
-  const btn = document.getElementById('btn-analyze');
+  const btn      = document.getElementById('btn-analyze');
+  const progress = document.getElementById('analyze-progress');
+  const bar      = document.getElementById('analyze-bar');
+  const phase    = document.getElementById('analyze-phase');
+
   btn.disabled = true;
   btn.innerHTML = '<div class="spinner"></div> Analizando…';
+  progress.style.display = 'block';
+  bar.style.width = '0%';
+  phase.textContent = 'Iniciando…';
 
   try {
-    const data = await apiPost(`/analyze/${state.currentVideo.id}`, {});
-    const newAnns = data.annotations || [];
+    // Iniciar job en el backend
+    const { job_id } = await apiPost(`/analyze/${state.currentVideo.id}`, {});
 
-    // Remove old model annotations and add new ones
-    state.annotations = state.annotations.filter(a => a.source !== 'model');
-    state.annotations.push(...newAnns);
+    // Polling cada 600ms hasta que termine
+    await new Promise((resolve, reject) => {
+      const poll = setInterval(async () => {
+        try {
+          const job = await apiGet(`/analyze-status/${job_id}`);
+          bar.style.width   = `${job.progress}%`;
+          phase.textContent = job.phase || '';
 
-    renderAnnotations();
-    renderTimeline();
-    await autosave();
-    toast(`Modelo aplicado: ${newAnns.length} señas detectadas`);
+          if (job.status === 'done') {
+            clearInterval(poll);
+            const newAnns = job.annotations || [];
+            state.annotations = state.annotations.filter(a => a.source !== 'model');
+            state.annotations.push(...newAnns);
+            syncActiveFilters(newAnns);
+            renderAnnotations();
+            renderTimeline();
+            await autosave();
+            toast(`Modelo aplicado: ${newAnns.length} señas detectadas`);
+            resolve();
+          } else if (job.status === 'error') {
+            clearInterval(poll);
+            reject(new Error(job.error || 'Error desconocido'));
+          }
+        } catch (e) {
+          clearInterval(poll);
+          reject(e);
+        }
+      }, 600);
+    });
+
   } catch (e) {
-    toast('Error al analizar el video');
+    toast('Error al analizar el video: ' + (e.message || e));
     console.error(e);
   } finally {
     btn.disabled = false;
     btn.innerHTML = '✦ Analizar con modelo';
+    setTimeout(() => { progress.style.display = 'none'; }, 2000);
   }
 });
 

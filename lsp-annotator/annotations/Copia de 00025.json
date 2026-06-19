@@ -1,0 +1,29 @@
+{
+  "video_id": "Copia de 00025",
+  "annotations": [
+    {
+      "id": "e1d8e5cc-4b81-4826-a680-ef457432e914",
+      "start": 178.53,
+      "end": 179.75,
+      "label": "¿Por qué?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "63011b8f-8f27-43c8-913e-fc2500b7dd42",
+      "start": 620.95,
+      "end": 624.96,
+      "label": "¿Qué?",
+      "source": "model",
+      "confidence": 0.818
+    },
+    {
+      "id": "38ebf8bd-c692-48a0-9bb1-692669dad881",
+      "start": 763.43,
+      "end": 767.77,
+      "label": "¿Por qué?",
+      "source": "model",
+      "confidence": 0.803
+    }
+  ]
+}
