@@ -1,0 +1,129 @@
+{
+  "video_id": "TRADUCCIONES Y JUICIOS/CLAUDIA/Copia de 00030",
+  "annotations": [
+    {
+      "id": "949c42ec-730a-49a7-8add-0ad9ea683abe",
+      "start": 36,
+      "end": 40,
+      "label": "¿Quién?",
+      "oracion": "¿Todas las mañanas quién correr?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "5a25ea80-9f53-466a-ac8c-cb109619819f",
+      "start": 50.42,
+      "end": 54.55,
+      "label": "¿Cuándo?",
+      "oracion": "María, ¿correr cuándo?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "8437dc7d-9ee9-406a-ae23-c19fa724231c",
+      "start": 63.16,
+      "end": 68,
+      "label": "¿Qué?",
+      "oracion": "María, ¿correr qué hora?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "91852cab-55a2-4804-9488-b7bdfae1f987",
+      "start": 76,
+      "end": 80,
+      "label": "¿Dónde?",
+      "oracion": "María, ¿correr dónde?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "6a4250e5-0b52-4127-ad26-b783e004aa87",
+      "start": 94.74,
+      "end": 97.88,
+      "label": "¿Dónde?",
+      "oracion": "¿Dónde?",
+      "source": "manual",
+      "confidence": null
+    }
+  ],
+  "markers": [
+    {
+      "id": "fdea3a3e-274e-4a1f-8396-7d2ba7409648",
+      "time": 36,
+      "end": 38.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién corre todas las mañanas?"
+    },
+    {
+      "id": "d7a06b89-adea-42e5-af3c-0cb8169e698f",
+      "time": 38,
+      "end": 40.7,
+      "label": "¿Quién?",
+      "oracion": "¿Todas las mañanas quién correr?"
+    },
+    {
+      "id": "29612f2f-7cce-494d-bbaf-e6e3f2b4f102",
+      "time": 51,
+      "end": 54.7,
+      "label": "¿Cuándo?",
+      "oracion": "María, ¿correr cuándo?"
+    },
+    {
+      "id": "7a12c6a0-9647-45b4-b5e2-6d4ea4ab8e4f",
+      "time": 64,
+      "end": 68.7,
+      "label": "¿Qué?",
+      "oracion": "María, ¿correr qué hora?"
+    },
+    {
+      "id": "2a6b8997-c035-49c0-a88c-568a3ad5201c",
+      "time": 76,
+      "end": 78,
+      "label": "¿Dónde?",
+      "oracion": "¿Dónde corre María?"
+    },
+    {
+      "id": "29e6744f-97a8-4a27-9685-a0a43e238b95",
+      "time": 78,
+      "end": 80.7,
+      "label": "¿Dónde?",
+      "oracion": "María, ¿correr dónde?"
+    },
+    {
+      "id": "ab234333-c6b7-41f5-ba69-8e9f45a5e8f3",
+      "time": 82,
+      "end": 84.7,
+      "label": "¿Dónde?",
+      "oracion": "Respuesta, ¿dónde parque?"
+    },
+    {
+      "id": "6be8546c-47c6-40a3-b943-a47f0579fa59",
+      "time": 85,
+      "end": 92.7,
+      "label": "¿Qué?",
+      "oracion": "Y si dijera, por ejemplo, en ese órgano en el que tú lo vas a usar, ¿dónde corre María?"
+    },
+    {
+      "id": "b8aa75db-9a24-40dd-a9ab-77ba7af5021d",
+      "time": 85,
+      "end": 92.7,
+      "label": "¿Dónde?",
+      "oracion": "Y si dijera, por ejemplo, en ese órgano en el que tú lo vas a usar, ¿dónde corre María?"
+    },
+    {
+      "id": "bd0aa416-afb8-4e49-9e92-931f1c5ea35f",
+      "time": 98,
+      "end": 100,
+      "label": "¿Dónde?",
+      "oracion": "¿Dónde?"
+    }
+  ],
+  "tiers": [
+    {
+      "id": "dc222645-408f-46bd-af85-0ddcd64b8b66",
+      "name": "Tier 1",
+      "anns": []
+    }
+  ]
+}

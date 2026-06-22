@@ -1,0 +1,656 @@
+{
+  "video_id": "TRADUCCIONES Y JUICIOS/CLAUDIA/Copia de 00025",
+  "annotations": [
+    {
+      "id": "8292fe30-cd24-4f0a-8e89-f523af6625ca",
+      "start": 116.4,
+      "end": 118.7,
+      "label": "¿Quién?",
+      "source": "manual",
+      "confidence": null,
+      "oracion": "Quién hasta tarde dormir"
+    },
+    {
+      "id": "627261b3-2f09-4522-ac72-2de5b1b4c4d8",
+      "start": 133,
+      "end": 138,
+      "label": "¿Qué?",
+      "source": "manual",
+      "confidence": null,
+      "oracion": "Pepe dormir hasta que hora"
+    },
+    {
+      "id": "8b106f2f-815d-4033-913e-50b6f7c5b5a5",
+      "start": 175.73,
+      "end": 181,
+      "label": "¿Por qué?",
+      "source": "manual",
+      "confidence": null,
+      "oracion": "Pepe tarde llegar trabajo por qué"
+    },
+    {
+      "id": "ac22aeb6-b064-4836-b02d-619823c00e06",
+      "start": 277.4,
+      "end": 281.5,
+      "label": "¿Quién?",
+      "source": "manual",
+      "confidence": null,
+      "oracion": "Hora dormir quién"
+    },
+    {
+      "id": "4e952a26-8073-4496-bdb0-88f96d2dd6b9",
+      "start": 304.32,
+      "end": 308,
+      "label": "¿Quién?",
+      "source": "manual",
+      "confidence": null,
+      "oracion": "Hora dormir quién"
+    },
+    {
+      "id": "6a8472a3-b59d-481d-8b81-56b79468246d",
+      "start": 453.5,
+      "end": 458,
+      "label": "¿Quién?",
+      "source": "manual",
+      "confidence": null,
+      "oracion": "Quién panes comprar"
+    },
+    {
+      "id": "117eb913-7336-493e-8b5c-3ba05d25ab52",
+      "start": 465,
+      "end": 469,
+      "label": "¿Qué?",
+      "source": "manual",
+      "confidence": null,
+      "oracion": "Ana comprar qué"
+    },
+    {
+      "id": "3cfa1bc8-ded1-40e3-9771-7831a78c985b",
+      "start": 477,
+      "end": 480.5,
+      "label": "¿Dónde?",
+      "source": "manual",
+      "confidence": null,
+      "oracion": "Ana comprar pan dónde"
+    },
+    {
+      "id": "5fb30192-5920-4682-8c2d-865767097e0f",
+      "start": 537.14,
+      "end": 540.74,
+      "label": "¿Por qué?",
+      "oracion": "¿Ana comprar pan por qué?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "71336289-93b4-4a27-8e9d-614e20d112bb",
+      "start": 578,
+      "end": 582,
+      "label": "¿Para qué?",
+      "oracion": "¿Ana comprar panes para qué?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "fdfc6c04-a927-4349-81f5-bca8fa9c75cc",
+      "start": 613.21,
+      "end": 616.92,
+      "label": "¿Quién?",
+      "oracion": "Comprar qué, quién.",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "44405899-58d6-481d-a6a0-d67e5f92a6f3",
+      "start": 619.76,
+      "end": 623.15,
+      "label": "¿Quién?",
+      "oracion": "Qué compró quién.",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "a57bf932-c595-4490-b21d-042120464ca2",
+      "start": 642.14,
+      "end": 646.17,
+      "label": "¿Cuándo?",
+      "oracion": "¿Ana comprar pan cuándo?",
+      "source": "manual",
+      "confidence": null
+    }
+  ],
+  "markers": [
+    {
+      "id": "ca78e064-6faf-4ea0-91ef-a720def8e101",
+      "time": 12,
+      "end": 15.7,
+      "label": "¿Qué?",
+      "oracion": "El que se queda dormido hasta el mediodía."
+    },
+    {
+      "id": "bbaedf51-d69b-4709-a46b-8f3da0385396",
+      "time": 32,
+      "end": 34.7,
+      "label": "¿Qué?",
+      "oracion": "Hay que enseñarle la oración."
+    },
+    {
+      "id": "010db803-11cc-4eb4-bc10-a9d76327a60c",
+      "time": 43,
+      "end": 45.7,
+      "label": "¿Qué?",
+      "oracion": "Eso también que la haga en el ICP."
+    },
+    {
+      "id": "ca039ec6-9dd4-4b26-88ef-6cd3620f5094",
+      "time": 74,
+      "end": 76.7,
+      "label": "¿Qué?",
+      "oracion": "¿Le puedo poner la seña que quiera Pepe?"
+    },
+    {
+      "id": "4a03cd97-30e5-42ee-bb24-e5950d5b9ace",
+      "time": 76,
+      "end": 78,
+      "label": "¿Qué?",
+      "oracion": "Creo que..."
+    },
+    {
+      "id": "dcf02913-e989-40df-afde-922a4291e3f6",
+      "time": 102,
+      "end": 104.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién durmió esta tarde?"
+    },
+    {
+      "id": "e9389f36-6b00-43ec-a90e-66f68b3f863a",
+      "time": 107,
+      "end": 109.7,
+      "label": "¿Qué?",
+      "oracion": "Eso tiene que pasarlo a..."
+    },
+    {
+      "id": "db821203-7b0e-4d62-a4c3-a2309a1bde5c",
+      "time": 110,
+      "end": 115.7,
+      "label": "¿Qué?",
+      "oracion": "Y siempre respondiendo para asegurarnos de que estamos entendiendo lo mismo."
+    },
+    {
+      "id": "0cf723ff-cd54-4bdd-aee1-4572f29e7d86",
+      "time": 115,
+      "end": 117.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién hasta tarde durmió?"
+    },
+    {
+      "id": "427314d2-f467-48a1-9844-11aaccfa4984",
+      "time": 123,
+      "end": 125.7,
+      "label": "¿Qué?",
+      "oracion": "¿Hasta qué hora durmió Pepe?"
+    },
+    {
+      "id": "50f60435-9218-45e4-8701-705d13412fae",
+      "time": 145,
+      "end": 147,
+      "label": "¿Qué?",
+      "oracion": "¿Y el qué?"
+    },
+    {
+      "id": "69e3273b-c837-433c-9902-b21d7986a75d",
+      "time": 152,
+      "end": 154,
+      "label": "¿Qué?",
+      "oracion": "No, no uso qué."
+    },
+    {
+      "id": "6c3b91c5-014a-4360-863a-1fee0c168cb2",
+      "time": 165,
+      "end": 168.7,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué Pepe llegó tarde al trabajo?"
+    },
+    {
+      "id": "6978f49a-4bd1-4f60-8746-e17cfab3c1df",
+      "time": 165,
+      "end": 168.7,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué Pepe llegó tarde al trabajo?"
+    },
+    {
+      "id": "2ca1957b-93d4-4e45-8a89-1b987814c525",
+      "time": 177,
+      "end": 180.7,
+      "label": "¿Por qué?",
+      "oracion": "¿Pepe tarde llega al trabajo por qué?"
+    },
+    {
+      "id": "6413b838-1974-4b31-a0c4-a00043e00c38",
+      "time": 177,
+      "end": 180.7,
+      "label": "¿Qué?",
+      "oracion": "¿Pepe tarde llega al trabajo por qué?"
+    },
+    {
+      "id": "aa7af0d7-f5d1-48ab-95e6-10aaaa38f66e",
+      "time": 200,
+      "end": 202.7,
+      "label": "¿Qué?",
+      "oracion": "Que en castellano..."
+    },
+    {
+      "id": "f2c0b93f-6cb3-4c88-a3f4-8f3ab78aa1b1",
+      "time": 216,
+      "end": 218.7,
+      "label": "¿Quién?",
+      "oracion": "¿Por quién duerme hasta tarde?"
+    },
+    {
+      "id": "6797f395-f784-4df0-9690-1d5a0ff90542",
+      "time": 225,
+      "end": 227,
+      "label": "¿Quién?",
+      "oracion": "¿Quién..."
+    },
+    {
+      "id": "df98f9ee-25cb-4c8f-ae98-8a6e14206ec5",
+      "time": 226,
+      "end": 229.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién hace, entre comillas, pero sin mayor voluntad, la acción de dormir?"
+    },
+    {
+      "id": "c5dfb033-0ec2-4ecb-9a45-a3ba63dc376d",
+      "time": 230,
+      "end": 232,
+      "label": "¿Qué?",
+      "oracion": "¿Y hasta qué hora?"
+    },
+    {
+      "id": "e2b31e7b-c335-4359-9785-d4907afc8287",
+      "time": 232,
+      "end": 234,
+      "label": "¿Qué?",
+      "oracion": "¿Qué hora?"
+    },
+    {
+      "id": "cbb216ed-e2aa-4643-a19a-2cf0d53a6087",
+      "time": 236,
+      "end": 238.7,
+      "label": "¿Quién?",
+      "oracion": "Dos palabras o el quién..."
+    },
+    {
+      "id": "b0805538-ad09-470a-bbe5-b488b646ba2c",
+      "time": 239,
+      "end": 241,
+      "label": "¿Qué?",
+      "oracion": "Y el qué."
+    },
+    {
+      "id": "1a030f0c-5e8f-444f-b4e4-90a62b51346c",
+      "time": 242,
+      "end": 245.7,
+      "label": "¿Qué?",
+      "oracion": "Entonces, yo lo que nosotros queremos saber es si es que..."
+    },
+    {
+      "id": "91b8a322-514d-45bd-bcf3-a2b763bc14ff",
+      "time": 248,
+      "end": 251.7,
+      "label": "¿Cómo?",
+      "oracion": "O cómo se preguntaría algo similar en LCP."
+    },
+    {
+      "id": "5d501a70-f039-46da-8c2a-1f514cdf2030",
+      "time": 256,
+      "end": 258,
+      "label": "¿Quién?",
+      "oracion": "¿Quién?"
+    },
+    {
+      "id": "e4f59709-2f10-4d8c-9214-fca246f3d42f",
+      "time": 281,
+      "end": 283,
+      "label": "¿Quién?",
+      "oracion": "¿Quién?"
+    },
+    {
+      "id": "e46d4c6e-97b8-480c-afdc-efe439eccc86",
+      "time": 283,
+      "end": 285,
+      "label": "¿Qué?",
+      "oracion": "¿Y qué significa eso?"
+    },
+    {
+      "id": "8ed989b4-b58f-4f29-8fca-32e2af3d6b62",
+      "time": 311,
+      "end": 313,
+      "label": "¿Qué?",
+      "oracion": "¿Qué hora?"
+    },
+    {
+      "id": "5a38b6b3-d800-4d62-8e31-00448ffee840",
+      "time": 313,
+      "end": 315,
+      "label": "¿Quién?",
+      "oracion": "¿Quién?"
+    },
+    {
+      "id": "d9753f09-0504-42a9-81f1-844a7e85d2fb",
+      "time": 320,
+      "end": 322.7,
+      "label": "¿Qué?",
+      "oracion": "Es la que ella misma ha hecho, ¿no?"
+    },
+    {
+      "id": "68cf9ca0-cf65-4d82-a1a6-e9afe2bb6d87",
+      "time": 322,
+      "end": 324.7,
+      "label": "¿Qué?",
+      "oracion": "¿Es una oración que use?"
+    },
+    {
+      "id": "be25f42b-e56f-4695-9aee-15a51d207f9e",
+      "time": 361,
+      "end": 363,
+      "label": "¿Cómo?",
+      "oracion": "¿Te acuerdas cómo le habían puesto a Ana?"
+    },
+    {
+      "id": "00183f55-396a-4d86-82b5-a91ae4cffc99",
+      "time": 384,
+      "end": 386.7,
+      "label": "¿Qué?",
+      "oracion": "Hacemos la declarativa en el SP, que es la que está acá."
+    },
+    {
+      "id": "f4066a64-d86d-437a-8812-b26f16c2ac5b",
+      "time": 443,
+      "end": 447.7,
+      "label": "¿Qué?",
+      "oracion": "Y recordamos que la hacen en el SP y luego ella misma da la respuesta."
+    },
+    {
+      "id": "a9eb97f2-4f63-4e97-a4b2-44fa63568fda",
+      "time": 453,
+      "end": 455,
+      "label": "¿Quién?",
+      "oracion": "¿Quién compró los panes?"
+    },
+    {
+      "id": "3445b227-67a3-4793-845a-8f1721538de7",
+      "time": 456,
+      "end": 458.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién panes comprar?"
+    },
+    {
+      "id": "ce3c7ff5-9d6c-40c8-b400-cd36a7b05238",
+      "time": 463,
+      "end": 465,
+      "label": "¿Qué?",
+      "oracion": "¿Qué compró Ana?"
+    },
+    {
+      "id": "137d12ef-ee06-47c2-b5bd-3acc4004e9b0",
+      "time": 467,
+      "end": 469,
+      "label": "¿Qué?",
+      "oracion": "¿Ana comprar qué?"
+    },
+    {
+      "id": "c72d874d-f019-40f5-bd57-73b8cbc6faf4",
+      "time": 475,
+      "end": 477,
+      "label": "¿Dónde?",
+      "oracion": "¿En dónde compró Ana los panes?"
+    },
+    {
+      "id": "19f3fdfd-2b1d-48ea-9f73-4e09d7848d30",
+      "time": 478,
+      "end": 480,
+      "label": "¿Dónde?",
+      "oracion": "¿Ana comprar pan dónde?"
+    },
+    {
+      "id": "1299f6ee-0ebd-4c85-8bfd-843bd27d2f1d",
+      "time": 494,
+      "end": 498.7,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué Ana compró panes?"
+    },
+    {
+      "id": "1cee4bdb-0d09-48ff-9881-467be5959f33",
+      "time": 494,
+      "end": 498.7,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué Ana compró panes?"
+    },
+    {
+      "id": "fbc07bbc-653a-4978-8bb7-a0f457bf5b5e",
+      "time": 500,
+      "end": 502,
+      "label": "¿Para qué?",
+      "oracion": "¿Para qué Ana compró panes?"
+    },
+    {
+      "id": "5574e118-e08a-4f47-8868-c9d72f4cf139",
+      "time": 500,
+      "end": 502,
+      "label": "¿Qué?",
+      "oracion": "¿Para qué Ana compró panes?"
+    },
+    {
+      "id": "c265ea52-6413-4ba9-aeff-bd437e501855",
+      "time": 526,
+      "end": 528,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué primero?"
+    },
+    {
+      "id": "6e640b1d-b42b-451d-891a-2b800b74000f",
+      "time": 526,
+      "end": 528,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué primero?"
+    },
+    {
+      "id": "8ff135f1-8fc4-418a-afe0-1f4e7de3ffe9",
+      "time": 528,
+      "end": 530,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué Ana compró panes?"
+    },
+    {
+      "id": "4add19e4-3fc1-4ae8-b765-b580e51f0b02",
+      "time": 528,
+      "end": 530,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué Ana compró panes?"
+    },
+    {
+      "id": "f14a834e-f514-4dfd-9028-be0c7f685056",
+      "time": 535,
+      "end": 541.7,
+      "label": "¿Por qué?",
+      "oracion": "¿Ana comprar pan por qué?"
+    },
+    {
+      "id": "56ccf3a6-d59b-45f1-8649-bbe8656f9f2b",
+      "time": 535,
+      "end": 541.7,
+      "label": "¿Qué?",
+      "oracion": "¿Ana comprar pan por qué?"
+    },
+    {
+      "id": "6a9cc614-b226-409c-a27f-af42512e1015",
+      "time": 542,
+      "end": 546.7,
+      "label": "¿Por qué?",
+      "oracion": "¿Y si hiciera Ana pan comprar por qué también sería pan comprar?"
+    },
+    {
+      "id": "8095cd7e-acd9-4674-b49c-5f5be4c28304",
+      "time": 542,
+      "end": 546.7,
+      "label": "¿Qué?",
+      "oracion": "¿Y si hiciera Ana pan comprar por qué también sería pan comprar?"
+    },
+    {
+      "id": "fbbbf490-c18e-4fdf-9657-98b3d2bd2c53",
+      "time": 567,
+      "end": 569.7,
+      "label": "¿Qué?",
+      "oracion": "Si quieres explicar, al final tienes que preguntar."
+    },
+    {
+      "id": "1d9400e4-e944-45ce-a101-fa26d6ce2f17",
+      "time": 570,
+      "end": 572.7,
+      "label": "¿Qué?",
+      "oracion": "Si yo te digo la pregunta, tienes que llegar al final a la pregunta."
+    },
+    {
+      "id": "6c5fce4e-2a1a-4acc-bc14-1140ecc6b939",
+      "time": 575,
+      "end": 577.7,
+      "label": "¿Para qué?",
+      "oracion": "¿Para qué compró Ana panes?"
+    },
+    {
+      "id": "8a32a02f-b46f-4d11-b364-a916143bbdf3",
+      "time": 575,
+      "end": 577.7,
+      "label": "¿Qué?",
+      "oracion": "¿Para qué compró Ana panes?"
+    },
+    {
+      "id": "a678e841-c879-4ecd-84b5-eea96bd6edd1",
+      "time": 578,
+      "end": 580.7,
+      "label": "¿Para qué?",
+      "oracion": "¿Ana comprar panes para qué?"
+    },
+    {
+      "id": "5f31d5a9-b3e1-4611-a2c3-4a9b21e7e860",
+      "time": 578,
+      "end": 580.7,
+      "label": "¿Qué?",
+      "oracion": "¿Ana comprar panes para qué?"
+    },
+    {
+      "id": "c96ffe12-a432-4326-a14c-7b143f4639bc",
+      "time": 583,
+      "end": 585,
+      "label": "¿Qué?",
+      "oracion": "¿Quién compró qué?"
+    },
+    {
+      "id": "b50d508e-ac1e-4e7d-b316-4f2459a0fe57",
+      "time": 583,
+      "end": 585,
+      "label": "¿Quién?",
+      "oracion": "¿Quién compró qué?"
+    },
+    {
+      "id": "ac86d580-46a0-4a54-b490-4a982977c354",
+      "time": 599,
+      "end": 601,
+      "label": "¿Qué?",
+      "oracion": "Sí es que se puede."
+    },
+    {
+      "id": "a6133b48-35fc-4de4-9898-018abe7266df",
+      "time": 612,
+      "end": 617.7,
+      "label": "¿Qué?",
+      "oracion": "Primero dirías comprar qué, quién."
+    },
+    {
+      "id": "05999708-3f90-42b6-b6a1-8b9d73ff9811",
+      "time": 612,
+      "end": 617.7,
+      "label": "¿Quién?",
+      "oracion": "Primero dirías comprar qué, quién."
+    },
+    {
+      "id": "09531bdc-672a-4bb3-8f16-3f9f883c797f",
+      "time": 619,
+      "end": 622.7,
+      "label": "¿Qué?",
+      "oracion": "La otra sería qué compró quién."
+    },
+    {
+      "id": "53fef1e5-cc70-43a3-b484-58f3b5972b6d",
+      "time": 619,
+      "end": 622.7,
+      "label": "¿Quién?",
+      "oracion": "La otra sería qué compró quién."
+    },
+    {
+      "id": "6b056f2d-8fd2-4219-b958-b5f098c41038",
+      "time": 640,
+      "end": 642.7,
+      "label": "¿Cuándo?",
+      "oracion": "¿Cuándo compra Ana los panes?"
+    },
+    {
+      "id": "9a07d47b-8982-4663-9403-275c3c246fec",
+      "time": 644,
+      "end": 646.7,
+      "label": "¿Cuándo?",
+      "oracion": "¿Ana comprar pan cuándo?"
+    },
+    {
+      "id": "fe24c1ac-2ca5-46e9-afbd-9adf7c2ca5b3",
+      "time": 670,
+      "end": 672.7,
+      "label": "¿Qué?",
+      "oracion": "O sea, que ella la haga como ella la haría en el SP."
+    },
+    {
+      "id": "7a154e26-52f8-449b-a717-2821da78695e",
+      "time": 670,
+      "end": 672.7,
+      "label": "¿Cómo?",
+      "oracion": "O sea, que ella la haga como ella la haría en el SP."
+    },
+    {
+      "id": "6e4a4027-7529-42db-a431-a47d1ef57057",
+      "time": 677,
+      "end": 680.7,
+      "label": "¿Qué?",
+      "oracion": "Ana compra panes los lunes. Que la diga en el SP."
+    },
+    {
+      "id": "81faeea9-7e87-4884-a966-e39645bff7ce",
+      "time": 693,
+      "end": 696.7,
+      "label": "¿Cómo?",
+      "oracion": "¿Y puede ser lunes, cómo es Ana?"
+    },
+    {
+      "id": "16c0e368-1430-4b9b-a869-a6de134a890e",
+      "time": 704,
+      "end": 707.7,
+      "label": "¿Qué?",
+      "oracion": "¿Y si tuviera que calificar, le daría a las dos cinco?"
+    },
+    {
+      "id": "1b3cffee-2591-4f7d-98b3-285744660ffb",
+      "time": 751,
+      "end": 753.7,
+      "label": "¿Qué?",
+      "oracion": "Ah, tengo que subir."
+    },
+    {
+      "id": "a69e39eb-dd3c-45f3-901a-4e1d9c3c1741",
+      "time": 766,
+      "end": 768.7,
+      "label": "¿Qué?",
+      "oracion": "Creo que le has cambiado de modo, mira."
+    }
+  ]
+}

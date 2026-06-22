@@ -1,0 +1,601 @@
+{
+  "video_id": "EXTRAS/Copia de mc 6",
+  "annotations": [],
+  "markers": [
+    {
+      "id": "e629cb71-8e73-4553-94d7-2b22d48f4e48",
+      "time": 45,
+      "end": 48.7,
+      "label": "¿Cuándo?",
+      "oracion": "En el colegio, cuando fui al colegio, ahí fue donde aprendí más."
+    },
+    {
+      "id": "e7e1d151-9b0c-40ad-8287-719b12d29920",
+      "time": 45,
+      "end": 48.7,
+      "label": "¿Dónde?",
+      "oracion": "En el colegio, cuando fui al colegio, ahí fue donde aprendí más."
+    },
+    {
+      "id": "c809449e-a164-4c46-8878-c76ea3c1d2d9",
+      "time": 76,
+      "end": 78.7,
+      "label": "¿Qué?",
+      "oracion": "Y dice, ¿qué cosa pasa?"
+    },
+    {
+      "id": "ffe2589b-d35e-4c85-b89b-c9beb393f01b",
+      "time": 79,
+      "end": 81.7,
+      "label": "¿Por qué?",
+      "oracion": "No entendía por qué y lloraba yo."
+    },
+    {
+      "id": "1b3dcad7-a566-4130-8129-a37b3a5e8b87",
+      "time": 79,
+      "end": 81.7,
+      "label": "¿Qué?",
+      "oracion": "No entendía por qué y lloraba yo."
+    },
+    {
+      "id": "9580cd5f-6fcc-4f9e-a585-76e64d26b892",
+      "time": 106,
+      "end": 108,
+      "label": "¿Qué?",
+      "oracion": "¿Qué, qué pasa?"
+    },
+    {
+      "id": "3b7d3464-8563-406d-aab4-10c51600a14a",
+      "time": 107,
+      "end": 109,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué? Así me fastidiaban, ¿no?"
+    },
+    {
+      "id": "8c2ac750-dcc7-4290-beb0-55e7881e895f",
+      "time": 107,
+      "end": 109,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué? Así me fastidiaban, ¿no?"
+    },
+    {
+      "id": "56ebc80c-ad22-4c2b-b1c9-d889a0d688e3",
+      "time": 116,
+      "end": 121.7,
+      "label": "¿Qué?",
+      "oracion": "Tres o cuatro años, dice que tuvo problemas, que se enfermó y perdió."
+    },
+    {
+      "id": "aa284c67-4355-4197-be89-5e6f03367dbf",
+      "time": 129,
+      "end": 131.7,
+      "label": "¿Cómo?",
+      "oracion": "Y no cómo se llama, no respondía."
+    },
+    {
+      "id": "ab809319-d6b2-4dfe-bb75-934edefc317f",
+      "time": 147,
+      "end": 149.7,
+      "label": "¿Qué?",
+      "oracion": "Que pongan un listado de las instituciones donde han estudiado,"
+    },
+    {
+      "id": "494cd482-b4ee-4a8c-ae94-4fdab78b230e",
+      "time": 147,
+      "end": 149.7,
+      "label": "¿Dónde?",
+      "oracion": "Que pongan un listado de las instituciones donde han estudiado,"
+    },
+    {
+      "id": "7bcb8ec8-5a8f-4af2-b072-ed7f1ad2b2cb",
+      "time": 150,
+      "end": 152.7,
+      "label": "¿Qué?",
+      "oracion": "de qué año, qué año, de tal año a tal año, ¿no?"
+    },
+    {
+      "id": "c31f5eaa-8295-4162-ba16-480e2925e552",
+      "time": 159,
+      "end": 161.7,
+      "label": "¿Dónde?",
+      "oracion": "Y años en donde estuvo ahí, ¿no es cierto?"
+    },
+    {
+      "id": "4adac4d1-9c18-4846-93f6-9e2428727d38",
+      "time": 162,
+      "end": 164.7,
+      "label": "¿Qué?",
+      "oracion": "Qué fue, primaria, secundaria y de tal a tal año."
+    },
+    {
+      "id": "f71d7bfc-65d4-4908-b8f5-1b3edae6f6d9",
+      "time": 180,
+      "end": 182,
+      "label": "¿Qué?",
+      "oracion": "¿Qué más?"
+    },
+    {
+      "id": "0f2e899c-9dd3-4c6f-9e59-aadbf889df48",
+      "time": 182,
+      "end": 184,
+      "label": "¿Qué?",
+      "oracion": "¿Qué más?"
+    },
+    {
+      "id": "58baec00-421c-45b4-88a6-c99f80b9e780",
+      "time": 184,
+      "end": 186,
+      "label": "¿Qué?",
+      "oracion": "¿Qué más?"
+    },
+    {
+      "id": "85bc2ae1-2852-4ac9-b04b-a659c3f0e06e",
+      "time": 185,
+      "end": 187,
+      "label": "¿Qué?",
+      "oracion": "¿Qué más?"
+    },
+    {
+      "id": "414dfea0-24c4-478b-92bf-585b6ee4e602",
+      "time": 186,
+      "end": 188,
+      "label": "¿Qué?",
+      "oracion": "No sé qué más."
+    },
+    {
+      "id": "1c8d85ba-08f5-4b41-b5b5-6cedb466346b",
+      "time": 247,
+      "end": 249,
+      "label": "¿Qué?",
+      "oracion": "Yo lo que pienso..."
+    },
+    {
+      "id": "ff49db0c-035e-4e69-baa8-a94eeaa0601c",
+      "time": 259,
+      "end": 262.7,
+      "label": "¿Qué?",
+      "oracion": "Yo pienso que a veces cuando no..."
+    },
+    {
+      "id": "fa899064-b941-4795-ad73-82334a5fbf22",
+      "time": 259,
+      "end": 262.7,
+      "label": "¿Cuándo?",
+      "oracion": "Yo pienso que a veces cuando no..."
+    },
+    {
+      "id": "75034b4f-8353-4d1c-bc07-f64609f9f666",
+      "time": 263,
+      "end": 266.7,
+      "label": "¿Cuándo?",
+      "oracion": "Y sí me he dado cuenta cuando he estado haciendo el rosado,"
+    },
+    {
+      "id": "aeb0bf22-3e23-4011-8026-c5a30f5f4900",
+      "time": 267,
+      "end": 269,
+      "label": "¿Qué?",
+      "oracion": "que puel tiene algunas salidas distintas."
+    },
+    {
+      "id": "1e8c3577-3343-406a-b9a3-069ed38b44ec",
+      "time": 282,
+      "end": 285.7,
+      "label": "¿Cómo?",
+      "oracion": "Pero como te digo, es familia de sordo."
+    },
+    {
+      "id": "af85b5d0-671a-41d0-97e1-4426805a8cfe",
+      "time": 290,
+      "end": 292.7,
+      "label": "¿Qué?",
+      "oracion": "Vamos a llegar a la pregunta de qué lengua usas con tu familia."
+    },
+    {
+      "id": "32aed34e-0206-48c2-86e2-1adda39c4240",
+      "time": 319,
+      "end": 321,
+      "label": "¿Qué?",
+      "oracion": "Que pongo fibra, ¿no?"
+    },
+    {
+      "id": "4dec98f1-ad24-4b3b-9fe6-8afa69083220",
+      "time": 350,
+      "end": 352,
+      "label": "¿Qué?",
+      "oracion": "Y yo vi que eran sordos."
+    },
+    {
+      "id": "afef285b-0716-4cbc-87a4-847e22fb36f3",
+      "time": 367,
+      "end": 371.7,
+      "label": "¿Cómo?",
+      "oracion": "Me fui y, como se sabe, ya no participé del colegio porque no enseñaba, ¿no?"
+    },
+    {
+      "id": "0c158c8e-52bb-454d-95f6-38f773fc7754",
+      "time": 377,
+      "end": 381.7,
+      "label": "¿Qué?",
+      "oracion": "Que a esa lista que agreguemos el tipo de educación que había, ¿no?"
+    },
+    {
+      "id": "ab0b3153-921e-4901-931a-ac86adef51b9",
+      "time": 417,
+      "end": 419.7,
+      "label": "¿Qué?",
+      "oracion": "En el tiempo que hoy en tiempos vivientes."
+    },
+    {
+      "id": "b2d39dd5-2847-4607-a58d-481f23754cd6",
+      "time": 425,
+      "end": 427.7,
+      "label": "¿Qué?",
+      "oracion": "En el tiempo que hoy en tiempos vivientes."
+    },
+    {
+      "id": "fc8b4fc5-ccfd-4bf2-bde6-e6b819d8bf5d",
+      "time": 455,
+      "end": 458.7,
+      "label": "¿Cómo?",
+      "oracion": "¿Cómo es exactamente una clase con modelo lingüístico?"
+    },
+    {
+      "id": "70b8ff68-21a7-4c97-b559-77ff00a774a3",
+      "time": 464,
+      "end": 470.7,
+      "label": "¿Qué?",
+      "oracion": "El profesor abre en señas y el modelo lingüístico apoya al profesor en lo que los chicos no entienden."
+    },
+    {
+      "id": "e47f0c48-4660-42b6-933a-f7ec8f20ac29",
+      "time": 482,
+      "end": 484.7,
+      "label": "¿Cuándo?",
+      "oracion": "Cuando el nivel de lengua de señas para los chicos es más grande."
+    },
+    {
+      "id": "2c246832-fbde-4164-b154-9089e36cf3a7",
+      "time": 534,
+      "end": 536,
+      "label": "¿Cómo?",
+      "oracion": "¿Cómo te comunica?"
+    },
+    {
+      "id": "76a8faef-de4e-4930-9ca3-c3253e53a425",
+      "time": 543,
+      "end": 545,
+      "label": "¿Cómo?",
+      "oracion": "¿Cómo te comunica?"
+    },
+    {
+      "id": "c531e067-103e-4169-8f7c-ac23f6730ad8",
+      "time": 571,
+      "end": 576.7,
+      "label": "¿Qué?",
+      "oracion": "No, con mi hijo uno habla un poco más de lengua de señas que con el otro."
+    },
+    {
+      "id": "91412a06-b53b-4bb5-bde6-356c4ca2e654",
+      "time": 584,
+      "end": 586,
+      "label": "¿Qué?",
+      "oracion": "Ah, yo pensé que era en Piura, ¿no?"
+    },
+    {
+      "id": "7a28689c-6958-4f34-acda-387a47076a71",
+      "time": 586,
+      "end": 588,
+      "label": "¿Qué?",
+      "oracion": "Ahora entendí que era..."
+    },
+    {
+      "id": "173cf221-59fd-43a0-a6cd-cee5b2b23eab",
+      "time": 607,
+      "end": 609,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "cd58fc91-c5e3-4d1f-a5e9-520e9cdfd04b",
+      "time": 607,
+      "end": 609,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "c98c8597-4147-449d-97c7-4d13dc75cee1",
+      "time": 608,
+      "end": 610,
+      "label": "¿Qué?",
+      "oracion": "¿Qué?"
+    },
+    {
+      "id": "26055933-bb71-41d9-a04f-016c32aa020e",
+      "time": 654,
+      "end": 668.7,
+      "label": "¿Qué?",
+      "oracion": "¿Encuentran situaciones en las que sienten que ellos adaptan la LSP para su interlocutor y en cuáles son esas situaciones?"
+    },
+    {
+      "id": "224deaa6-826d-4a48-a414-b4284a091b39",
+      "time": 669,
+      "end": 673.7,
+      "label": "¿Qué?",
+      "oracion": "Eso que lo digan esperando de la cámara porque eso es más largo, eso es una explicación."
+    },
+    {
+      "id": "e44584aa-26a1-4d59-b190-578dbd55ba1f",
+      "time": 702,
+      "end": 706.7,
+      "label": "¿Qué?",
+      "oracion": "¿No sienten que pronto comienzan a usar una lengua de señas distinta?"
+    },
+    {
+      "id": "14274e67-f747-4034-866f-8c85893766c9",
+      "time": 707,
+      "end": 711.7,
+      "label": "¿Qué?",
+      "oracion": "Por ejemplo, si yo, no es cierto que en verdad no entiendo bien LSP,"
+    },
+    {
+      "id": "9ad8d1bd-6037-4d28-b0f4-b9bd4d53443a",
+      "time": 711,
+      "end": 721.7,
+      "label": "¿Qué?",
+      "oracion": "¿pronto si es que están hablando conmigo sienten que adaptan o cambian o hacen algún tipo de modificación a su lengua de señas?"
+    },
+    {
+      "id": "6aeebbe8-5d5f-4c2b-a9fc-702e78f7492d",
+      "time": 724,
+      "end": 731.7,
+      "label": "¿Qué?",
+      "oracion": "No solo conmigo, sino en general en la vida, con cualquier ser humano que no tenga nada de idea de LSP, por ejemplo."
+    },
+    {
+      "id": "01019182-8ab7-452b-a3df-e7148b14be9d",
+      "time": 749,
+      "end": 753.7,
+      "label": "¿Por qué?",
+      "oracion": "Juan, ¿por qué conmigo usas tu castellano sin nada?"
+    },
+    {
+      "id": "c8ae25c1-a68b-49ab-8e35-4d2ef17aa5bf",
+      "time": 749,
+      "end": 753.7,
+      "label": "¿Qué?",
+      "oracion": "Juan, ¿por qué conmigo usas tu castellano sin nada?"
+    },
+    {
+      "id": "b5a6e35d-7a64-4467-abdd-9698ae2e9192",
+      "time": 755,
+      "end": 758.7,
+      "label": "¿Qué?",
+      "oracion": "Es que yo no lo necesito."
+    },
+    {
+      "id": "417ce9ae-5dde-4f4d-81fe-c824766f90cd",
+      "time": 761,
+      "end": 766.7,
+      "label": "¿Qué?",
+      "oracion": "Entendí que mucho antes, ¿no?"
+    },
+    {
+      "id": "bb0ed38e-5745-459d-b85c-3fcaf98fc267",
+      "time": 768,
+      "end": 770.7,
+      "label": "¿Para qué?",
+      "oracion": "Para que entiendan."
+    },
+    {
+      "id": "5d3f1bdf-48c5-4d0f-a6d3-1e4c073d2681",
+      "time": 768,
+      "end": 770.7,
+      "label": "¿Qué?",
+      "oracion": "Para que entiendan."
+    },
+    {
+      "id": "5ccabd84-b94d-4a56-8345-20e67bb08bcc",
+      "time": 794,
+      "end": 796.7,
+      "label": "¿Para qué?",
+      "oracion": "Para que entiendan, claro."
+    },
+    {
+      "id": "796cb5ce-b77a-4c3c-ac45-7d29bfc61132",
+      "time": 794,
+      "end": 796.7,
+      "label": "¿Qué?",
+      "oracion": "Para que entiendan, claro."
+    },
+    {
+      "id": "f742fce2-a002-4f54-a1e0-2b0a0329ea4c",
+      "time": 821,
+      "end": 823.7,
+      "label": "¿Cuándo?",
+      "oracion": "Cuando estoy haciendo señas, por ejemplo,"
+    },
+    {
+      "id": "24905a65-81c1-4b1a-ab2f-05347f3b6086",
+      "time": 823,
+      "end": 826.7,
+      "label": "¿Qué?",
+      "oracion": "tengo que cambiar y modificar la manera que estoy haciendo las señas"
+    },
+    {
+      "id": "fa263f47-19ac-4d53-bac4-45a6f2057138",
+      "time": 826,
+      "end": 828.7,
+      "label": "¿Para qué?",
+      "oracion": "para que me puedan entender, ¿no?"
+    },
+    {
+      "id": "976ea565-bf42-437d-aa04-7a8ca86b5fd6",
+      "time": 826,
+      "end": 828.7,
+      "label": "¿Qué?",
+      "oracion": "para que me puedan entender, ¿no?"
+    },
+    {
+      "id": "c8651e60-268b-4c3b-9def-92d79c9ca085",
+      "time": 844,
+      "end": 847.7,
+      "label": "¿Qué?",
+      "oracion": "Que son de fibra y que han vivido en fibra."
+    },
+    {
+      "id": "d42a07a9-1beb-4022-86d8-94b731e61c74",
+      "time": 856,
+      "end": 858.7,
+      "label": "¿Qué?",
+      "oracion": "Sí, que está acá en Lima."
+    },
+    {
+      "id": "62f3dc49-5def-4b20-8e02-6ff585708ded",
+      "time": 858,
+      "end": 861.7,
+      "label": "¿Qué?",
+      "oracion": "¿A qué edad viene a Lima su amigo? ¿Sabes?"
+    },
+    {
+      "id": "0d511c90-edfb-44ab-b5b2-831f8a8b22ff",
+      "time": 876,
+      "end": 879.7,
+      "label": "¿Qué?",
+      "oracion": "Hasta que cumplieron 30 y pico y 40 y pico respectivamente."
+    },
+    {
+      "id": "5cfc69b3-0437-4828-b4d1-abb8537a293e",
+      "time": 888,
+      "end": 891.7,
+      "label": "¿Qué?",
+      "oracion": "que se habla un poco diferente, se seña diferente?"
+    },
+    {
+      "id": "a64e07f2-dd35-4d6e-954d-82b506a989a4",
+      "time": 899,
+      "end": 903.7,
+      "label": "¿Qué?",
+      "oracion": "cuando hablan con alguien que solo creció con la LCP de acá?"
+    },
+    {
+      "id": "00fab8df-6d22-4a4e-8845-e627bc249c1f",
+      "time": 899,
+      "end": 903.7,
+      "label": "¿Cuándo?",
+      "oracion": "cuando hablan con alguien que solo creció con la LCP de acá?"
+    },
+    {
+      "id": "cec476f6-d2fe-4fa1-92e5-18b62261a398",
+      "time": 906,
+      "end": 909.7,
+      "label": "¿Cuándo?",
+      "oracion": "Sí, cuando hablo con mi amigo de Piura,"
+    },
+    {
+      "id": "42bde8d2-09cd-4f16-bf84-ddc369d6d412",
+      "time": 913,
+      "end": 916.7,
+      "label": "¿Cuándo?",
+      "oracion": "Y cuando hablo con la gente acá de Lima,"
+    },
+    {
+      "id": "0456842f-2c09-4998-a217-bc4efe8bd7ca",
+      "time": 957,
+      "end": 960.7,
+      "label": "¿Qué?",
+      "oracion": "Le estoy explicando que es porque, por ejemplo,"
+    },
+    {
+      "id": "1a524e1f-53e1-45bd-b3ef-69e40d648f27",
+      "time": 961,
+      "end": 964.7,
+      "label": "¿Qué?",
+      "oracion": "Cuando conversan las dos, ¡pucha!, que se van rapidísimo"
+    },
+    {
+      "id": "de623fbf-ac4c-4612-8cbe-5ae5fd5cbd01",
+      "time": 961,
+      "end": 964.7,
+      "label": "¿Cuándo?",
+      "oracion": "Cuando conversan las dos, ¡pucha!, que se van rapidísimo"
+    },
+    {
+      "id": "91c1e4ba-a665-42a9-94fc-3a846405a0b2",
+      "time": 1002,
+      "end": 1004.7,
+      "label": "¿Qué?",
+      "oracion": "¿Se le sentiría cómodo con que si,"
+    },
+    {
+      "id": "6314bb6d-f51b-45ad-ba64-337a109a7064",
+      "time": 1004,
+      "end": 1006.7,
+      "label": "¿Cuándo?",
+      "oracion": "cuando yo esté sistematizando esta información por ahí,"
+    },
+    {
+      "id": "e4a75606-a5e9-49ab-bea6-d1cf68a2ce09",
+      "time": 1008,
+      "end": 1010.7,
+      "label": "¿Qué?",
+      "oracion": "hay una palabra que no entiendo,"
+    },
+    {
+      "id": "1f846fe4-3a33-4679-a4bf-1fc34f5f82ed",
+      "time": 1012,
+      "end": 1014,
+      "label": "¿Qué?",
+      "oracion": "oye, ¿qué dice acá?"
+    },
+    {
+      "id": "fddddac7-0e09-483c-ac4a-9c51c860ce26",
+      "time": 1016,
+      "end": 1018,
+      "label": "¿Para qué?",
+      "oracion": "para que yo les escriba."
+    },
+    {
+      "id": "a8676b47-d5d9-47e6-a98e-7f90a9abad9a",
+      "time": 1016,
+      "end": 1018,
+      "label": "¿Qué?",
+      "oracion": "para que yo les escriba."
+    },
+    {
+      "id": "30bae129-ee64-4ec5-9230-d7d41976baa1",
+      "time": 1036,
+      "end": 1038,
+      "label": "¿Cuándo?",
+      "oracion": "Cuando la sistematice, ¿no?"
+    },
+    {
+      "id": "4be06604-1d82-4cce-9f18-950648c07bd4",
+      "time": 1056,
+      "end": 1058.7,
+      "label": "¿Qué?",
+      "oracion": "Celular y correo, si es que."
+    },
+    {
+      "id": "bad4d857-c485-4dea-b1e9-abd4ca7cf6c6",
+      "time": 1069,
+      "end": 1071.7,
+      "label": "¿Qué?",
+      "oracion": "Y también pueden decir que no, o sea."
+    },
+    {
+      "id": "92fab994-406d-43de-8156-adb0e4d5d480",
+      "time": 1071,
+      "end": 1073,
+      "label": "¿Qué?",
+      "oracion": "No, sí pueden decir que sí."
+    },
+    {
+      "id": "ad2a3f79-b351-4a8a-a3ed-cdbfb523dff5",
+      "time": 1079,
+      "end": 1081,
+      "label": "¿Qué?",
+      "oracion": "¿De qué pasa?"
+    }
+  ]
+}

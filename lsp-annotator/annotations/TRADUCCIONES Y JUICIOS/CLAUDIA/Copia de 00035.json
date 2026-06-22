@@ -1,0 +1,391 @@
+{
+  "video_id": "TRADUCCIONES Y JUICIOS/CLAUDIA/Copia de 00035",
+  "annotations": [],
+  "markers": [
+    {
+      "id": "72804a46-836c-4dff-883b-004c9f76a628",
+      "time": 1,
+      "end": 3.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién le regaló flores a la mamá?"
+    },
+    {
+      "id": "c2d9711c-5782-4bcc-a39c-529c94533bf0",
+      "time": 16,
+      "end": 18.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién le regaló flores a la mamá?"
+    },
+    {
+      "id": "9cb9b7d1-b871-418b-8733-0f48a983e639",
+      "time": 25,
+      "end": 27.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién le regaló flores a la mamá?"
+    },
+    {
+      "id": "ae4f8d98-35f8-4685-b608-9fdf3b5e13dc",
+      "time": 31,
+      "end": 33.7,
+      "label": "¿Cómo?",
+      "oracion": "¿Ella cómo le haría enseñes?"
+    },
+    {
+      "id": "2ae9c86b-27df-47a3-9b3d-74452cd3d950",
+      "time": 35,
+      "end": 38.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién flores regalar mamá?"
+    },
+    {
+      "id": "e6be1649-bf55-416a-8694-3af9caa65ff5",
+      "time": 61,
+      "end": 67.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién flores entregar tu mamá o su mamá?"
+    },
+    {
+      "id": "79caa61a-99bf-44c0-b770-30cc081c554a",
+      "time": 86,
+      "end": 89.7,
+      "label": "¿Para qué?",
+      "oracion": "Y ahora yo voy a mover para que ella califique."
+    },
+    {
+      "id": "776551a5-53e2-43de-ab89-b38cdaf7e005",
+      "time": 86,
+      "end": 89.7,
+      "label": "¿Qué?",
+      "oracion": "Y ahora yo voy a mover para que ella califique."
+    },
+    {
+      "id": "e4f52aef-f9f8-48d1-8f8b-303cee4602cb",
+      "time": 112,
+      "end": 114.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién le regaló flores a la mamá?"
+    },
+    {
+      "id": "d39a6ff4-5472-4e76-9b63-85b7032c2ad8",
+      "time": 173,
+      "end": 175,
+      "label": "¿Quién?",
+      "oracion": "¿Quién flores regalar?"
+    },
+    {
+      "id": "abb40a22-dbfe-45eb-b706-4fa8c10ee6c7",
+      "time": 174,
+      "end": 176,
+      "label": "¿Quién?",
+      "oracion": "¿Quién?"
+    },
+    {
+      "id": "063257c5-68d3-4d25-90eb-acb5354c43f5",
+      "time": 176,
+      "end": 178,
+      "label": "¿Quién?",
+      "oracion": "¿Quién?"
+    },
+    {
+      "id": "9d9a8979-e167-49b5-8bc6-bccee6ddd7f6",
+      "time": 184,
+      "end": 186,
+      "label": "¿Quién?",
+      "oracion": "¿Quién?"
+    },
+    {
+      "id": "34c79697-14bb-480f-a65f-002c5f35b4a4",
+      "time": 192,
+      "end": 194,
+      "label": "¿Quién?",
+      "oracion": "¿Quién?"
+    },
+    {
+      "id": "b3297862-185b-4a16-8713-1e09aefc1712",
+      "time": 209,
+      "end": 212.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién flores regala...?"
+    },
+    {
+      "id": "a8540a54-73dc-4d63-961b-81e54a605e06",
+      "time": 218,
+      "end": 220.7,
+      "label": "¿Qué?",
+      "oracion": "Que diga..."
+    },
+    {
+      "id": "6d044f4e-eb59-4d9c-a3a1-465fe10bf539",
+      "time": 242,
+      "end": 244.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién flores regala...?"
+    },
+    {
+      "id": "d87f030b-b6c9-41b0-992e-95531c192ae4",
+      "time": 263,
+      "end": 265.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién regalar flores...?"
+    },
+    {
+      "id": "8a7df86d-818d-46cf-a02f-f2b7d890a860",
+      "time": 279,
+      "end": 281,
+      "label": "¿Quién?",
+      "oracion": "¿Quién?"
+    },
+    {
+      "id": "8a210eb3-a1e9-4bea-b225-90f17e5b689b",
+      "time": 293,
+      "end": 295,
+      "label": "¿Quién?",
+      "oracion": "¿Quién regala...?"
+    },
+    {
+      "id": "6101883d-c351-4371-8bef-abec99709c65",
+      "time": 319,
+      "end": 321.7,
+      "label": "¿Quién?",
+      "oracion": "¿Flores regalar quién?"
+    },
+    {
+      "id": "83e31a3f-7b5d-4fae-8467-9200f504e7a3",
+      "time": 322,
+      "end": 324.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién le regala...?"
+    },
+    {
+      "id": "cb5d0ce6-57c3-4909-a844-74a5b3e138d1",
+      "time": 328,
+      "end": 334.7,
+      "label": "¿Quién?",
+      "oracion": "Es decir, ¿podría significar a quién le regalaron las flores?"
+    },
+    {
+      "id": "47a97ea2-bcdb-4a14-bd7c-c45b660d0313",
+      "time": 337,
+      "end": 340.7,
+      "label": "¿Qué?",
+      "oracion": "O sea, la pregunta que estamos haciendo es la siguiente."
+    },
+    {
+      "id": "facf6465-2cff-4ca3-8dad-4176758020f3",
+      "time": 341,
+      "end": 343.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién le regala flores?"
+    },
+    {
+      "id": "580d2c36-ebfd-438c-b9e8-357bd9461c2d",
+      "time": 361,
+      "end": 363.7,
+      "label": "¿Quién?",
+      "oracion": "¿flores regalar quién?"
+    },
+    {
+      "id": "aa76418d-8232-46a2-bee5-681641e36e28",
+      "time": 368,
+      "end": 370.7,
+      "label": "¿Quién?",
+      "oracion": "¿a quién le regalaron las flores?"
+    },
+    {
+      "id": "156d57f0-db67-4884-b94f-0ac60bf63ce4",
+      "time": 370,
+      "end": 372.7,
+      "label": "¿Quién?",
+      "oracion": "¿A quién le regalaron las flores?"
+    },
+    {
+      "id": "eab49bde-f425-43a2-b950-4d3f625ca8a8",
+      "time": 372,
+      "end": 374.7,
+      "label": "¿Quién?",
+      "oracion": "¿En lugar de quién las regaló?"
+    },
+    {
+      "id": "bfc9cff7-55ed-4032-9c2f-27b657063667",
+      "time": 385,
+      "end": 387.7,
+      "label": "¿Quién?",
+      "oracion": "Flores regalar quién, ¿no?"
+    },
+    {
+      "id": "f9a8ccad-f57b-473d-947f-e1acd9ac214b",
+      "time": 387,
+      "end": 389.7,
+      "label": "¿Quién?",
+      "oracion": "Flores regalar quién."
+    },
+    {
+      "id": "c39da03f-048f-4cde-b967-9c84a235b71d",
+      "time": 406,
+      "end": 411.7,
+      "label": "¿Cómo?",
+      "oracion": "¿Cómo se diría en el SP a quién le regalan flores?"
+    },
+    {
+      "id": "c1077b91-a2b4-4bb9-8af3-6d3d44a4ae92",
+      "time": 406,
+      "end": 411.7,
+      "label": "¿Quién?",
+      "oracion": "¿Cómo se diría en el SP a quién le regalan flores?"
+    },
+    {
+      "id": "76e451c2-e3e7-460b-9701-3e0229bfb258",
+      "time": 425,
+      "end": 428.7,
+      "label": "¿Quién?",
+      "oracion": "Estrellita regala flores quién."
+    },
+    {
+      "id": "bdb2d60a-2725-4d3f-a8cd-dc5b2c50baca",
+      "time": 432,
+      "end": 436.7,
+      "label": "¿Quién?",
+      "oracion": "solamente quiero decir, ¿a quién le regalaron flores?"
+    },
+    {
+      "id": "8e021fe7-8b00-4e80-9765-9de77d70e914",
+      "time": 440,
+      "end": 443.7,
+      "label": "¿Quién?",
+      "oracion": "¿A quién le regalaron flores?"
+    },
+    {
+      "id": "6341ef56-315b-4566-81fa-f266b67d2e3a",
+      "time": 443,
+      "end": 446.7,
+      "label": "¿Quién?",
+      "oracion": "¿A quién le regalaron flores?"
+    },
+    {
+      "id": "0ca11cdb-cbea-408f-82d2-5262793b2bc4",
+      "time": 453,
+      "end": 456.7,
+      "label": "¿Quién?",
+      "oracion": "Flores regalar quién."
+    },
+    {
+      "id": "704a5506-f7ab-4fa3-bd6d-e492bb34c175",
+      "time": 469,
+      "end": 471.7,
+      "label": "¿Quién?",
+      "oracion": "¿quién regala las flores?"
+    },
+    {
+      "id": "e7ec23d9-d64f-40e2-85c3-f71a70ca6c3a",
+      "time": 476,
+      "end": 478.7,
+      "label": "¿Quién?",
+      "oracion": "¿Regalar flores quién?"
+    },
+    {
+      "id": "7d871a54-7448-4f0f-9e9c-7f51cc6d5278",
+      "time": 485,
+      "end": 489.7,
+      "label": "¿Quién?",
+      "oracion": "¿ese quién lo de regalar a su mamá?"
+    },
+    {
+      "id": "5119392e-405d-4742-baac-6858ebad8500",
+      "time": 497,
+      "end": 500.7,
+      "label": "¿Quién?",
+      "oracion": "Esa, ¿regalar flores quién?"
+    },
+    {
+      "id": "3f0d5d7c-f04c-47d8-9176-4f46a020cd18",
+      "time": 507,
+      "end": 510.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién flores regalar quién?"
+    },
+    {
+      "id": "f41c7549-3075-43f3-a4bf-97dbabbbf1bc",
+      "time": 517,
+      "end": 520.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién regalar flores quién?"
+    },
+    {
+      "id": "03858629-7155-428e-91df-e531cdb3a8a1",
+      "time": 530,
+      "end": 532.7,
+      "label": "¿Quién?",
+      "oracion": "¿A quién le regalan flores?"
+    },
+    {
+      "id": "6bec6f41-fe8e-4c99-80d9-4d2c856fc8c6",
+      "time": 533,
+      "end": 535,
+      "label": "¿Quién?",
+      "oracion": "¿A quién le regalan flores?"
+    },
+    {
+      "id": "bd8cdc0f-068a-452e-926c-db05067bac2b",
+      "time": 534,
+      "end": 536.7,
+      "label": "¿Qué?",
+      "oracion": "Es por lo que estaba preguntando."
+    },
+    {
+      "id": "71dec7f3-fdc5-4131-a68b-ebf0a687ff58",
+      "time": 536,
+      "end": 539.7,
+      "label": "¿Qué?",
+      "oracion": "Entonces, esta era sí o un que ella le había analizado."
+    },
+    {
+      "id": "17f72ed7-f605-479e-97bd-d15503c0f929",
+      "time": 539,
+      "end": 542.7,
+      "label": "¿Quién?",
+      "oracion": "¿A quién le regalan flores?"
+    },
+    {
+      "id": "d97acdc3-51ed-408b-ae4c-29a7261b6462",
+      "time": 542,
+      "end": 545.7,
+      "label": "¿Qué?",
+      "oracion": "Entonces, esta era sí o un que ella le había analizado."
+    },
+    {
+      "id": "c8f4e254-d5a3-4ba1-bd3d-ad73b4c7479a",
+      "time": 545,
+      "end": 547.7,
+      "label": "¿Quién?",
+      "oracion": "¿A quién le regalan flores?"
+    },
+    {
+      "id": "67b6e426-890d-4cb7-8dbb-7f77aebad287",
+      "time": 564,
+      "end": 567.7,
+      "label": "¿Quién?",
+      "oracion": "¿Flores entregar quién?"
+    },
+    {
+      "id": "332b327a-b8f7-4528-bfdb-2999dc0be4cd",
+      "time": 573,
+      "end": 576.7,
+      "label": "¿Quién?",
+      "oracion": "¿Flores entregar quién?"
+    },
+    {
+      "id": "5341ead4-869d-4890-b941-46c943271d5d",
+      "time": 584,
+      "end": 586.7,
+      "label": "¿Quién?",
+      "oracion": "¿Ese quién?"
+    }
+  ],
+  "tiers": [
+    {
+      "id": "888176b8-6d0e-4a9c-914c-e2ec18cefb7c",
+      "name": "Tier 1",
+      "anns": []
+    }
+  ]
+}

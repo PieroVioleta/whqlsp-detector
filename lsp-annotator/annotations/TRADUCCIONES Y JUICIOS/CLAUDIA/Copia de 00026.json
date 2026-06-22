@@ -1,0 +1,206 @@
+{
+  "video_id": "TRADUCCIONES Y JUICIOS/CLAUDIA/Copia de 00026",
+  "annotations": [
+    {
+      "id": "fed0d935-df6c-411e-b8ca-ca346384773e",
+      "start": 68.26,
+      "end": 72.11,
+      "label": "¿Quién?",
+      "oracion": "Flores entregar ¿Quién?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "56999c90-e87f-4818-806b-557f57ef8ed8",
+      "start": 80.76,
+      "end": 85.57,
+      "label": "¿Quién?",
+      "oracion": "Flores regalar ¿Quién?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "6c44769e-8a12-423f-9b5c-b989cfd39ab3",
+      "start": 91.12,
+      "end": 97.38,
+      "label": "¿Qué?",
+      "oracion": "Estrellita entregar ¿A mamá qué?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "1be5b899-7915-4827-88c0-1bd7cae4100d",
+      "start": 102.87,
+      "end": 107.95,
+      "label": "¿Por qué?",
+      "oracion": "Estrellita regalar flores a su mamá ¿Por qué?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "f8f224b0-d466-43ad-b88f-3a07a9254e2c",
+      "start": 138.17,
+      "end": 143.39,
+      "label": "¿Qué?",
+      "oracion": "¿Quién regalar su mamá qué?",
+      "source": "manual",
+      "confidence": null
+    }
+  ],
+  "markers": [
+    {
+      "id": "b1e6e968-6966-4575-964b-7b63cc44d2f5",
+      "time": 39.52,
+      "end": 56.62,
+      "label": "¿Para qué?",
+      "oracion": "por su cumpleaños, entonces esa es la primera reacción que para que haga en el sueño."
+    },
+    {
+      "id": "e316e0b6-4b1b-4d6f-b1f8-dc36e142a2f6",
+      "time": 39.52,
+      "end": 56.62,
+      "label": "¿Qué?",
+      "oracion": "por su cumpleaños, entonces esa es la primera reacción que para que haga en el sueño."
+    },
+    {
+      "id": "c181e895-fc6a-44d9-a7fa-e08176281499",
+      "time": 63.12,
+      "end": 70.22,
+      "label": "¿Quién?",
+      "oracion": "Y ahora pasamos a las preguntas, ¿Quién regaló las flores?"
+    },
+    {
+      "id": "7500e61b-312f-4fdd-a60d-396e6a23e703",
+      "time": 69.52,
+      "end": 73.82,
+      "label": "¿Quién?",
+      "oracion": "Flores entregar ¿Quién?"
+    },
+    {
+      "id": "774c6186-4dcc-4890-8ce9-e2feaae5d0bc",
+      "time": 78.12,
+      "end": 83.02,
+      "label": "¿Quién?",
+      "oracion": "La siguiente, ¿A quién le regalaron flores?"
+    },
+    {
+      "id": "b2f19ed3-d5b7-4e70-a56d-b3d163ad94c9",
+      "time": 82.32,
+      "end": 88.82,
+      "label": "¿Quién?",
+      "oracion": "Flores regalar ¿Quién?"
+    },
+    {
+      "id": "b5ac0507-45d7-402e-898e-340844c677d4",
+      "time": 91.12,
+      "end": 101.82,
+      "label": "¿Qué?",
+      "oracion": "La tercera, estrellita entregar ¿A mamá qué?"
+    },
+    {
+      "id": "0a6cf4ae-656f-438b-90b7-bb5f6c8cba0b",
+      "time": 101.12,
+      "end": 105.82,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué estrellita le regaló flores a su mamá?"
+    },
+    {
+      "id": "dc29c01f-a6fb-4d71-808a-43d06c84c1dd",
+      "time": 101.12,
+      "end": 105.82,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué estrellita le regaló flores a su mamá?"
+    },
+    {
+      "id": "7f0d6351-be07-4a33-85cc-d65e7d17255b",
+      "time": 105.12,
+      "end": 108.82,
+      "label": "¿Por qué?",
+      "oracion": "Estrellita regalar flores a su mamá ¿Por qué?"
+    },
+    {
+      "id": "b0fb9a78-4783-4029-b125-9804a35591ac",
+      "time": 105.12,
+      "end": 108.82,
+      "label": "¿Qué?",
+      "oracion": "Estrellita regalar flores a su mamá ¿Por qué?"
+    },
+    {
+      "id": "f7d29ac5-0a25-4599-b4b6-9d90aaca048c",
+      "time": 119.12,
+      "end": 121.82,
+      "label": "¿Qué?",
+      "oracion": "Ah, no, no pasa nada, cuéntale que no te relaje."
+    },
+    {
+      "id": "3674b0f7-7311-439f-84fb-6f49f488913e",
+      "time": 131.12,
+      "end": 139.82,
+      "label": "¿Qué?",
+      "oracion": "La siguiente, ¿Quién le regaló qué a su mamá?"
+    },
+    {
+      "id": "3d44aa58-03ee-465a-a10f-504549d0fe63",
+      "time": 131.12,
+      "end": 139.82,
+      "label": "¿Quién?",
+      "oracion": "La siguiente, ¿Quién le regaló qué a su mamá?"
+    },
+    {
+      "id": "1bfdbfb3-38f5-4239-b560-9444389061fb",
+      "time": 139.12,
+      "end": 149.82,
+      "label": "¿Qué?",
+      "oracion": "¿Quién regalar su mamá qué?"
+    },
+    {
+      "id": "0d4af2a6-b2ee-416d-bbf8-3e0437d3695f",
+      "time": 139.12,
+      "end": 149.82,
+      "label": "¿Quién?",
+      "oracion": "¿Quién regalar su mamá qué?"
+    },
+    {
+      "id": "8ec0aef1-7cdf-4355-8788-ef736904b2a7",
+      "time": 159.12,
+      "end": 162.82,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué estamos preguntando en esa oración?"
+    },
+    {
+      "id": "27a616e6-04b2-4549-acad-a23e80144ec5",
+      "time": 159.12,
+      "end": 162.82,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué estamos preguntando en esa oración?"
+    },
+    {
+      "id": "ddc6ef8f-f9eb-4592-8585-b5cef243afe1",
+      "time": 162.12,
+      "end": 165.82,
+      "label": "¿Qué?",
+      "oracion": "O sea, ¿qué es lo que estamos preguntando en esa oración?"
+    },
+    {
+      "id": "286439e1-d09a-4993-b7c3-3960951b26a8",
+      "time": 165.12,
+      "end": 168.82,
+      "label": "¿Qué?",
+      "oracion": "Sólo que diga la palabra de la respuesta de la pregunta."
+    },
+    {
+      "id": "696c7834-8540-4630-b9ae-c7c0557a047c",
+      "time": 168.12,
+      "end": 180.82,
+      "label": "¿Quién?",
+      "oracion": "O sea, ¿quién, en el quién, cuál es la respuesta?"
+    },
+    {
+      "id": "f993eccd-b7c8-4cb7-99ee-f5237b3e014d",
+      "time": 181.12,
+      "end": 184.82,
+      "label": "¿Qué?",
+      "oracion": "Ajá, ¿y el qué?"
+    }
+  ]
+}

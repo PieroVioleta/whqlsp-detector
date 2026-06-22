@@ -10,4 +10,5 @@ dependencies = [
     "opencv-python>=4.13.0.92",
     "mediapipe==0.10.9",
     "scikit-learn>=1.7.2",
+    "openai>=1.0.0",
 ]

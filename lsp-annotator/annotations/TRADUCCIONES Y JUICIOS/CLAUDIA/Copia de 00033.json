@@ -1,0 +1,139 @@
+{
+  "video_id": "TRADUCCIONES Y JUICIOS/CLAUDIA/Copia de 00033",
+  "annotations": [
+    {
+      "id": "1650002d-7e67-4c44-a914-f78e9a523551",
+      "start": 31.52,
+      "end": 37.35,
+      "label": "¿Quién?",
+      "oracion": "¿Despertar tarde quién?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "d6aa8b8c-1b15-407f-8ef0-72ac6bcbbf13",
+      "start": 47.98,
+      "end": 52,
+      "label": "¿Quién?",
+      "oracion": "¿Despertar tarde quién?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "5857b7a6-51a0-42b8-864f-0eaf2f442fb1",
+      "start": 167.44,
+      "end": 171.47,
+      "label": "¿Quién?",
+      "oracion": "¿Comprar panes quién?",
+      "source": "manual",
+      "confidence": null
+    }
+  ],
+  "markers": [
+    {
+      "id": "3a935475-50e4-425f-a9c6-9f4a391a6241",
+      "time": 1,
+      "end": 3.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién despertar tarde?"
+    },
+    {
+      "id": "84399540-c6ee-40e7-8814-058f0e60604e",
+      "time": 7,
+      "end": 15.1,
+      "label": "¿Qué?",
+      "oracion": "Ya, ¿ahora qué? Claudia las haga en el SP"
+    },
+    {
+      "id": "6e6abfe5-2850-466e-b868-0dfb37297f98",
+      "time": 31.52,
+      "end": 34.22,
+      "label": "¿Quién?",
+      "oracion": "¿Quién despertar tarde?"
+    },
+    {
+      "id": "8788b6a8-6c70-4243-902a-e8517981f303",
+      "time": 46.56,
+      "end": 48.56,
+      "label": "¿Quién?",
+      "oracion": "¿Quién?"
+    },
+    {
+      "id": "6fc53f06-a499-4ae8-8cf1-d11054538736",
+      "time": 47.04,
+      "end": 49.74,
+      "label": "¿Quién?",
+      "oracion": "¿Quién despertar tarde?"
+    },
+    {
+      "id": "59b28a46-a8b7-45fc-adc4-2fa31e18dff1",
+      "time": 49.04,
+      "end": 51.74,
+      "label": "¿Quién?",
+      "oracion": "¿Quién despertar tarde?"
+    },
+    {
+      "id": "37078f3b-e515-45c5-b350-043cc06820b8",
+      "time": 51.04,
+      "end": 53.74,
+      "label": "¿Quién?",
+      "oracion": "¿Quién?"
+    },
+    {
+      "id": "2805deae-6b49-4b91-a7cf-0f3943869ed2",
+      "time": 57.04,
+      "end": 59.74,
+      "label": "¿Quién?",
+      "oracion": "¿Quién despertar tarde?"
+    },
+    {
+      "id": "37c2f827-b461-4c1c-952a-887cdc311bfa",
+      "time": 85.68,
+      "end": 93.38,
+      "label": "¿Quién?",
+      "oracion": "la nota es despertar, tarde, ¿quién?"
+    },
+    {
+      "id": "c225114f-809b-44a6-964a-01804a7a4601",
+      "time": 100.68,
+      "end": 105.38,
+      "label": "¿Quién?",
+      "oracion": "La segunda es ¿quién desperta tarde?"
+    },
+    {
+      "id": "c5a5c63b-084e-412a-8e99-441d90e0b964",
+      "time": 121.68,
+      "end": 124.38,
+      "label": "¿Quién?",
+      "oracion": "¿Quién tarda de despertar?"
+    },
+    {
+      "id": "883ff8ba-52bc-4ba9-b9ba-63d725f18004",
+      "time": 146.68,
+      "end": 152.38,
+      "label": "¿Quién?",
+      "oracion": "La otra oración es ¿quién compró panes?"
+    },
+    {
+      "id": "2acf71c2-111d-4149-80a2-9cc5d1966ed5",
+      "time": 154.68,
+      "end": 158.38,
+      "label": "¿Cómo?",
+      "oracion": "Ella, ¿cómo haría la pregunta?"
+    },
+    {
+      "id": "6a8ea36f-f879-467c-9baf-482454f2060c",
+      "time": 168.68,
+      "end": 172.38,
+      "label": "¿Quién?",
+      "oracion": "¿Comprar panes quién?"
+    }
+  ],
+  "tiers": [
+    {
+      "id": "662e6ba3-bd0a-4274-bd33-7471f5287530",
+      "name": "Tier 1",
+      "anns": []
+    }
+  ]
+}

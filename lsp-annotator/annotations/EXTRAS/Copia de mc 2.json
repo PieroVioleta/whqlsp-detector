@@ -1,0 +1,888 @@
+{
+  "video_id": "EXTRAS/Copia de mc 2",
+  "annotations": [],
+  "markers": [
+    {
+      "id": "98f51899-7e2f-4aa7-9dfa-22c0fa59ec68",
+      "time": 1,
+      "end": 10.78,
+      "label": "¿Qué?",
+      "oracion": "a otra seña, para la seña cuál, cuáles son las señas que tenemos para, por ejemplo"
+    },
+    {
+      "id": "7bf20eb8-ecbc-402e-ab59-f9f563f13a2c",
+      "time": 39.04,
+      "end": 49.14,
+      "label": "¿Qué?",
+      "oracion": "mismo para Claudia y lo mismo para Poli. Ya, ¿y puede ser que es esto Coca-Cola, Inca-Cola"
+    },
+    {
+      "id": "62f7dcc6-161d-401a-84a2-030684ffec6b",
+      "time": 55.44,
+      "end": 81.34,
+      "label": "¿Qué?",
+      "oracion": "a ir de paseo? ¿O ya sacó? Ella tiene que hacer la pregunta. Sí. Tú tienes que preguntarle"
+    },
+    {
+      "id": "1c8db728-aaf1-4e89-9501-a848664b250c",
+      "time": 87.64,
+      "end": 92.86,
+      "label": "¿Para qué?",
+      "oracion": "Rosa cuál quiere. Mejor, mejor, mejor, mejor cambiemos la dirección para que veamos la"
+    },
+    {
+      "id": "3b98b91a-27aa-482c-849e-317b2e10c9a4",
+      "time": 87.64,
+      "end": 92.86,
+      "label": "¿Qué?",
+      "oracion": "Rosa cuál quiere. Mejor, mejor, mejor, mejor cambiemos la dirección para que veamos la"
+    },
+    {
+      "id": "34fb30d9-4f1a-46d0-af25-70b60a958380",
+      "time": 148.6,
+      "end": 153.86,
+      "label": "¿Qué?",
+      "oracion": "Una oración que nos pueda dar con este. Ella hizo cuál, así. Pues, pues, entonces"
+    },
+    {
+      "id": "dacf95bc-3bbb-4bd2-8b9c-75e74166da65",
+      "time": 153.16,
+      "end": 164.26,
+      "label": "¿Qué?",
+      "oracion": "puede ser así y puede ser así. Las dos formas están, son iguales. Sí. ¿Y de qué depende"
+    },
+    {
+      "id": "5c245c3a-9144-4fb6-ac2b-018f16763568",
+      "time": 163.56,
+      "end": 186.7,
+      "label": "¿Qué?",
+      "oracion": "de qué sea esto? ¿Nos puede dar un ejemplo en donde salga esto? Yo creo que todos son"
+    },
+    {
+      "id": "f63cb031-65ff-42da-aef9-575c4b2e7445",
+      "time": 163.56,
+      "end": 186.7,
+      "label": "¿Dónde?",
+      "oracion": "de qué sea esto? ¿Nos puede dar un ejemplo en donde salga esto? Yo creo que todos son"
+    },
+    {
+      "id": "d7152fea-817e-4176-b733-531cd7438698",
+      "time": 186,
+      "end": 192.94,
+      "label": "¿Qué?",
+      "oracion": "iguales, entonces, por ejemplo, las gaseosas, el tema de gaseosa tienes que elegir, pero"
+    },
+    {
+      "id": "5701da7c-9b57-4007-bfea-d242e86a8194",
+      "time": 193.24,
+      "end": 198.9,
+      "label": "¿Qué?",
+      "oracion": "como que no sientes, sí, ¿no? Como que no se va, en otros temas sí puedes elegir eso,"
+    },
+    {
+      "id": "20227879-42d3-4aee-89d8-2c102eef0ccf",
+      "time": 193.24,
+      "end": 198.9,
+      "label": "¿Cómo?",
+      "oracion": "como que no sientes, sí, ¿no? Como que no se va, en otros temas sí puedes elegir eso,"
+    },
+    {
+      "id": "11354981-bfba-493d-920f-b6d80583bcff",
+      "time": 198.2,
+      "end": 211.98,
+      "label": "¿Qué?",
+      "oracion": "el tema, pero no sabes cuál es. Claro, pero ella, lo que pasa es que depende del contexto,"
+    },
+    {
+      "id": "b6760148-978f-4031-b9a9-b2892d76c798",
+      "time": 211.28,
+      "end": 218.7,
+      "label": "¿Cómo?",
+      "oracion": "pero también, por ejemplo, es cómo hace la seña, porque Claudia hace bonita su seña y"
+    },
+    {
+      "id": "311e885c-7894-4402-9d70-c55b885f6395",
+      "time": 218,
+      "end": 224.46,
+      "label": "¿Qué?",
+      "oracion": "este cuál encaja con la manera que ella hace la seña. Entonces, eso depende de cómo te sientes"
+    },
+    {
+      "id": "877af296-a6df-405e-ab2e-2650755345af",
+      "time": 218,
+      "end": 224.46,
+      "label": "¿Cómo?",
+      "oracion": "este cuál encaja con la manera que ella hace la seña. Entonces, eso depende de cómo te sientes"
+    },
+    {
+      "id": "5e6af432-871f-4dee-abc8-5da3bf1c6f9a",
+      "time": 223.76,
+      "end": 231.14,
+      "label": "¿Qué?",
+      "oracion": "tú de hacer la seña, ¿no? Va a depender de cuál es como que tú usas tu costumbre más o lo que tú"
+    },
+    {
+      "id": "bbbdf5c7-a6a5-4dc9-8d28-9f6bb8babe48",
+      "time": 223.76,
+      "end": 231.14,
+      "label": "¿Cómo?",
+      "oracion": "tú de hacer la seña, ¿no? Va a depender de cuál es como que tú usas tu costumbre más o lo que tú"
+    },
+    {
+      "id": "932561eb-e953-4c30-9285-eb51d6f3024e",
+      "time": 230.44,
+      "end": 237.18,
+      "label": "¿Qué?",
+      "oracion": "crees que es más bonito el usarlo. O sea, es una cuestión estilística. Es solamente de cada uno."
+    },
+    {
+      "id": "7634b59f-88e0-475a-b5c5-f5f4bff27144",
+      "time": 253.32,
+      "end": 259.02,
+      "label": "¿Qué?",
+      "oracion": "también, más o menos, así es. Claro. Pero ¿en qué contexto utilizas este?"
+    },
+    {
+      "id": "ce5b6a15-d702-438a-8938-d0ed4f9dbfbb",
+      "time": 258.32,
+      "end": 285.3,
+      "label": "¿Qué?",
+      "oracion": "Yo ponte esto, no sé. Es que tú explicas algo. Es como que lo pones en el lugar,"
+    },
+    {
+      "id": "2c64e8ba-b473-4919-88d4-33906d6dde87",
+      "time": 258.32,
+      "end": 285.3,
+      "label": "¿Cómo?",
+      "oracion": "Yo ponte esto, no sé. Es que tú explicas algo. Es como que lo pones en el lugar,"
+    },
+    {
+      "id": "fda0cca1-28a7-4f45-bbf2-1e9e0d6de3cf",
+      "time": 284.6,
+      "end": 294.86,
+      "label": "¿Qué?",
+      "oracion": "nomás. El tema es que está como que más separado y más ubicado en el contexto, ¿no? Entonces,"
+    },
+    {
+      "id": "8f633075-20cd-4740-959b-117c19f6fd9a",
+      "time": 284.6,
+      "end": 294.86,
+      "label": "¿Cómo?",
+      "oracion": "nomás. El tema es que está como que más separado y más ubicado en el contexto, ¿no? Entonces,"
+    },
+    {
+      "id": "9628261d-eced-4014-88df-c421cfadc6ae",
+      "time": 294.16,
+      "end": 300.82,
+      "label": "¿Qué?",
+      "oracion": "¿cuál? Como que más espacios, ¿no? ¿Cuál? ¿Cuál de los dos? No sé qué es el escoger. ¿Cuál de los"
+    },
+    {
+      "id": "b04973aa-3ac2-4076-b2e4-1025b6c5b5d2",
+      "time": 294.16,
+      "end": 300.82,
+      "label": "¿Cómo?",
+      "oracion": "¿cuál? Como que más espacios, ¿no? ¿Cuál? ¿Cuál de los dos? No sé qué es el escoger. ¿Cuál de los"
+    },
+    {
+      "id": "0424dc7d-23d9-4400-afef-0a5d8826cff6",
+      "time": 300.12,
+      "end": 305.7,
+      "label": "¿Qué?",
+      "oracion": "dos? ¿No? Tienes como que están en el espacio más separado, pero si los tienes ahí juntitos,"
+    },
+    {
+      "id": "9657f16a-5609-4ce5-b5b6-7e0f720cda8c",
+      "time": 300.12,
+      "end": 305.7,
+      "label": "¿Cómo?",
+      "oracion": "dos? ¿No? Tienes como que están en el espacio más separado, pero si los tienes ahí juntitos,"
+    },
+    {
+      "id": "4a5f790f-b323-4827-84a7-512e914b2f20",
+      "time": 305.36,
+      "end": 322.62,
+      "label": "¿Qué?",
+      "oracion": "es como que tienes que... Son dos, ¿ves? Que se ven, ¿no? Pueden ser dos. Dos cosas,"
+    },
+    {
+      "id": "e6436233-4544-443f-862f-6268e490cce1",
+      "time": 305.36,
+      "end": 322.62,
+      "label": "¿Cómo?",
+      "oracion": "es como que tienes que... Son dos, ¿ves? Que se ven, ¿no? Pueden ser dos. Dos cosas,"
+    },
+    {
+      "id": "04597dc3-e0ca-416a-8c52-13f1e122f774",
+      "time": 321.92,
+      "end": 328.18,
+      "label": "¿Qué?",
+      "oracion": "son más que se utilizan las cosas. Son para... Se utilizan para más. ¿Dos o más? Para cuando"
+    },
+    {
+      "id": "fb2f6657-32ac-4066-bb30-264ca962ab78",
+      "time": 321.92,
+      "end": 328.18,
+      "label": "¿Cuándo?",
+      "oracion": "son más que se utilizan las cosas. Son para... Se utilizan para más. ¿Dos o más? Para cuando"
+    },
+    {
+      "id": "3f8a1184-bbcb-46e3-a1b1-102272392c85",
+      "time": 339.48,
+      "end": 350.06,
+      "label": "¿Qué?",
+      "oracion": "¿Cuál? ¿Compro cuál? ¿Cuál? Ya. También, ¿no? Ya. Y un poco para volver a lo que decía,"
+    },
+    {
+      "id": "d1864add-89ae-4626-9732-5314a99cae80",
+      "time": 370.84,
+      "end": 385.34,
+      "label": "¿Cómo?",
+      "oracion": "Puedo decir... Así como se puede decir tema cuál, se puede decir igual de bien. ¿Cuál color? ¿Cuál"
+    },
+    {
+      "id": "17dcb0e3-3836-44c2-96b0-2d487d1f04b1",
+      "time": 417.72,
+      "end": 427.06,
+      "label": "¿Cómo?",
+      "oracion": "Color. Favorito. Favorito. ¿Cómo? ¿Cuál es tu color favorito? Favorito color cuál."
+    },
+    {
+      "id": "1a32d543-610a-49fb-acbf-17a5cf09eeb0",
+      "time": 426.44,
+      "end": 437.98,
+      "label": "¿Cómo?",
+      "oracion": "También. ¿Tu favorito color cuál? Ya, perfecto. Y si quiero decir tanto el tema como el color,"
+    },
+    {
+      "id": "72352341-96b6-43d1-8a56-bc2c1b1c4adb",
+      "time": 437.28,
+      "end": 453.66,
+      "label": "¿Cómo?",
+      "oracion": "son cosas medio abstractas, ¿no? Si yo quiero hablar como... ¿Cuál mano usas más, derecha o"
+    },
+    {
+      "id": "0353d80c-b57a-4e42-977b-6b2b4e0a2eba",
+      "time": 452.96,
+      "end": 459.74,
+      "label": "¿Qué?",
+      "oracion": "izquierda? No qué mano, sino ¿cuál de esas manos usas más?"
+    },
+    {
+      "id": "776a5f6d-2a24-4b1b-a4ad-f5d9db7cd8df",
+      "time": 531.28,
+      "end": 542.06,
+      "label": "¿Qué?",
+      "oracion": "entonces, sí se puede. Sí se puede, sí. ¿Cuál? Y ellos consideran que alguna de estas opciones,"
+    },
+    {
+      "id": "33d65f4f-5698-4227-9c75-cbae75a187d6",
+      "time": 541.36,
+      "end": 549.22,
+      "label": "¿Qué?",
+      "oracion": "sea esto o sea la otra forma, que era solamente esta, ¿no es cierto? Depende"
+    },
+    {
+      "id": "1da148a5-09cc-40db-a077-199467fc9836",
+      "time": 548.52,
+      "end": 553.82,
+      "label": "¿Qué?",
+      "oracion": "de la cantidad de opciones para elegir o no tienen nada que ver. ¿Qué piensan?"
+    },
+    {
+      "id": "e7b133da-78b6-43ac-8e78-a2ecaf0a161e",
+      "time": 580.6,
+      "end": 595.58,
+      "label": "¿Cómo?",
+      "oracion": "Se usa mucho, como está, directo, está apuntando. Apunta y ¿cuál?"
+    },
+    {
+      "id": "9461890e-faa5-4035-993f-229652259bd4",
+      "time": 594.88,
+      "end": 601.74,
+      "label": "¿Cuándo?",
+      "oracion": "También se puede utilizar cuando son muchas cosas, o sea, se puede."
+    },
+    {
+      "id": "794a7e46-0003-45f1-9ab3-b8348237b373",
+      "time": 613.36,
+      "end": 618.86,
+      "label": "¿Qué?",
+      "oracion": "así esté presente o no el objeto del que se habla"
+    },
+    {
+      "id": "c14438d7-5ad7-4a1a-8c9c-795643ee0e98",
+      "time": 618.16,
+      "end": 634.58,
+      "label": "¿Qué?",
+      "oracion": "como como que dijo por él está diciendo la comida que te pregunta te pregunta"
+    },
+    {
+      "id": "feb8a6a1-6ae0-4e88-b6bc-28c2713543c9",
+      "time": 618.16,
+      "end": 634.58,
+      "label": "¿Cómo?",
+      "oracion": "como como que dijo por él está diciendo la comida que te pregunta te pregunta"
+    },
+    {
+      "id": "91ecdbd6-ceae-422b-ad88-eead063fc987",
+      "time": 636.56,
+      "end": 645.66,
+      "label": "¿Qué?",
+      "oracion": "cual quieres no sé cuál no sé entonces yo digo el hijo pues ya es lo que estaba diciendo"
+    },
+    {
+      "id": "a2617e3b-2b46-4c17-91b6-93ff665f0321",
+      "time": 658.52,
+      "end": 668.02,
+      "label": "¿Quién?",
+      "oracion": "ya entonces ya vimos el cual vamos a ver a quién a preguntar por un objeto directo por ejemplo"
+    },
+    {
+      "id": "4f51df58-9a61-45ca-aa0f-3f976736bf40",
+      "time": 668.04,
+      "end": 675.18,
+      "label": "¿Quién?",
+      "oracion": "en cierto el a quien eso para algún contexto del tipo"
+    },
+    {
+      "id": "aa1a6f2b-126d-41fc-8ba6-f34d86045aaa",
+      "time": 676.8,
+      "end": 687.7,
+      "label": "¿Qué?",
+      "oracion": "hay digamos que queremos preguntar a quien ya a quien llamaste hace un ratito por teléfono"
+    },
+    {
+      "id": "d0f2ef4d-a8de-438d-9c6d-dcfa6914eeb5",
+      "time": 676.8,
+      "end": 687.7,
+      "label": "¿Quién?",
+      "oracion": "hay digamos que queremos preguntar a quien ya a quien llamaste hace un ratito por teléfono"
+    },
+    {
+      "id": "40289efe-5718-4029-84b9-76081f84e130",
+      "time": 687,
+      "end": 691.34,
+      "label": "¿Qué?",
+      "oracion": "ves que alguien está conversando por teléfono y como que te da curiosidad y le preguntas"
+    },
+    {
+      "id": "56834a5d-7233-4082-9166-66c6316eb27a",
+      "time": 687,
+      "end": 691.34,
+      "label": "¿Cómo?",
+      "oracion": "ves que alguien está conversando por teléfono y como que te da curiosidad y le preguntas"
+    },
+    {
+      "id": "b784bfa7-b3d1-4e90-bafa-1cc582ad89fe",
+      "time": 691.48,
+      "end": 694.18,
+      "label": "¿Quién?",
+      "oracion": "oye a quien a quien llamaste"
+    },
+    {
+      "id": "fd9eec6f-2d80-42fd-9514-b01b61cd446b",
+      "time": 699.6,
+      "end": 701.62,
+      "label": "¿Quién?",
+      "oracion": "a quien le escribes también"
+    },
+    {
+      "id": "fbd88f8f-3e87-4f9d-87de-0ca8e7e80459",
+      "time": 710.96,
+      "end": 713.22,
+      "label": "¿Cómo?",
+      "oracion": "cómo se hace esa pregunta"
+    },
+    {
+      "id": "5f31cbd1-fbe0-4137-95aa-489573d983d8",
+      "time": 720.96,
+      "end": 722.98,
+      "label": "¿Quién?",
+      "oracion": "usas quien nada más"
+    },
+    {
+      "id": "1fdeefe9-751a-482c-bfbb-fa5349d91c14",
+      "time": 727.52,
+      "end": 735.58,
+      "label": "¿Qué?",
+      "oracion": "imagínese porque en el rostro está acá pero imaginemos imaginemos que aquí"
+    },
+    {
+      "id": "f50db8a6-f1d6-4ca5-84db-3e3b5c810d48",
+      "time": 741.52,
+      "end": 748.22,
+      "label": "¿Quién?",
+      "oracion": "por le pegó al saliendo a la fiesta a quien le pegó"
+    },
+    {
+      "id": "d5bc0d86-8d34-4dc9-b05c-fca071af0fdb",
+      "time": 754.36,
+      "end": 758.9,
+      "label": "¿Qué?",
+      "oracion": "recuerdas que una fiesta por se fue temprano"
+    },
+    {
+      "id": "10fa1cc4-f4c0-40a3-9009-573eada2bc2a",
+      "time": 817.6,
+      "end": 823.3,
+      "label": "¿Qué?",
+      "oracion": "Digamos que Claudia le pregunta a Ana Rosa"
+    },
+    {
+      "id": "06b8ba57-e8cc-427f-9b7f-de1338df676e",
+      "time": 824.6,
+      "end": 828.3,
+      "label": "¿Quién?",
+      "oracion": "Oye, ¿a quién le pegó Paul?"
+    },
+    {
+      "id": "73fd3912-8660-4f3b-883d-990158261ce0",
+      "time": 834.6,
+      "end": 837.3,
+      "label": "¿Qué?",
+      "oracion": "Espérate, espérate que se me fue"
+    },
+    {
+      "id": "05058b54-bd81-4c72-b816-246c17ccaa15",
+      "time": 841.6,
+      "end": 845.3,
+      "label": "¿Quién?",
+      "oracion": "¿Quién pegó Paul?"
+    },
+    {
+      "id": "97b38fa5-20de-4ed6-9f9f-5ec757fa245b",
+      "time": 849.6,
+      "end": 852.3,
+      "label": "¿Quién?",
+      "oracion": "¿Paul pegó quién?"
+    },
+    {
+      "id": "0c3886f2-de8a-40d0-b8fe-72086169278a",
+      "time": 852.6,
+      "end": 855.3,
+      "label": "¿Quién?",
+      "oracion": "¿Paul pegó quién?"
+    },
+    {
+      "id": "cf3ed17d-cb21-4d6d-9d01-1eb0fc9f2e3f",
+      "time": 860.6,
+      "end": 862.6,
+      "label": "¿Quién?",
+      "oracion": "¿Pegar a quién?"
+    },
+    {
+      "id": "9bdff050-598f-4e11-8492-f10014c027b1",
+      "time": 862.6,
+      "end": 864.6,
+      "label": "¿Quién?",
+      "oracion": "¿Quién? Señala"
+    },
+    {
+      "id": "9b120257-85f5-424b-ade7-a9bb65f187b4",
+      "time": 865.6,
+      "end": 868.3,
+      "label": "¿Quién?",
+      "oracion": "¿Paul le pegó quién?"
+    },
+    {
+      "id": "d2b518d4-aed1-4455-8284-d2847e34895f",
+      "time": 867.6,
+      "end": 869.6,
+      "label": "¿Quién?",
+      "oracion": "Señala, ¿quién?"
+    },
+    {
+      "id": "44791a06-fd69-4b64-8661-14e6a2dc4b85",
+      "time": 874.6,
+      "end": 876.6,
+      "label": "¿Qué?",
+      "oracion": "Que no, no te preocupes"
+    },
+    {
+      "id": "a22b050c-69dd-46d6-985a-3ece49a0ce8f",
+      "time": 884.6,
+      "end": 887.3,
+      "label": "¿Quién?",
+      "oracion": "Ahora queremos, ¿de quién?"
+    },
+    {
+      "id": "0fce442a-e80c-40b9-8222-71296aa63b8d",
+      "time": 886.6,
+      "end": 888.6,
+      "label": "¿Quién?",
+      "oracion": "¿De quién?"
+    },
+    {
+      "id": "4c0c1067-b611-47c1-91f7-cca41e323442",
+      "time": 899.6,
+      "end": 902.3,
+      "label": "¿Qué?",
+      "oracion": "Queremos preguntarle que"
+    },
+    {
+      "id": "d26262aa-e769-4257-a81c-4c4dd5c6bd05",
+      "time": 902.6,
+      "end": 905.3,
+      "label": "¿Qué?",
+      "oracion": "Que Paul te pregunte a ti"
+    },
+    {
+      "id": "926e4345-6676-4ae2-9434-135528dac70c",
+      "time": 904.6,
+      "end": 907.3,
+      "label": "¿Quién?",
+      "oracion": "¿De quién es esa bolsa?"
+    },
+    {
+      "id": "be49156a-3a61-4a12-9a8d-3ee38671e66b",
+      "time": 909.6,
+      "end": 911.6,
+      "label": "¿Quién?",
+      "oracion": "¿Bolsa quién?"
+    },
+    {
+      "id": "0f78966c-6676-4f3f-8145-05914931ea32",
+      "time": 913.6,
+      "end": 915.6,
+      "label": "¿Quién?",
+      "oracion": "¿De quién es esa bolsa?"
+    },
+    {
+      "id": "61688ffe-82eb-4530-aca9-3fc4d1775888",
+      "time": 914.6,
+      "end": 916.6,
+      "label": "¿Quién?",
+      "oracion": "¿De quién es esa bolsa?"
+    },
+    {
+      "id": "ee3a0788-03ca-48f8-83dc-06a4d05fcc28",
+      "time": 918.6,
+      "end": 920.6,
+      "label": "¿Quién?",
+      "oracion": "¿De quién es esa bolsa?"
+    },
+    {
+      "id": "707198e4-30b7-42be-80db-a62a75e3ef4b",
+      "time": 927.6,
+      "end": 929.6,
+      "label": "¿Quién?",
+      "oracion": "¿De quién?"
+    },
+    {
+      "id": "1790c5c9-dec8-4f22-a6cf-e7e4f5cc7607",
+      "time": 934.6,
+      "end": 936.6,
+      "label": "¿Quién?",
+      "oracion": "¿De quién?"
+    },
+    {
+      "id": "c0fe8632-6ec3-4afd-b902-3c943c3c8aa1",
+      "time": 936.6,
+      "end": 938.6,
+      "label": "¿Quién?",
+      "oracion": "¿De quién?"
+    },
+    {
+      "id": "51ec816e-be4b-4244-8e95-63847999f405",
+      "time": 941.6,
+      "end": 944.3,
+      "label": "¿Por qué?",
+      "oracion": "Antes, el por qué"
+    },
+    {
+      "id": "c56ee2c8-f453-4d24-8ea0-084a284d31da",
+      "time": 941.6,
+      "end": 944.3,
+      "label": "¿Qué?",
+      "oracion": "Antes, el por qué"
+    },
+    {
+      "id": "d4a500f5-2e35-45b3-b111-8923072ceb3f",
+      "time": 946.6,
+      "end": 948.6,
+      "label": "¿Qué?",
+      "oracion": "¿Qué?"
+    },
+    {
+      "id": "58d23bcd-92a3-44d3-b6c0-0324e27d8bf6",
+      "time": 950.6,
+      "end": 952.6,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "7885c9f9-c0d4-4280-8ac7-4bc52ecb1556",
+      "time": 950.6,
+      "end": 952.6,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "e31baac5-5ec0-47b3-b6bd-f186dd819eb9",
+      "time": 956.6,
+      "end": 959.3,
+      "label": "¿Qué?",
+      "oracion": "Que puede tocar la bolsa"
+    },
+    {
+      "id": "9bc6d902-dce2-48c7-af17-330b15480663",
+      "time": 958.6,
+      "end": 960.6,
+      "label": "¿Quién?",
+      "oracion": "¿De quién, no?"
+    },
+    {
+      "id": "1c7bdb45-171d-414e-ad49-d36baaa09810",
+      "time": 961.6,
+      "end": 963.6,
+      "label": "¿Quién?",
+      "oracion": "¿Y quién es?"
+    },
+    {
+      "id": "c0ddf771-3c8c-4ca1-b975-d0ff787cb1e6",
+      "time": 964.6,
+      "end": 968.3,
+      "label": "¿Quién?",
+      "oracion": "Eso, ¿de quién es eso? Sí"
+    },
+    {
+      "id": "57bce3a6-09f4-478b-9d80-ea4ed0b7425a",
+      "time": 969.6,
+      "end": 971.6,
+      "label": "¿Por qué?",
+      "oracion": "¿El por qué?"
+    },
+    {
+      "id": "08a74d4c-ba8d-4825-b503-087ecb30009e",
+      "time": 969.6,
+      "end": 971.6,
+      "label": "¿Qué?",
+      "oracion": "¿El por qué?"
+    },
+    {
+      "id": "deed9331-e2fc-43d8-afc3-244d3b02cc4f",
+      "time": 976.6,
+      "end": 979.3,
+      "label": "¿Por qué?",
+      "oracion": "¿El por qué junto y el por qué separado"
+    },
+    {
+      "id": "206afc0f-39ca-497a-a4ad-1d51adae3100",
+      "time": 976.6,
+      "end": 979.3,
+      "label": "¿Qué?",
+      "oracion": "¿El por qué junto y el por qué separado"
+    },
+    {
+      "id": "d470eb77-75ce-435b-b91a-04a394141630",
+      "time": 984.6,
+      "end": 987.3,
+      "label": "¿Por qué?",
+      "oracion": "Pero hay muchos tipos de por qué"
+    },
+    {
+      "id": "cf567f22-4706-41bb-87af-f01366101424",
+      "time": 984.6,
+      "end": 987.3,
+      "label": "¿Qué?",
+      "oracion": "Pero hay muchos tipos de por qué"
+    },
+    {
+      "id": "9fc8e0b7-4455-4f7a-88b6-ef5a6532d5dd",
+      "time": 988.6,
+      "end": 992.3,
+      "label": "¿Por qué?",
+      "oracion": "El por qué separado y con tilde, ¿no?"
+    },
+    {
+      "id": "dd35d336-e2eb-4231-88e6-c8e7bd3a847d",
+      "time": 988.6,
+      "end": 992.3,
+      "label": "¿Qué?",
+      "oracion": "El por qué separado y con tilde, ¿no?"
+    },
+    {
+      "id": "fc4f0e21-bb9d-459a-8997-8e76e0b76f5c",
+      "time": 992.6,
+      "end": 995.3,
+      "label": "¿Por qué?",
+      "oracion": "El por qué en pregunta"
+    },
+    {
+      "id": "f50752b0-922d-4e72-af8e-66679503f4c5",
+      "time": 992.6,
+      "end": 995.3,
+      "label": "¿Qué?",
+      "oracion": "El por qué en pregunta"
+    },
+    {
+      "id": "e303866d-ec99-465d-ad0f-008c75915887",
+      "time": 1006.6,
+      "end": 1009.3,
+      "label": "¿Cuándo?",
+      "oracion": "Cuando se trata de una pregunta"
+    },
+    {
+      "id": "76810798-20cc-4400-950e-7b30bcea2bb3",
+      "time": 1008.6,
+      "end": 1011.3,
+      "label": "¿Por qué?",
+      "oracion": "Es un por qué separado"
+    },
+    {
+      "id": "ee5002cd-4788-4022-8b76-bd71b814ffd5",
+      "time": 1008.6,
+      "end": 1011.3,
+      "label": "¿Qué?",
+      "oracion": "Es un por qué separado"
+    },
+    {
+      "id": "a61768d0-e1b2-475a-ac2a-0e3a14f76cf2",
+      "time": 1017.6,
+      "end": 1019.6,
+      "label": "¿Cuándo?",
+      "oracion": "Cuando es una pregunta"
+    },
+    {
+      "id": "5f197eea-3840-49e0-8d30-3372c5d992b5",
+      "time": 1023.6,
+      "end": 1026.3,
+      "label": "¿Por qué?",
+      "oracion": "Eso es en cuanto al por qué de pregunta"
+    },
+    {
+      "id": "7bcc8e71-b7b8-4f7a-ab5c-55e9d0fef669",
+      "time": 1023.6,
+      "end": 1026.3,
+      "label": "¿Qué?",
+      "oracion": "Eso es en cuanto al por qué de pregunta"
+    },
+    {
+      "id": "34935159-65a8-4253-be31-89bd20f5018a",
+      "time": 1029.6,
+      "end": 1034.3,
+      "label": "¿Qué?",
+      "oracion": "El conector que explica una razón"
+    },
+    {
+      "id": "e355f3b2-657c-4c8d-a4fd-7e10db931ae4",
+      "time": 1034.6,
+      "end": 1036.6,
+      "label": "¿Qué?",
+      "oracion": "Y que no se trata de una pregunta"
+    },
+    {
+      "id": "480ffc9d-e89f-47ce-b2f6-9b45dfa19a30",
+      "time": 1038.6,
+      "end": 1040.6,
+      "label": "¿Qué?",
+      "oracion": "Que le estás dando"
+    },
+    {
+      "id": "04474c7a-9ed8-4f35-89f1-abd71126eaf6",
+      "time": 1045.6,
+      "end": 1047.6,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "1e28a7c8-eba7-42f4-99c7-1abf01f28607",
+      "time": 1045.6,
+      "end": 1047.6,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "758f4458-1706-4fea-8da5-26ddadb7a8d9",
+      "time": 1060.6,
+      "end": 1062.6,
+      "label": "¿Qué?",
+      "oracion": "Dos que se diferencian"
+    },
+    {
+      "id": "70a2e6e8-30c6-4b77-8cd9-e1e38aba8203",
+      "time": 1084.6,
+      "end": 1087.3,
+      "label": "¿Qué?",
+      "oracion": "¿Algo tiene que ver con el yato?"
+    },
+    {
+      "id": "01130d1d-e74c-42e2-9cf6-fbc5462fb325",
+      "time": 1100.6,
+      "end": 1103.3,
+      "label": "¿Quién?",
+      "oracion": "La tilde en quien"
+    },
+    {
+      "id": "38f44696-6122-49be-82cf-cbd19c09a7ed",
+      "time": 1102.6,
+      "end": 1105.3,
+      "label": "¿Qué?",
+      "oracion": "No tiene que ver con cuestiones de yato"
+    },
+    {
+      "id": "c569e133-03bb-4ec6-b81e-20e3ed2625c9",
+      "time": 1110.6,
+      "end": 1112.6,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "df4eb842-b352-4e28-8eb7-87e3522e71b6",
+      "time": 1110.6,
+      "end": 1112.6,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "2068118c-855d-4ae6-b3bd-0cefc3d4aeed",
+      "time": 1140.6,
+      "end": 1143.3,
+      "label": "¿Qué?",
+      "oracion": "Que suena a nivel oral"
+    },
+    {
+      "id": "64730f4c-da35-42fd-bbe1-1d67364a0656",
+      "time": 1144.6,
+      "end": 1146.6,
+      "label": "¿Qué?",
+      "oracion": "Que el te de te dije"
+    },
+    {
+      "id": "fed21020-f85b-455e-809b-80516ed1609f",
+      "time": 1151.6,
+      "end": 1154.3,
+      "label": "¿Qué?",
+      "oracion": "A nivel de lo que se escucha"
+    },
+    {
+      "id": "a8356f2e-1cc0-44f2-b51c-3b1906f40ac4",
+      "time": 1162.6,
+      "end": 1165.3,
+      "label": "¿Qué?",
+      "oracion": "Entonces lo que se hace"
+    },
+    {
+      "id": "44d4e5ba-ad83-4b28-813d-fff461a21d22",
+      "time": 1169.6,
+      "end": 1172.3,
+      "label": "¿Qué?",
+      "oracion": "Que se llama diacrítica"
+    },
+    {
+      "id": "270fedf6-9a78-408e-bfaf-29b97dede0e4",
+      "time": 1180.6,
+      "end": 1182.6,
+      "label": "¿Qué?",
+      "oracion": "Que es lo mismo que decir"
+    }
+  ],
+  "tiers": [
+    {
+      "id": "5c07d7cd-5579-486b-812e-e1b55d38966f",
+      "name": "Tier 1",
+      "anns": []
+    }
+  ]
+}

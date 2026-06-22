@@ -1,0 +1,1273 @@
+{
+  "video_id": "EXTRAS/Copia de mc 4",
+  "annotations": [],
+  "markers": [
+    {
+      "id": "9b6bcfa2-9f02-4abc-b028-3b33ba963bb9",
+      "time": 31.88,
+      "end": 38.3,
+      "label": "¿Quién?",
+      "oracion": "uy hay un montón de basura, tu sabes quien la ha tirado?"
+    },
+    {
+      "id": "9e222790-c960-4bdc-b10a-9e779cd46568",
+      "time": 37.6,
+      "end": 42.66,
+      "label": "¿Qué?",
+      "oracion": "y ahí tenemos un tipo de pregunta pero nos falta la primera parte que es que ella me"
+    },
+    {
+      "id": "369c6902-9f9d-42ac-ac72-d48c7c0c9a95",
+      "time": 41.96,
+      "end": 45.1,
+      "label": "¿Quién?",
+      "oracion": "diga oye yo no se quien la ha tirado"
+    },
+    {
+      "id": "b6314144-ad7d-4d4a-a565-0632757a5ace",
+      "time": 44.4,
+      "end": 62.74,
+      "label": "¿Quién?",
+      "oracion": "oye, tu sabes quien ha tirado esa basura al piso?"
+    },
+    {
+      "id": "6e7357e4-e51b-48ed-aaee-0db51c03a8db",
+      "time": 70.04,
+      "end": 78.14,
+      "label": "¿Quién?",
+      "oracion": "y tu, su comentario al ver esa basura es uy no se quien ha tirado, no se quien ha tirado"
+    },
+    {
+      "id": "47ba093f-f7fa-4141-9c3a-5e8cbbea87d1",
+      "time": 81.04,
+      "end": 88.74,
+      "label": "¿Qué?",
+      "oracion": "como que ella comenta, ay no se quien tiró esa basura"
+    },
+    {
+      "id": "81396b85-f53e-4a45-90de-f88adaf326d1",
+      "time": 81.04,
+      "end": 88.74,
+      "label": "¿Cómo?",
+      "oracion": "como que ella comenta, ay no se quien tiró esa basura"
+    },
+    {
+      "id": "c61143e3-c0c3-43ea-be95-729fbdeb3d33",
+      "time": 81.04,
+      "end": 88.74,
+      "label": "¿Quién?",
+      "oracion": "como que ella comenta, ay no se quien tiró esa basura"
+    },
+    {
+      "id": "e4f2b321-8bf2-458c-a127-243b53d2fdba",
+      "time": 112.04,
+      "end": 116.74,
+      "label": "¿Quién?",
+      "oracion": "oye, has visto? sabes quien ha tirado esa basura?"
+    },
+    {
+      "id": "1858398c-431a-412d-9f7f-0e619eac8271",
+      "time": 120.04,
+      "end": 123.74,
+      "label": "¿Quién?",
+      "oracion": "oye, yo no se quien ha tirado esa basura"
+    },
+    {
+      "id": "083338ca-342d-4c78-83d5-8b7c0b04d003",
+      "time": 123.04,
+      "end": 130.74,
+      "label": "¿Quién?",
+      "oracion": "sabes quien, sabes quien, sabes quien? vas señalando"
+    },
+    {
+      "id": "07b37fe8-a746-4110-b1e1-c4b3a8bad59a",
+      "time": 130.04,
+      "end": 133.74,
+      "label": "¿Qué?",
+      "oracion": "perfecto, ahora queremos que lo haga para la cámara"
+    },
+    {
+      "id": "7f25115e-b9f5-4e75-a503-e5c502dd353f",
+      "time": 140.04,
+      "end": 145.74,
+      "label": "¿Quién?",
+      "oracion": "uy, yo no se quien ha tirado esa basura, sabes quien la tiró?"
+    },
+    {
+      "id": "583583b8-c106-4254-b8f1-d945473c3ee8",
+      "time": 145.04,
+      "end": 149.74,
+      "label": "¿Quién?",
+      "oracion": "saber quien, señalar"
+    },
+    {
+      "id": "e52fddd5-37d5-4cef-a12e-4ef7e07e3661",
+      "time": 149.04,
+      "end": 152.74,
+      "label": "¿Quién?",
+      "oracion": "no hubo el quien, no hicieron al inicio el quien"
+    },
+    {
+      "id": "c2d3b790-6e77-4635-9fd1-fd8f8cedc1a0",
+      "time": 157.04,
+      "end": 161.74,
+      "label": "¿Quién?",
+      "oracion": "yo no se quien, pero hicieron, y si hicieron"
+    },
+    {
+      "id": "a2f8e0fd-a996-4c31-924c-96136dec0c2c",
+      "time": 161.04,
+      "end": 165.74,
+      "label": "¿Qué?",
+      "oracion": "o sea, es el contexto, o sea, si, creo que lo hizo solo con la cara"
+    },
+    {
+      "id": "34a09262-fd3e-4f52-b082-bd1f0a475985",
+      "time": 186.04,
+      "end": 189.74,
+      "label": "¿Qué?",
+      "oracion": "que es distinto en español, a ver"
+    },
+    {
+      "id": "2b121162-abae-4397-8138-f40380c7d186",
+      "time": 244.04,
+      "end": 246.74,
+      "label": "¿Qué?",
+      "oracion": "que acaba de ser mamá"
+    },
+    {
+      "id": "de377a50-ef11-43d1-8e17-dc0f5e7b44a6",
+      "time": 248.04,
+      "end": 253.74,
+      "label": "¿Qué?",
+      "oracion": "que el otro día yo conversé con mi hermana Eliana, mi otra hermana que ha dado a luz hace poco"
+    },
+    {
+      "id": "01c177d4-3db2-4917-94d5-d96e6b50f602",
+      "time": 261.04,
+      "end": 263.74,
+      "label": "¿Qué?",
+      "oracion": "una conversación que tuve con Eliana"
+    },
+    {
+      "id": "883ad0bc-be30-443f-a483-4e8bff62009b",
+      "time": 269.04,
+      "end": 272.74,
+      "label": "¿Qué?",
+      "oracion": "a que, o sea, quiero rajar, no de Eliana"
+    },
+    {
+      "id": "5784b117-44d1-4f5b-982e-f2a2de3b7bd7",
+      "time": 272.04,
+      "end": 275.74,
+      "label": "¿Qué?",
+      "oracion": "le pregunté a que hora había nacido su bebito"
+    },
+    {
+      "id": "80d9de0e-0e15-4645-8e5c-b1e09b5254e3",
+      "time": 282.04,
+      "end": 286.74,
+      "label": "¿Qué?",
+      "oracion": "y nada más, como que se pasa, como va a ser"
+    },
+    {
+      "id": "4ccb2960-eea0-45f8-be2a-24ca207151da",
+      "time": 282.04,
+      "end": 286.74,
+      "label": "¿Cómo?",
+      "oracion": "y nada más, como que se pasa, como va a ser"
+    },
+    {
+      "id": "5b86b66c-6706-40ce-99c1-4f8d6878883f",
+      "time": 290.04,
+      "end": 293.74,
+      "label": "¿Qué?",
+      "oracion": "es lo que yo quiero capturar en la cámara, oye"
+    },
+    {
+      "id": "bffb7620-b91c-43f1-92ff-ac9311a1a7a6",
+      "time": 296.04,
+      "end": 299.74,
+      "label": "¿Qué?",
+      "oracion": "y le pregunté a que hora nació su bebé"
+    },
+    {
+      "id": "6b081b77-79b0-4f40-997e-905934ea619b",
+      "time": 299.04,
+      "end": 301.74,
+      "label": "¿Qué?",
+      "oracion": "a que hora nació su bebé"
+    },
+    {
+      "id": "7693bc46-ba38-4624-85bf-6edae7d95073",
+      "time": 305.04,
+      "end": 308.74,
+      "label": "¿Qué?",
+      "oracion": "que yo hago un role shifting"
+    },
+    {
+      "id": "7dbad1d9-3804-4e8d-b4d0-ca3e387bd307",
+      "time": 308.04,
+      "end": 310.74,
+      "label": "¿Qué?",
+      "oracion": "de que me pongo en el rol de mi hermana, eso no quiero"
+    },
+    {
+      "id": "b0154c7b-6dbf-41ca-8585-0c3c21e035b3",
+      "time": 314.04,
+      "end": 316.74,
+      "label": "¿Qué?",
+      "oracion": "sino de esa forma que acabo de hacer"
+    },
+    {
+      "id": "822e5be0-b972-4b29-9120-9093bd4aef1b",
+      "time": 332.04,
+      "end": 334.74,
+      "label": "¿Cómo?",
+      "oracion": "eso, ¿cómo sería?"
+    },
+    {
+      "id": "29f9d9a8-e5e1-4ed7-bd28-f45d2626c2a9",
+      "time": 337.04,
+      "end": 342.74,
+      "label": "¿Qué?",
+      "oracion": "cualquiera que se anime a hacerlo, no puede ser Paul, puede ser Claudia, puede ser Ana Rosa, cualquiera"
+    },
+    {
+      "id": "ad29b68f-1f92-4e78-b916-061c82fff4b4",
+      "time": 362.04,
+      "end": 366.74,
+      "label": "¿Cómo?",
+      "oracion": "pero ella como hace un role shifting"
+    },
+    {
+      "id": "de1c3df9-ee56-4b86-bd00-6474a9abc46a",
+      "time": 380.04,
+      "end": 382.74,
+      "label": "¿Qué?",
+      "oracion": "¿qué significó eso? ¿qué significó?"
+    },
+    {
+      "id": "c9f658c6-a16d-41ee-bb75-93a5c46d2fa4",
+      "time": 382.04,
+      "end": 386.74,
+      "label": "¿Qué?",
+      "oracion": "me dijo que no sabía la hora que había nacido su bebé"
+    },
+    {
+      "id": "82393012-c419-4ca6-8dee-6145ae33d72f",
+      "time": 392.04,
+      "end": 394.74,
+      "label": "¿Qué?",
+      "oracion": "yo quiero que Ana Rosa me cuente a mí"
+    },
+    {
+      "id": "775c738a-2495-48b0-9c14-db87e78f9cc0",
+      "time": 394.04,
+      "end": 396.74,
+      "label": "¿Qué?",
+      "oracion": "que ha conversado con su"
+    },
+    {
+      "id": "f766b63c-f326-4af1-9536-ba19abff9e28",
+      "time": 404.04,
+      "end": 406.74,
+      "label": "¿Qué?",
+      "oracion": "dale, dale, que nos diga Ana Rosa"
+    },
+    {
+      "id": "86019b3a-95bb-4e03-bbed-be04f73eb666",
+      "time": 406.04,
+      "end": 408.74,
+      "label": "¿Qué?",
+      "oracion": "¿qué cosa?"
+    },
+    {
+      "id": "c39a4890-5f7a-436c-b4e4-5a8af0748fc4",
+      "time": 408.04,
+      "end": 410.74,
+      "label": "¿Qué?",
+      "oracion": "la historia que tú has contado"
+    },
+    {
+      "id": "354e88a1-587d-4b7f-a114-c3916801738a",
+      "time": 412.04,
+      "end": 414.74,
+      "label": "¿Qué?",
+      "oracion": "que yo convencé a Claudia"
+    },
+    {
+      "id": "cb9109e6-1c47-415f-9d9f-d7108879d259",
+      "time": 414.04,
+      "end": 416.74,
+      "label": "¿Qué?",
+      "oracion": "que yo convencé"
+    },
+    {
+      "id": "93dc0d47-eedf-447c-9498-10e68eda33bb",
+      "time": 458.04,
+      "end": 460.74,
+      "label": "¿Cuándo?",
+      "oracion": "no sabe cuándo nació el bebé"
+    },
+    {
+      "id": "f865da49-90c7-47b8-85ed-2fb679778fff",
+      "time": 464.04,
+      "end": 466.74,
+      "label": "¿Qué?",
+      "oracion": "yo voy a ser la mamá que"
+    },
+    {
+      "id": "8c21bb6f-665e-45ae-a24f-86c09d8abbbd",
+      "time": 466.04,
+      "end": 468.74,
+      "label": "¿Qué?",
+      "oracion": "al final es que"
+    },
+    {
+      "id": "140ef1fa-7c1a-4ff2-a762-55c056c0d320",
+      "time": 504.04,
+      "end": 506.74,
+      "label": "¿Qué?",
+      "oracion": "la hora que nació"
+    },
+    {
+      "id": "26193e40-4c07-4861-921a-194a5e543c84",
+      "time": 506.04,
+      "end": 508.74,
+      "label": "¿Qué?",
+      "oracion": "y dijo que no sabía"
+    },
+    {
+      "id": "14794ebc-23c0-4401-bb7b-f5d05825f314",
+      "time": 508.04,
+      "end": 510.74,
+      "label": "¿Cómo?",
+      "oracion": "¿cómo va a ser eso? imagínate"
+    },
+    {
+      "id": "0f34682b-7845-4e0d-9063-9ae57e244716",
+      "time": 514.04,
+      "end": 516.74,
+      "label": "¿Cómo?",
+      "oracion": "para añadir, como chisme, ¿no?"
+    },
+    {
+      "id": "c2f7099a-d299-41d0-b07d-e6b15a4744a9",
+      "time": 518.04,
+      "end": 520.74,
+      "label": "¿Qué?",
+      "oracion": "no sabe la hora en que nació, imagínate"
+    },
+    {
+      "id": "2adb2f6c-de66-4e13-8ba8-92e6d92a9081",
+      "time": 522.04,
+      "end": 524.74,
+      "label": "¿Qué?",
+      "oracion": "en que nació"
+    },
+    {
+      "id": "79ffc19f-606f-4664-aaf4-b91b491e6990",
+      "time": 524.04,
+      "end": 526.74,
+      "label": "¿Qué?",
+      "oracion": "y si quiero decir, no sabe que"
+    },
+    {
+      "id": "21c6ba82-1281-4b1d-89dc-7f7b41a35c1f",
+      "time": 526.04,
+      "end": 528.74,
+      "label": "¿Qué?",
+      "oracion": "que"
+    },
+    {
+      "id": "a5ebdf67-91cf-4f6b-bf23-57aa253f12be",
+      "time": 528.04,
+      "end": 530.74,
+      "label": "¿Qué?",
+      "oracion": "que"
+    },
+    {
+      "id": "4ffe01ca-3c7f-4f13-b5a9-54d4c60fc08b",
+      "time": 530.04,
+      "end": 532.74,
+      "label": "¿Qué?",
+      "oracion": "a ver, que"
+    },
+    {
+      "id": "351b0f6d-9363-4ca8-b185-d2248d815f6f",
+      "time": 532.04,
+      "end": 534.74,
+      "label": "¿Qué?",
+      "oracion": "¿qué puede ser?"
+    },
+    {
+      "id": "4eceeece-8977-4c66-986b-e7210919670c",
+      "time": 534.04,
+      "end": 536.74,
+      "label": "¿Qué?",
+      "oracion": "¿qué cosa alguien no sabe normalmente?"
+    },
+    {
+      "id": "18a6da54-4d7f-4a33-817d-93063e4b22de",
+      "time": 536.04,
+      "end": 538.74,
+      "label": "¿Qué?",
+      "oracion": "no sabe que"
+    },
+    {
+      "id": "1b9ff68b-38da-462c-b2ab-a6b013781e54",
+      "time": 540.04,
+      "end": 542.74,
+      "label": "¿Qué?",
+      "oracion": "ya, digamos que estamos en el contexto del chisme"
+    },
+    {
+      "id": "3a32344d-8e75-4041-a26d-db1bd18e6398",
+      "time": 544.04,
+      "end": 546.74,
+      "label": "¿Qué?",
+      "oracion": "oye, ¿puedes creer que"
+    },
+    {
+      "id": "2039512e-07a5-46ec-868c-65d90f396dce",
+      "time": 546.04,
+      "end": 548.74,
+      "label": "¿Qué?",
+      "oracion": "que mi hermana no sabe"
+    },
+    {
+      "id": "42ea43e8-dac4-4a7b-a75f-dfd6b67455dc",
+      "time": 550.04,
+      "end": 552.74,
+      "label": "¿Qué?",
+      "oracion": "que"
+    },
+    {
+      "id": "48d73149-2c0d-4eb0-bb9e-c051cda75412",
+      "time": 554.04,
+      "end": 556.74,
+      "label": "¿Cómo?",
+      "oracion": "¿cómo puede ser cuál?"
+    },
+    {
+      "id": "1e7a975b-f87b-4ff6-8bb5-cfda66f06123",
+      "time": 556.04,
+      "end": 558.74,
+      "label": "¿Qué?",
+      "oracion": "no me sirve, quiero que"
+    },
+    {
+      "id": "16550dbd-3405-4454-a99f-eb39830c771f",
+      "time": 562.04,
+      "end": 564.74,
+      "label": "¿Qué?",
+      "oracion": "que le regale"
+    },
+    {
+      "id": "e190f8bd-2403-4b41-a4e4-6f28702e9e57",
+      "time": 574.04,
+      "end": 576.74,
+      "label": "¿Qué?",
+      "oracion": "oye, no sé qué regalarle"
+    },
+    {
+      "id": "e614164c-bbc4-4695-a56a-2dfb5325f371",
+      "time": 588.04,
+      "end": 590.74,
+      "label": "¿Qué?",
+      "oracion": "pero no sé qué regalarle"
+    },
+    {
+      "id": "758f9762-02e7-457c-8cdf-d14a71c28a77",
+      "time": 590.04,
+      "end": 592.74,
+      "label": "¿Qué?",
+      "oracion": "¿qué le puedo regalar?"
+    },
+    {
+      "id": "a8aa860a-0d78-422b-badd-90843099deaf",
+      "time": 594.04,
+      "end": 596.74,
+      "label": "¿Qué?",
+      "oracion": "el primer momento es en el que te cuento"
+    },
+    {
+      "id": "68ac617a-53f1-4664-9e4d-fd4d612ce358",
+      "time": 596.04,
+      "end": 598.74,
+      "label": "¿Qué?",
+      "oracion": "que no sé qué regalar, y un segundo momento es"
+    },
+    {
+      "id": "b34886e8-8753-4d96-8333-b41810542a50",
+      "time": 598.04,
+      "end": 600.74,
+      "label": "¿Qué?",
+      "oracion": "¿qué le puedo regalar?"
+    },
+    {
+      "id": "09959844-18fd-4191-bf65-a38a0fcd1b1a",
+      "time": 609,
+      "end": 611.7,
+      "label": "¿Qué?",
+      "oracion": "primero te cuento que no se que regalar"
+    },
+    {
+      "id": "405bec30-afbb-4c34-b23d-43d9bc63b2a4",
+      "time": 643,
+      "end": 645,
+      "label": "¿Qué?",
+      "oracion": "que hora es?"
+    },
+    {
+      "id": "2e4385cf-cea9-436c-af93-47bf4b724f54",
+      "time": 659,
+      "end": 661.7,
+      "label": "¿Qué?",
+      "oracion": "no se que regalarle"
+    },
+    {
+      "id": "21e3d151-254c-476f-8791-dc2c3b38b0b2",
+      "time": 663,
+      "end": 665,
+      "label": "¿Qué?",
+      "oracion": "tengo que buscar"
+    },
+    {
+      "id": "7a50af01-9f35-43d3-8dcc-1ccb3596d897",
+      "time": 668,
+      "end": 670,
+      "label": "¿Qué?",
+      "oracion": "tu que piensas?"
+    },
+    {
+      "id": "f1eae916-d075-4441-baf5-0a54cbca9204",
+      "time": 692,
+      "end": 695.7,
+      "label": "¿Qué?",
+      "oracion": "uy no se que regalarle a mi mamá"
+    },
+    {
+      "id": "ef55276b-2214-4e49-a6f6-b182773dcc3a",
+      "time": 696,
+      "end": 699.7,
+      "label": "¿Qué?",
+      "oracion": "que cosa le gustara a mi mamá para poder comprar"
+    },
+    {
+      "id": "1f6adc7b-1b2f-4c18-8c0f-8e01bf7cfe5c",
+      "time": 715,
+      "end": 717,
+      "label": "¿Qué?",
+      "oracion": "que estamos conversando"
+    },
+    {
+      "id": "1ca383ad-837e-4ee0-9ba4-201033ed0155",
+      "time": 735,
+      "end": 738.7,
+      "label": "¿Qué?",
+      "oracion": "y la otra es que acá hay que"
+    },
+    {
+      "id": "abb12a12-e640-4316-8635-5e553cc05e1a",
+      "time": 751,
+      "end": 753.7,
+      "label": "¿Qué?",
+      "oracion": "sabes que mañana es el cumpleaños de Paul"
+    },
+    {
+      "id": "9487343a-d1ba-49ab-926b-550c36bc92ba",
+      "time": 753,
+      "end": 755,
+      "label": "¿Qué?",
+      "oracion": "no se que comprarle"
+    },
+    {
+      "id": "7ac11eb6-881c-4d04-beec-bc3e82fb27f2",
+      "time": 765,
+      "end": 768.7,
+      "label": "¿Dónde?",
+      "oracion": "oye, no se en donde vive, no se en donde vive"
+    },
+    {
+      "id": "d701851a-edb8-42cf-bd28-1a7b053f1135",
+      "time": 768,
+      "end": 770,
+      "label": "¿Dónde?",
+      "oracion": "no se en donde es la fiesta"
+    },
+    {
+      "id": "a9801355-fe1c-42f2-be83-e0d1a3e13e4a",
+      "time": 770,
+      "end": 772,
+      "label": "¿Dónde?",
+      "oracion": "tu sabes en donde?"
+    },
+    {
+      "id": "dfbcb367-b394-4d6b-b033-7b5445fe68aa",
+      "time": 775,
+      "end": 778.7,
+      "label": "¿Dónde?",
+      "oracion": "no se en donde es la reunión o la fiesta"
+    },
+    {
+      "id": "dc3f6f5d-8820-4268-82d7-7c0bfdd632eb",
+      "time": 798,
+      "end": 800.7,
+      "label": "¿Dónde?",
+      "oracion": "yo no se en donde es, tu sabes?"
+    },
+    {
+      "id": "cc8cf854-a2cf-4254-8237-e5699f364a70",
+      "time": 811,
+      "end": 813,
+      "label": "¿Dónde?",
+      "oracion": "donde?"
+    },
+    {
+      "id": "b53c9cbd-dadd-4f89-b0d2-bdbea6e8e3bb",
+      "time": 814,
+      "end": 816,
+      "label": "¿Dónde?",
+      "oracion": "yo no se en donde es"
+    },
+    {
+      "id": "0263ea81-127a-40c8-84ba-a4e8760fd373",
+      "time": 826,
+      "end": 828,
+      "label": "¿Dónde?",
+      "oracion": "tu sabes en donde es?"
+    },
+    {
+      "id": "54788805-f61c-460d-8f43-eda37ce1b270",
+      "time": 828,
+      "end": 830.7,
+      "label": "¿Cómo?",
+      "oracion": "se puede como juntar yo creo"
+    },
+    {
+      "id": "322e884d-eaea-4722-a3ca-82b800270e1f",
+      "time": 835,
+      "end": 837.7,
+      "label": "¿Dónde?",
+      "oracion": "yo no se en donde es la fiesta"
+    },
+    {
+      "id": "71948d2b-929a-47eb-8533-ca2be7c58384",
+      "time": 838,
+      "end": 840.7,
+      "label": "¿Dónde?",
+      "oracion": "yo no se en donde es la fiesta"
+    },
+    {
+      "id": "ad8d995e-180e-45ba-b5b6-1ec2748b15b8",
+      "time": 844,
+      "end": 846,
+      "label": "¿Dónde?",
+      "oracion": "donde es?"
+    },
+    {
+      "id": "bf896246-8456-41af-a1c6-1e7bc10bc091",
+      "time": 853,
+      "end": 855,
+      "label": "¿Dónde?",
+      "oracion": "yo no se en donde es"
+    },
+    {
+      "id": "56b69a04-218f-4a6c-8763-b1eee8da6638",
+      "time": 854,
+      "end": 856,
+      "label": "¿Dónde?",
+      "oracion": "tu sabes en donde es?"
+    },
+    {
+      "id": "7aa04ff0-687d-4e30-9601-6605cad332c6",
+      "time": 868,
+      "end": 871.7,
+      "label": "¿Dónde?",
+      "oracion": "uy, no se en donde guarde"
+    },
+    {
+      "id": "290769a4-a325-437d-998c-6b652345dcd7",
+      "time": 884,
+      "end": 886.7,
+      "label": "¿Qué?",
+      "oracion": "tenemos un cuaderno que lo hemos guardado"
+    },
+    {
+      "id": "0f693829-f4fa-44f4-940a-9e519cc97d29",
+      "time": 887,
+      "end": 889.7,
+      "label": "¿Dónde?",
+      "oracion": "y no recordamos en donde lo hemos guardado"
+    },
+    {
+      "id": "72ba79b6-48f3-4729-9917-e4deedf5a5cf",
+      "time": 896,
+      "end": 899.7,
+      "label": "¿Dónde?",
+      "oracion": "oye, no se en donde guardamos el cuaderno"
+    },
+    {
+      "id": "84da77ac-f641-421b-86d2-7dea9b77e50c",
+      "time": 899,
+      "end": 901.7,
+      "label": "¿Dónde?",
+      "oracion": "tu recuerdas en donde lo hemos guardado?"
+    },
+    {
+      "id": "e0145ee4-d172-4016-ac9e-f8a597cdf1de",
+      "time": 919,
+      "end": 925.7,
+      "label": "¿Dónde?",
+      "oracion": "yo me olvido el cuaderno, donde lo guardé?"
+    },
+    {
+      "id": "3edc1b60-f5ce-4ce3-88b8-b8beb69233eb",
+      "time": 925,
+      "end": 927.7,
+      "label": "¿Dónde?",
+      "oracion": "tu sabes en donde lo guardé?"
+    },
+    {
+      "id": "c9c2dd83-ff62-4eb3-ae30-27f4297b960e",
+      "time": 927,
+      "end": 929,
+      "label": "¿Dónde?",
+      "oracion": "tu sabes en donde?"
+    },
+    {
+      "id": "85a3ad1b-6147-4f3f-9873-4572abca1ced",
+      "time": 939,
+      "end": 941.7,
+      "label": "¿Por qué?",
+      "oracion": "vamos por el por que"
+    },
+    {
+      "id": "a8ade8b1-04b5-4a68-96a0-d53d234f4d68",
+      "time": 939,
+      "end": 941.7,
+      "label": "¿Qué?",
+      "oracion": "vamos por el por que"
+    },
+    {
+      "id": "bd6ca516-03ab-48bb-b48c-f4a54ce9a708",
+      "time": 950,
+      "end": 952.7,
+      "label": "¿Por qué?",
+      "oracion": "el por que"
+    },
+    {
+      "id": "70e8d994-5942-4cd0-8fee-b9600c01b835",
+      "time": 950,
+      "end": 952.7,
+      "label": "¿Qué?",
+      "oracion": "el por que"
+    },
+    {
+      "id": "c175843b-b03f-4d78-b4f6-786dd699d99c",
+      "time": 955,
+      "end": 957.7,
+      "label": "¿Qué?",
+      "oracion": "ya, digamos que te ven a ti y dicen"
+    },
+    {
+      "id": "95937344-796e-431b-b078-5df366234ed1",
+      "time": 957,
+      "end": 959.7,
+      "label": "¿Qué?",
+      "oracion": "oye, como que se chismean entre ellos"
+    },
+    {
+      "id": "1e1e245f-6f6f-4785-a4c1-75858a73b85e",
+      "time": 957,
+      "end": 959.7,
+      "label": "¿Cómo?",
+      "oracion": "oye, como que se chismean entre ellos"
+    },
+    {
+      "id": "6178a358-0ed8-4b4c-a1b9-0ab203e79f72",
+      "time": 963,
+      "end": 965.7,
+      "label": "¿Por qué?",
+      "oracion": "no se por que tiene cara de molesta"
+    },
+    {
+      "id": "939e8207-6e9f-4e9a-bb90-f0e2842971c4",
+      "time": 963,
+      "end": 965.7,
+      "label": "¿Qué?",
+      "oracion": "no se por que tiene cara de molesta"
+    },
+    {
+      "id": "ef129972-ecb7-43d8-8185-fd8bad657934",
+      "time": 965,
+      "end": 967,
+      "label": "¿Por qué?",
+      "oracion": "no se por que tiene cara de asada"
+    },
+    {
+      "id": "03249d78-c51d-428c-b382-eb6703064a4d",
+      "time": 965,
+      "end": 967,
+      "label": "¿Qué?",
+      "oracion": "no se por que tiene cara de asada"
+    },
+    {
+      "id": "d5969316-eb85-45a1-ad64-8ff5e3e631ff",
+      "time": 966,
+      "end": 968.7,
+      "label": "¿Qué?",
+      "oracion": "tu sabes que le pasa?"
+    },
+    {
+      "id": "226c67d7-cfc4-444f-a243-b0c9d913e140",
+      "time": 969,
+      "end": 971.7,
+      "label": "¿Por qué?",
+      "oracion": "no se por que tiene cara de molesta"
+    },
+    {
+      "id": "28ae7bf1-27f2-4405-856f-94d8ec0bc003",
+      "time": 969,
+      "end": 971.7,
+      "label": "¿Qué?",
+      "oracion": "no se por que tiene cara de molesta"
+    },
+    {
+      "id": "0fd44187-a1d1-4ae8-a790-54ad6ec30cb7",
+      "time": 974,
+      "end": 976.7,
+      "label": "¿Qué?",
+      "oracion": "tu sabes que tiene?"
+    },
+    {
+      "id": "2d9ae79b-aa34-4533-9ac3-0384a58ae46e",
+      "time": 980,
+      "end": 982,
+      "label": "¿Qué?",
+      "oracion": "que estan diciendo?"
+    },
+    {
+      "id": "052d491f-52b8-40c1-8158-4ab6837f97da",
+      "time": 982,
+      "end": 985.7,
+      "label": "¿Qué?",
+      "oracion": "la idea es que lo agarre a la mitad"
+    },
+    {
+      "id": "ded6f477-9fb6-462a-ad94-2a7560ca48a1",
+      "time": 989,
+      "end": 991,
+      "label": "¿Cómo?",
+      "oracion": "ya, es como"
+    },
+    {
+      "id": "527395a2-b642-464b-be44-a9882b5739f9",
+      "time": 1010,
+      "end": 1012,
+      "label": "¿Qué?",
+      "oracion": "que le pasa?"
+    },
+    {
+      "id": "0527e7ad-7c9e-47b4-b39d-98e451710d2f",
+      "time": 1015,
+      "end": 1017.7,
+      "label": "¿Qué?",
+      "oracion": "que tu ves algo raro"
+    },
+    {
+      "id": "d679be41-ebef-40a1-bc01-20c8750635be",
+      "time": 1023,
+      "end": 1025.7,
+      "label": "¿Por qué?",
+      "oracion": "no se por que esta asi"
+    },
+    {
+      "id": "809fa745-5260-4fbc-bcf1-1f94e105b398",
+      "time": 1023,
+      "end": 1025.7,
+      "label": "¿Qué?",
+      "oracion": "no se por que esta asi"
+    },
+    {
+      "id": "3bff4fc7-33ca-4e6a-9797-5c4bfa88bd9a",
+      "time": 1026,
+      "end": 1028,
+      "label": "¿Por qué?",
+      "oracion": "por que"
+    },
+    {
+      "id": "3d1980e6-bf17-4412-8894-364204411e79",
+      "time": 1026,
+      "end": 1028,
+      "label": "¿Qué?",
+      "oracion": "por que"
+    },
+    {
+      "id": "a50f210d-d70c-44a4-b619-ad0905caaa9a",
+      "time": 1028,
+      "end": 1030,
+      "label": "¿Por qué?",
+      "oracion": "no se por que"
+    },
+    {
+      "id": "03eee729-69f7-4e6d-bb46-e2a6e477ded9",
+      "time": 1028,
+      "end": 1030,
+      "label": "¿Qué?",
+      "oracion": "no se por que"
+    },
+    {
+      "id": "0fc63693-d451-465d-b35c-4ded531052d6",
+      "time": 1030,
+      "end": 1032,
+      "label": "¿Por qué?",
+      "oracion": "no se por que"
+    },
+    {
+      "id": "d65c3e03-e03e-47d3-9562-55e5709c557e",
+      "time": 1030,
+      "end": 1032,
+      "label": "¿Qué?",
+      "oracion": "no se por que"
+    },
+    {
+      "id": "f952afc6-b343-4fe2-87f1-091883e49460",
+      "time": 1032,
+      "end": 1034,
+      "label": "¿Por qué?",
+      "oracion": "no se por que"
+    },
+    {
+      "id": "fe9151fa-054d-422a-8d1c-79d48b405013",
+      "time": 1032,
+      "end": 1034,
+      "label": "¿Qué?",
+      "oracion": "no se por que"
+    },
+    {
+      "id": "b4f6bf8d-4969-4990-9359-e0095f64bb2a",
+      "time": 1034,
+      "end": 1036,
+      "label": "¿Por qué?",
+      "oracion": "no se por que"
+    },
+    {
+      "id": "7d47df28-9de2-4da8-957d-72fd409816e6",
+      "time": 1034,
+      "end": 1036,
+      "label": "¿Qué?",
+      "oracion": "no se por que"
+    },
+    {
+      "id": "1e22a9aa-fef9-4021-a22b-0ede9d24b4f6",
+      "time": 1036,
+      "end": 1038,
+      "label": "¿Por qué?",
+      "oracion": "no se por que"
+    },
+    {
+      "id": "b640818f-4b6d-403f-b420-1c407c56beff",
+      "time": 1036,
+      "end": 1038,
+      "label": "¿Qué?",
+      "oracion": "no se por que"
+    },
+    {
+      "id": "86b8bb8d-a0e2-45f6-b6c6-48cd224110eb",
+      "time": 1038,
+      "end": 1040,
+      "label": "¿Por qué?",
+      "oracion": "por que"
+    },
+    {
+      "id": "a2b24af6-8855-4c1b-bff5-66513d7ac3e5",
+      "time": 1038,
+      "end": 1040,
+      "label": "¿Qué?",
+      "oracion": "por que"
+    },
+    {
+      "id": "caf1f4e1-0919-4750-8dc5-dac56c16147b",
+      "time": 1055,
+      "end": 1057,
+      "label": "¿Por qué?",
+      "oracion": "por que"
+    },
+    {
+      "id": "7dfc646e-9d03-4e6f-ab8d-2bc1f88a9047",
+      "time": 1055,
+      "end": 1057,
+      "label": "¿Qué?",
+      "oracion": "por que"
+    },
+    {
+      "id": "c0088281-fe84-4463-975d-b860da4ca6f9",
+      "time": 1062,
+      "end": 1064.7,
+      "label": "¿Qué?",
+      "oracion": "sabes que puede ser ya sabes"
+    },
+    {
+      "id": "2bf1d309-67bc-490b-bbff-d6b6ce07eea8",
+      "time": 1064,
+      "end": 1066.7,
+      "label": "¿Qué?",
+      "oracion": "tienes idea de que es seria"
+    },
+    {
+      "id": "da46266a-2085-4daa-8043-71ae7713286c",
+      "time": 1068,
+      "end": 1070.7,
+      "label": "¿Para qué?",
+      "oracion": "me vas a querer hacer para que conozcan a Claudia"
+    },
+    {
+      "id": "29e2822b-9018-4616-85b3-805c00d77163",
+      "time": 1068,
+      "end": 1070.7,
+      "label": "¿Qué?",
+      "oracion": "me vas a querer hacer para que conozcan a Claudia"
+    },
+    {
+      "id": "0e3eff9b-29aa-407a-bf28-10907eded534",
+      "time": 1070,
+      "end": 1072.7,
+      "label": "¿Para qué?",
+      "oracion": "para que sepan que es seria"
+    },
+    {
+      "id": "f29ba846-5d6b-424e-adb6-5d2a33c961fc",
+      "time": 1070,
+      "end": 1072.7,
+      "label": "¿Qué?",
+      "oracion": "para que sepan que es seria"
+    },
+    {
+      "id": "4f33d757-ca60-4651-a941-bf88ae3e6dc0",
+      "time": 1073,
+      "end": 1075,
+      "label": "¿Cómo?",
+      "oracion": "como haces?"
+    },
+    {
+      "id": "abd35756-ddc6-4705-8a2b-2f9999f17de7",
+      "time": 1079,
+      "end": 1081,
+      "label": "¿Qué?",
+      "oracion": "que rara, que le pasa?"
+    },
+    {
+      "id": "15bb00f0-8c48-4886-9774-d1d27ae45007",
+      "time": 1080,
+      "end": 1082,
+      "label": "¿Por qué?",
+      "oracion": "por que esta asi?"
+    },
+    {
+      "id": "c7e0c6d8-3281-44cc-8d6d-a379e2d2a460",
+      "time": 1080,
+      "end": 1082,
+      "label": "¿Qué?",
+      "oracion": "por que esta asi?"
+    },
+    {
+      "id": "73043c80-b0b6-477d-97dd-ce7eb50c2f17",
+      "time": 1082,
+      "end": 1084.7,
+      "label": "¿Por qué?",
+      "oracion": "pero ahi esta el por que de frente"
+    },
+    {
+      "id": "d2dd96e6-0ef0-4207-92e7-3ca8a04c4c7d",
+      "time": 1082,
+      "end": 1084.7,
+      "label": "¿Qué?",
+      "oracion": "pero ahi esta el por que de frente"
+    },
+    {
+      "id": "fc0456bd-9bad-4e75-a9ad-f15407e60dfb",
+      "time": 1084,
+      "end": 1086.7,
+      "label": "¿Qué?",
+      "oracion": "nosotros queremos la parte en que le cuenta"
+    },
+    {
+      "id": "80b01691-423b-4690-9760-d4322d469019",
+      "time": 1086,
+      "end": 1088,
+      "label": "¿Por qué?",
+      "oracion": "oye, no se por que"
+    },
+    {
+      "id": "52aa2728-6404-4aa7-b0e0-0b6cd41d4da9",
+      "time": 1086,
+      "end": 1088,
+      "label": "¿Qué?",
+      "oracion": "oye, no se por que"
+    },
+    {
+      "id": "51be8697-691c-4854-b33d-24a85bf0a3fc",
+      "time": 1089,
+      "end": 1091,
+      "label": "¿Qué?",
+      "oracion": "que rara, no?"
+    },
+    {
+      "id": "8dc6c584-0810-43fb-88de-3ab7ab3abdda",
+      "time": 1092,
+      "end": 1094,
+      "label": "¿Por qué?",
+      "oracion": "por que?"
+    },
+    {
+      "id": "8ea70a7d-6e2e-405e-a395-09442e365a79",
+      "time": 1092,
+      "end": 1094,
+      "label": "¿Qué?",
+      "oracion": "por que?"
+    },
+    {
+      "id": "71685cf3-1329-4ba2-8616-af345cfc2394",
+      "time": 1094,
+      "end": 1096.7,
+      "label": "¿Por qué?",
+      "oracion": "no entiendo por que esta seria"
+    },
+    {
+      "id": "0dd7831e-bedf-453d-a155-9d68fe70bdbe",
+      "time": 1094,
+      "end": 1096.7,
+      "label": "¿Qué?",
+      "oracion": "no entiendo por que esta seria"
+    },
+    {
+      "id": "105111da-0edd-4337-a00c-75682b3e09a7",
+      "time": 1101,
+      "end": 1103,
+      "label": "¿Qué?",
+      "oracion": "hay que añadirle"
+    },
+    {
+      "id": "d4999b7a-499e-448f-a0c7-b7c7d8f4aabc",
+      "time": 1103,
+      "end": 1105.7,
+      "label": "¿Por qué?",
+      "oracion": "por que esta seria"
+    },
+    {
+      "id": "a567a813-f891-4a73-b7af-0618c6a18869",
+      "time": 1103,
+      "end": 1105.7,
+      "label": "¿Qué?",
+      "oracion": "por que esta seria"
+    },
+    {
+      "id": "75b08272-748e-441f-9361-71fc1dbb39bb",
+      "time": 1108,
+      "end": 1110,
+      "label": "¿Por qué?",
+      "oracion": "o no entiendo por que"
+    },
+    {
+      "id": "4428ee85-a5da-4471-b718-c2c4a634340b",
+      "time": 1108,
+      "end": 1110,
+      "label": "¿Qué?",
+      "oracion": "o no entiendo por que"
+    },
+    {
+      "id": "8820fdf2-81f5-4432-893d-67bf9fdda36f",
+      "time": 1125,
+      "end": 1127,
+      "label": "¿Qué?",
+      "oracion": "que raro"
+    },
+    {
+      "id": "e53e52da-13d6-4cbc-b13a-6aff36a1573e",
+      "time": 1127,
+      "end": 1130.7,
+      "label": "¿Por qué?",
+      "oracion": "no se por que"
+    },
+    {
+      "id": "36ef7fe0-6cae-4467-acac-4674438a226d",
+      "time": 1127,
+      "end": 1130.7,
+      "label": "¿Qué?",
+      "oracion": "no se por que"
+    },
+    {
+      "id": "114150b1-93b6-46c0-b622-28114a5fd89b",
+      "time": 1158,
+      "end": 1160,
+      "label": "¿Para qué?",
+      "oracion": "oye, para que?"
+    },
+    {
+      "id": "4e2067ec-5651-4540-a689-55bbf4a18292",
+      "time": 1158,
+      "end": 1160,
+      "label": "¿Qué?",
+      "oracion": "oye, para que?"
+    },
+    {
+      "id": "5f06b183-a33d-499a-af06-db415313d5d9",
+      "time": 1159,
+      "end": 1161.7,
+      "label": "¿Para qué?",
+      "oracion": "para que son estas sesiones de licitación?"
+    },
+    {
+      "id": "9ad68440-b2dd-49ef-a0ef-952cb2d2ed24",
+      "time": 1159,
+      "end": 1161.7,
+      "label": "¿Qué?",
+      "oracion": "para que son estas sesiones de licitación?"
+    },
+    {
+      "id": "1da48f6c-b28d-4718-ab86-64d2aa190516",
+      "time": 1163,
+      "end": 1165,
+      "label": "¿Para qué?",
+      "oracion": "para que son estas sesiones?"
+    },
+    {
+      "id": "ba0c6091-43a5-48d5-89d8-5751bf151f22",
+      "time": 1163,
+      "end": 1165,
+      "label": "¿Qué?",
+      "oracion": "para que son estas sesiones?"
+    },
+    {
+      "id": "3fee45d0-6d3c-4469-98c5-0ce99b6f2b12",
+      "time": 1167,
+      "end": 1169,
+      "label": "¿Cómo?",
+      "oracion": "como?"
+    },
+    {
+      "id": "35885fef-ab8d-4c6e-9945-faa5682eb23b",
+      "time": 1168,
+      "end": 1170,
+      "label": "¿Quién?",
+      "oracion": "a quien?"
+    },
+    {
+      "id": "999d567e-2454-44d8-a957-f1f3440c30ef",
+      "time": 1179,
+      "end": 1181.7,
+      "label": "¿Qué?",
+      "oracion": "cortamos esta que es la parte mas heavy"
+    },
+    {
+      "id": "0d5a6591-1a81-4ca4-ab90-05353f12736d",
+      "time": 1195,
+      "end": 1197,
+      "label": "¿Qué?",
+      "oracion": "que tambien, igual lo quiero"
+    }
+  ]
+}

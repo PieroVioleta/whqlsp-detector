@@ -1,0 +1,53 @@
+{
+  "video_id": "TRADUCCIONES Y JUICIOS/CLAUDIA/Copia de 00028",
+  "annotations": [
+    {
+      "id": "8b6d12b9-4927-47c8-944b-7cbebfa7cf39",
+      "start": 120.45,
+      "end": 128,
+      "label": "¿Quién?",
+      "source": "manual",
+      "confidence": null,
+      "oracion": "¿Quién alto, oso o rosita?"
+    },
+    {
+      "id": "0b320129-2780-492d-b02b-730acdb64b5d",
+      "start": 153.2,
+      "end": 157,
+      "label": "¿Quién?",
+      "source": "manual",
+      "confidence": null,
+      "oracion": "Oso grande, quién suyo"
+    }
+  ],
+  "markers": [
+    {
+      "id": "03741801-cc0e-4b02-ae20-4ecd4cd34347",
+      "time": 1,
+      "end": 5.7,
+      "label": "¿Qué?",
+      "oracion": "El oso de peluche es más alto que Rosita."
+    },
+    {
+      "id": "d907dd2c-30a7-44a3-a299-1866de8a8b05",
+      "time": 114,
+      "end": 118.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién es más alto, el peluche o rosita?"
+    },
+    {
+      "id": "40a3657b-dba7-4c69-b2d5-845bc3e0da77",
+      "time": 118,
+      "end": 129.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién es más alto, el peluche o rosita?"
+    },
+    {
+      "id": "a633fe36-f76a-439d-b5e8-0bc2aa8b016f",
+      "time": 148,
+      "end": 170.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién es más alto, el peluche o rosita?"
+    }
+  ]
+}

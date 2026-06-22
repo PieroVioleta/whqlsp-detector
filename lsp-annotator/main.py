@@ -6,12 +6,15 @@ Ejecutar: uv run python main.py
 
 import asyncio
 import json
+import math
+import os
 import pickle
 import re
 import shutil
 import subprocess
 import threading
 import time
+import unicodedata
 import uuid
 import webbrowser
 from contextlib import asynccontextmanager
@@ -58,6 +61,34 @@ LABEL_MAP: dict[str, str] = {
     'CUANTO':  '¿Cuánto?',
     'CUANTOS': '¿Cuánto?',
 }
+
+# ── Audio detection (Whisper API) ─────────────────────────────────────────────
+AUDIO_PATRONES: dict[str, str] = {
+    r"\bpara\s+qu[ée]\b":     "PARA QUÉ",   # antes de "por qué" para evitar solapamiento
+    r"\bpor\s+qu[ée]\b":      "POR QUÉ",
+    r"\bqu[ée]\b":             "QUÉ",
+    r"\bc[oó]mo\b":            "CÓMO",
+    r"\bcu[aá]ndo\b":          "CUÁNDO",
+    r"\bd[oó]nde\b":           "DÓNDE",
+    r"\bqui[ée]n(es)?\b":      "QUIÉN(ES)",
+}
+
+AUDIO_LABEL_MAP: dict[str, str] = {
+    "QUÉ":       "¿Qué?",
+    "CÓMO":      "¿Cómo?",
+    "CUÁNDO":    "¿Cuándo?",
+    "DÓNDE":     "¿Dónde?",
+    "QUIÉN(ES)": "¿Quién?",
+    "POR QUÉ":   "¿Por qué?",
+    "PARA QUÉ":  "¿Para qué?",
+}
+
+AUDIO_LIMITE_API_BYTES   = 25 * 1024 * 1024   # 25 MB
+AUDIO_DURACION_FRAG      = 600                  # 10 min por fragmento
+AUDIO_TEMP_DIR           = BASE_DIR / "audio_temp"
+AUDIO_TIMESTAMP_OFFSET   = 1    # Whisper tiende a iniciar segmentos ~1-2s antes — se corrige aquí
+AUDIO_PAD_FIN            = 0.7    # segundos adicionales al final del segmento
+AUDIO_MIN_DURATION       = 2.0    # duración mínima de un marcador en segundos
 
 # ── Estado global del modelo (cargado al arrancar) ────────────────────────────
 _bundle: dict | None = None
@@ -377,12 +408,21 @@ async def save_annotations(video_id: str, request: Request):
 # GET /clips/{video_id}  – descarga un segmento del video usando ffmpeg
 # ---------------------------------------------------------------------------
 
+def _normalizar_para_nombre(texto: str, max_len: int = 50) -> str:
+    """Convierte texto libre en un slug seguro para nombres de archivo."""
+    texto = unicodedata.normalize("NFD", texto).encode("ascii", "ignore").decode()
+    texto = re.sub(r"[^\w\s]", "", texto).strip()
+    texto = re.sub(r"\s+", "_", texto)
+    return texto[:max_len].strip("_")
+
+
 @app.get("/clips/{video_id:path}")
 async def download_clip(
     video_id: str,
-    start: float = Query(..., ge=0, description="Tiempo de inicio en segundos"),
-    end: float   = Query(..., gt=0, description="Tiempo de fin en segundos"),
-    label: str   = Query("", description="Etiqueta de la anotación"),
+    start:   float = Query(..., ge=0, description="Tiempo de inicio en segundos"),
+    end:     float = Query(..., gt=0, description="Tiempo de fin en segundos"),
+    label:   str   = Query("", description="Etiqueta de la anotación"),
+    oracion: str   = Query("", description="Frase de referencia (opcional)"),
 ):
     if end <= start:
         raise HTTPException(status_code=400, detail="'end' debe ser mayor que 'start'")
@@ -405,14 +445,25 @@ async def download_clip(
 
     # Construir nombre y ruta del clip siguiendo la estructura de carpetas
     video_stem = Path(video_id).name
-    label_safe = re.sub(r"[^\w\-]", "_", label).strip("_") or "clip"
-    label_safe = re.sub(r"_+", "_", label_safe)
-    clip_name  = f"{video_stem}_clip_{label_safe}.mp4"
 
-    rel_subdir  = Path(video_id).parent
+    # Normalizar etiqueta y oración para el nombre de archivo
+    label_norm  = _normalizar_para_nombre(label).upper() or "CLIP"
+    oracion_norm = _normalizar_para_nombre(oracion, 30)
+
+    rel_subdir   = Path(video_id).parent
     clips_subdir = CLIPS_DIR / rel_subdir
     clips_subdir.mkdir(parents=True, exist_ok=True)
+
+    # Evitar sobreescritura: primera vez sin número, luego _2, _3, …
+    suffix    = f"_{oracion_norm}" if oracion_norm else ""
+    base_name = f"{video_stem}_clip_{label_norm}{suffix}"
+    clip_name   = f"{base_name}.mp4"
     clip_output = clips_subdir / clip_name
+    counter     = 2
+    while clip_output.exists():
+        clip_name   = f"{base_name}_{counter}.mp4"
+        clip_output = clips_subdir / clip_name
+        counter    += 1
 
     try:
         result = subprocess.run(
@@ -433,11 +484,7 @@ async def download_clip(
     if result.returncode != 0:
         raise HTTPException(status_code=500, detail="ffmpeg falló al extraer el clip")
 
-    return FileResponse(
-        clip_output,
-        media_type="video/mp4",
-        filename=clip_name,
-    )
+    return JSONResponse(content={"ok": True, "clip": clip_name})
 
 
 # ---------------------------------------------------------------------------
@@ -617,6 +664,192 @@ async def analyze_video(video_id: str):
 @app.get("/analyze-status/{job_id}")
 async def analyze_status(job_id: str):
     job = _analyze_jobs.get(job_id)
+    if job is None:
+        raise HTTPException(status_code=404, detail="Job no encontrado")
+    return JSONResponse(content=job)
+
+
+# ---------------------------------------------------------------------------
+# Detección de palabras interrogativas por audio (Whisper API)
+# ---------------------------------------------------------------------------
+
+def _detectar_audio(video_path: Path, job: dict) -> list[dict]:
+    """
+    Extrae el audio del video, lo transcribe con Whisper y busca palabras
+    interrogativas.  Actualiza `job` con progreso (0-100).
+    Devuelve lista de {id, start, end, label, source, confidence}.
+    """
+    api_key = os.environ.get("OPENAI_API_KEY")
+    if not api_key:
+        raise RuntimeError(
+            "OPENAI_API_KEY no está configurada. "
+            "Defínela en el entorno antes de iniciar el servidor."
+        )
+
+    from openai import OpenAI
+    client = OpenAI(api_key=api_key)
+
+    AUDIO_TEMP_DIR.mkdir(exist_ok=True)
+    audio_path = AUDIO_TEMP_DIR / f"{uuid.uuid4().hex}.wav"
+
+    # ── Fase 1: extraer audio (0 → 15%) ──────────────────────────────────────
+    job.update({"phase": "Extrayendo audio…", "progress": 5})
+    result = subprocess.run(
+        [
+            "ffmpeg", "-y", "-i", str(video_path),
+            "-vn", "-acodec", "pcm_s16le", "-ar", "16000", "-ac", "1",
+            str(audio_path),
+        ],
+        capture_output=True,
+        timeout=300,
+    )
+    if result.returncode != 0:
+        raise RuntimeError(f"ffmpeg falló al extraer audio: {result.stderr.decode()[:300]}")
+
+    job.update({"progress": 15})
+
+    # ── Fase 2: dividir si supera 25 MB (15 → 30%) ───────────────────────────
+    tamano = audio_path.stat().st_size
+    fragmentos: list[tuple[Path, float]] = []  # (ruta, offset_segundos)
+
+    if tamano <= AUDIO_LIMITE_API_BYTES:
+        fragmentos = [(audio_path, 0.0)]
+    else:
+        job.update({"phase": "Dividiendo audio…", "progress": 20})
+        probe = subprocess.run(
+            [
+                "ffprobe", "-v", "error",
+                "-show_entries", "format=duration",
+                "-of", "default=noprint_wrappers=1:nokey=1",
+                str(audio_path),
+            ],
+            capture_output=True, text=True, timeout=15,
+        )
+        duracion = float(probe.stdout.strip() or "0")
+        n_frags  = math.ceil(duracion / AUDIO_DURACION_FRAG)
+        frag_dir = AUDIO_TEMP_DIR / audio_path.stem
+        frag_dir.mkdir(exist_ok=True)
+        for i in range(n_frags):
+            offset    = i * AUDIO_DURACION_FRAG
+            frag_path = frag_dir / f"frag_{i:03d}.wav"
+            subprocess.run(
+                [
+                    "ffmpeg", "-y", "-i", str(audio_path),
+                    "-ss", str(offset), "-t", str(AUDIO_DURACION_FRAG),
+                    "-acodec", "pcm_s16le", "-ar", "16000", "-ac", "1",
+                    str(frag_path),
+                ],
+                capture_output=True, timeout=300,
+            )
+            fragmentos.append((frag_path, float(offset)))
+        audio_path.unlink(missing_ok=True)
+
+    job.update({"progress": 30})
+
+    # ── Fase 3: transcribir con Whisper (30 → 90%) ───────────────────────────
+    todos_segmentos: list[dict] = []
+    n_frags = len(fragmentos)
+
+    for idx, (frag_path, offset) in enumerate(fragmentos):
+        job.update({
+            "phase":    f"Transcribiendo… ({idx + 1}/{n_frags})",
+            "progress": 30 + int((idx / n_frags) * 60),
+        })
+        with open(frag_path, "rb") as f:
+            resp = client.audio.transcriptions.create(
+                model="whisper-1",
+                file=f,
+                language="es",
+                response_format="verbose_json",
+                timestamp_granularities=["segment"],
+            )
+        for seg in (resp.model_dump().get("segments") or []):
+            seg["start"] = (seg.get("start") or 0) + offset
+            seg["end"]   = (seg.get("end")   or 0) + offset
+            todos_segmentos.append(seg)
+
+    # ── Fase 4: detectar patrones y construir anotaciones (90 → 100%) ────────
+    job.update({"phase": "Detectando palabras interrogativas…", "progress": 90})
+
+    anotaciones: list[dict] = []
+    for seg in todos_segmentos:
+        texto = (seg.get("text") or "").strip()
+        if not texto:
+            continue
+        texto_lower = texto.lower()
+        encontradas: list[str] = []
+        for patron, etiqueta_raw in AUDIO_PATRONES.items():
+            if re.search(patron, texto_lower, flags=re.IGNORECASE):
+                label = AUDIO_LABEL_MAP.get(etiqueta_raw, etiqueta_raw)
+                if label not in encontradas:
+                    encontradas.append(label)
+        for label in encontradas:
+            t_ini = round(max(0.0, float(seg["start"]) + AUDIO_TIMESTAMP_OFFSET), 2)
+            t_fin = round(float(seg["end"]) + AUDIO_TIMESTAMP_OFFSET + AUDIO_PAD_FIN, 2)
+            if t_fin - t_ini < AUDIO_MIN_DURATION:
+                t_fin = round(t_ini + AUDIO_MIN_DURATION, 2)
+            anotaciones.append({
+                "id":     str(uuid.uuid4()),
+                "time":   t_ini,
+                "end":    t_fin,
+                "label":  label,
+                "oracion": texto,
+            })
+
+    # ── Limpieza ──────────────────────────────────────────────────────────────
+    try:
+        audio_path.unlink(missing_ok=True)
+        if n_frags > 1:
+            shutil.rmtree(frag_dir, ignore_errors=True)
+    except Exception:
+        pass
+
+    return anotaciones
+
+
+_audio_jobs: dict[str, dict] = {}
+
+
+@app.post("/analyze-audio/{video_id:path}")
+async def analyze_audio(video_id: str):
+    if not os.environ.get("OPENAI_API_KEY"):
+        raise HTTPException(
+            status_code=400,
+            detail="OPENAI_API_KEY no está configurada. Defínela en el entorno antes de iniciar el servidor.",
+        )
+
+    video_path: Path | None = None
+    for ext in (".mp4", ".mov", ".MP4", ".MOV"):
+        candidate = VIDEOS_DIR / f"{video_id}{ext}"
+        if candidate.exists():
+            video_path = candidate
+            break
+    if video_path is None:
+        raise HTTPException(status_code=404, detail="Video no encontrado")
+
+    if shutil.which("ffmpeg") is None:
+        raise HTTPException(status_code=501, detail="ffmpeg no está instalado")
+
+    job_id = str(uuid.uuid4())
+    job    = {"status": "running", "progress": 0, "phase": "Iniciando…",
+              "annotations": None, "error": None}
+    _audio_jobs[job_id] = job
+
+    def _run():
+        try:
+            anns = _detectar_audio(video_path, job)
+            job.update({"status": "done", "progress": 100,
+                        "phase": f"{len(anns)} palabras detectadas", "annotations": anns})
+        except Exception as exc:
+            job.update({"status": "error", "error": str(exc)})
+
+    threading.Thread(target=_run, daemon=True).start()
+    return JSONResponse(content={"job_id": job_id})
+
+
+@app.get("/analyze-audio-status/{job_id}")
+async def analyze_audio_status(job_id: str):
+    job = _audio_jobs.get(job_id)
     if job is None:
         raise HTTPException(status_code=404, detail="Job no encontrado")
     return JSONResponse(content=job)

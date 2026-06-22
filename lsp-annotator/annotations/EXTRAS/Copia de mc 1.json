@@ -1,0 +1,1773 @@
+{
+  "video_id": "EXTRAS/Copia de mc 1",
+  "annotations": [
+    {
+      "id": "a54039a3-110a-49af-9a91-88181ad7f139",
+      "start": 111,
+      "end": 117.56,
+      "label": "¿Qué?",
+      "oracion": "La cara también funciona como Qué",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "8252c666-7ee2-406a-a247-abc034820c63",
+      "start": 121.2,
+      "end": 124.83,
+      "label": "¿Qué?",
+      "oracion": "La cara también funciona como Qué",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "dd543200-d43d-400d-92bf-ed9a8d0e39df",
+      "start": 131.56,
+      "end": 137.76,
+      "label": "¿Qué?",
+      "oracion": "Arrugar nariz",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "3461f0b0-135a-4766-83ae-0d64815e5e59",
+      "start": 138.8,
+      "end": 142.88,
+      "label": "¿Qué?",
+      "oracion": "Estoy conversando, ¿qué? ¿Qué cosa?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "f0693693-7084-446b-9da7-52fcef5ac276",
+      "start": 144.07,
+      "end": 146.79,
+      "label": "¿Qué?",
+      "oracion": "Gesto",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "f44f9a19-b027-453f-b3cd-ff349724e18c",
+      "start": 167.05,
+      "end": 171.36,
+      "label": "¿Qué?",
+      "oracion": "¿Qué? ¿Hoy qué?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "1fd4f38d-5a8c-4557-a22e-aed10f7914cf",
+      "start": 160.02,
+      "end": 166.14,
+      "label": "¿Qué?",
+      "oracion": "Es válido con una mano?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "9435d562-b35a-41e8-bd90-17f823518643",
+      "start": 174.83,
+      "end": 192.9,
+      "label": "¿Qué?",
+      "oracion": "¿Qué?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "d35df704-82c2-4fcd-9945-a671295da7c0",
+      "start": 193,
+      "end": 197,
+      "label": "¿Qué?",
+      "oracion": "¿Qué? ¿Qué cosa?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "ee9684eb-cf7b-473b-8eb8-b06a15117a2c",
+      "start": 279,
+      "end": 283,
+      "label": "¿Qué?",
+      "oracion": "Para las oraciones, por ejemplo, de comprar",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "47c3c9f6-77e2-4240-856e-a12536fb34dc",
+      "start": 283.4,
+      "end": 290.2,
+      "label": "¿Qué?",
+      "oracion": "Haces el del índice sobre la palma",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "3ed7d599-3c87-47a0-a5e9-4162ede0a5aa",
+      "start": 302.37,
+      "end": 309,
+      "label": "¿Qué?",
+      "oracion": "María comprar qué",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "ea3b1837-893e-45ed-ba33-d2c5964a75a1",
+      "start": 320.82,
+      "end": 325.41,
+      "label": "¿Quién?",
+      "oracion": "Palabra quién, para la seña quién.",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "49737e06-9654-4b7c-869f-ad7476a5bce1",
+      "start": 335.61,
+      "end": 343.13,
+      "label": "¿Quién?",
+      "oracion": "¿Quién?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "7911d4a5-0882-4435-8932-8e608990ad22",
+      "start": 349,
+      "end": 353,
+      "label": "¿Quién?",
+      "oracion": "Quién",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "810e3c5e-5a36-4ce3-92ac-64cacba70082",
+      "start": 359.57,
+      "end": 366.26,
+      "label": "¿Quién?",
+      "oracion": "Hay una reunión, ¿quién es él?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "a2d6b531-a941-444f-b67f-264ecac19680",
+      "start": 376.12,
+      "end": 381,
+      "label": "¿Para qué?",
+      "oracion": "¿Para qué?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "9cda6dee-2e21-486c-9607-4a4f5d2bb8c8",
+      "start": 383.71,
+      "end": 387.88,
+      "label": "¿Para qué?",
+      "oracion": "Si alguien viene, ¿para qué ha venido?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "fa315138-bf9c-4e1f-9805-ad96c51475e6",
+      "start": 393,
+      "end": 396.7,
+      "label": "¿Para qué?",
+      "oracion": "¿para qué ha venido?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "e7d362c2-cc6e-4f90-91ca-d0b9f3ea7a07",
+      "start": 400.33,
+      "end": 402.73,
+      "label": "¿Para qué?",
+      "oracion": "¿Para qué?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "14dd2a78-7cbd-4cd2-8530-ff97b2fa1975",
+      "start": 429,
+      "end": 433,
+      "label": "¿Quién?",
+      "oracion": "¿quién?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "1fea9fb0-362c-4d19-bb5e-e10e2fc50ffa",
+      "start": 453,
+      "end": 457,
+      "label": "¿Quién?",
+      "oracion": "Quién",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "f060b2f3-44e8-46e2-b41f-0daa214dc517",
+      "start": 461,
+      "end": 465,
+      "label": "¿Quién?",
+      "oracion": "Quién",
+      "source": "manual",
+      "confidence": null
+    }
+  ],
+  "markers": [
+    {
+      "id": "90deafad-3a46-493a-b585-ace4b2da3ae5",
+      "time": 5,
+      "end": 9.7,
+      "label": "¿Qué?",
+      "oracion": "Sí se ve, ¿no? Creo que Paul..."
+    },
+    {
+      "id": "76bc76e7-1c80-466e-941f-e43b09d7f48e",
+      "time": 9,
+      "end": 13.7,
+      "label": "¿Qué?",
+      "oracion": "Ah, y también se ve. Perfecto. Me da miedo que Paul no entre."
+    },
+    {
+      "id": "aee1666c-1d98-41e8-b121-ad8a7c91b1dd",
+      "time": 45,
+      "end": 49.7,
+      "label": "¿Qué?",
+      "oracion": "Lo primero que quisiera"
+    },
+    {
+      "id": "721ca852-172f-4b77-ae12-25142843100a",
+      "time": 53,
+      "end": 57.7,
+      "label": "¿Qué?",
+      "oracion": "pueden contestar, todos a la vez no tienen que contestar como uno por uno"
+    },
+    {
+      "id": "4fb18972-c2a6-4583-b149-3d68143f7331",
+      "time": 53,
+      "end": 57.7,
+      "label": "¿Cómo?",
+      "oracion": "pueden contestar, todos a la vez no tienen que contestar como uno por uno"
+    },
+    {
+      "id": "384cad85-3e05-4375-8b23-42dfd5bbdd43",
+      "time": 61,
+      "end": 65.7,
+      "label": "¿Qué?",
+      "oracion": "La primera pregunta es, ¿qué palabras Q hay para el que?"
+    },
+    {
+      "id": "438da19a-94dd-4b7c-98b7-61a346a3cab9",
+      "time": 113,
+      "end": 117.7,
+      "label": "¿Cómo?",
+      "oracion": "La cara también funciona como Q."
+    },
+    {
+      "id": "53f5a6f0-177b-4669-af61-1a259ce01145",
+      "time": 117,
+      "end": 121.7,
+      "label": "¿Qué?",
+      "oracion": "¿Otra respuesta que quieren añadir?"
+    },
+    {
+      "id": "c7979647-81ac-4f23-b48f-dc5046f946bd",
+      "time": 137,
+      "end": 141.7,
+      "label": "¿Qué?",
+      "oracion": "Estoy conversando, ¿qué? ¿Qué cosa?"
+    },
+    {
+      "id": "9c900c45-eba6-46c8-ba38-88d741bb37d8",
+      "time": 145,
+      "end": 149.7,
+      "label": "¿Para qué?",
+      "oracion": "Así. Ahora, ¿eso es para qué?"
+    },
+    {
+      "id": "ca2948f1-b7ff-4125-a950-2c6e9421634c",
+      "time": 145,
+      "end": 149.7,
+      "label": "¿Qué?",
+      "oracion": "Así. Ahora, ¿eso es para qué?"
+    },
+    {
+      "id": "883303f6-0530-4d70-b9af-350356f2602e",
+      "time": 169,
+      "end": 173.7,
+      "label": "¿Qué?",
+      "oracion": "¿Qué? ¿Hoy qué?"
+    },
+    {
+      "id": "f2dfede2-8a90-41f2-9c60-2ab40d83aae5",
+      "time": 177,
+      "end": 181.7,
+      "label": "¿Qué?",
+      "oracion": "¿Qué?"
+    },
+    {
+      "id": "51d35783-86bb-4a86-b4ac-6bda95e02058",
+      "time": 185,
+      "end": 189.7,
+      "label": "¿Qué?",
+      "oracion": "¿Qué?"
+    },
+    {
+      "id": "9d118985-5ac0-436b-8a8e-4ed36a87983d",
+      "time": 193,
+      "end": 197.7,
+      "label": "¿Qué?",
+      "oracion": "¿Qué? ¿Qué cosa?"
+    },
+    {
+      "id": "29f67499-a260-44f1-a022-f7bad2e844a8",
+      "time": 225,
+      "end": 229.7,
+      "label": "¿Qué?",
+      "oracion": "Ya. Entonces, este uso del qué con expresión facial nada más"
+    },
+    {
+      "id": "20f941dc-e962-417c-8f5b-22b1b14c4ec3",
+      "time": 233,
+      "end": 237.7,
+      "label": "¿Cómo?",
+      "oracion": "en una oración completa, es decir, no solamente como para decir"
+    },
+    {
+      "id": "595f2a8e-dbf5-421a-b4e3-77de4aac606b",
+      "time": 237,
+      "end": 241.7,
+      "label": "¿Qué?",
+      "oracion": "¿qué pasó? ¿No es cierto? No como qué, sino con más palabras,"
+    },
+    {
+      "id": "1a635993-6bc3-48b6-9a25-0cfd4cfd7ce2",
+      "time": 237,
+      "end": 241.7,
+      "label": "¿Cómo?",
+      "oracion": "¿qué pasó? ¿No es cierto? No como qué, sino con más palabras,"
+    },
+    {
+      "id": "7c34d7b7-4326-4647-ad69-d3bfbf75bfb5",
+      "time": 241,
+      "end": 245.7,
+      "label": "¿Cómo?",
+      "oracion": "como una construcción más larga. Por ejemplo,"
+    },
+    {
+      "id": "35f27ef2-ec9e-413e-8eeb-4b028306e988",
+      "time": 245,
+      "end": 249.7,
+      "label": "¿Qué?",
+      "oracion": "¿qué compró Pepe? ¿No?"
+    },
+    {
+      "id": "9fc7b626-c640-4270-b06b-d84c453c50a4",
+      "time": 249,
+      "end": 253.7,
+      "label": "¿Qué?",
+      "oracion": "¿Qué compró Pepe en la tienda? Así, sin"
+    },
+    {
+      "id": "35cf8290-f818-404e-9b01-63c5eb2980f6",
+      "time": 253,
+      "end": 257.7,
+      "label": "¿Qué?",
+      "oracion": "señal de qué. ¿Está ok? ¿O solamente funciona en esos contextos"
+    },
+    {
+      "id": "71459db7-0285-48c9-8753-6c25a3866c13",
+      "time": 257,
+      "end": 261.7,
+      "label": "¿Qué?",
+      "oracion": "de qué? De corto."
+    },
+    {
+      "id": "35d9ae49-9f06-4c6a-9b1e-eda9f34e6cc4",
+      "time": 279,
+      "end": 283.7,
+      "label": "¿Qué?",
+      "oracion": "¿Qué dice? Que para las oraciones, por ejemplo, de comprar"
+    },
+    {
+      "id": "97282210-bebe-4cfb-b0df-dd9534a32a70",
+      "time": 283,
+      "end": 287.7,
+      "label": "¿Qué?",
+      "oracion": "usas qué. Haces el del índice sobre la palma"
+    },
+    {
+      "id": "4c457638-6787-4e3a-a4c1-e2527bfbdfe2",
+      "time": 295,
+      "end": 299.7,
+      "label": "¿Qué?",
+      "oracion": "Va junto, tanto el qué, el índice sobre la palma como las dos manos"
+    },
+    {
+      "id": "058eeae1-c28c-47e5-9700-22431ab56e49",
+      "time": 295,
+      "end": 299.7,
+      "label": "¿Cómo?",
+      "oracion": "Va junto, tanto el qué, el índice sobre la palma como las dos manos"
+    },
+    {
+      "id": "e07dec08-7293-4473-a6b8-7bdf22c68b76",
+      "time": 323,
+      "end": 327.7,
+      "label": "¿Quién?",
+      "oracion": "Ahora, para la palabra quién, para la seña quién."
+    },
+    {
+      "id": "25e4539a-5877-437c-b72f-74a9f8c3f0de",
+      "time": 337,
+      "end": 341.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién?"
+    },
+    {
+      "id": "7a1a0927-c611-4cc7-84bb-e26f24133379",
+      "time": 341,
+      "end": 345.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién, señalando a la persona? ¿Quién?"
+    },
+    {
+      "id": "ea1cade6-42ee-4eac-9e09-8e4fb4082fd9",
+      "time": 345,
+      "end": 349.7,
+      "label": "¿Qué?",
+      "oracion": "Como que, como que eres, ¿quién es? ¿No?"
+    },
+    {
+      "id": "f001ee3b-4d34-4fa1-adda-8bd6245b1bab",
+      "time": 345,
+      "end": 349.7,
+      "label": "¿Cómo?",
+      "oracion": "Como que, como que eres, ¿quién es? ¿No?"
+    },
+    {
+      "id": "cbcb8b90-f8e2-4df7-ad5f-8501bf062f16",
+      "time": 345,
+      "end": 349.7,
+      "label": "¿Quién?",
+      "oracion": "Como que, como que eres, ¿quién es? ¿No?"
+    },
+    {
+      "id": "5b8c73b8-4d18-4744-9956-972b4606f1d3",
+      "time": 349,
+      "end": 353.7,
+      "label": "¿Cómo?",
+      "oracion": "Como pregunta, ¿no?"
+    },
+    {
+      "id": "7742fcab-dd33-4385-a351-5b827cf2c3fd",
+      "time": 361,
+      "end": 365.7,
+      "label": "¿Quién?",
+      "oracion": "a Lima y hay una reunión, ¿quién es él?"
+    },
+    {
+      "id": "5cc1e92e-0113-4f16-bc67-76599cfa0e13",
+      "time": 365,
+      "end": 369.7,
+      "label": "¿Para qué?",
+      "oracion": "¿Quién? ¿Para qué ha venido?"
+    },
+    {
+      "id": "cd901527-5a3d-4925-8dd5-8f752d5bc375",
+      "time": 365,
+      "end": 369.7,
+      "label": "¿Qué?",
+      "oracion": "¿Quién? ¿Para qué ha venido?"
+    },
+    {
+      "id": "98bec7e5-c15a-4504-aa02-c3f986ef217f",
+      "time": 365,
+      "end": 369.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién? ¿Para qué ha venido?"
+    },
+    {
+      "id": "893c5b02-f81d-4e91-937d-7fe6382913e6",
+      "time": 377,
+      "end": 381.7,
+      "label": "¿Para qué?",
+      "oracion": "¿Para qué?"
+    },
+    {
+      "id": "b523da5e-ca22-4c73-b275-a4c3b0f6c7d5",
+      "time": 377,
+      "end": 381.7,
+      "label": "¿Qué?",
+      "oracion": "¿Para qué?"
+    },
+    {
+      "id": "6e9c4852-9b47-4880-a23f-560be72fa251",
+      "time": 381,
+      "end": 385.7,
+      "label": "¿Quién?",
+      "oracion": "Estamos hablando de quién."
+    },
+    {
+      "id": "c54b398e-16e8-44b1-97eb-b824858afcbd",
+      "time": 385,
+      "end": 389.7,
+      "label": "¿Para qué?",
+      "oracion": "Por ejemplo, si alguien viene, ¿para qué ha venido?"
+    },
+    {
+      "id": "65d992f5-7985-43e5-b1ba-2c1662cb6087",
+      "time": 385,
+      "end": 389.7,
+      "label": "¿Qué?",
+      "oracion": "Por ejemplo, si alguien viene, ¿para qué ha venido?"
+    },
+    {
+      "id": "e3038810-098f-4f9e-8e39-50235b4b2ecd",
+      "time": 393,
+      "end": 397.7,
+      "label": "¿Para qué?",
+      "oracion": "¿Para qué? Sí, ¿para qué ha venido?"
+    },
+    {
+      "id": "1c5ac8f4-11a2-45c0-ae26-1e9f5d58637e",
+      "time": 393,
+      "end": 397.7,
+      "label": "¿Qué?",
+      "oracion": "¿Para qué? Sí, ¿para qué ha venido?"
+    },
+    {
+      "id": "4983d707-de27-41f7-bf8f-ede201f13e67",
+      "time": 397,
+      "end": 401.7,
+      "label": "¿Para qué?",
+      "oracion": "Si viene y dice, ¿para qué?"
+    },
+    {
+      "id": "6350757a-7a68-4587-9454-fdbaaf14e35f",
+      "time": 397,
+      "end": 401.7,
+      "label": "¿Qué?",
+      "oracion": "Si viene y dice, ¿para qué?"
+    },
+    {
+      "id": "336225a8-5c4a-4ea6-b228-4890d74ee9be",
+      "time": 401,
+      "end": 405.7,
+      "label": "¿Para qué?",
+      "oracion": "¿Para qué?"
+    },
+    {
+      "id": "781208c7-fa93-4760-831a-6878a3abda89",
+      "time": 401,
+      "end": 405.7,
+      "label": "¿Qué?",
+      "oracion": "¿Para qué?"
+    },
+    {
+      "id": "f95e1e6e-308a-45bb-94b6-c6d05c4089a2",
+      "time": 421,
+      "end": 425.7,
+      "label": "¿Para qué?",
+      "oracion": "Sí, a mí siempre me dicen, ¿para qué ha venido?"
+    },
+    {
+      "id": "91f2dbab-b884-4753-8066-f5c76592cdbf",
+      "time": 421,
+      "end": 425.7,
+      "label": "¿Qué?",
+      "oracion": "Sí, a mí siempre me dicen, ¿para qué ha venido?"
+    },
+    {
+      "id": "2864d816-f054-4046-91c6-d5c285b41c7c",
+      "time": 429,
+      "end": 433.7,
+      "label": "¿Quién?",
+      "oracion": "Pero ¿quién? Entonces solamente es este y ese también, ¿no?"
+    },
+    {
+      "id": "7c14a8e1-6134-4fa8-b47b-e956480f5a3b",
+      "time": 449,
+      "end": 453.7,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "10f4dd98-14ae-4c5c-866e-eef959dc1afc",
+      "time": 449,
+      "end": 453.7,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "6263a8de-e329-4034-9085-0f8d7d4b1179",
+      "time": 453,
+      "end": 457.7,
+      "label": "¿Cuándo?",
+      "oracion": "Es cuando la persona está, ¿no? Por ejemplo, Miguel"
+    },
+    {
+      "id": "be135eeb-e0aa-461d-826c-7271d8845792",
+      "time": 461,
+      "end": 465.7,
+      "label": "¿Cómo?",
+      "oracion": "Ah, es como secreto, ¿no?"
+    },
+    {
+      "id": "448e3423-d230-4834-a8a4-9381229389c4",
+      "time": 473,
+      "end": 477.7,
+      "label": "¿Qué?",
+      "oracion": "Es como que algo, sí, es como que algo"
+    },
+    {
+      "id": "02ab2eb8-03b7-41c2-b788-7ca697fd44b3",
+      "time": 473,
+      "end": 477.7,
+      "label": "¿Cómo?",
+      "oracion": "Es como que algo, sí, es como que algo"
+    },
+    {
+      "id": "b2f178e5-34eb-44e8-a6a3-a8f76fcadbd3",
+      "time": 477,
+      "end": 481.7,
+      "label": "¿Qué?",
+      "oracion": "Es algo como que más secreto"
+    },
+    {
+      "id": "067ee720-400b-46ef-a875-05d6d25b61ca",
+      "time": 477,
+      "end": 481.7,
+      "label": "¿Cómo?",
+      "oracion": "Es algo como que más secreto"
+    },
+    {
+      "id": "d844fad9-fe95-4ef9-8437-272e59cfb18d",
+      "time": 485,
+      "end": 489.7,
+      "label": "¿Dónde?",
+      "oracion": "¿Y hacia dónde van los ojos y hacia dónde va la boca?"
+    },
+    {
+      "id": "b6adca20-dc87-4f87-9ba2-f172c14e1407",
+      "time": 489,
+      "end": 493.7,
+      "label": "¿Qué?",
+      "oracion": "¿Hacia qué persona te están dirigiendo? O sea, está presente"
+    },
+    {
+      "id": "91ad13a3-3126-4d13-a01a-983003fc3a51",
+      "time": 517,
+      "end": 521.7,
+      "label": "¿Cómo?",
+      "oracion": "¿Así o no funciona así? ¿O cómo sería?"
+    },
+    {
+      "id": "5d0baa0d-986a-4e29-ba06-efce80476029",
+      "time": 537,
+      "end": 541.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién dice ella? No sé, entonces sería..."
+    },
+    {
+      "id": "e20ab2d4-52b7-43b1-a87a-4547830c6ddb",
+      "time": 545,
+      "end": 549.7,
+      "label": "¿Qué?",
+      "oracion": "Si hay una reunión, así, que está con el otro, claro"
+    },
+    {
+      "id": "4c1e682f-f379-4c98-bb85-b8260041e183",
+      "time": 565,
+      "end": 569.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién es ese? Es de manera suave"
+    },
+    {
+      "id": "bb1dc460-97b4-46e5-9aa6-f59f6434b910",
+      "time": 569,
+      "end": 573.7,
+      "label": "¿Cómo?",
+      "oracion": "Porque es como privado, para no cortar"
+    },
+    {
+      "id": "5b5b81d1-30b9-4223-b109-36a3d2bea92e",
+      "time": 573,
+      "end": 577.7,
+      "label": "¿Qué?",
+      "oracion": "Podemos hacer el ejercicio, por ejemplo, que a Ana Rosa"
+    },
+    {
+      "id": "d76c6d03-fca6-4e8b-a7d9-62eb64e90a1a",
+      "time": 577,
+      "end": 581.7,
+      "label": "¿Quién?",
+      "oracion": "Le diga a Claudia, por mí, quién es ella"
+    },
+    {
+      "id": "2bc98875-6ac3-4c04-b585-2b18778183fe",
+      "time": 581,
+      "end": 585.7,
+      "label": "¿Qué?",
+      "oracion": "Fijamos que no es la primera vez que me ves"
+    },
+    {
+      "id": "b14b4dd1-8d82-42a7-b828-3882a933454e",
+      "time": 585,
+      "end": 589.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién es ella? Tú o a mí, tú"
+    },
+    {
+      "id": "3b7c49cc-08c9-467c-979f-9f17d8d9bbd7",
+      "time": 589,
+      "end": 593.7,
+      "label": "¿Qué?",
+      "oracion": "No, lo que pasa es que..."
+    },
+    {
+      "id": "31fa0570-494c-4932-9190-1dbb67f4588a",
+      "time": 593,
+      "end": 597.7,
+      "label": "¿Qué?",
+      "oracion": "Lo que pasa es que tiene que ser..."
+    },
+    {
+      "id": "9ff449a1-dccc-43d1-9913-dd63634ad7d9",
+      "time": 597,
+      "end": 601.7,
+      "label": "¿Para qué?",
+      "oracion": "Ah, ella que pregunte por mí para que esté en la cámara"
+    },
+    {
+      "id": "a9761914-5124-446d-a80d-13568bc7fcad",
+      "time": 597,
+      "end": 601.7,
+      "label": "¿Qué?",
+      "oracion": "Ah, ella que pregunte por mí para que esté en la cámara"
+    },
+    {
+      "id": "92138219-3e2a-48d0-b327-e643ed610479",
+      "time": 601,
+      "end": 603.7,
+      "label": "¿Qué?",
+      "oracion": "Claro, pero tiene que ser..."
+    },
+    {
+      "id": "f8c57da1-652f-43a7-a84c-228d18ee4d1b",
+      "time": 619,
+      "end": 621.7,
+      "label": "¿Dónde?",
+      "oracion": "Palabra para dónde."
+    },
+    {
+      "id": "d54ea182-869c-409f-883b-699e8763525d",
+      "time": 621,
+      "end": 623.7,
+      "label": "¿Dónde?",
+      "oracion": "Otra seña para dónde."
+    },
+    {
+      "id": "081fdcec-6b04-45e6-b61d-c5358cdaa15c",
+      "time": 623,
+      "end": 625.7,
+      "label": "¿Dónde?",
+      "oracion": "¿Dónde?"
+    },
+    {
+      "id": "b8832550-b705-4869-8219-fe578f3bfcee",
+      "time": 627,
+      "end": 632.7,
+      "label": "¿Qué?",
+      "oracion": "O solo, puede ser que solo haya un dónde de esta acá, ¿no?"
+    },
+    {
+      "id": "8118ca48-d83c-4f88-b7f3-045899e1b594",
+      "time": 627,
+      "end": 632.7,
+      "label": "¿Dónde?",
+      "oracion": "O solo, puede ser que solo haya un dónde de esta acá, ¿no?"
+    },
+    {
+      "id": "fe6fa4d6-054f-46fa-95fb-a49f162e5baa",
+      "time": 636,
+      "end": 638.7,
+      "label": "¿Dónde?",
+      "oracion": "Casa dónde."
+    },
+    {
+      "id": "de33a962-7e1b-4fd9-8755-6d1887f83f90",
+      "time": 653,
+      "end": 655.7,
+      "label": "¿Dónde?",
+      "oracion": "Casa dónde, ¿no?"
+    },
+    {
+      "id": "669ca69e-b208-45e1-b26f-10c1c2d472c5",
+      "time": 663,
+      "end": 667.7,
+      "label": "¿Qué?",
+      "oracion": "Por ejemplo, que alguno diga dónde vive..."
+    },
+    {
+      "id": "3c0d45f4-fb1e-4550-b80e-60559f460d95",
+      "time": 663,
+      "end": 667.7,
+      "label": "¿Dónde?",
+      "oracion": "Por ejemplo, que alguno diga dónde vive..."
+    },
+    {
+      "id": "96881715-bf4f-46d0-b94d-42f836408342",
+      "time": 667,
+      "end": 669.7,
+      "label": "¿Dónde?",
+      "oracion": "¿Dónde vive Mariano? Pregunta, es una pregunta."
+    },
+    {
+      "id": "19671a24-c46f-4d20-95f2-14e28d84a730",
+      "time": 669,
+      "end": 671.7,
+      "label": "¿Dónde?",
+      "oracion": "¿Dónde vive Mariano?"
+    },
+    {
+      "id": "935ab6e2-006a-4f79-a91e-aeb10b166ad5",
+      "time": 690,
+      "end": 693.7,
+      "label": "¿Qué?",
+      "oracion": "Pero también, lo que pasa es que ahí mezclas todo."
+    },
+    {
+      "id": "c85bb515-84e0-410b-a9d2-805656cb308a",
+      "time": 693,
+      "end": 698.7,
+      "label": "¿Qué?",
+      "oracion": "Porque tú ves que mezclas dónde y también..."
+    },
+    {
+      "id": "86bee2f0-d39b-47ae-b0de-c54e33d7479c",
+      "time": 693,
+      "end": 698.7,
+      "label": "¿Dónde?",
+      "oracion": "Porque tú ves que mezclas dónde y también..."
+    },
+    {
+      "id": "52f531a7-dd75-4e1e-9cec-9431b7f1570f",
+      "time": 701,
+      "end": 703.7,
+      "label": "¿Dónde?",
+      "oracion": "¿Dónde vive ella?"
+    },
+    {
+      "id": "59d8c886-99f1-4415-8e10-69b891efab9d",
+      "time": 703,
+      "end": 705.7,
+      "label": "¿Dónde?",
+      "oracion": "¿Dónde casa ella?"
+    },
+    {
+      "id": "253d2e7e-4186-451b-829c-c0c46f22cad1",
+      "time": 709,
+      "end": 711.7,
+      "label": "¿Dónde?",
+      "oracion": "¿Dónde vive casa ella?"
+    },
+    {
+      "id": "ca10b23e-38c8-4065-b185-3cbe34420a44",
+      "time": 711,
+      "end": 716.7,
+      "label": "¿Qué?",
+      "oracion": "Pero ya, imaginemos, hagamos el ejercicio con dónde vive Miguel, que no está acá."
+    },
+    {
+      "id": "914bd215-fb33-4b4a-996a-fdb2459abbfc",
+      "time": 711,
+      "end": 716.7,
+      "label": "¿Dónde?",
+      "oracion": "Pero ya, imaginemos, hagamos el ejercicio con dónde vive Miguel, que no está acá."
+    },
+    {
+      "id": "fde2a356-6516-4372-8ec9-9ae9dfec0b19",
+      "time": 719,
+      "end": 721.7,
+      "label": "¿Cómo?",
+      "oracion": "¿Cómo? Pregunta."
+    },
+    {
+      "id": "a49ca3b2-6541-4d1e-93dd-2eae5233d61f",
+      "time": 721,
+      "end": 723.7,
+      "label": "¿Dónde?",
+      "oracion": "¿Dónde vive Miguel?"
+    },
+    {
+      "id": "126d96a7-876a-40f7-a8af-58e4663baa1d",
+      "time": 723,
+      "end": 725.7,
+      "label": "¿Cómo?",
+      "oracion": "¿Cómo? Pregunta."
+    },
+    {
+      "id": "d8e71ec3-f833-4de1-9943-02c266081217",
+      "time": 726,
+      "end": 728.7,
+      "label": "¿Dónde?",
+      "oracion": "¿Miguel dónde?"
+    },
+    {
+      "id": "12ecc490-3a0e-486b-87b1-877520620364",
+      "time": 739,
+      "end": 741,
+      "label": "¿Dónde?",
+      "oracion": "¿Tu esposo dónde vive?"
+    },
+    {
+      "id": "56819291-0df6-479b-a36b-1be5395e32e6",
+      "time": 742,
+      "end": 744.7,
+      "label": "¿Dónde?",
+      "oracion": "¿Dónde? ¿Miguel dónde?"
+    },
+    {
+      "id": "02f07ded-4915-4001-ac72-d0dd5a9e0549",
+      "time": 746,
+      "end": 749.7,
+      "label": "¿Dónde?",
+      "oracion": "¿Dónde vive Miguel?"
+    },
+    {
+      "id": "92518e50-32c8-43bb-a83b-487ad7af0a64",
+      "time": 750,
+      "end": 752.7,
+      "label": "¿Dónde?",
+      "oracion": "¿Miguel casa dónde?"
+    },
+    {
+      "id": "611ad970-7213-4800-a275-2aac3ced4f1d",
+      "time": 759,
+      "end": 761.7,
+      "label": "¿Qué?",
+      "oracion": "O sea, que vive en La Molina, que me diga dónde vive."
+    },
+    {
+      "id": "2023e6cb-5a5b-496a-8418-0999a5c255b7",
+      "time": 759,
+      "end": 761.7,
+      "label": "¿Dónde?",
+      "oracion": "O sea, que vive en La Molina, que me diga dónde vive."
+    },
+    {
+      "id": "c9a4d512-8c44-49f5-be9a-5accf2bd5a81",
+      "time": 762,
+      "end": 766.7,
+      "label": "¿Qué?",
+      "oracion": "O sea, que vive en La Molina, que me diga dónde vive para yo reclamar la casa."
+    },
+    {
+      "id": "42d1b333-cacf-4ddf-a56e-e56d5999fc93",
+      "time": 762,
+      "end": 766.7,
+      "label": "¿Dónde?",
+      "oracion": "O sea, que vive en La Molina, que me diga dónde vive para yo reclamar la casa."
+    },
+    {
+      "id": "13fdee82-8279-4cd7-9659-597f0f254f58",
+      "time": 768,
+      "end": 771.7,
+      "label": "¿Dónde?",
+      "oracion": "¿Dónde está Miguel? ¿No? ¿Dónde está Miguel?"
+    },
+    {
+      "id": "1edb2c29-7052-4e55-a761-617817b3a77f",
+      "time": 771,
+      "end": 773.7,
+      "label": "¿Dónde?",
+      "oracion": "La otra es ¿Dónde está Miguel? así."
+    },
+    {
+      "id": "3449f520-9168-41cb-aa1a-5f9bc0354c68",
+      "time": 775,
+      "end": 777.7,
+      "label": "¿Qué?",
+      "oracion": "Eso es un tema que creo que a ti te podrían, ¿no?"
+    },
+    {
+      "id": "9d819ec0-4988-49ae-96f1-690be094a32c",
+      "time": 779,
+      "end": 781,
+      "label": "¿Dónde?",
+      "oracion": "¿Dónde está?"
+    },
+    {
+      "id": "dc6bee9d-1f26-4fb3-a5c3-3c4c592389f2",
+      "time": 799,
+      "end": 802.7,
+      "label": "¿Qué?",
+      "oracion": "Sí, lo que más se usa en las preguntas es la cara."
+    },
+    {
+      "id": "163f1b30-ff09-4b09-92c7-a7824e9a5ded",
+      "time": 802,
+      "end": 804.7,
+      "label": "¿Qué?",
+      "oracion": "La cara es lo que más se usa."
+    },
+    {
+      "id": "a35c0eab-00d9-4592-9a02-5f9e317ddd47",
+      "time": 806,
+      "end": 809.7,
+      "label": "¿Qué?",
+      "oracion": "Si es qué, si es dónde, si es quién."
+    },
+    {
+      "id": "a39672f5-cbcf-483f-8864-ffd78ea9a4ab",
+      "time": 806,
+      "end": 809.7,
+      "label": "¿Dónde?",
+      "oracion": "Si es qué, si es dónde, si es quién."
+    },
+    {
+      "id": "1fba0275-4774-492a-8bc0-6f6d5ba80df0",
+      "time": 806,
+      "end": 809.7,
+      "label": "¿Quién?",
+      "oracion": "Si es qué, si es dónde, si es quién."
+    },
+    {
+      "id": "ed2ef2a0-9f5c-4d25-b594-4914e099656d",
+      "time": 811,
+      "end": 813.7,
+      "label": "¿Por qué?",
+      "oracion": "Ahora para el por qué."
+    },
+    {
+      "id": "be75bb9c-9c09-4779-b920-c78410cb1ac7",
+      "time": 811,
+      "end": 813.7,
+      "label": "¿Qué?",
+      "oracion": "Ahora para el por qué."
+    },
+    {
+      "id": "4d2f51a6-4933-4ae8-9c2a-53e9f0eb26c7",
+      "time": 813,
+      "end": 815,
+      "label": "¿Por qué?",
+      "oracion": "Para la seña y por qué."
+    },
+    {
+      "id": "6a3c1657-64c8-442d-901a-8587f96f2567",
+      "time": 813,
+      "end": 815,
+      "label": "¿Qué?",
+      "oracion": "Para la seña y por qué."
+    },
+    {
+      "id": "3fbe6a5a-0ff0-457f-a5ce-44ad6a68bbde",
+      "time": 821,
+      "end": 823,
+      "label": "¿Qué?",
+      "oracion": "¿Qué se usa?"
+    },
+    {
+      "id": "7ecb5a7a-2bc4-4f9f-a700-2a16dc4ad920",
+      "time": 822,
+      "end": 824,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué no?"
+    },
+    {
+      "id": "78242637-fd74-41f3-90f5-1b14aee1d5c8",
+      "time": 822,
+      "end": 824,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué no?"
+    },
+    {
+      "id": "fc92a1c0-0057-4070-b031-c5feeee41969",
+      "time": 831,
+      "end": 833,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "3f08eb6f-40fc-4e4d-8925-a778857e86ea",
+      "time": 831,
+      "end": 833,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "9fb9c60a-8e3c-4065-8a65-995674cc62cd",
+      "time": 837,
+      "end": 839,
+      "label": "¿Qué?",
+      "oracion": "¿Qué?"
+    },
+    {
+      "id": "708558d6-92fd-4fad-b00e-82124e87c3e9",
+      "time": 842,
+      "end": 844,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "02c8c692-8b89-4478-8b03-7f27a54f23b7",
+      "time": 842,
+      "end": 844,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "9bc148e1-b5f8-47db-841d-13c4ada3d8a0",
+      "time": 843,
+      "end": 845,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "0e508c1c-2437-41ba-9b47-49e7906d955c",
+      "time": 843,
+      "end": 845,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "fd194240-8082-4259-bbff-0a7661f73011",
+      "time": 850,
+      "end": 852,
+      "label": "¿Qué?",
+      "oracion": "¿Qué pasó?"
+    },
+    {
+      "id": "f5015444-f7ee-4eba-8bbf-7b7daed2f410",
+      "time": 853,
+      "end": 855,
+      "label": "¿Qué?",
+      "oracion": "¿Qué pasó?"
+    },
+    {
+      "id": "c727ad29-086b-4ddf-8267-f9d6520dd224",
+      "time": 855,
+      "end": 857.7,
+      "label": "¿Por qué?",
+      "oracion": "Y este por qué es como que las razones que me digan."
+    },
+    {
+      "id": "ea72d3d2-2005-495e-a037-e8284723a185",
+      "time": 855,
+      "end": 857.7,
+      "label": "¿Qué?",
+      "oracion": "Y este por qué es como que las razones que me digan."
+    },
+    {
+      "id": "176732ea-fa08-46fa-8de1-9b6bb2ca91d0",
+      "time": 855,
+      "end": 857.7,
+      "label": "¿Cómo?",
+      "oracion": "Y este por qué es como que las razones que me digan."
+    },
+    {
+      "id": "0a42f21e-f922-4334-87f8-0c353ad09afd",
+      "time": 866,
+      "end": 868,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "029abafc-0a6c-42a5-8490-acac31af4ba0",
+      "time": 866,
+      "end": 868,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "ef8b24db-117b-4ff6-97f3-c85ecb7987f0",
+      "time": 870,
+      "end": 872,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "9d88c60d-c8d8-43fb-9154-eb457b24e8a7",
+      "time": 870,
+      "end": 872,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "b560e51d-2fc2-4bfb-a2bd-b3dde4bc4de7",
+      "time": 876,
+      "end": 878,
+      "label": "¿Qué?",
+      "oracion": "Digamos que..."
+    },
+    {
+      "id": "b50e0c77-4d04-4d6c-8f5b-a37c722cdbaa",
+      "time": 879,
+      "end": 882.7,
+      "label": "¿Qué?",
+      "oracion": "Digamos que estamos en una fiesta o en una reunión, ¿no?"
+    },
+    {
+      "id": "725d60b8-80e8-4b48-8dde-56c569809881",
+      "time": 883,
+      "end": 885.7,
+      "label": "¿Qué?",
+      "oracion": "Y que esperamos todos quedarnos hasta tarde."
+    },
+    {
+      "id": "c5954c2f-237c-44c2-a156-8493956cc273",
+      "time": 894,
+      "end": 896.7,
+      "label": "¿Por qué?",
+      "oracion": "Y no entienden por qué."
+    },
+    {
+      "id": "3234758d-18a2-441d-b346-f5ca132f4a20",
+      "time": 894,
+      "end": 896.7,
+      "label": "¿Qué?",
+      "oracion": "Y no entienden por qué."
+    },
+    {
+      "id": "63dfb832-53c0-4ac5-b997-c60d5459eefd",
+      "time": 897,
+      "end": 899,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué se está yendo tan pronto?"
+    },
+    {
+      "id": "40b6d5a0-1dd0-471b-af96-77b5e221787f",
+      "time": 897,
+      "end": 899,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué se está yendo tan pronto?"
+    },
+    {
+      "id": "eebf9323-c62b-4a46-a1ea-99ccf8fcdd6f",
+      "time": 898,
+      "end": 901.7,
+      "label": "¿Qué?",
+      "oracion": "Entonces que una le pregunte a Paul,"
+    },
+    {
+      "id": "5bbb99a8-0a41-48cb-9a40-dfd6aaceb00c",
+      "time": 902,
+      "end": 904,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "e55ca8f5-8c93-4cd1-86b3-3d3cbfe24343",
+      "time": 902,
+      "end": 904,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "cb2b2906-3e03-425f-8f30-886367cd65b4",
+      "time": 903,
+      "end": 905.7,
+      "label": "¿Por qué?",
+      "oracion": "Oye, ¿por qué te estás yendo tan temprano?"
+    },
+    {
+      "id": "422ff06d-dea5-45b8-b41e-078a2c169556",
+      "time": 903,
+      "end": 905.7,
+      "label": "¿Qué?",
+      "oracion": "Oye, ¿por qué te estás yendo tan temprano?"
+    },
+    {
+      "id": "a4e11bcf-b86c-4983-a644-4f468fa1eaf5",
+      "time": 908,
+      "end": 911.7,
+      "label": "¿Por qué?",
+      "oracion": "Que una le pregunte, ¿por qué te vas tan temprano?"
+    },
+    {
+      "id": "0e11651c-31a9-4aee-8d94-02a04a544dd0",
+      "time": 908,
+      "end": 911.7,
+      "label": "¿Qué?",
+      "oracion": "Que una le pregunte, ¿por qué te vas tan temprano?"
+    },
+    {
+      "id": "5dbede89-57b5-47e2-9128-80a4d5eea865",
+      "time": 911,
+      "end": 913,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué te vas tan temprano?"
+    },
+    {
+      "id": "1d2b458a-c45b-4443-a5fb-fe7ab254cc60",
+      "time": 911,
+      "end": 913,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué te vas tan temprano?"
+    },
+    {
+      "id": "e6165dea-401c-43f0-8028-7b591824c863",
+      "time": 914,
+      "end": 916,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué temprano?"
+    },
+    {
+      "id": "ce3de541-2ab5-4365-a027-184a02390b0c",
+      "time": 914,
+      "end": 916,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué temprano?"
+    },
+    {
+      "id": "aa05beef-29a4-48b3-b762-a22099b07f22",
+      "time": 927,
+      "end": 929,
+      "label": "¿Qué?",
+      "oracion": "¿Qué es esa palabra?"
+    },
+    {
+      "id": "a28e566c-7f5e-4416-8b0e-28d7a3387066",
+      "time": 938,
+      "end": 940,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "9a84acaf-059c-4ea6-9a22-971b7338fd0c",
+      "time": 938,
+      "end": 940,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "6f808e29-c536-4c4f-b585-f664f259971f",
+      "time": 940,
+      "end": 942,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "dfc31228-ed13-4bc8-ba5b-6621a4392b54",
+      "time": 940,
+      "end": 942,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "70b31239-c7de-41f2-b921-8a2859b8c5b8",
+      "time": 942,
+      "end": 944,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué te vas?"
+    },
+    {
+      "id": "7561254d-50db-4e9d-ad19-8342805568fe",
+      "time": 942,
+      "end": 944,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué te vas?"
+    },
+    {
+      "id": "29216398-bd2e-4654-9768-a8f16c954ee8",
+      "time": 944,
+      "end": 946.7,
+      "label": "¿Por qué?",
+      "oracion": "¿Podemos hacer un por qué te vas tan temprano solo con maudín?"
+    },
+    {
+      "id": "f65dcb64-f80b-47dd-ac36-1ec50eb71c6d",
+      "time": 944,
+      "end": 946.7,
+      "label": "¿Qué?",
+      "oracion": "¿Podemos hacer un por qué te vas tan temprano solo con maudín?"
+    },
+    {
+      "id": "f2ca56f0-9b12-4f2e-abba-783116bb239c",
+      "time": 960,
+      "end": 962,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué te vas temprano?"
+    },
+    {
+      "id": "a3c0fdcf-58c2-4124-8d98-c5c95c71a9d5",
+      "time": 960,
+      "end": 962,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué te vas temprano?"
+    },
+    {
+      "id": "c6526fa4-fd2e-4024-9e52-90b7472b13b0",
+      "time": 962,
+      "end": 964,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué te estás yendo temprano?"
+    },
+    {
+      "id": "1a8df5cc-4943-42fb-ad98-1dab52a19fde",
+      "time": 962,
+      "end": 964,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué te estás yendo temprano?"
+    },
+    {
+      "id": "3c04b700-61c9-4c50-ad29-ef396c77a68f",
+      "time": 972,
+      "end": 974,
+      "label": "¿Por qué?",
+      "oracion": "Sí, ¿por qué temprano?"
+    },
+    {
+      "id": "91017608-2c34-40e5-8150-f0cb2aff0805",
+      "time": 972,
+      "end": 974,
+      "label": "¿Qué?",
+      "oracion": "Sí, ¿por qué temprano?"
+    },
+    {
+      "id": "be93fcb8-8322-403f-b039-07fa9ad8cd6f",
+      "time": 976,
+      "end": 978,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "05c42d5e-b5d4-43ee-a5ec-fcf4bf6570e5",
+      "time": 976,
+      "end": 978,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "10d7c843-be42-489b-b6f8-f8e9692e00dd",
+      "time": 977,
+      "end": 979,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "796988cc-299e-4a67-b1bb-b0eb1cfec0f1",
+      "time": 977,
+      "end": 979,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "cfb61f74-2016-48be-aa28-706dea21c066",
+      "time": 978,
+      "end": 981.7,
+      "label": "¿Por qué?",
+      "oracion": "Y el irse, ¿por qué te vas temprano?"
+    },
+    {
+      "id": "ece87127-c6da-4aec-b8d5-165e0c4fb6c3",
+      "time": 978,
+      "end": 981.7,
+      "label": "¿Qué?",
+      "oracion": "Y el irse, ¿por qué te vas temprano?"
+    },
+    {
+      "id": "edff43f2-8082-455e-be2b-e0436efb6206",
+      "time": 984,
+      "end": 986,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué te vas temprano?"
+    },
+    {
+      "id": "7afb729c-f2e9-444a-9d66-48712195bafa",
+      "time": 984,
+      "end": 986,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué te vas temprano?"
+    },
+    {
+      "id": "6e86a050-f0ac-46fc-9ad8-39c541d5d347",
+      "time": 986,
+      "end": 988.7,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué te vas temprano?"
+    },
+    {
+      "id": "9eb5d40b-7c21-4ac5-ba61-7f7f37a5c05c",
+      "time": 986,
+      "end": 988.7,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué te vas temprano?"
+    },
+    {
+      "id": "f35d3f66-cf74-4be3-aca6-efe6f83cc814",
+      "time": 1008,
+      "end": 1010.7,
+      "label": "¿Por qué?",
+      "oracion": "Sí, ¿por qué es temprano?"
+    },
+    {
+      "id": "a3118514-56b5-44e2-84dc-f4e97719972f",
+      "time": 1008,
+      "end": 1010.7,
+      "label": "¿Qué?",
+      "oracion": "Sí, ¿por qué es temprano?"
+    },
+    {
+      "id": "99e8336e-5a20-4e34-bd16-c2dd52eb089f",
+      "time": 1012,
+      "end": 1014,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué es?"
+    },
+    {
+      "id": "551960f3-1371-429a-8769-72399a272a16",
+      "time": 1012,
+      "end": 1014,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué es?"
+    },
+    {
+      "id": "53fce1e5-39ee-4047-a905-0f19f8716814",
+      "time": 1013,
+      "end": 1015.7,
+      "label": "¿Qué?",
+      "oracion": "También lo que veo, lo que..."
+    },
+    {
+      "id": "043862b3-c1cd-4f1b-b6b5-ed095020ce86",
+      "time": 1018,
+      "end": 1021.7,
+      "label": "¿Qué?",
+      "oracion": "Es que como tú ya ves que se va, ¿no?"
+    },
+    {
+      "id": "82cf03b3-846d-43ee-bf25-fbd78dc25866",
+      "time": 1018,
+      "end": 1021.7,
+      "label": "¿Cómo?",
+      "oracion": "Es que como tú ya ves que se va, ¿no?"
+    },
+    {
+      "id": "324832fc-3924-4adb-83bc-270711da6fb2",
+      "time": 1021,
+      "end": 1025.7,
+      "label": "¿Qué?",
+      "oracion": "Es como que tonto decirle, ¿te vas temprano?"
+    },
+    {
+      "id": "7a3a7d2a-ba1a-4e2b-9a66-ef26d0548368",
+      "time": 1021,
+      "end": 1025.7,
+      "label": "¿Cómo?",
+      "oracion": "Es como que tonto decirle, ¿te vas temprano?"
+    },
+    {
+      "id": "f7c09dda-1337-4e5f-b73d-a9e6e253dfee",
+      "time": 1025,
+      "end": 1027.7,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué estás viendo a la persona que se está yendo?"
+    },
+    {
+      "id": "22e2f55d-2829-4d60-8a32-f392177a2d6f",
+      "time": 1025,
+      "end": 1027.7,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué estás viendo a la persona que se está yendo?"
+    },
+    {
+      "id": "179db3dd-3063-4be6-be2e-dd673586da28",
+      "time": 1031,
+      "end": 1033.7,
+      "label": "¿Por qué?",
+      "oracion": "La pregunta es, ¿por qué te vas temprano?"
+    },
+    {
+      "id": "73b70734-a629-4501-8a5b-ed9526bd7caa",
+      "time": 1031,
+      "end": 1033.7,
+      "label": "¿Qué?",
+      "oracion": "La pregunta es, ¿por qué te vas temprano?"
+    },
+    {
+      "id": "a25b9a15-db41-487d-8dc8-1f55918a5c67",
+      "time": 1033,
+      "end": 1035.7,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué te vas temprano?"
+    },
+    {
+      "id": "78baadc9-ce4a-4672-9a5e-bc80e399f1a7",
+      "time": 1033,
+      "end": 1035.7,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué te vas temprano?"
+    },
+    {
+      "id": "68bfa8d3-d459-483d-a62d-e62dd7b5377a",
+      "time": 1037,
+      "end": 1039,
+      "label": "¿Por qué?",
+      "oracion": "La pregunta es, ¿por qué te vas temprano?"
+    },
+    {
+      "id": "dc57c7f9-eb8a-4135-b7e3-ee0408c02fd1",
+      "time": 1037,
+      "end": 1039,
+      "label": "¿Qué?",
+      "oracion": "La pregunta es, ¿por qué te vas temprano?"
+    },
+    {
+      "id": "31b86b4a-87a8-42f8-a537-f9fee0bd4429",
+      "time": 1040,
+      "end": 1043.7,
+      "label": "¿Por qué?",
+      "oracion": "Entonces solamente preguntas el por qué se va."
+    },
+    {
+      "id": "06406426-7cce-4f5d-bcae-44aad6184efc",
+      "time": 1040,
+      "end": 1043.7,
+      "label": "¿Qué?",
+      "oracion": "Entonces solamente preguntas el por qué se va."
+    },
+    {
+      "id": "d246c71d-a4eb-44e3-a7fa-a009947bbd07",
+      "time": 1046,
+      "end": 1049.7,
+      "label": "¿Qué?",
+      "oracion": "Ya, pero digamos que lo ves luego."
+    },
+    {
+      "id": "357c4d73-54f5-4049-9558-f549fc823f24",
+      "time": 1053,
+      "end": 1056.7,
+      "label": "¿Por qué?",
+      "oracion": "oye, ¿por qué el fin de semana pasado te fuiste temprano?"
+    },
+    {
+      "id": "3813601a-a0ba-4f52-ab34-4f67d94ecc90",
+      "time": 1053,
+      "end": 1056.7,
+      "label": "¿Qué?",
+      "oracion": "oye, ¿por qué el fin de semana pasado te fuiste temprano?"
+    },
+    {
+      "id": "ad9e1cb4-678a-4446-aedf-0ea1eead239b",
+      "time": 1068,
+      "end": 1074.7,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué te fuiste de la fiesta tan temprano?"
+    },
+    {
+      "id": "f6280c64-40d3-4d28-ba4d-d8b89e29676c",
+      "time": 1068,
+      "end": 1074.7,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué te fuiste de la fiesta tan temprano?"
+    },
+    {
+      "id": "af908d5d-2f67-4843-b698-53be6e38e5e4",
+      "time": 1113,
+      "end": 1115,
+      "label": "¿Dónde?",
+      "oracion": "¿A dónde te acuerdas temprano?"
+    },
+    {
+      "id": "97fa6586-7892-4de2-a6ac-065ec40458d4",
+      "time": 1114,
+      "end": 1116,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "14944128-3e73-4780-856f-7794386ddcd2",
+      "time": 1114,
+      "end": 1116,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "c8bb0cdc-8991-4b07-a97d-d31b44508499",
+      "time": 1123,
+      "end": 1125,
+      "label": "¿Qué?",
+      "oracion": "Dice que te vas."
+    },
+    {
+      "id": "11dc8ff9-fc53-41d6-93a3-a44d33f8af6a",
+      "time": 1130,
+      "end": 1133.7,
+      "label": "¿Qué?",
+      "oracion": "No, te fuiste de la fiesta sin que te veamos, ¿no?"
+    },
+    {
+      "id": "d280aa3b-23a5-4d9e-b6ac-f10ca0a061a7",
+      "time": 1138,
+      "end": 1140,
+      "label": "¿Qué?",
+      "oracion": "Ahí es lo que queremos probar."
+    },
+    {
+      "id": "928344ab-bbb1-420f-a46f-210239d6fc03",
+      "time": 1155,
+      "end": 1157.7,
+      "label": "¿Por qué?",
+      "oracion": "Pregunta por qué."
+    },
+    {
+      "id": "fd42aad2-e6d6-4f82-8f22-008fce8f8075",
+      "time": 1155,
+      "end": 1157.7,
+      "label": "¿Qué?",
+      "oracion": "Pregunta por qué."
+    },
+    {
+      "id": "5f288cc5-9f9e-4f30-98a4-0c379ec745e3",
+      "time": 1157,
+      "end": 1160.7,
+      "label": "¿Qué?",
+      "oracion": "Está explicándole la oración cómo tiene que ser nada más."
+    },
+    {
+      "id": "39809852-54be-472e-9a71-2dc96810bd02",
+      "time": 1157,
+      "end": 1160.7,
+      "label": "¿Cómo?",
+      "oracion": "Está explicándole la oración cómo tiene que ser nada más."
+    },
+    {
+      "id": "dc27ed52-ba40-4f0b-9641-1c825aa35ae8",
+      "time": 1163,
+      "end": 1166.7,
+      "label": "¿Qué?",
+      "oracion": "pero vemos que siempre está junto con las manos."
+    },
+    {
+      "id": "e8f6e6a8-b67f-4df2-ae87-f59a698b174b",
+      "time": 1174,
+      "end": 1176,
+      "label": "¿Qué?",
+      "oracion": "¿Qué pasó?"
+    },
+    {
+      "id": "4c33a041-30b4-4d77-8431-b9ff412781fa",
+      "time": 1175,
+      "end": 1177,
+      "label": "¿Por qué?",
+      "oracion": "¿Por qué?"
+    },
+    {
+      "id": "57e4c702-f240-4c02-ac83-50b733180832",
+      "time": 1175,
+      "end": 1177,
+      "label": "¿Qué?",
+      "oracion": "¿Por qué?"
+    }
+  ],
+  "tiers": [
+    {
+      "id": "ecd946ac-aad1-417a-99bb-b7e0c82e9025",
+      "name": "Tier 2",
+      "anns": []
+    },
+    {
+      "id": "a1808d0f-4de7-48a9-a04d-972f75c32711",
+      "name": "Tier 2",
+      "anns": []
+    }
+  ]
+}

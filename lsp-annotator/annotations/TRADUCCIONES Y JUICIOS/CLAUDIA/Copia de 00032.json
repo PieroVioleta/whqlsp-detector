@@ -1,0 +1,62 @@
+{
+  "video_id": "TRADUCCIONES Y JUICIOS/CLAUDIA/Copia de 00032",
+  "annotations": [
+    {
+      "id": "89c2c7cd-2ba0-4fbb-abbc-cb603aad0e20",
+      "start": 65.71,
+      "end": 70.51,
+      "label": "¿Quién?",
+      "oracion": "¿Quién ama Papa Jones?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "2eb0bf36-d9ef-40e7-8ed8-eab162bc5a2d",
+      "start": 79.88,
+      "end": 85.79,
+      "label": "¿Dónde?",
+      "oracion": "¿El niño compra pizza dónde?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "f406e7ca-e36b-43f8-ba74-581e14b3a687",
+      "start": 93.38,
+      "end": 99,
+      "label": "¿Dónde?",
+      "oracion": "¿Niño gusta pizza dónde?",
+      "source": "manual",
+      "confidence": null
+    }
+  ],
+  "markers": [
+    {
+      "id": "b1fb0167-f19e-4b1d-9ee6-024da59aab17",
+      "time": 67,
+      "end": 71.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién ama Papa Jones?"
+    },
+    {
+      "id": "89583334-bd7b-4d25-a85d-7edbfdfdb0a3",
+      "time": 82,
+      "end": 86.7,
+      "label": "¿Dónde?",
+      "oracion": "¿El niño compra pizza dónde?"
+    },
+    {
+      "id": "42d3fdd9-ed18-44f6-869e-b635ebf98b22",
+      "time": 95,
+      "end": 99.7,
+      "label": "¿Dónde?",
+      "oracion": "¿Niño gusta pizza dónde?"
+    }
+  ],
+  "tiers": [
+    {
+      "id": "c42cacb6-c531-41d3-9994-beaef8addb6e",
+      "name": "Tier 1",
+      "anns": []
+    }
+  ]
+}

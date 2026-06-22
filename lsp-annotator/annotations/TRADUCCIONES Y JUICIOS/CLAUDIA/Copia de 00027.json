@@ -1,0 +1,106 @@
+{
+  "video_id": "TRADUCCIONES Y JUICIOS/CLAUDIA/Copia de 00027",
+  "annotations": [
+    {
+      "id": "02a3318f-316a-484d-9623-7a2aaa1c1dfd",
+      "start": 226,
+      "end": 232,
+      "label": "¿Para qué?",
+      "source": "manual",
+      "confidence": null,
+      "oracion": "¿Juan preparar pizza para qué?"
+    },
+    {
+      "id": "97c8280d-81e7-44d7-930b-675757b4400d",
+      "start": 187.32,
+      "end": 191.32,
+      "label": "¿Quién?",
+      "oracion": "¿Pizza preparar quién?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "c813d6f3-0426-4059-adee-b05bc8156904",
+      "start": 198.45,
+      "end": 202.62,
+      "label": "¿Qué?",
+      "oracion": "¿Juan preparar qué?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "e426ebbf-f03f-4ddf-bf43-cbdb744ede0c",
+      "start": 210.28,
+      "end": 216.71,
+      "label": "¿Qué?",
+      "oracion": "¿Juan preparar pizza qué?",
+      "source": "manual",
+      "confidence": null
+    }
+  ],
+  "markers": [
+    {
+      "id": "b223fa61-b6b8-49fb-9a65-826f5e53a3a9",
+      "time": 31,
+      "end": 48.7,
+      "label": "¿Qué?",
+      "oracion": "Qué raro, acá tengo unas preguntas que no recordaba."
+    },
+    {
+      "id": "79573caf-4f7c-4f9e-90b8-21372a6a882f",
+      "time": 186,
+      "end": 189.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién preparó pizza?"
+    },
+    {
+      "id": "93b272c8-04e9-4597-8eab-36cbab361968",
+      "time": 189,
+      "end": 193.7,
+      "label": "¿Quién?",
+      "oracion": "¿Pizza preparar quién?"
+    },
+    {
+      "id": "b7dd44f1-be02-4544-bbf6-9850e72d7bcf",
+      "time": 196,
+      "end": 200.7,
+      "label": "¿Qué?",
+      "oracion": "¿Qué preparó Juan?"
+    },
+    {
+      "id": "0c54223f-fbbd-462a-806d-52c46fc61cf1",
+      "time": 200,
+      "end": 205.7,
+      "label": "¿Qué?",
+      "oracion": "¿Juan preparar qué?"
+    },
+    {
+      "id": "86a794b9-0a15-41be-b9cd-fff6ea56ce1c",
+      "time": 209,
+      "end": 212.7,
+      "label": "¿Qué?",
+      "oracion": "¿De qué preparó Juan la pizza?"
+    },
+    {
+      "id": "b9bbdf82-a3df-419b-bb50-221026c63202",
+      "time": 212,
+      "end": 219.7,
+      "label": "¿Qué?",
+      "oracion": "¿Juan preparar pizza qué?"
+    },
+    {
+      "id": "382483bc-8e70-4100-ba8b-09b4ab0422aa",
+      "time": 228,
+      "end": 235.7,
+      "label": "¿Para qué?",
+      "oracion": "¿Juan preparar pizza para qué?"
+    },
+    {
+      "id": "14ea614f-b388-4e0d-b6f2-6423eeed771d",
+      "time": 228,
+      "end": 235.7,
+      "label": "¿Qué?",
+      "oracion": "¿Juan preparar pizza para qué?"
+    }
+  ]
+}

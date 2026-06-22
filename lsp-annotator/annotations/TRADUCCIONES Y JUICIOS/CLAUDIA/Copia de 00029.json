@@ -1,0 +1,90 @@
+{
+  "video_id": "TRADUCCIONES Y JUICIOS/CLAUDIA/Copia de 00029",
+  "annotations": [
+    {
+      "id": "d645e1b1-7eed-44ac-bc8f-1c7af8892d32",
+      "start": 39.5,
+      "end": 42.64,
+      "label": "¿Quién?",
+      "source": "manual",
+      "confidence": null,
+      "oracion": "¿Pelota roja querer quién?"
+    },
+    {
+      "id": "9c3c31cd-92cf-46cf-a6cf-dcbd787c9dcf",
+      "start": 49.68,
+      "end": 52.93,
+      "label": "¿Qué?",
+      "oracion": "¿Feta qué quiere?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "e0131ef0-41fb-4aba-b1ce-8942ed372a00",
+      "start": 98.41,
+      "end": 103.89,
+      "label": "¿Qué?",
+      "oracion": "Feta bola quiere color qué",
+      "source": "manual",
+      "confidence": null
+    }
+  ],
+  "markers": [
+    {
+      "id": "d850732c-2d7f-4bcb-bf95-bb2337597144",
+      "time": 7,
+      "end": 9.7,
+      "label": "¿Qué?",
+      "oracion": "Creo que Fefe era... ¿así?"
+    },
+    {
+      "id": "e935bcc5-d714-4e01-b949-5227279e6267",
+      "time": 34,
+      "end": 36.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién quiere la pelota roja?"
+    },
+    {
+      "id": "7f9a96f4-420a-4175-a12b-72ae77a4ad19",
+      "time": 41,
+      "end": 43.7,
+      "label": "¿Quién?",
+      "oracion": "¿Pelota roja? ¿Querer quién?"
+    },
+    {
+      "id": "f5b4d069-9afb-48f1-a3dc-b36930d35210",
+      "time": 50,
+      "end": 52,
+      "label": "¿Qué?",
+      "oracion": "¿Qué quiere Fefa?"
+    },
+    {
+      "id": "0a9bb77b-e1b6-430f-88f0-f3a90bb30376",
+      "time": 52,
+      "end": 54,
+      "label": "¿Qué?",
+      "oracion": "¿Qué quiere?"
+    },
+    {
+      "id": "6975dc57-f09b-436a-a267-b2573a3b6135",
+      "time": 72,
+      "end": 74.7,
+      "label": "¿Qué?",
+      "oracion": "¿De qué color quiere Fefe la pelota?"
+    },
+    {
+      "id": "899a8d88-e18f-4202-b79a-9ed2a8e48ade",
+      "time": 90,
+      "end": 94.7,
+      "label": "¿Qué?",
+      "oracion": "¿Y color qué?"
+    }
+  ],
+  "tiers": [
+    {
+      "id": "b767e7ae-84b3-4d94-962d-ea9c6c109a0a",
+      "name": "Tier 1",
+      "anns": []
+    }
+  ]
+}

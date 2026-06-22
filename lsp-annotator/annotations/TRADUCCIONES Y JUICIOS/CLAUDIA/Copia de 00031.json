@@ -1,0 +1,104 @@
+{
+  "video_id": "TRADUCCIONES Y JUICIOS/CLAUDIA/Copia de 00031",
+  "annotations": [
+    {
+      "id": "9bfee48d-5f2d-4ab2-998e-219357b408cf",
+      "start": 165.5,
+      "end": 170.73,
+      "label": "¿Quién?",
+      "oracion": "Ir, Jockey, ¿quién, gustar?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "1f61a172-88d8-450b-a125-9adadee595d2",
+      "start": 180.6,
+      "end": 186,
+      "label": "¿Dónde?",
+      "oracion": "Ana, ir, gustar, ¿dónde?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "4c07b1fc-ff5d-497f-8a15-77c6dba753ae",
+      "start": 236.73,
+      "end": 243,
+      "label": "¿Por qué?",
+      "oracion": "¿Ana, ir, gustar, yoque, por qué?",
+      "source": "manual",
+      "confidence": null
+    }
+  ],
+  "markers": [
+    {
+      "id": "308a8585-1b10-471c-bb99-2027d96c82ab",
+      "time": 82,
+      "end": 85.7,
+      "label": "¿Cómo?",
+      "oracion": "¿Cómo es?"
+    },
+    {
+      "id": "46ccaf05-7f80-4ee4-b899-2fc088ef40a3",
+      "time": 144,
+      "end": 147.7,
+      "label": "¿Quién?",
+      "oracion": "¿A quién le gusta ir al yoque?"
+    },
+    {
+      "id": "40494cb4-75d5-43aa-b287-b393182dd369",
+      "time": 147,
+      "end": 174.7,
+      "label": "¿Quién?",
+      "oracion": "Ana, ir, yoque, ¿quién, gustar?"
+    },
+    {
+      "id": "bd1a7ff4-37c9-4144-96ee-41b97ca6db5b",
+      "time": 179,
+      "end": 182.7,
+      "label": "¿Dónde?",
+      "oracion": "¿A dónde le gusta ir a Ana?"
+    },
+    {
+      "id": "727ad58c-d2ab-4771-8a0e-1a300ee843c8",
+      "time": 182,
+      "end": 188.7,
+      "label": "¿Dónde?",
+      "oracion": "Ana, ir, gustar, ¿dónde?"
+    },
+    {
+      "id": "6c4c0df0-04cf-4188-a511-2e22d07898cb",
+      "time": 188,
+      "end": 193.7,
+      "label": "¿Dónde?",
+      "oracion": "Respuesta, ¿dónde? Yoque."
+    },
+    {
+      "id": "3b5907f4-d698-44d2-89bf-7e953baee7b4",
+      "time": 226,
+      "end": 232.7,
+      "label": "¿Dónde?",
+      "oracion": "Ana, ir, gustar, ¿dónde? Lugar."
+    },
+    {
+      "id": "b3f901cb-93bd-4022-96d2-c1701c1583f8",
+      "time": 239,
+      "end": 245.7,
+      "label": "¿Por qué?",
+      "oracion": "¿Ana, ir, gustar, yoque, por qué?"
+    },
+    {
+      "id": "3516657c-445b-4bff-813c-7d3053ef0253",
+      "time": 239,
+      "end": 245.7,
+      "label": "¿Qué?",
+      "oracion": "¿Ana, ir, gustar, yoque, por qué?"
+    }
+  ],
+  "tiers": [
+    {
+      "id": "a5c7af91-3092-4622-a321-b9150741b37e",
+      "name": "Tier 1",
+      "anns": []
+    }
+  ]
+}

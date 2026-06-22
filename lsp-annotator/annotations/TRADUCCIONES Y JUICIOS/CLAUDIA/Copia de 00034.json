@@ -1,0 +1,274 @@
+{
+  "video_id": "TRADUCCIONES Y JUICIOS/CLAUDIA/Copia de 00034",
+  "annotations": [
+    {
+      "id": "398e0d74-f4b7-41ff-9671-5c672e5662c4",
+      "start": 102.1,
+      "end": 106.73,
+      "label": "¿Qué?",
+      "oracion": "¿Ana comprar qué?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "3bc10098-1fba-4206-b655-a25023056d2e",
+      "start": 132.8,
+      "end": 136.51,
+      "label": "¿Qué?",
+      "oracion": "¿Ana comprar qué?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "5d73ac01-ff46-4eea-bb1b-9f9ef9b715ab",
+      "start": 138.36,
+      "end": 143,
+      "label": "¿Qué?",
+      "oracion": "¿Ana comprar qué?",
+      "source": "manual",
+      "confidence": null
+    },
+    {
+      "id": "383d106e-81c3-4129-ac37-d0986e984377",
+      "start": 295.76,
+      "end": 300.13,
+      "label": "¿Qué?",
+      "oracion": "¿Ana comprar qué?",
+      "source": "manual",
+      "confidence": null
+    }
+  ],
+  "markers": [
+    {
+      "id": "aae1daab-281f-4c2c-b526-9db3def6ac79",
+      "time": 1,
+      "end": 5.7,
+      "label": "¿Quién?",
+      "oracion": "Los siguientes órdenes alternativos, ¿comprar pan quién?"
+    },
+    {
+      "id": "caadceca-8f96-4967-b09e-ae35a8acd4ee",
+      "time": 18,
+      "end": 20.7,
+      "label": "¿Quién?",
+      "oracion": "Cinco. ¿Quién comprar pan? Cinco."
+    },
+    {
+      "id": "ad3250c9-bb29-42e2-bda1-161d3926ca9d",
+      "time": 24,
+      "end": 26,
+      "label": "¿Quién?",
+      "oracion": "¿Quién pan comprar?"
+    },
+    {
+      "id": "a0d18a0d-4698-4ea9-b68d-149f35e917d9",
+      "time": 35,
+      "end": 37,
+      "label": "¿Quién?",
+      "oracion": "¿Pan comprar quién?"
+    },
+    {
+      "id": "5fe2dbc2-84a6-4e93-8843-9efdbed8f84d",
+      "time": 43,
+      "end": 45,
+      "label": "¿Quién?",
+      "oracion": "¿Quién comprar pan quién?"
+    },
+    {
+      "id": "9f98617f-fb11-41f1-9f15-2545764e099a",
+      "time": 51,
+      "end": 53,
+      "label": "¿Quién?",
+      "oracion": "¿Quién pan comprar quién?"
+    },
+    {
+      "id": "0fec5895-bbb0-4b9b-89b7-9e1748a5fb52",
+      "time": 89,
+      "end": 91.7,
+      "label": "¿Qué?",
+      "oracion": "¿Qué compró Ana?"
+    },
+    {
+      "id": "ce59ebef-591a-4133-b400-291fb80b55dc",
+      "time": 104,
+      "end": 106.7,
+      "label": "¿Qué?",
+      "oracion": "¿Ana comprar qué?"
+    },
+    {
+      "id": "e04ec05c-9acd-4568-9387-f033d995f72f",
+      "time": 108,
+      "end": 115.7,
+      "label": "¿Qué?",
+      "oracion": "Y podría ser, ¿Ana comprar qué? Así, no, no, o sea, ella hizo así."
+    },
+    {
+      "id": "ad972285-17e6-4673-a9ca-163376b70bc5",
+      "time": 115,
+      "end": 120.7,
+      "label": "¿Qué?",
+      "oracion": "O sea, en ese orden, ¿Ana comprar qué? Mi pregunta es, ¿Ana comprar...?"
+    },
+    {
+      "id": "3152a05b-ca85-4028-a9f2-7b1f2eec6daa",
+      "time": 127,
+      "end": 129.7,
+      "label": "¿Cómo?",
+      "oracion": "Ya, ¿y cómo ella la haría?"
+    },
+    {
+      "id": "18e757f9-14eb-4b2d-8e94-c9a6b7611874",
+      "time": 134,
+      "end": 136.7,
+      "label": "¿Qué?",
+      "oracion": "¿Ana comprar qué?"
+    },
+    {
+      "id": "ad34a08c-9800-4488-87c1-3c502bb47ec5",
+      "time": 139,
+      "end": 141.7,
+      "label": "¿Qué?",
+      "oracion": "Otro es, ¿Ana comprar qué?"
+    },
+    {
+      "id": "dc9db510-969f-4fb5-9fc4-44a5c3b3c890",
+      "time": 162,
+      "end": 164,
+      "label": "¿Qué?",
+      "oracion": "¿Qué es eso?"
+    },
+    {
+      "id": "fe47e71e-2201-4a8a-8310-8b53bd84b84e",
+      "time": 164,
+      "end": 166.7,
+      "label": "¿Cómo?",
+      "oracion": "Como si estuvieran trabajando, ¿no?"
+    },
+    {
+      "id": "41b58a5e-54aa-4640-b6bc-f39e5fca8412",
+      "time": 194,
+      "end": 198.7,
+      "label": "¿Cómo?",
+      "oracion": "Antes de pasar a las oraciones, ¿cómo diría ella, Ana compró pan?"
+    },
+    {
+      "id": "39319fed-7fb9-4941-921b-5b492be6a36d",
+      "time": 217,
+      "end": 219,
+      "label": "¿Cómo?",
+      "oracion": "¿Cómo diría...?"
+    },
+    {
+      "id": "3e132917-5daf-491b-ba32-a5635872a5f2",
+      "time": 220,
+      "end": 222.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién compró panes?"
+    },
+    {
+      "id": "e800e448-78ef-4368-9ace-02c37f7f908c",
+      "time": 251,
+      "end": 253.7,
+      "label": "¿Qué?",
+      "oracion": "La que ella hizo, la que ella hizo."
+    },
+    {
+      "id": "ed855b21-bc00-4358-b7f7-651a9624a2d7",
+      "time": 270,
+      "end": 273.7,
+      "label": "¿Qué?",
+      "oracion": "Ya, y ahora sí vamos a la pregunta, ¿qué compró Ana?"
+    },
+    {
+      "id": "e279a7ff-c91b-40ed-bf41-597e09d6ce79",
+      "time": 282,
+      "end": 284.7,
+      "label": "¿Qué?",
+      "oracion": "¿Qué ordenes alternativos?"
+    },
+    {
+      "id": "d0225342-b4a7-44e1-babe-744cf76923c7",
+      "time": 295,
+      "end": 299.7,
+      "label": "¿Qué?",
+      "oracion": "Yo lo hago la lengua, ¿enseñas, Ana comprar qué?"
+    },
+    {
+      "id": "110faa1b-33a0-4029-abe4-8559782a28ab",
+      "time": 322,
+      "end": 324.7,
+      "label": "¿Qué?",
+      "oracion": "Ana comprar qué."
+    },
+    {
+      "id": "7eca34fd-a6a5-43f6-810b-80691dc49bb8",
+      "time": 327,
+      "end": 329,
+      "label": "¿Qué?",
+      "oracion": "Ana qué comprar."
+    },
+    {
+      "id": "56936bbb-cd71-425c-ac31-6c212e788c74",
+      "time": 345,
+      "end": 347.7,
+      "label": "¿Qué?",
+      "oracion": "¿Qué comprar Ana?"
+    },
+    {
+      "id": "7b1740b1-1573-4e7b-b0cd-7bf852f08fed",
+      "time": 361,
+      "end": 363.7,
+      "label": "¿Qué?",
+      "oracion": "¿Qué Ana comprar?"
+    },
+    {
+      "id": "b7a5baf7-8da7-4398-8cef-5b0f3a7dbec4",
+      "time": 375,
+      "end": 377.7,
+      "label": "¿Qué?",
+      "oracion": "¿Qué Ana comprar qué?"
+    },
+    {
+      "id": "273a15de-b053-4af0-ad11-6adb5a4e0c4b",
+      "time": 400,
+      "end": 402.7,
+      "label": "¿Qué?",
+      "oracion": "¿Qué comprar Ana qué?"
+    },
+    {
+      "id": "7296348f-8535-45fe-ac26-504a7ca716ad",
+      "time": 405,
+      "end": 407.7,
+      "label": "¿Qué?",
+      "oracion": "¿Qué Ana qué comprar?"
+    },
+    {
+      "id": "47a29624-a342-4c9d-8ef3-3670905a9516",
+      "time": 412,
+      "end": 415.7,
+      "label": "¿Qué?",
+      "oracion": "Ella no hace quién, quién, qué, qué."
+    },
+    {
+      "id": "77275447-94a1-4cef-b2c5-3c9d7516823f",
+      "time": 412,
+      "end": 415.7,
+      "label": "¿Quién?",
+      "oracion": "Ella no hace quién, quién, qué, qué."
+    },
+    {
+      "id": "e99fe799-25da-4835-9c1a-caa878d6beb6",
+      "time": 424,
+      "end": 426.7,
+      "label": "¿Quién?",
+      "oracion": "¿Quién le regaló flores a la mamá?"
+    }
+  ],
+  "tiers": [
+    {
+      "id": "a8945687-5b5d-41e4-be1f-d1df1f43dd39",
+      "name": "Tier 1",
+      "anns": []
+    }
+  ]
+}

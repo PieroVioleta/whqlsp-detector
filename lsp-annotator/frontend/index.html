@@ -290,15 +290,36 @@
   }
   #tl-zoom-range.visible { display: inline; }
 
+  /* Wrapper que alinea timeline y tier tracks en la misma columna */
+  .tl-row-wrapper {
+    display: flex;
+    align-items: stretch;
+  }
+  .tl-row-label {
+    flex: 0 0 90px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-muted);
+    user-select: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   #timeline {
+    flex: 1;
     position: relative;
-    height: 36px;
+    height: 56px;
     background: #f3f4f6;
     border-radius: 4px;
     cursor: crosshair;
     overflow: hidden;
   }
-  #timeline-cursor {
+  #timeline-cursor, .tier-cursor {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -393,6 +414,253 @@
   /* ── Row highlight ── */
   tbody tr.row-highlighted { background: var(--accent-light) !important; }
   [data-theme="dark"] tbody tr.row-highlighted { background: #252060 !important; }
+
+  /* ── Audio pins (marcadores de detección por audio) ── */
+  .tl-audio-pin {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    cursor: pointer;
+    z-index: 7;
+    background: #d97706;
+    transition: filter 0.1s;
+  }
+  .tl-audio-pin:hover { filter: brightness(1.3); }
+  .tl-audio-pin-flag {
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    background: #d97706;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 1px 4px;
+    border-radius: 0 2px 2px 0;
+    white-space: nowrap;
+    max-width: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    pointer-events: none;
+  }
+
+  /* ── Markers card ── */
+  #markers-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  #markers-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: #fdfaf4;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+  }
+  #markers-header h2 { font-size: 13px; font-weight: 600; flex: 1; margin: 0; }
+  #markers-toggle { font-size: 11px; color: var(--text-muted); }
+  #markers-list { padding: 0; margin: 0; list-style: none; max-height: 220px; overflow-y: auto; }
+  #markers-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 6px 14px;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.1s;
+  }
+  #markers-list li:last-child { border-bottom: none; }
+  #markers-list li:hover { background: #fffbf0; }
+  #markers-list li.mk-active {
+    background: #fef3c7;
+    border-left: 3px solid #d97706;
+    padding-left: 6px;
+  }
+  [data-theme="dark"] #markers-list li.mk-active { background: #3a2e10; border-left-color: #f59e0b; }
+  #markers-list .mk-time { font-variant-numeric: tabular-nums; color: #d97706; font-weight: 600; white-space: nowrap; min-width: 42px; }
+  #markers-list .mk-label { font-weight: 600; white-space: nowrap; }
+  #markers-list .mk-text { color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* ── Tiers (ELAN-style annotation layers) ── */
+  #tiers-panel {
+    margin-top: 4px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+  #tiers-panel.hidden { display: none; }
+  .tier-row {
+    display: flex;
+    align-items: stretch;
+    border-bottom: 1px solid var(--border);
+    min-height: 48px;
+  }
+  /* Ruler row */
+  .tier-ruler-row {
+    display: flex;
+    align-items: stretch;
+    border-bottom: 1px solid var(--border);
+    background: #f8fafc;
+    height: 22px;
+    flex-shrink: 0;
+  }
+  .tier-ruler-label {
+    flex: 0 0 90px;
+    border-right: 1px solid var(--border);
+  }
+  .tier-ruler-track {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+  .tier-ruler-tick {
+    position: absolute;
+    top: 0; bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+  }
+  .tier-ruler-tick-line {
+    width: 1px;
+    height: 6px;
+    background: #9ca3af;
+    flex-shrink: 0;
+  }
+  .tier-ruler-tick-label {
+    font-size: 9px;
+    color: #6b7280;
+    white-space: nowrap;
+    margin-top: 1px;
+    transform: translateX(-50%);
+    font-variant-numeric: tabular-nums;
+  }
+  .tier-ruler-tick.minor .tier-ruler-tick-line { height: 4px; background: #d1d5db; }
+  .tier-ruler-tick.minor .tier-ruler-tick-label { display: none; }
+  [data-theme="dark"] .tier-ruler-row { background: #1e2030; }
+  [data-theme="dark"] .tier-ruler-tick-label { color: #9ca3af; }
+  [data-theme="dark"] .tier-ruler-tick-line { background: #6b7280; }
+
+  .tier-row:last-of-type { border-bottom: none; }
+  .tier-label-col {
+    flex: 0 0 90px;
+    display: flex;
+    align-items: center;
+    padding: 4px 6px;
+    background: #f8fafc;
+    border-right: 1px solid var(--border);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    user-select: none;
+    overflow: hidden;
+  }
+  .tier-name {
+    cursor: text;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    padding: 1px 3px;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    transition: border-color 0.15s;
+  }
+  .tier-name:hover { border-color: var(--border); background: var(--surface2); }
+  .tier-name-input {
+    width: 100%;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid #6366f1;
+    border-radius: 3px;
+    padding: 1px 3px;
+    background: var(--surface);
+    color: var(--text);
+    outline: none;
+  }
+  .tier-track {
+    flex: 1;
+    position: relative;
+    cursor: crosshair;
+    overflow: hidden;
+    background: repeating-linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), rgba(0,0,0,0.04) calc(100% - 1px), rgba(0,0,0,0.04) 100%);
+  }
+  .tier-track:hover { background-color: rgba(99,102,241,0.04); }
+  .tier-ann {
+    position: absolute;
+    top: 3px; bottom: 3px;
+    border-radius: 3px;
+    background: rgba(99,102,241,0.25);
+    border: 1px solid rgba(99,102,241,0.6);
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+    font-size: 10px;
+    color: #3730a3;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    box-sizing: border-box;
+    min-width: 4px;
+  }
+  .tier-ann:hover { background: rgba(99,102,241,0.4); }
+  .tier-ann.selected { background: rgba(99,102,241,0.5); border-color: #4f46e5; outline: 2px solid rgba(99,102,241,0.4); }
+  .tier-ann-del {
+    position: absolute;
+    top: 2px; right: 2px;
+    width: 14px; height: 14px;
+    background: rgba(220,38,38,0.85);
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 9px;
+    line-height: 14px;
+    text-align: center;
+    padding: 0;
+    opacity: 0;
+    transition: opacity 0.15s;
+    flex-shrink: 0;
+    z-index: 2;
+  }
+  .tier-ann:hover .tier-ann-del { opacity: 1; }
+  .tier-ann-del:hover { background: #dc2626; }
+  .tier-sel-preview {
+    position: absolute;
+    top: 3px; bottom: 3px;
+    background: rgba(99,102,241,0.15);
+    border: 1px dashed rgba(99,102,241,0.5);
+    border-radius: 3px;
+    pointer-events: none;
+    box-sizing: border-box;
+  }
+  #tiers-footer {
+    display: flex;
+    align-items: center;
+    padding: 4px 8px;
+    gap: 8px;
+    background: #f8fafc;
+    border-top: 1px solid var(--border);
+  }
+  #btn-add-tier {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+  #tiers-count-hint { font-size: 10px; color: var(--text-muted); }
+  [data-theme="dark"] .tier-label-col { background: #1e2030; }
+  [data-theme="dark"] .tier-ann { color: #a5b4fc; }
+  [data-theme="dark"] #tiers-footer { background: #1e2030; }
+  #markers-empty { padding: 14px; color: var(--text-muted); font-size: 12px; text-align: center; }
+  [data-theme="dark"] #markers-card { background: var(--surface2); }
+  [data-theme="dark"] #markers-header { background: #2a2208; }
+  [data-theme="dark"] #markers-list li:hover { background: #2d2610; }
 
   /* ── Annotations section ── */
   #annotations-card {
@@ -534,6 +802,7 @@
   .badge { background: #374151; }
   .badge.model  { background: #374151; }
   .badge.manual { background: #374151; border: 1.5px dashed rgba(255,255,255,0.55); }
+  .badge.audio  { background: #92400e; }
 
   /* Label pill: colored by WH question (color set inline) */
   .label-pill {
@@ -581,6 +850,7 @@
 
   /* ── Minimap ── */
   #tl-minimap {
+    flex: 1;
     position: relative;
     height: 10px;
     background: #e9eaf0;
@@ -625,6 +895,48 @@
   #tl-selection.done {
     border-right: 2px solid #f97316;
     background: rgba(249,115,22,0.26);
+  }
+  /* Resize handles on selection edges */
+  .tl-sel-handle {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 10px;
+    pointer-events: all;
+    cursor: ew-resize;
+    z-index: 2;
+  }
+  .tl-sel-handle-l { left: -5px; }
+  .tl-sel-handle-r { right: -5px; }
+  .tl-sel-handle::after {
+    content: '';
+    position: absolute;
+    top: 20%; bottom: 20%;
+    left: 4px; width: 2px;
+    background: #f97316;
+    border-radius: 2px;
+    opacity: 0.8;
+  }
+  /* Custom label input */
+  #f-label-custom {
+    display: none;
+    width: 120px;
+    padding: 4px 6px;
+    font-size: 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--surface2);
+    color: var(--text);
+  }
+  #f-label-custom.visible { display: inline-block; }
+  /* Oración field in add form */
+  #f-oracion {
+    width: 180px;
+    padding: 4px 6px;
+    font-size: 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--surface2);
+    color: var(--text);
   }
   /* pulse on the left edge while waiting for end */
   #tl-selection.pending::before {
@@ -733,6 +1045,12 @@
   .btn-success:hover:not(:disabled) { background: #0a5942; }
   .btn-danger { background: #fff; color: var(--danger); border: 1px solid #fca5a5; font-size: 12px; padding: 4px 8px; }
   .btn-danger:hover:not(:disabled) { background: #fef2f2; }
+  /* Checkbox column */
+  .col-chk { width: 32px; text-align: center; }
+  input[type="checkbox"].ann-chk { cursor: pointer; accent-color: var(--accent); width: 14px; height: 14px; }
+  /* Batch save button */
+  #btn-save-batch { display: none; }
+  #btn-save-batch.visible { display: inline-flex; align-items: center; gap: 4px; }
   .btn-icon { background: none; border: none; padding: 4px 6px; border-radius: 4px; cursor: pointer; font-size: 14px; color: var(--text-muted); }
   .btn-icon:hover { background: #f3f4f6; color: var(--text); }
   .btn-sm { padding: 4px 8px; font-size: 12px; }
@@ -957,6 +1275,9 @@
       <button class="btn btn-primary btn-full btn-sm" id="btn-analyze" disabled>
         ✦ Analizar con modelo
       </button>
+      <button class="btn btn-full btn-sm" id="btn-analyze-audio" disabled style="margin-top:6px; background:var(--surface2); color:var(--text);">
+        🎙 Analizar con audio
+      </button>
       <div id="analyze-progress" style="display:none; margin-top:6px;">
         <div style="height:4px; background:var(--border); border-radius:2px; overflow:hidden;">
           <div id="analyze-bar" style="height:100%; width:0%; background:var(--accent); border-radius:2px; transition:width 0.3s ease;"></div>
@@ -1021,12 +1342,33 @@
           <button id="btn-zoom-reset" title="Restablecer zoom">↩ Reset</button>
           <span style="font-size:11px;color:var(--text-muted);margin-left:4px" title="Rueda del ratón para hacer zoom">🔍 scroll</span>
         </div>
-        <div id="timeline">
-          <div id="timeline-cursor"></div>
-          <div id="tl-selection"></div>
+        <div class="tl-row-wrapper">
+          <div class="tl-row-label">Línea de tiempo</div>
+          <div id="timeline">
+            <div id="timeline-cursor"></div>
+            <div id="tl-selection">
+              <div class="tl-sel-handle tl-sel-handle-l" id="tl-sel-hl"></div>
+              <div class="tl-sel-handle tl-sel-handle-r" id="tl-sel-hr"></div>
+            </div>
+          </div>
         </div>
-        <div id="tl-minimap">
-          <div id="mm-viewport"></div>
+        <div id="tiers-panel" class="hidden">
+          <!-- Ruler row (always first) -->
+          <div class="tier-ruler-row">
+            <div class="tier-ruler-label"></div>
+            <div class="tier-ruler-track" id="tier-ruler-track"></div>
+          </div>
+          <!-- Tier rows injected by JS -->
+          <div id="tiers-footer">
+            <button class="btn btn-secondary btn-sm" id="btn-add-tier">+ Añadir capa</button>
+            <span id="tiers-count-hint"></span>
+          </div>
+        </div>
+        <div class="tl-row-wrapper" style="margin-top:5px">
+          <div class="tl-row-label"></div>
+          <div id="tl-minimap" style="margin-top:0">
+            <div id="mm-viewport"></div>
+          </div>
         </div>
         <div id="tl-sel-info">
           <span>📍</span>
@@ -1042,9 +1384,22 @@
       </div>
 
       <!-- Annotations -->
+      <!-- Markers card (audio detections) -->
+      <div id="markers-card" style="display:none;">
+        <div id="markers-header">
+          <h2>🎙 Marcadores de audio</h2>
+          <span id="markers-count" style="font-size:11px; color:var(--text-muted);"></span>
+          <span id="markers-toggle">▾</span>
+        </div>
+        <div id="markers-body">
+          <ul id="markers-list"></ul>
+        </div>
+      </div>
+
       <div id="annotations-card">
         <div id="annotations-header">
           <h2>Anotaciones</h2>
+          <button class="btn btn-secondary btn-sm" id="btn-save-batch" title="Guardar clips seleccionados en /clips">⬇ Guardar seleccionados (<span id="batch-count">0</span>)</button>
           <button class="btn btn-success btn-sm" id="btn-add">+ Agregar seña</button>
         </div>
 
@@ -1067,6 +1422,10 @@
           </label>
           <label>Etiqueta
             <select id="f-label"></select>
+            <input type="text" id="f-label-custom" placeholder="Escribe la etiqueta…" />
+          </label>
+          <label>Oración
+            <input type="text" id="f-oracion" placeholder="Frase de referencia (opcional)" />
           </label>
           <button class="btn btn-primary btn-sm" id="btn-save-add">Guardar</button>
           <button class="btn btn-secondary btn-sm" id="btn-cancel-add">Cancelar</button>
@@ -1078,10 +1437,11 @@
           <table id="ann-table">
             <thead>
               <tr>
+                <th class="col-chk"><input type="checkbox" id="chk-all" class="ann-chk" title="Seleccionar todos"></th>
                 <th>Fuente</th>
                 <th>Inicio → Fin</th>
                 <th>Etiqueta</th>
-                <th>Confianza</th>
+                <th>Oración / Frase</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -1157,8 +1517,8 @@ function clampTlOffset(off) {
 
 // ── Tag configuration (names are user-editable, colors are fixed by slot) ──
 const BLANK_LABEL     = '';
-const DEFAULT_TAGS    = ['¿Qué?', '¿Quién?', '¿Cuándo?', '¿Dónde?', '¿Cómo?', '¿Por qué?', '¿Cuánto?'];
-const TAG_COLORS      = ['#e05a1e', '#7c3aed', '#0077b6', '#0F6E56', '#c1121f', '#b5850a', '#457b9d'];
+const DEFAULT_TAGS    = ['¿Qué?', '¿Quién?', '¿Cuándo?', '¿Dónde?', '¿Cómo?', '¿Por qué?', '¿Cuánto?', '¿Para qué?'];
+const TAG_COLORS      = ['#e05a1e', '#7c3aed', '#0077b6', '#0F6E56', '#c1121f', '#b5850a', '#457b9d', '#6b7c45'];
 const TAGS_STORAGE_KEY = 'lsp-annotator-tags';
 
 let tags = (() => {
@@ -1194,19 +1554,37 @@ function syncActiveFilters(annotations) {
 function renderAddFormSelect(selectedVal = '') {
   const sel = document.getElementById('f-label');
   if (!sel) return;
-  sel.innerHTML = `<option value="">— Sin etiqueta —</option>` +
-    tags.map(t => `<option value="${escapeHtml(t)}" ${t === selectedVal ? 'selected' : ''}>${escapeHtml(t)}</option>`).join('');
+  const isCustom = selectedVal !== '' && !tags.includes(selectedVal) && selectedVal !== '__custom__';
+  sel.innerHTML =
+    `<option value="">— Sin etiqueta —</option>` +
+    tags.map(t => `<option value="${escapeHtml(t)}" ${t === selectedVal ? 'selected' : ''}>${escapeHtml(t)}</option>`).join('') +
+    `<option value="__custom__" ${(isCustom || selectedVal === '__custom__') ? 'selected' : ''}>Personalizado…</option>`;
+  const inp = document.getElementById('f-label-custom');
+  if (inp) {
+    inp.classList.toggle('visible', isCustom || sel.value === '__custom__');
+    if (isCustom) inp.value = selectedVal;
+  }
 }
+
+document.getElementById('f-label').addEventListener('change', () => {
+  const isCustom = document.getElementById('f-label').value === '__custom__';
+  document.getElementById('f-label-custom').classList.toggle('visible', isCustom);
+  if (isCustom) document.getElementById('f-label-custom').focus();
+});
 
 const state = {
   videos: [],
   currentVideo: null,
   annotations: [],
+  audioMarkers: [],
+  selectedAnnotations: new Set(),
   duration: 0,
   mkeyStart: null,
   activeFilters: new Set(WH_LABELS),
-  loopAnn: null,            // annotation currently looping (or null)
-  expandedFolders: new Set(), // folder paths currently expanded in the tree
+  loopAnn: null,
+  expandedFolders: new Set(),
+  tiers: [],           // ELAN-style tiers: [{id, name, anns:[{id,start,end,text}]}]
+  activeMarkerId: null, // id del marcador de audio actualmente seleccionado
 };
 
 // ============================================================
@@ -1384,6 +1762,7 @@ async function selectVideo(v) {
   document.getElementById('empty-state').style.display = 'none';
   document.getElementById('video-section').style.display = 'flex';
   document.getElementById('btn-analyze').disabled = false;
+  document.getElementById('btn-analyze-audio').disabled = false;
   document.getElementById('btn-export-json').disabled = false;
   document.getElementById('btn-export-csv').disabled = false;
 
@@ -1411,12 +1790,23 @@ async function selectVideo(v) {
   // Load annotations
   try {
     const data = await apiGet(`/annotations/${encodeId(v.id)}`);
-    state.annotations = data.annotations || [];
+    state.annotations  = data.annotations || [];
+    state.audioMarkers = data.markers     || [];
+    state.tiers        = (data.tiers && data.tiers.length > 0)
+      ? data.tiers
+      : [{ id: uuidv4(), name: 'Tier 1', anns: [] }];
   } catch {
-    state.annotations = [];
+    state.annotations  = [];
+    state.audioMarkers = [];
+    state.tiers        = [{ id: uuidv4(), name: 'Tier 1', anns: [] }];
   }
+  state.activeMarkerId = null;
+  state.selectedAnnotations = new Set();
   syncActiveFilters(state.annotations);
   renderAnnotations();
+  renderMarkersList();
+  renderTiers();
+  renderTierRuler();
   renderTimeline();
 }
 
@@ -1452,6 +1842,7 @@ video.addEventListener('timeupdate', () => {
 function clearTimeline() {
   const tl = document.getElementById('timeline');
   tl.querySelectorAll('.tl-marker').forEach(el => el.remove());
+  tl.querySelectorAll('.tl-audio-pin').forEach(el => el.remove());
 }
 
 function renderTimeline() {
@@ -1459,11 +1850,38 @@ function renderTimeline() {
   if (state.duration <= 0) return;
   state.annotations.forEach(ann => addMarkerToTimeline(ann));
   applyFilterToTimeline();
+  renderAudioPins();
+}
+
+function renderAudioPins() {
+  const tl = document.getElementById('timeline');
+  tl.querySelectorAll('.tl-audio-pin').forEach(el => el.remove());
+  if (state.duration <= 0) return;
+  state.audioMarkers.forEach(mk => {
+    const pct = timeToTlPct(mk.time);
+    if (pct < 0 || pct > 100) return;   // fuera de la ventana visible (zoom)
+    const pin = document.createElement('div');
+    pin.className = 'tl-audio-pin';
+    pin.dataset.id = mk.id;
+    pin.style.left = `${pct}%`;
+    pin.title = `${fmtTime(mk.time)} — ${mk.label}\n${mk.oracion || ''}`;
+    const flag = document.createElement('span');
+    flag.className = 'tl-audio-pin-flag';
+    flag.textContent = labelDisplay(mk.label);
+    pin.appendChild(flag);
+    pin.addEventListener('click', (e) => {
+      e.stopPropagation();
+      prefillFormFromMarker(mk);
+    });
+    tl.appendChild(pin);
+  });
 }
 
 // Full refresh: re-render markers + cursor + overlay + minimap + zoom UI
 function refreshTimeline() {
   renderTimeline();
+  renderTierRuler();
+  renderTiers();
   updateTimelineCursor();
   updateSelectionOverlay();
   updateZoomUI();
@@ -1502,7 +1920,7 @@ function addMarkerToTimeline(ann) {
       `${ann.start.toFixed(2)}s → ${ann.end.toFixed(2)}s  (${fmtTime(ann.start)} → ${fmtTime(ann.end)})`;
     const srcEl = tip.querySelector('.tl-tip-source');
     srcEl.className = `tl-tip-source badge ${ann.source}`;
-    srcEl.textContent = ann.source === 'model' ? '⚙ modelo' : '✎ manual';
+    srcEl.textContent = ann.source === 'model' ? '⚙ modelo' : ann.source === 'audio' ? '🎙 audio' : '✎ manual';
     tip.style.left = `${rect.left + rect.width / 2}px`;
     tip.style.top  = `${rect.bottom + 8}px`;
     tip.classList.add('visible');
@@ -1518,15 +1936,19 @@ function addMarkerToTimeline(ann) {
 }
 
 function updateTimelineCursor() {
-  const cursor = document.getElementById('timeline-cursor');
   if (state.duration <= 0) return;
   const pct = timeToTlPct(video.currentTime);
-  if (pct < 0 || pct > 100) {
-    cursor.style.display = 'none';
-  } else {
-    cursor.style.display = '';
-    cursor.style.left = `${pct}%`;
-  }
+  const visible = pct >= 0 && pct <= 100;
+
+  const cursor = document.getElementById('timeline-cursor');
+  cursor.style.display = visible ? '' : 'none';
+  if (visible) cursor.style.left = `${pct}%`;
+
+  // Sync cursor across ruler and all tier tracks
+  document.querySelectorAll('.tier-cursor').forEach(el => {
+    el.style.display = visible ? '' : 'none';
+    if (visible) el.style.left = `${pct}%`;
+  });
 }
 
 // ── Zoom UI ──
@@ -1596,11 +2018,68 @@ function autoFollowPlayhead() {
 let tlDragAnchor    = null;
 let tlDragActive    = false;
 let tlMouseDownX    = 0;
-let tlClickOnMarker = false;   // true when mousedown lands on a marker
+let tlClickOnMarker = false;
 const TL_DRAG_PX    = 5;
+
+// ── Resize handle state ──
+let tlResizeMode  = null; // 'l' | 'r' | null
+let tlResizeStart = 0;
+
+function initResizeHandles() {
+  const hl = document.getElementById('tl-sel-hl');
+  const hr = document.getElementById('tl-sel-hr');
+  if (!hl || !hr) return;
+
+  function onHandleDown(e, side) {
+    if (e.button !== 0) return;
+    e.preventDefault();
+    e.stopPropagation();
+    tlResizeMode  = side;
+    tlResizeStart = e.clientX;
+    document.getElementById('timeline').classList.add('dragging');
+  }
+  hl.addEventListener('mousedown', e => onHandleDown(e, 'l'));
+  hr.addEventListener('mousedown', e => onHandleDown(e, 'r'));
+}
+initResizeHandles();
+
+document.addEventListener('mousemove', (e) => {
+  if (tlResizeMode && state.duration > 0) {
+    const t = Math.max(0, Math.min(state.duration, tlClientXToTime(e.clientX)));
+    const fStart = document.getElementById('f-start');
+    const fEnd   = document.getElementById('f-end');
+    const curStart = parseFloat(fStart.value) || 0;
+    const curEnd   = parseFloat(fEnd.value)   || 0;
+    if (tlResizeMode === 'l') {
+      const newStart = Math.min(t, curEnd - 0.1);
+      fStart.value = newStart.toFixed(2);
+    } else {
+      const newEnd = Math.max(t, curStart + 0.1);
+      fEnd.value = newEnd.toFixed(2);
+    }
+    document.getElementById('add-form').classList.add('visible');
+    state.mkeyStart = null;
+    updateSelectionOverlay();
+    return;
+  }
+});
+
+document.addEventListener('mouseup', (e) => {
+  if (tlResizeMode) {
+    tlResizeMode = null;
+    document.getElementById('timeline').classList.remove('dragging');
+    const startVal = parseFloat(document.getElementById('f-start').value);
+    const endVal   = parseFloat(document.getElementById('f-end').value);
+    if (!isNaN(startVal) && !isNaN(endVal) && endVal > startVal) {
+      toast(`Selección ajustada: ${fmtTime(startVal)} → ${fmtTime(endVal)}`);
+    }
+    return;
+  }
+});
 
 document.getElementById('timeline').addEventListener('mousedown', (e) => {
   if (e.button !== 0) return;
+  if (tlResizeMode) return; // handle takes over
   e.preventDefault();
   if (state.duration <= 0) return;
 
@@ -1671,7 +2150,6 @@ document.addEventListener('mouseup', () => {
       state.mkeyStart = null;
       hideMkeyIndicator();
       updateSelectionOverlay();
-      document.getElementById('f-label').focus();
       toast(`Selección: ${fmtTime(startVal)} → ${fmtTime(endVal)} — elige la etiqueta`);
     } else {
       // Drag too short: keep as start-only, wait for end
@@ -1711,7 +2189,6 @@ document.addEventListener('mouseup', () => {
       document.getElementById('f-end').value = anchor.toFixed(2);
       state.mkeyStart = null;
       hideMkeyIndicator();
-      document.getElementById('f-label').focus();
       toast(`Fin capturado: ${fmtTime(anchor)} — elige la etiqueta y guarda`);
     }
     updateSelectionOverlay();
@@ -1730,7 +2207,7 @@ document.getElementById('timeline').addEventListener('wheel', (e) => {
   const rect       = document.getElementById('timeline').getBoundingClientRect();
   const mouseRatio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
 
-  const factor  = e.deltaY < 0 ? 1.5 : 1 / 1.5;
+  const factor  = e.deltaY < 0 ? 1.12 : 1 / 1.12;
   const newZoom = Math.max(1, Math.min(200, tlZoom * factor));
   if (Math.abs(newZoom - tlZoom) < 0.001) return;
   tlZoom = newZoom;
@@ -1854,7 +2331,7 @@ function renderAnnotations() {
   tbody.innerHTML = '';
 
   if (state.annotations.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="5" class="empty-table">No hay anotaciones. Usa el modelo o agrega manualmente.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="6" class="empty-table">No hay anotaciones. Usa el modelo o agrega manualmente.</td></tr>';
     return;
   }
 
@@ -1872,9 +2349,15 @@ function renderAnnotations() {
 
   if (visibleCount === 0) {
     const tr = document.createElement('tr');
-    tr.innerHTML = '<td colspan="5" class="empty-table">Ninguna anotación coincide con los filtros activos.</td>';
+    tr.innerHTML = '<td colspan="6" class="empty-table">Ninguna anotación coincide con los filtros activos.</td>';
     tbody.appendChild(tr);
   }
+
+  // Eliminar IDs seleccionados que ya no existen (tras un borrado)
+  const existingIds = new Set(state.annotations.map(a => a.id));
+  state.selectedAnnotations = new Set([...state.selectedAnnotations].filter(id => existingIds.has(id)));
+  updateBatchButton();
+  updateSelectAllCheckbox();
 }
 
 function highlightAnnotationRow(id) {
@@ -1890,32 +2373,36 @@ function buildAnnotationRow(ann) {
   const tr = document.createElement('tr');
   tr.dataset.id = ann.id;
 
-  const conf = ann.confidence != null ? ann.confidence : null;
-  const confHtml = conf != null
-    ? `<div class="confidence-bar">
-         <div class="conf-track"><div class="conf-fill" style="width:${Math.round(conf*100)}%"></div></div>
-         <span>${Math.round(conf*100)}%</span>
-       </div>`
-    : '<span style="color:var(--text-muted)">—</span>';
+  const labelColor  = LABEL_COLORS[ann.label] || '#6b7280';
+  const sourceIcon  = ann.source === 'model' ? '⚙' : ann.source === 'audio' ? '🎙' : '✎';
+  const sourceText  = ann.source === 'model' ? 'modelo' : ann.source === 'audio' ? 'audio' : 'manual';
+  const orTxt       = ann.oracion || '';
+  const orDisplay   = orTxt.length > 45 ? escapeHtml(orTxt.slice(0, 44)) + '…' : escapeHtml(orTxt);
+  const orHtml      = orTxt ? orDisplay : '<span style="color:var(--text-muted)">—</span>';
 
-  const labelColor = LABEL_COLORS[ann.label] || '#6b7280';
-  const sourceIcon = ann.source === 'model' ? '⚙' : '✎';
-  const sourceText = ann.source === 'model' ? 'modelo' : 'manual';
-
+  const isChecked = state.selectedAnnotations.has(ann.id);
   tr.innerHTML = `
+    <td class="col-chk"><input type="checkbox" class="ann-chk" data-id="${ann.id}" ${isChecked ? 'checked' : ''}></td>
     <td><span class="badge ${ann.source}">${sourceIcon} ${sourceText}</span></td>
     <td class="cell-times">${fmtTime(ann.start)} → ${fmtTime(ann.end)}<br><small style="color:var(--text-muted)">${ann.start.toFixed(2)}s → ${ann.end.toFixed(2)}s</small></td>
     <td class="cell-label"><span class="label-pill${ann.label === '' ? ' label-blank' : ''}" style="background:${labelColor}">${escapeHtml(labelDisplay(ann.label))}</span></td>
-    <td>${confHtml}</td>
+    <td class="cell-oracion" style="font-size:11px;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${escapeHtml(orTxt)}">${orHtml}</td>
     <td>
       <div class="actions">
         <button class="btn-icon btn-jump" title="Reproducir clip en bucle">▶</button>
         <button class="btn-icon btn-edit" title="Editar">✎</button>
-        <button class="btn-icon btn-download" title="Descargar clip">⬇</button>
+        <button class="btn-icon btn-download" title="Guardar clip en /clips">⬇</button>
         <button class="btn btn-danger btn-sm btn-delete" title="Eliminar">✕</button>
       </div>
     </td>
   `;
+
+  tr.querySelector('.ann-chk').addEventListener('change', (e) => {
+    if (e.target.checked) state.selectedAnnotations.add(ann.id);
+    else state.selectedAnnotations.delete(ann.id);
+    updateBatchButton();
+    updateSelectAllCheckbox();
+  });
 
   tr.querySelector('.btn-jump').addEventListener('click', () => {
     activateLoop(ann);
@@ -1949,8 +2436,9 @@ function escapeHtml(str) {
 // Inline edit
 // ============================================================
 function startInlineEdit(tr, ann) {
-  const cellTimes = tr.querySelector('.cell-times');
-  const cellLabel = tr.querySelector('.cell-label');
+  const cellTimes  = tr.querySelector('.cell-times');
+  const cellLabel  = tr.querySelector('.cell-label');
+  const cellOracion = tr.querySelector('.cell-oracion');
 
   cellTimes.innerHTML = `
     <input class="edit-input" id="edit-start" type="number" step="0.1" value="${ann.start}" style="width:75px" />
@@ -1958,9 +2446,22 @@ function startInlineEdit(tr, ann) {
     <input class="edit-input" id="edit-end" type="number" step="0.1" value="${ann.end}" style="width:75px" />
   `;
 
-  cellLabel.innerHTML = `<select class="edit-select" id="edit-label">
-    ${WH_LABELS.map(o => `<option value="${escapeHtml(o)}" ${o===ann.label?'selected':''}>${o === '' ? '— Sin etiqueta —' : escapeHtml(o)}</option>`).join('')}
-  </select>`;
+  const isCustomLabel = ann.label !== '' && !tags.includes(ann.label);
+  cellLabel.innerHTML = `
+    <select class="edit-select" id="edit-label">
+      <option value="">— Sin etiqueta —</option>
+      ${tags.map(o => `<option value="${escapeHtml(o)}" ${o===ann.label?'selected':''}>${escapeHtml(o)}</option>`).join('')}
+      <option value="__custom__" ${isCustomLabel?'selected':''}>Personalizado…</option>
+    </select>
+    <input type="text" id="edit-label-custom" style="display:${isCustomLabel?'inline-block':'none'};width:110px;padding:3px 5px;font-size:12px;border:1px solid var(--border);border-radius:4px;background:var(--surface2);color:var(--text)" value="${isCustomLabel ? escapeHtml(ann.label) : ''}" placeholder="Etiqueta…" />
+  `;
+  tr.querySelector('#edit-label').addEventListener('change', e => {
+    tr.querySelector('#edit-label-custom').style.display = e.target.value === '__custom__' ? 'inline-block' : 'none';
+  });
+
+  if (cellOracion) {
+    cellOracion.innerHTML = `<input type="text" id="edit-oracion" style="width:140px;padding:3px 5px;font-size:11px;border:1px solid var(--border);border-radius:4px;background:var(--surface2);color:var(--text)" value="${escapeHtml(ann.oracion || '')}" placeholder="Frase de referencia…" />`;
+  }
 
   // Replace actions
   const actCell = tr.querySelector('.actions');
@@ -1970,16 +2471,20 @@ function startInlineEdit(tr, ann) {
   `;
 
   actCell.querySelector('#edit-save').addEventListener('click', () => {
-    const newStart = parseFloat(tr.querySelector('#edit-start').value);
-    const newEnd   = parseFloat(tr.querySelector('#edit-end').value);
-    const newLabel = tr.querySelector('#edit-label').value;
+    const newStart  = parseFloat(tr.querySelector('#edit-start').value);
+    const newEnd    = parseFloat(tr.querySelector('#edit-end').value);
+    const rawLbl    = tr.querySelector('#edit-label').value;
+    const newLabel  = rawLbl === '__custom__'
+      ? (tr.querySelector('#edit-label-custom').value.trim())
+      : rawLbl;
+    const newOracion = tr.querySelector('#edit-oracion') ? tr.querySelector('#edit-oracion').value.trim() : (ann.oracion || '');
     if (isNaN(newStart) || isNaN(newEnd) || newEnd <= newStart) {
       toast('Valores inválidos: fin debe ser mayor que inicio');
       return;
     }
     const idx = state.annotations.findIndex(a => a.id === ann.id);
     if (idx !== -1) {
-      state.annotations[idx] = { ...state.annotations[idx], start: newStart, end: newEnd, label: newLabel };
+      state.annotations[idx] = { ...state.annotations[idx], start: newStart, end: newEnd, label: newLabel, oracion: newOracion };
     }
     renderAnnotations();
     renderTimeline();
@@ -2006,14 +2511,18 @@ document.getElementById('btn-cancel-add').addEventListener('click', () => {
 });
 
 document.getElementById('btn-save-add').addEventListener('click', () => {
-  const start = parseFloat(document.getElementById('f-start').value);
-  const end   = parseFloat(document.getElementById('f-end').value);
-  const label = document.getElementById('f-label').value;
+  const start  = parseFloat(document.getElementById('f-start').value);
+  const end    = parseFloat(document.getElementById('f-end').value);
+  const rawLbl = document.getElementById('f-label').value;
+  const label  = rawLbl === '__custom__'
+    ? document.getElementById('f-label-custom').value.trim()
+    : rawLbl;
+  const oracion = document.getElementById('f-oracion').value.trim();
   if (isNaN(start) || isNaN(end) || end <= start) {
     toast('Valores inválidos: el fin debe ser mayor que el inicio');
     return;
   }
-  const ann = { id: uuidv4(), start, end, label, source: 'manual', confidence: null };
+  const ann = { id: uuidv4(), start, end, label, oracion, source: 'manual', confidence: null };
   state.annotations.push(ann);
   renderAnnotations();
   renderTimeline();
@@ -2028,6 +2537,11 @@ document.getElementById('btn-save-add').addEventListener('click', () => {
 function clearAddForm() {
   document.getElementById('f-start').value = '';
   document.getElementById('f-end').value = '';
+  document.getElementById('f-oracion').value = '';
+  const lbl = document.getElementById('f-label');
+  if (lbl) lbl.value = '';
+  document.getElementById('f-label-custom').classList.remove('visible');
+  document.getElementById('f-label-custom').value = '';
   state.mkeyStart = null;
   hideMkeyIndicator();
   updateSelectionOverlay();
@@ -2074,7 +2588,6 @@ document.addEventListener('keydown', (e) => {
       state.mkeyStart = null;
       updateSelectionOverlay();
       toast(`Fin capturado: ${fmtTime(t)} — elige la etiqueta y guarda`);
-      document.getElementById('f-label').focus();
     }
   }
 
@@ -2146,6 +2659,406 @@ document.getElementById('btn-analyze').addEventListener('click', async () => {
 });
 
 // ============================================================
+// Analyze with audio (Whisper API)
+// ============================================================
+document.getElementById('btn-analyze-audio').addEventListener('click', async () => {
+  if (!state.currentVideo) return;
+  const btn      = document.getElementById('btn-analyze-audio');
+  const progress = document.getElementById('analyze-progress');
+  const bar      = document.getElementById('analyze-bar');
+  const phase    = document.getElementById('analyze-phase');
+
+  btn.disabled = true;
+  btn.innerHTML = '<div class="spinner"></div> Transcribiendo…';
+  progress.style.display = 'block';
+  bar.style.width = '0%';
+  phase.textContent = 'Iniciando…';
+
+  try {
+    const { job_id } = await apiPost(`/analyze-audio/${encodeId(state.currentVideo.id)}`, {});
+
+    await new Promise((resolve, reject) => {
+      const poll = setInterval(async () => {
+        try {
+          const job = await apiGet(`/analyze-audio-status/${job_id}`);
+          bar.style.width   = `${job.progress}%`;
+          phase.textContent = job.phase || '';
+
+          if (job.status === 'done') {
+            clearInterval(poll);
+            state.audioMarkers = job.annotations || [];
+            renderMarkersList();
+            renderAudioPins();
+            await autosave();
+            toast(`Audio analizado: ${state.audioMarkers.length} marcadores detectados`);
+            resolve();
+          } else if (job.status === 'error') {
+            clearInterval(poll);
+            reject(new Error(job.error || 'Error desconocido'));
+          }
+        } catch (e) {
+          clearInterval(poll);
+          reject(e);
+        }
+      }, 800);
+    });
+
+  } catch (e) {
+    toast('Error al analizar audio: ' + (e.message || e));
+    console.error(e);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '🎙 Analizar con audio';
+    setTimeout(() => { progress.style.display = 'none'; }, 2000);
+  }
+});
+
+// ============================================================
+// Markers list
+// ============================================================
+// ============================================================
+// Tiers (ELAN-style annotation layers)
+// ============================================================
+const MAX_TIERS = 3;
+let tierDrag = null; // { tierId, startTime, previewEl, trackEl }
+
+function renderTierRuler() {
+  const track = document.getElementById('tier-ruler-track');
+  if (!track) return;
+  track.innerHTML = '';
+  if (state.duration <= 0) return;
+
+  const visStart = tlOffset * state.duration;
+  const visDur   = tlWindowDuration();
+  const visEnd   = visStart + visDur;
+
+  // Choose tick interval based on visible duration
+  const intervals = [0.5, 1, 2, 5, 10, 15, 30, 60, 120, 300, 600, 1800, 3600];
+  const targetTicks = 8;
+  let majorInterval = intervals.find(iv => visDur / iv <= targetTicks) || intervals[intervals.length - 1];
+  let minorInterval = majorInterval / 5;
+
+  // Align to integer multiples
+  const firstMajor = Math.ceil(visStart / majorInterval) * majorInterval;
+  const firstMinor = Math.ceil(visStart / minorInterval) * minorInterval;
+
+  // Cursor div for the ruler
+  const rulerCursor = document.createElement('div');
+  rulerCursor.className = 'tier-cursor';
+  rulerCursor.style.display = 'none';
+  track.appendChild(rulerCursor);
+
+  // Minor ticks
+  for (let t = firstMinor; t <= visEnd + 0.001; t += minorInterval) {
+    if (Math.abs(t % majorInterval) < 0.01) continue; // skip — major will draw it
+    const pct = timeToTlPct(t);
+    if (pct < 0 || pct > 100) continue;
+    const tick = document.createElement('div');
+    tick.className = 'tier-ruler-tick minor';
+    tick.style.left = `${pct}%`;
+    track.appendChild(tick);
+  }
+
+  // Major ticks + labels
+  for (let t = firstMajor; t <= visEnd + 0.001; t += majorInterval) {
+    const pct = timeToTlPct(t);
+    if (pct < 0 || pct > 100) continue;
+    const tick = document.createElement('div');
+    tick.className = 'tier-ruler-tick';
+    tick.style.left = `${pct}%`;
+    const line = document.createElement('div');
+    line.className = 'tier-ruler-tick-line';
+    const lbl = document.createElement('div');
+    lbl.className = 'tier-ruler-tick-label';
+    lbl.textContent = fmtTime(t);
+    tick.appendChild(line);
+    tick.appendChild(lbl);
+    track.appendChild(tick);
+  }
+}
+
+function renderTiers() {
+  const panel = document.getElementById('tiers-panel');
+  const footer = document.getElementById('tiers-footer');
+  if (!state.currentVideo) { panel.classList.add('hidden'); return; }
+  panel.classList.remove('hidden');
+
+  // Remove existing tier rows (keep footer)
+  panel.querySelectorAll('.tier-row').forEach(el => el.remove());
+
+  state.tiers.forEach(tier => {
+    const row = document.createElement('div');
+    row.className = 'tier-row';
+    row.dataset.tierId = tier.id;
+
+    // Label column
+    const labelCol = document.createElement('div');
+    labelCol.className = 'tier-label-col';
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'tier-name';
+    nameSpan.title = 'Doble clic para renombrar';
+    nameSpan.textContent = tier.name;
+    nameSpan.addEventListener('dblclick', () => startTierRename(tier, nameSpan));
+    // Delete button (only if > 1 tier)
+    const delBtn = document.createElement('button');
+    delBtn.title = 'Eliminar capa';
+    delBtn.style.cssText = 'margin-left:auto;flex-shrink:0;background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:11px;padding:0 2px;line-height:1;';
+    delBtn.textContent = '✕';
+    delBtn.addEventListener('click', () => {
+      if (state.tiers.length <= 1) { toast('Debe quedar al menos una capa'); return; }
+      state.tiers = state.tiers.filter(t => t.id !== tier.id);
+      renderTiers();
+      autosave();
+    });
+    labelCol.appendChild(nameSpan);
+    labelCol.appendChild(delBtn);
+
+    // Track (clickable area)
+    const track = document.createElement('div');
+    track.className = 'tier-track';
+    track.dataset.tierId = tier.id;
+
+    // Cursor
+    const tierCursor = document.createElement('div');
+    tierCursor.className = 'tier-cursor';
+    tierCursor.style.display = 'none';
+    track.appendChild(tierCursor);
+
+    // Render existing annotations
+    tier.anns.forEach(ann => renderTierAnn(track, tier, ann));
+
+    // Mousedown: start creating a new segment
+    track.addEventListener('mousedown', (e) => {
+      if (e.button !== 0 || state.duration <= 0) return;
+      e.preventDefault();
+      const t = tierClientXToTime(track, e.clientX);
+      const preview = document.createElement('div');
+      preview.className = 'tier-sel-preview';
+      preview.style.left  = `${timeToTlPct(t)}%`;
+      preview.style.width = '0';
+      track.appendChild(preview);
+      tierDrag = { tierId: tier.id, startTime: t, previewEl: preview, trackEl: track };
+    });
+
+    row.appendChild(labelCol);
+    row.appendChild(track);
+    panel.insertBefore(row, footer);
+  });
+
+  // Update hint and button state
+  const hint = document.getElementById('tiers-count-hint');
+  const addBtn = document.getElementById('btn-add-tier');
+  hint.textContent = `${state.tiers.length} / ${MAX_TIERS} capas`;
+  addBtn.disabled = state.tiers.length >= MAX_TIERS;
+}
+
+function renderTierAnn(track, tier, ann) {
+  const el = document.createElement('div');
+  el.className = 'tier-ann';
+  el.dataset.annId = ann.id;
+  const left  = timeToTlPct(ann.start);
+  const right = timeToTlPct(ann.end);
+  if (left > 100 || right < 0) return;
+  el.style.left  = `${Math.max(0, left)}%`;
+  el.style.width = `${Math.max(0.5, right - Math.max(0, left))}%`;
+  el.title = `${fmtTime(ann.start)} → ${fmtTime(ann.end)}${ann.text ? '\n' + ann.text : ''}\nDoble clic para editar`;
+
+  const label = document.createElement('span');
+  label.style.cssText = 'flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;';
+  label.textContent = ann.text || '';
+  el.appendChild(label);
+
+  const delBtn = document.createElement('button');
+  delBtn.className = 'tier-ann-del';
+  delBtn.textContent = '✕';
+  delBtn.title = 'Eliminar segmento';
+  delBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    tier.anns = tier.anns.filter(a => a.id !== ann.id);
+    renderTiers();
+    autosave();
+  });
+  el.appendChild(delBtn);
+
+  el.addEventListener('dblclick', (e) => {
+    e.stopPropagation();
+    startTierAnnEdit(el, tier, ann);
+  });
+  el.addEventListener('click', (e) => {
+    e.stopPropagation();
+    document.getElementById('video').currentTime = ann.start;
+  });
+  track.appendChild(el);
+}
+
+function startTierAnnEdit(el, tier, ann) {
+  const inp = document.createElement('input');
+  inp.type = 'text';
+  inp.value = ann.text || '';
+  inp.style.cssText = 'width:90%;font-size:10px;padding:1px 3px;border:1px solid #6366f1;border-radius:2px;background:var(--surface);color:var(--text);';
+  el.textContent = '';
+  el.appendChild(inp);
+  inp.focus();
+  inp.select();
+  const commit = () => {
+    const idx = tier.anns.findIndex(a => a.id === ann.id);
+    if (idx !== -1) tier.anns[idx].text = inp.value.trim();
+    renderTiers();
+    autosave();
+  };
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); commit(); } if (e.key === 'Escape') renderTiers(); });
+  inp.addEventListener('blur', commit);
+}
+
+function startTierRename(tier, nameSpan) {
+  const inp = document.createElement('input');
+  inp.type = 'text';
+  inp.className = 'tier-name-input';
+  inp.value = tier.name;
+  nameSpan.replaceWith(inp);
+  inp.focus();
+  inp.select();
+  const commit = () => {
+    tier.name = inp.value.trim() || tier.name;
+    renderTiers();
+    autosave();
+  };
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); commit(); } if (e.key === 'Escape') renderTiers(); });
+  inp.addEventListener('blur', commit);
+}
+
+function tierClientXToTime(trackEl, clientX) {
+  const rect  = trackEl.getBoundingClientRect();
+  const ratio = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+  return tlOffset * state.duration + ratio * tlWindowDuration();
+}
+
+// Tier drag: mousemove + mouseup on document
+document.addEventListener('mousemove', (e) => {
+  if (!tierDrag) return;
+  const t    = tierClientXToTime(tierDrag.trackEl, e.clientX);
+  const l    = Math.min(tierDrag.startTime, t);
+  const r    = Math.max(tierDrag.startTime, t);
+  const lPct = timeToTlPct(l);
+  const rPct = timeToTlPct(r);
+  tierDrag.previewEl.style.left  = `${Math.max(0, lPct)}%`;
+  tierDrag.previewEl.style.width = `${Math.max(0.3, rPct - Math.max(0, lPct))}%`;
+});
+
+document.addEventListener('mouseup', (e) => {
+  if (!tierDrag) return;
+  const drag = tierDrag;
+  tierDrag = null;
+  drag.previewEl.remove();
+
+  const t    = tierClientXToTime(drag.trackEl, e.clientX);
+  const start = Math.min(drag.startTime, t);
+  const end   = Math.max(drag.startTime, t);
+  if (end - start < 0.1) return; // too short, ignore
+
+  const tier = state.tiers.find(tr => tr.id === drag.tierId);
+  if (!tier) return;
+  const ann = { id: uuidv4(), start, end, text: '' };
+  tier.anns.push(ann);
+  renderTiers();
+  autosave();
+  // Start editing the new annotation immediately
+  const track = document.querySelector(`.tier-track[data-tier-id="${tier.id}"]`);
+  if (track) {
+    const el = track.querySelector(`[data-ann-id="${ann.id}"]`);
+    if (el) startTierAnnEdit(el, tier, ann);
+  }
+});
+
+document.getElementById('btn-add-tier').addEventListener('click', () => {
+  if (state.tiers.length >= MAX_TIERS) return;
+  state.tiers.push({ id: uuidv4(), name: `Tier ${state.tiers.length + 1}`, anns: [] });
+  renderTiers();
+  autosave();
+});
+
+// Click on audio pin or marker list item: pre-fills the add form and starts preview loop
+function prefillFormFromMarker(mk) {
+  state.activeMarkerId = mk.id;
+  renderMarkersList(); // highlight active
+
+  const vid  = document.getElementById('video');
+  const dur  = state.duration || 0;
+  const start = mk.time;
+  const end   = Math.min(start + 4, dur > 0 ? dur : start + 4);
+
+  // Seek video
+  vid.currentTime = start;
+
+  // Open form
+  document.getElementById('add-form').classList.add('visible');
+
+  // Fill fields
+  document.getElementById('f-start').value  = start.toFixed(2);
+  document.getElementById('f-end').value    = end.toFixed(2);
+  document.getElementById('f-oracion').value = mk.oracion || '';
+
+  // Set label — mk.label already uses the display form ("¿Qué?", etc.)
+  renderAddFormSelect(mk.label);
+
+  // mkeyStart = null so overlay shows as "done" (ready to save)
+  state.mkeyStart = null;
+  hideMkeyIndicator();
+  updateSelectionOverlay();
+}
+
+function renderMarkersList() {
+  const card  = document.getElementById('markers-card');
+  const list  = document.getElementById('markers-list');
+  const count = document.getElementById('markers-count');
+  list.innerHTML = '';
+
+  if (state.audioMarkers.length === 0) {
+    card.style.display = 'none';
+    return;
+  }
+
+  card.style.display = '';
+  count.textContent  = `${state.audioMarkers.length} marcador${state.audioMarkers.length !== 1 ? 'es' : ''}`;
+
+  const sorted = [...state.audioMarkers].sort((a, b) => a.time - b.time);
+  sorted.forEach(mk => {
+    const li = document.createElement('li');
+    li.title = mk.oracion || '';
+    if (mk.id === state.activeMarkerId) li.classList.add('mk-active');
+    li.innerHTML = `
+      <span class="mk-time">${fmtTime(mk.time)}</span>
+      <span class="mk-label" style="color:${LABEL_COLORS[mk.label] || '#6b7280'}">${escapeHtml(labelDisplay(mk.label))}</span>
+      <span class="mk-text">${escapeHtml(mk.oracion || '')}</span>
+      <button class="mk-del" title="Eliminar marcador" style="margin-left:auto;flex-shrink:0;background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:13px;padding:0 2px;line-height:1;" >✕</button>
+    `;
+    li.querySelector('.mk-del').addEventListener('click', (e) => {
+      e.stopPropagation();
+      state.audioMarkers = state.audioMarkers.filter(m => m.id !== mk.id);
+      renderMarkersList();
+      renderAudioPins();
+      autosave();
+    });
+    li.addEventListener('click', () => {
+      prefillFormFromMarker(mk);
+    });
+    list.appendChild(li);
+  });
+
+  // Scroll active marker into view
+  const active = list.querySelector('.mk-active');
+  if (active) active.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+
+document.getElementById('markers-header').addEventListener('click', () => {
+  const body    = document.getElementById('markers-body');
+  const toggle  = document.getElementById('markers-toggle');
+  const hidden  = body.style.display === 'none';
+  body.style.display  = hidden ? '' : 'none';
+  toggle.textContent  = hidden ? '▾' : '▸';
+});
+
+// ============================================================
 // Autosave
 // ============================================================
 async function autosave() {
@@ -2154,6 +3067,8 @@ async function autosave() {
     await apiPost(`/annotations/${encodeId(state.currentVideo.id)}`, {
       video_id: state.currentVideo.id,
       annotations: state.annotations,
+      markers: state.audioMarkers,
+      tiers: state.tiers,
     });
   } catch (e) {
     console.error('Autosave failed', e);
@@ -2236,6 +3151,67 @@ document.getElementById('speed-select').addEventListener('change', (e) => {
 
 document.getElementById('btn-loop-dismiss').addEventListener('click', () => {
   deactivateLoop();
+  // Si había una selección de preview activa, limpiar los campos para que
+  // updateSelectionOverlay no la reactive al siguiente evento
+  if (document.getElementById('add-form').classList.contains('visible')) {
+    clearAddForm();
+  }
+});
+
+// ============================================================
+// ============================================================
+// Checkbox / batch save
+// ============================================================
+function updateBatchButton() {
+  const n   = state.selectedAnnotations.size;
+  const btn = document.getElementById('btn-save-batch');
+  document.getElementById('batch-count').textContent = n;
+  btn.classList.toggle('visible', n > 0);
+}
+
+function updateSelectAllCheckbox() {
+  const chkAll  = document.getElementById('chk-all');
+  if (!chkAll) return;
+  const visible = [...document.querySelectorAll('#ann-tbody .ann-chk')];
+  if (visible.length === 0) { chkAll.checked = false; chkAll.indeterminate = false; return; }
+  const checkedCount = visible.filter(c => c.checked).length;
+  chkAll.indeterminate = checkedCount > 0 && checkedCount < visible.length;
+  chkAll.checked = checkedCount === visible.length;
+}
+
+document.getElementById('chk-all').addEventListener('change', (e) => {
+  const checked = e.target.checked;
+  document.querySelectorAll('#ann-tbody .ann-chk').forEach(chk => {
+    chk.checked = checked;
+    const id = chk.dataset.id;
+    if (checked) state.selectedAnnotations.add(id);
+    else state.selectedAnnotations.delete(id);
+  });
+  updateBatchButton();
+});
+
+document.getElementById('btn-save-batch').addEventListener('click', async () => {
+  if (!state.currentVideo || state.selectedAnnotations.size === 0) return;
+  const btn = document.getElementById('btn-save-batch');
+  btn.disabled = true;
+  const ids = [...state.selectedAnnotations];
+  const anns = state.annotations.filter(a => ids.includes(a.id));
+  let saved = 0, failed = 0;
+  for (const ann of anns) {
+    try {
+      const labelParam   = encodeURIComponent(ann.label   || '');
+      const oracionParam = encodeURIComponent(ann.oracion || '');
+      const url = `/clips/${encodeId(state.currentVideo.id)}?start=${ann.start}&end=${ann.end}&label=${labelParam}&oracion=${oracionParam}`;
+      const r = await fetch(url);
+      if (r.ok) saved++;
+      else failed++;
+    } catch { failed++; }
+  }
+  btn.disabled = false;
+  const msg = failed === 0
+    ? `${saved} clip${saved !== 1 ? 's' : ''} guardado${saved !== 1 ? 's' : ''} en /clips`
+    : `${saved} guardado${saved !== 1 ? 's' : ''}, ${failed} fallo${failed !== 1 ? 's' : ''}`;
+  toast(msg, 4000);
 });
 
 // ============================================================
@@ -2247,25 +3223,21 @@ async function downloadClip(btn, ann) {
   btn.textContent = '⏳';
   btn.disabled = true;
 
-  const labelParam = encodeURIComponent(ann.label || '');
-  const url = `/clips/${encodeId(state.currentVideo.id)}?start=${ann.start}&end=${ann.end}&label=${labelParam}`;
+  const labelParam   = encodeURIComponent(ann.label   || '');
+  const oracionParam = encodeURIComponent(ann.oracion || '');
+  const url = `/clips/${encodeId(state.currentVideo.id)}?start=${ann.start}&end=${ann.end}&label=${labelParam}&oracion=${oracionParam}`;
   try {
     const r = await fetch(url);
     if (!r.ok) {
-      let msg = 'Error al descargar el clip';
+      let msg = 'Error al guardar el clip';
       try { msg = (await r.json()).detail; } catch {}
       toast(msg, 4000);
       return;
     }
-    const blob = await r.blob();
-    // Nombre refleja el stem del video y la etiqueta, igual que el guardado en el servidor
-    const videoStem = state.currentVideo.id.split('/').pop();
-    const labelSafe = (ann.label || 'clip').replace(/[^\w\-]/g, '_').replace(/_+/g, '_').replace(/^_|_$/g, '');
-    const name = `${videoStem}_clip_${labelSafe}.mp4`;
-    downloadBlob(blob, name, blob.type);
-    toast(`Clip guardado: ${name}`);
+    const data = await r.json();
+    toast(`Clip guardado en /clips: ${data.clip}`);
   } catch (e) {
-    toast('Error de red al descargar el clip');
+    toast('Error de red al guardar el clip');
     console.error(e);
   } finally {
     btn.textContent = origText;
@@ -2310,7 +3282,7 @@ function applyFilters() {
     if (!noMatchRow) {
       noMatchRow = document.createElement('tr');
       noMatchRow.className = 'no-match-filter';
-      noMatchRow.innerHTML = '<td colspan="5" class="empty-table">Ninguna anotación coincide con los filtros activos.</td>';
+      noMatchRow.innerHTML = '<td colspan="6" class="empty-table">Ninguna anotación coincide con los filtros activos.</td>';
       tbody.appendChild(noMatchRow);
     }
     noMatchRow.style.display = '';
